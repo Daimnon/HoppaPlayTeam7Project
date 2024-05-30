@@ -40,8 +40,8 @@ public class Adventurer : Character
     private ResourceObjectPool _resourcePool = null;
     private Resource _resource = null;
 
-    private WeaponObjectPool _weaponPool = null;
-    private Weapon _weapon = null;
+    /*private WeaponObjectPool _weaponPool = null;
+    private Weapon _weapon = null;*/
 
     private const string _resourceCustomerTag = "ResourceCustomer", _weaponCustomerTag = "WeaponCustomer";
 
@@ -113,8 +113,8 @@ public class Adventurer : Character
             else if (gameObject.CompareTag(_weaponCustomerTag))
             {
                 _isAlive = false;
-                _weaponPool.ReturnWeaponToPool(_weapon);
-                _weapon = null;
+                /*_weaponPool.ReturnWeaponToPool(_weapon);
+                _weapon = null;*/
                 _hasBoughtItem = false;
                 EventManager.InvokeHoldWeapon(this, false);
                 _aiPool.RespawnAdventurer(this);
@@ -132,7 +132,7 @@ public class Adventurer : Character
         _agent.SetDestination(_tradingTr.position);
         _aiPool = GameManager.Instance.AIPool;
         _resourcePool = GameManager.Instance.ResourcePool;
-        _weaponPool = GameManager.Instance.WeaponPool;
+        //_weaponPool = GameManager.Instance.WeaponPool;
 
         Vector3 lookAtPos = _tradingTr.position;
         lookAtPos.x += _lookAtOffset;
@@ -145,7 +145,7 @@ public class Adventurer : Character
         if (chara is Adventurer && chara as Adventurer == this)
             _aiAnimator.SetBool("Is Holding", isHoldingResource);
     }
-    public Object BuyItem(PlayerInventory inventory)
+    /*public Object BuyItem(PlayerInventory inventory)
     {
         Object obj = null;
         if (gameObject.CompareTag(_resourceCustomerTag))
@@ -176,5 +176,5 @@ public class Adventurer : Character
         }
         _hasBoughtItem = true;
         return obj;
-    }
+    }*/
 }

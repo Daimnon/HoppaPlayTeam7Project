@@ -65,8 +65,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ResourceObjectPool _resourcePool;
     public ResourceObjectPool ResourcePool => _resourcePool;
 
-    [SerializeField] private WeaponObjectPool _weaponPool;
-    public WeaponObjectPool WeaponPool => _weaponPool;
+    /*[SerializeField] private WeaponObjectPool _weaponPool;
+    public WeaponObjectPool WeaponPool => _weaponPool;*/
 
     private void Awake()
     {

@@ -101,7 +101,7 @@ public class AIObjectPool : MonoBehaviour
         respawnedAdventurer.transform.localPosition = Vector3.zero;
         respawnedAdventurer.transform.localRotation = Quaternion.identity;
         respawnedAdventurer.transform.parent = null;
-        EventManager.InvokeAdventurerSpawned(respawnedAdventurer);
+        //EventManager.InvokeAdventurerSpawned(respawnedAdventurer);
         return respawnedAdventurer;
     }
     
@@ -132,7 +132,7 @@ public class AIObjectPool : MonoBehaviour
         respawnedAdventurer.transform.localPosition = Vector3.zero;
         respawnedAdventurer.transform.localRotation = Quaternion.identity;
         respawnedAdventurer.transform.parent = null;
-        EventManager.InvokeAdventurerSpawned(respawnedAdventurer);
+        //EventManager.InvokeAdventurerSpawned(respawnedAdventurer);
     }
 
     public void SpawnResourceAdventurer(AdventurerType adventurerType)

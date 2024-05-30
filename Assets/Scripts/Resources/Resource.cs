@@ -19,17 +19,17 @@ public class Resource : MonoBehaviour
     {
         if (!_isInInventory && other.CompareTag(_playerTag))
         {
-            PlayerInventory playerInventory = other.GetComponent<PlayerInventory>();
-            Pickup(playerInventory);
+            /*PlayerInventory playerInventory = other.GetComponent<PlayerInventory>();
+            Pickup(playerInventory);*/
         }
     }
 
-    private void Pickup(PlayerInventory playerInventory)
+    /*private void Pickup(PlayerInventory playerInventory)
     {
         if (_originTrList != null)
             _originTrList.Remove(this);
 
         playerInventory.TakeResource(this);
         _isInInventory = true;
-    }
+    }*/
 }

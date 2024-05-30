@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Currency : MonoBehaviour
 {
-    [SerializeField] private int _worth = 1;
+    //[SerializeField] private int _worth = 1;
     [SerializeField] private Renderer _renderer;
 
     private const string _playerTag = "Player";
@@ -13,13 +13,13 @@ public class Currency : MonoBehaviour
         if (!other.CompareTag(_playerTag))
             return;
 
-        PlayerInventory playerInventory = other.GetComponent<PlayerInventory>();
-        Pickup(playerInventory);
+        /*PlayerInventory playerInventory = other.GetComponent<PlayerInventory>();
+        Pickup(playerInventory);*/
     }
 
-    private void Pickup(PlayerInventory playerInventory)
+    /*private void Pickup(PlayerInventory playerInventory)
     {
         playerInventory.EarnCurrency(_worth);
         playerInventory.CurrencyObjectPool.ReturnCurrencyToPool(this);
-    }
+    }*/
 }

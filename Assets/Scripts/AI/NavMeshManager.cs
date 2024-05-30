@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class NavMeshManager : MonoBehaviour
 {
-    //[SerializeField] private NavMeshSurface _navSurface;
+    [SerializeField] private NavMeshSurface _navSurface;
 
     private void OnEnable()
     {
@@ -18,6 +19,6 @@ public class NavMeshManager : MonoBehaviour
 
     private void OnBakeNavMesh()
     {
-        //_navSurface.BuildNavMesh();
+        _navSurface.BuildNavMesh();
     }
 }

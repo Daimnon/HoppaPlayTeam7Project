@@ -11,11 +11,7 @@ public static class EventManager
     public static Action<int> OnEarnCurrency;
     public static Action<int> OnPayCurrency;
     public static Action<Character, bool> OnHoldResource, OnHoldWeapon;
-    public static Action<Adventurer> OnAdventurerSpawned;
     public static Action<Resource> OnTakeResource, OnPayFirstResource, OnPayResource;
-    public static Action<WeaponTrader> OnWeaponTraderUnlocked;
-    public static Action<IronProducer> OnForgeUnlocked;
-    public static Action<WeaponProducer> OnAnvilUnlocked, OnAnyAnvilUnlocked;
 
     public static void InvokeGameLaunched()
     {
@@ -76,15 +72,6 @@ public static class EventManager
         UnityEngine.Debug.Log($"Event: PayCurrency, Price: {price}");
     }
 
-    public static void InvokeAdventurerSpawned(Adventurer adventurer)
-    {
-        if (adventurer != null)
-        {
-            OnAdventurerSpawned?.Invoke(adventurer);
-            UnityEngine.Debug.Log("Event: AdventurerRespawned");
-        }
-    }
-
     public static void InvokeTakeResource(Resource resource)
     {
         if (resource != null)
@@ -108,30 +95,5 @@ public static class EventManager
             OnPayResource?.Invoke(resource);
             UnityEngine.Debug.Log($"Event: PayResource, ResourceType: {resource.Type.ToString()}");
         }
-    }
-
-    public static void InvokeWeaponTraderUnlocked(WeaponTrader weaponTrader)
-    {
-        OnWeaponTraderUnlocked?.Invoke(weaponTrader);
-        UnityEngine.Debug.Log("Event: WeaponTraderUnlocked");
-    }
-
-    public static void InvokeForgeUnlocked(IronProducer forge)
-    {
-        OnForgeUnlocked?.Invoke(forge);
-        UnityEngine.Debug.Log("Event: ForgeUnlocked");
-    }
-
-    public static void InvokeAnvilUnlocked(WeaponProducer weaponProducer)
-    {
-        if (weaponProducer is AxeProducer)
-            OnAnvilUnlocked?.Invoke(weaponProducer as AxeProducer);
-
-        UnityEngine.Debug.Log("Event: AnvilUnlocked");
-    }
-    public static void InvokeAnyAnvilUnlocked(WeaponProducer weaponProducer)
-    {
-        OnAnyAnvilUnlocked?.Invoke(weaponProducer);
-        UnityEngine.Debug.Log("Event: AnyAnvilUnlocked");
     }
 }

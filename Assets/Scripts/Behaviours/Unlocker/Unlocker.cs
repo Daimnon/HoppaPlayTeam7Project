@@ -9,23 +9,23 @@ public class Unlocker : MonoBehaviour
     [SerializeField] protected GameObject _unlockablePrefab;
     [SerializeField] protected Transform _spawnPos;
     [SerializeField] private TextMeshProUGUI _currentPriceTxt;
-    [SerializeField] private int _priceToUnlock = 3, _amountToCharge = 1;
+    //[SerializeField] private int _priceToUnlock = 3, _amountToCharge = 1;
 
-    private PlayerInventory _playerInventory;
+    //private PlayerInventory _playerInventory;
     private const string _playerTag = "Player";
     private bool _isUnlocked = false;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (_playerInventory == null && other.CompareTag(_playerTag))
-            _playerInventory = other.GetComponent<PlayerInventory>();
+        /*if (_playerInventory == null && other.CompareTag(_playerTag))
+            _playerInventory = other.GetComponent<PlayerInventory>();*/
     }
     private void OnTriggerStay(Collider other)
     {
         if (_isUnlocked)
             return;
 
-        int paidAmount = _playerInventory.PayCurrency(_amountToCharge);
+        /*int paidAmount = _playerInventory.PayCurrency(_amountToCharge);
         EventManager.InvokePayCurrency(paidAmount);
         _priceToUnlock -= paidAmount;
         _currentPriceTxt.text = _priceToUnlock.ToString();
@@ -34,7 +34,7 @@ public class Unlocker : MonoBehaviour
         {
             _isUnlocked = true;
             Unlock();
-        }
+        }*/
     }
     protected void SpawnNewProp()
     {

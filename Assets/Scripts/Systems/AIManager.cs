@@ -19,20 +19,20 @@ public class AIManager : MonoBehaviour
     }
     private void OnEnable()
     {
-        EventManager.OnWeaponTraderUnlocked += OnWeaponTraderUnlocked;
-        EventManager.OnAdventurerSpawned += OnAdventurerSpawned;
+        /*EventManager.OnWeaponTraderUnlocked += OnWeaponTraderUnlocked;
+        EventManager.OnAdventurerSpawned += OnAdventurerSpawned;*/
     }
     private void OnDisable()
     {
-        EventManager.OnWeaponTraderUnlocked -= OnWeaponTraderUnlocked;
-        EventManager.OnAdventurerSpawned -= OnAdventurerSpawned;
+        /*EventManager.OnWeaponTraderUnlocked -= OnWeaponTraderUnlocked;
+        EventManager.OnAdventurerSpawned -= OnAdventurerSpawned;*/
     }
 
-    private void OnWeaponTraderUnlocked(WeaponTrader weaponTrader)
+    /*private void OnWeaponTraderUnlocked(WeaponTrader weaponTrader)
     {
        _weaponTradingTr = weaponTrader.TradingPos;
         GameManager.Instance.AIPool.SpawnWeaponAdventurer(AdventurerType.AxeCommonSmall);
-    }
+    }*/
     private void OnAdventurerSpawned(Adventurer adventurer)
     {
         if (adventurer.CompareTag(_resourceCustomerTag))
