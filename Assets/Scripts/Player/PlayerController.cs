@@ -7,7 +7,7 @@ using ETouch = UnityEngine.InputSystem.EnhancedTouch;
 
 public class PlayerController : Character
 {
-    [SerializeField] Animator _playerAnimator;
+    [SerializeField] private Animator _playerAnimator;
     [SerializeField] private TouchFloatStick _stick;
     [SerializeField] private Vector2 _stickSize = new(300.0f, 300.0f);
     [SerializeField] private Vector2 _screenOffsetMargin = new(100.0f, 50.0f);
@@ -29,13 +29,16 @@ public class PlayerController : Character
     }
     private void Update()
     {
+        /* movement */
         Vector3 scaledMovement = _agent.speed * Time.deltaTime * new Vector3(_fingerMoveAmount.x, 0, _fingerMoveAmount.y);
 
         _agent.transform.LookAt(_agent.transform.position + scaledMovement, Vector3.up);
         _agent.Move(scaledMovement);
 
+        /* animation */
         _playerAnimator.SetFloat("Move Speed", scaledMovement.normalized.magnitude);
 
+        /* idle gesture */
         if (scaledMovement == Vector3.zero)
         {
             _idleTime += Time.deltaTime;
@@ -64,13 +67,14 @@ public class PlayerController : Character
 
     private void OnFingerMove(Finger finger)
     {
+        /* joystick movement */
         if (finger == _moveFinger)
         {
-            Vector2 knobPos;
+            Vector2 knobPos; // joystick knob
             float maxMoveLenght = _stickSize.x / 2;
             ETouch.Touch currentTouch = finger.currentTouch;
 
-
+            
             if (Vector2.Distance(currentTouch.screenPosition, _stick.RectTr.anchoredPosition) > maxMoveLenght)
                 knobPos = (currentTouch.screenPosition - _stick.RectTr.anchoredPosition).normalized * maxMoveLenght;
             else
@@ -82,6 +86,7 @@ public class PlayerController : Character
     }
     private void OnFingerUp(Finger finger)
     {
+        /* reset joystick */
         if (finger == _moveFinger)
         {
             _moveFinger = null;
@@ -92,14 +97,16 @@ public class PlayerController : Character
     }
     private void OnFingerDown(Finger finger)
     {
+        /* get touch input position */
         Vector2 touchPosition = finger.screenPosition;
 
-        // calculate the bounds of the margin
+        /* calculate the bounds of the margin */
         float leftMargin = _screenOffsetMargin.x;
         float rightMargin = Screen.width - _screenOffsetMargin.x;
         float topMargin = Screen.height - _screenOffsetMargin.y;
         float bottomMargin = _screenOffsetMargin.y;
 
+        /* making sure we are indeed starting the touch */
         if (_moveFinger == null && !(touchPosition.x < leftMargin || touchPosition.x > rightMargin || touchPosition.y < bottomMargin || touchPosition.y > topMargin))
         {
             _moveFinger = finger;
@@ -111,6 +118,7 @@ public class PlayerController : Character
     }
     private Vector2 ClampStickDownPos(Vector2 stickPos)
     {
+        /* help us keep joystick knob in the correct position in relation to joystick bg */
         float halfWidth = _stickSize.x / 2.0f;
         float halfHeight = _stickSize.y / 2.0f;
 
