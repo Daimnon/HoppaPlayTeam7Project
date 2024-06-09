@@ -110,7 +110,7 @@ public class PlayerController : Character
             _moveFinger = finger;
             _fingerMoveAmount = Vector3.zero;
             _stick.gameObject.SetActive(true);
-            _stick.RectTr.sizeDelta = _stickSize;
+            _stick.SetJoystickSize();
 
             // Adjust position based on aspect ratio
             _stick.RectTr.anchoredPosition = ClampStickDownPos(AdjustForAspectRatio(touchPosition));

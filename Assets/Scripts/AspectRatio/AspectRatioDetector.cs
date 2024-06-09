@@ -16,14 +16,16 @@ public class AspectRatioDetector : MonoBehaviour
      */
 
     [SerializeField] protected DeviceType _currentAspectRatio;
-    protected const float _aspectRatioThresholdNewPhoneTablet = 0.6f;
-    protected const float _aspectRatioThresholdOldPhoneNewPhone = 0.5f;
+    public DeviceType CurrentAspectRatio => _currentAspectRatio;
 
-    private void OnEnable()
+    private const float _aspectRatioThresholdNewPhoneTablet = 0.6f;
+    private const float _aspectRatioThresholdOldPhoneNewPhone = 0.5f;
+
+    protected virtual void OnEnable()
     {
         _currentAspectRatio = DetectAspectRatio();
     }
-    private void Start()
+    protected virtual void Start()
     {
         _currentAspectRatio = DetectAspectRatio();
     }
