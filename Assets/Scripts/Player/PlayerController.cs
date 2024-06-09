@@ -10,7 +10,7 @@ public class PlayerController : Character
     [SerializeField] private Animator _playerAnimator;
     [SerializeField] private TouchFloatStick _stick;
     [SerializeField] private Vector2 _stickSize = new(300.0f, 300.0f);
-    [SerializeField] private Vector2 _screenOffsetMargin = new(100.0f, 50.0f);
+    [SerializeField] private Vector2 _screenEdgeOffsetMargin = new(100.0f, 50.0f);
     [SerializeField] private float _idleGestureTime = 7.5f;
     [SerializeField] private NavMeshAgent _agent;
 
@@ -31,7 +31,6 @@ public class PlayerController : Character
         ETouch.Touch.onFingerUp += OnFingerUp;
         ETouch.Touch.onFingerMove += OnFingerMove;
     }
-
     private void Update()
     {
         /* movement */
@@ -81,7 +80,7 @@ public class PlayerController : Character
             size += 1; // Increase size
             exp = 0; // Reset EXP
             // Updating visual size (? - Another asset?)
-            transform.localScale = Vector3.one * size; 
+            transform.localScale = Vector3.one * size;
         }
     }
 
@@ -91,6 +90,31 @@ public class PlayerController : Character
         ETouch.Touch.onFingerUp -= OnFingerUp;
         ETouch.Touch.onFingerMove -= OnFingerMove;
         EnhancedTouchSupport.Disable();
+    }
+
+    #region Fingers
+    private void OnFingerDown(Finger finger)
+    {
+        /* get touch input position */
+        Vector2 touchPosition = finger.screenPosition;
+
+        /* calculate the bounds of the margin */
+        float leftMargin = _screenEdgeOffsetMargin.x;
+        float rightMargin = Screen.width - _screenEdgeOffsetMargin.x;
+        float topMargin = Screen.height - _screenEdgeOffsetMargin.y;
+        float bottomMargin = _screenEdgeOffsetMargin.y;
+
+        /* making sure we are indeed starting the touch */
+        if (_moveFinger == null && !(touchPosition.x < leftMargin || touchPosition.x > rightMargin || touchPosition.y < bottomMargin || touchPosition.y > topMargin))
+        {
+            _moveFinger = finger;
+            _fingerMoveAmount = Vector3.zero;
+            _stick.gameObject.SetActive(true);
+            _stick.RectTr.sizeDelta = _stickSize;
+
+            // Adjust position based on aspect ratio
+            _stick.RectTr.anchoredPosition = ClampStickDownPos(AdjustForAspectRatio(touchPosition));
+        }
     }
 
     private void OnFingerMove(Finger finger)
@@ -123,27 +147,14 @@ public class PlayerController : Character
             _fingerMoveAmount = Vector3.zero;
         }
     }
+    #endregion
 
-    private void OnFingerDown(Finger finger)
+    private Vector2 AdjustForAspectRatio(Vector2 position)
     {
-        /* get touch input position */
-        Vector2 touchPosition = finger.screenPosition;
+        float aspectRatio = (float)Screen.width / Screen.height;
+        float distanceOffset = Mathf.Lerp(1.0f, 2.0f, (aspectRatio - 1.0f) / (2.0f - 1.0f)); // Adjust this as needed
 
-        /* calculate the bounds of the margin */
-        float leftMargin = _screenOffsetMargin.x;
-        float rightMargin = Screen.width - _screenOffsetMargin.x;
-        float topMargin = Screen.height - _screenOffsetMargin.y;
-        float bottomMargin = _screenOffsetMargin.y;
-
-        /* making sure we are indeed starting the touch */
-        if (_moveFinger == null && !(touchPosition.x < leftMargin || touchPosition.x > rightMargin || touchPosition.y < bottomMargin || touchPosition.y > topMargin))
-        {
-            _moveFinger = finger;
-            _fingerMoveAmount = Vector3.zero;
-            _stick.gameObject.SetActive(true);
-            _stick.RectTr.sizeDelta = _stickSize;
-            _stick.RectTr.anchoredPosition = ClampStickDownPos(finger.screenPosition);
-        }
+        return new Vector2(position.x * distanceOffset, position.y * distanceOffset);
     }
 
     private Vector2 ClampStickDownPos(Vector2 stickPos)
