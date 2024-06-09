@@ -20,6 +20,10 @@ public class PlayerController : Character
     private Finger _moveFinger;
     private Vector3 _fingerMoveAmount;
 
+    public float size;
+    public float exp;
+    public float expToLevelUp;
+
     private void OnEnable()
     {
         EnhancedTouchSupport.Enable();
@@ -27,6 +31,7 @@ public class PlayerController : Character
         ETouch.Touch.onFingerUp += OnFingerUp;
         ETouch.Touch.onFingerMove += OnFingerMove;
     }
+
     private void Update()
     {
         /* movement */
@@ -57,6 +62,29 @@ public class PlayerController : Character
             _playerAnimator.SetBool("Is Gesturing", _isGesturing);
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Consumable consumable = other.GetComponent<Consumable>();
+        if (consumable != null && consumable.size <= size)
+        {
+            exp += consumable.expValue;
+            Destroy(other.gameObject);
+            CheckLevelUp();
+        }
+    }
+
+    private void CheckLevelUp()
+    {
+        if (exp >= expToLevelUp)
+        {
+            size += 1; // Increase size
+            exp = 0; // Reset EXP
+            // Updating visual size (? - Another asset?)
+            transform.localScale = Vector3.one * size; 
+        }
+    }
+
     private void OnDisable()
     {
         ETouch.Touch.onFingerDown -= OnFingerDown;
@@ -74,7 +102,6 @@ public class PlayerController : Character
             float maxMoveLenght = _stickSize.x / 2;
             ETouch.Touch currentTouch = finger.currentTouch;
 
-            
             if (Vector2.Distance(currentTouch.screenPosition, _stick.RectTr.anchoredPosition) > maxMoveLenght)
                 knobPos = (currentTouch.screenPosition - _stick.RectTr.anchoredPosition).normalized * maxMoveLenght;
             else
@@ -84,6 +111,7 @@ public class PlayerController : Character
             _fingerMoveAmount = knobPos / maxMoveLenght;
         }
     }
+
     private void OnFingerUp(Finger finger)
     {
         /* reset joystick */
@@ -95,6 +123,7 @@ public class PlayerController : Character
             _fingerMoveAmount = Vector3.zero;
         }
     }
+
     private void OnFingerDown(Finger finger)
     {
         /* get touch input position */
@@ -116,6 +145,7 @@ public class PlayerController : Character
             _stick.RectTr.anchoredPosition = ClampStickDownPos(finger.screenPosition);
         }
     }
+
     private Vector2 ClampStickDownPos(Vector2 stickPos)
     {
         /* help us keep joystick knob in the correct position in relation to joystick bg */
