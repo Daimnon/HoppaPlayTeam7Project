@@ -7,22 +7,28 @@ using ETouch = UnityEngine.InputSystem.EnhancedTouch;
 
 public class PlayerController : Character
 {
+    [Header("Components")]
     [SerializeField] private Animator _playerAnimator;
     [SerializeField] private TouchFloatStick _stick;
-    [SerializeField] private Vector2 _stickSize = new(300.0f, 300.0f);
-    [SerializeField] private Vector2 _screenEdgeOffsetMargin = new(100.0f, 50.0f);
-    [SerializeField] private float _idleGestureTime = 7.5f;
     [SerializeField] private NavMeshAgent _agent;
+
+    [Header("Screen")]
+    [SerializeField] private Vector2 _screenEdgeOffsetMargin = new(100.0f, 50.0f);
+
+    [Header("Animation")]
+    [SerializeField] private float _idleGestureTime = 7.5f;
+
+    [Header("Stats")]
+    [SerializeField] private float _exp;
+    [SerializeField] private float _expToLevelUp;
+    [SerializeField] private float _scaleIncrement = 1.0f;
+    private float _newSize;
 
     private float _idleTime = 0.0f;
     private bool _isGesturing = false;
 
     private Finger _moveFinger;
     private Vector3 _fingerMoveAmount;
-
-    public float size;
-    public float exp;
-    public float expToLevelUp;
 
     private void OnEnable()
     {
@@ -65,9 +71,9 @@ public class PlayerController : Character
     private void OnTriggerEnter(Collider other)
     {
         Consumable consumable = other.GetComponent<Consumable>();
-        if (consumable != null && consumable.size <= size)
+        if (consumable != null && consumable.size <= _newSize)
         {
-            exp += consumable.expValue;
+            _exp += consumable.expValue;
             Destroy(other.gameObject);
             CheckLevelUp();
         }
@@ -75,12 +81,12 @@ public class PlayerController : Character
 
     private void CheckLevelUp()
     {
-        if (exp >= expToLevelUp)
+        if (_exp >= _expToLevelUp)
         {
-            size += 1; // Increase size
-            exp = 0; // Reset EXP
+            _newSize += _scaleIncrement; // Increase size
+            _exp = 0; // Reset EXP
             // Updating visual size (? - Another asset?)
-            transform.localScale = Vector3.one * size;
+            transform.localScale = Vector3.one * _newSize;
         }
     }
 
@@ -123,7 +129,7 @@ public class PlayerController : Character
         if (finger == _moveFinger)
         {
             Vector2 knobPos; // joystick knob
-            float maxMoveLenght = _stickSize.x / 2;
+            float maxMoveLenght = _stick.RectTr.sizeDelta.x / 2;
             ETouch.Touch currentTouch = finger.currentTouch;
 
             if (Vector2.Distance(currentTouch.screenPosition, _stick.RectTr.anchoredPosition) > maxMoveLenght)
@@ -160,8 +166,8 @@ public class PlayerController : Character
     private Vector2 ClampStickDownPos(Vector2 stickPos)
     {
         /* help us keep joystick knob in the correct position in relation to joystick bg */
-        float halfWidth = _stickSize.x / 2.0f;
-        float halfHeight = _stickSize.y / 2.0f;
+        float halfWidth = _stick.RectTr.sizeDelta.x / 2.0f;
+        float halfHeight = _stick.RectTr.sizeDelta.y / 2.0f;
 
         float screenWidthMinusHalfWidth = Screen.width - halfWidth;
         float screenHeightMinusHalfHeight = Screen.height - halfHeight;

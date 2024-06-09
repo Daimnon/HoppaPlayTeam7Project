@@ -17,8 +17,10 @@ public class AnchoringPosSizeUI : AspectRatioDetector
         _originalPos = _rectTr.anchoredPosition;
         _originalSize = _rectTr.sizeDelta;
     }
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
+
         ChangeRectByAspectRatio();
     }
 

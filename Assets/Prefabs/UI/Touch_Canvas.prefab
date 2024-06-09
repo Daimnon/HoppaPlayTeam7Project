@@ -192,17 +192,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ee5e8c65f171694ab09b72e1e17c43c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentAspectRatio: 0
+  _currentAspectRatio: 2
   _scaler: {fileID: 3968120035578765249}
   _rectTr: {fileID: 436373738228790869}
   _knobOutline: {fileID: 777646605431363317}
   _knobTr: {fileID: 3057882797794214206}
-  _joystickBgSizeOld: {x: 246.15, y: 246.15}
-  _joystickKnobSizeOld: {x: 98.46, y: 98.46}
+  _joystickBgSizeOld: {x: 200, y: 200}
+  _joystickKnobSizeOld: {x: 80, y: 80}
   _joystickBgSizeNew: {x: 300, y: 300}
   _joystickKnobSizeNew: {x: 120, y: 120}
-  _joystickBgSizeTab: {x: 61.54, y: 61.54}
-  _joystickKnobSizeTab: {x: 24.62, y: 24.62}
+  _joystickBgSizeTab: {x: 380, y: 380}
+  _joystickKnobSizeTab: {x: 160, y: 160}
 --- !u!1 &6797724484881522985
 GameObject:
   m_ObjectHideFlags: 0

@@ -10748,11 +10748,6 @@ PrefabInstance:
       propertyPath: _stick
       value: 
       objectReference: {fileID: 1385065084}
-    - target: {fileID: 2161171637004170868, guid: 43cfd56858ba61d4ebfc1c0923a6f5bd,
-        type: 3}
-      propertyPath: _joystickOffset.x
-      value: 40
-      objectReference: {fileID: 0}
     - target: {fileID: 4658901336399500275, guid: 43cfd56858ba61d4ebfc1c0923a6f5bd,
         type: 3}
       propertyPath: m_Name
@@ -22872,51 +22867,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8515620774885842350, guid: 8c392921442addb44abbc35e2fb20db1,
-        type: 3}
-      propertyPath: _currentAspectRatio
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8515620774885842350, guid: 8c392921442addb44abbc35e2fb20db1,
-        type: 3}
-      propertyPath: _joystickBgSizeOld.x
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 8515620774885842350, guid: 8c392921442addb44abbc35e2fb20db1,
-        type: 3}
-      propertyPath: _joystickBgSizeOld.y
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 8515620774885842350, guid: 8c392921442addb44abbc35e2fb20db1,
-        type: 3}
-      propertyPath: _joystickBgSizeTab.x
-      value: 380
-      objectReference: {fileID: 0}
-    - target: {fileID: 8515620774885842350, guid: 8c392921442addb44abbc35e2fb20db1,
-        type: 3}
-      propertyPath: _joystickBgSizeTab.y
-      value: 380
-      objectReference: {fileID: 0}
-    - target: {fileID: 8515620774885842350, guid: 8c392921442addb44abbc35e2fb20db1,
-        type: 3}
-      propertyPath: _joystickKnobSizeOld.x
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 8515620774885842350, guid: 8c392921442addb44abbc35e2fb20db1,
-        type: 3}
-      propertyPath: _joystickKnobSizeOld.y
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 8515620774885842350, guid: 8c392921442addb44abbc35e2fb20db1,
-        type: 3}
-      propertyPath: _joystickKnobSizeTab.x
-      value: 160
-      objectReference: {fileID: 0}
-    - target: {fileID: 8515620774885842350, guid: 8c392921442addb44abbc35e2fb20db1,
-        type: 3}
-      propertyPath: _joystickKnobSizeTab.y
-      value: 160
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c392921442addb44abbc35e2fb20db1, type: 3}

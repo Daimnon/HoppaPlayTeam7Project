@@ -18,8 +18,10 @@ public class AnchoringStrechUI : AspectRatioDetector
         _originalRightBottom = new(-_rectTr.offsetMax.x, _rectTr.offsetMin.y);
     }
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
+
         ChangeRectByAspectRatio();
     }
 
