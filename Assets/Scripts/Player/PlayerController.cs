@@ -27,7 +27,6 @@ public class PlayerController : Character
     private float _idleTime = 0.0f;
     private bool _isGesturing = false;
 
-    private const string _consumableTag = "Consumable"; // better practice to compare tag
 
     private Finger _moveFinger;
     private Vector3 _fingerMoveAmount;
@@ -77,8 +76,10 @@ public class PlayerController : Character
         EnhancedTouchSupport.Disable();
     }
 
-    private void OnTriggerEnter(Collider other) // better practice to compare tag
+    private void OnTriggerEnter(Collider other) 
     {
+        // if (other.TryGetComponent<Consumable>(out var consumable) && consumable.size <= _newSize)
+
         Consumable consumable = other.GetComponent<Consumable>();
         if (consumable != null && consumable.size <= _newSize)
         {
