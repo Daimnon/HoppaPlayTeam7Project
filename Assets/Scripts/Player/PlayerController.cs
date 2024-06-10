@@ -27,6 +27,8 @@ public class PlayerController : Character
     private float _idleTime = 0.0f;
     private bool _isGesturing = false;
 
+    private const string _consumableTag = "Consumable"; // better practice to compare tag
+
     private Finger _moveFinger;
     private Vector3 _fingerMoveAmount;
 
@@ -67,8 +69,15 @@ public class PlayerController : Character
             _playerAnimator.SetBool("Is Gesturing", _isGesturing);
         }
     }
+    private void OnDisable()
+    {
+        ETouch.Touch.onFingerDown -= OnFingerDown;
+        ETouch.Touch.onFingerUp -= OnFingerUp;
+        ETouch.Touch.onFingerMove -= OnFingerMove;
+        EnhancedTouchSupport.Disable();
+    }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other) // better practice to compare tag
     {
         Consumable consumable = other.GetComponent<Consumable>();
         if (consumable != null && consumable.size <= _newSize)
@@ -77,25 +86,6 @@ public class PlayerController : Character
             Destroy(other.gameObject);
             CheckLevelUp();
         }
-    }
-
-    private void CheckLevelUp()
-    {
-        if (_exp >= _expToLevelUp)
-        {
-            _newSize += _scaleIncrement; // Increase size
-            _exp = 0; // Reset EXP
-            // Updating visual size (? - Another asset?)
-            transform.localScale = Vector3.one * _newSize;
-        }
-    }
-
-    private void OnDisable()
-    {
-        ETouch.Touch.onFingerDown -= OnFingerDown;
-        ETouch.Touch.onFingerUp -= OnFingerUp;
-        ETouch.Touch.onFingerMove -= OnFingerMove;
-        EnhancedTouchSupport.Disable();
     }
 
     #region Fingers
@@ -122,7 +112,6 @@ public class PlayerController : Character
             _stick.RectTr.anchoredPosition = ClampStickDownPos(AdjustForAspectRatio(touchPosition));
         }
     }
-
     private void OnFingerMove(Finger finger)
     {
         /* joystick movement */
@@ -141,7 +130,6 @@ public class PlayerController : Character
             _fingerMoveAmount = knobPos / maxMoveLenght;
         }
     }
-
     private void OnFingerUp(Finger finger)
     {
         /* reset joystick */
@@ -162,7 +150,6 @@ public class PlayerController : Character
 
         return new Vector2(position.x * distanceOffset, position.y * distanceOffset);
     }
-
     private Vector2 ClampStickDownPos(Vector2 stickPos)
     {
         /* help us keep joystick knob in the correct position in relation to joystick bg */
@@ -183,5 +170,16 @@ public class PlayerController : Character
             stickPos.y = screenHeightMinusHalfHeight;
 
         return stickPos;
+    }
+    
+    private void CheckLevelUp()
+    {
+        if (_exp >= _expToLevelUp)
+        {
+            _newSize += _scaleIncrement; // Increase size
+            _exp = 0; // Reset EXP
+            // Updating visual size (? - Another asset?)
+            transform.localScale = Vector3.one * _newSize;
+        }
     }
 }
