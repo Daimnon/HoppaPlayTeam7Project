@@ -27,7 +27,6 @@ public class PlayerController : Character
     private float _idleTime = 0.0f;
     private bool _isGesturing = false;
 
-
     private Finger _moveFinger;
     private Vector3 _fingerMoveAmount;
 
@@ -78,7 +77,7 @@ public class PlayerController : Character
 
     private void OnTriggerEnter(Collider other) 
     {
-        // if (other.TryGetComponent<Consumable>(out var consumable) && consumable.size <= _newSize)
+        // another way of doing so: "if (other.TryGetComponent<Consumable>(out var consumable) && consumable.size <= _newSize)"
 
         Consumable consumable = other.GetComponent<Consumable>();
         if (consumable != null && consumable.size <= _newSize)
