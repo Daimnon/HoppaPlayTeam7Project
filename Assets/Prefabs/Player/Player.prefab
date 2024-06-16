@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8942096623410584410}
   - component: {fileID: 6651857333720101100}
   - component: {fileID: 2161171637004170868}
+  - component: {fileID: 663249199}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -107,8 +108,23 @@ MonoBehaviour:
   _screenEdgeOffsetMargin: {x: 100, y: 50}
   _idleGestureTime: 7.5
   _exp: 0
-  _expToLevelUp: 0
+  _expToLevelUp: 2
   _scaleIncrement: 1
+--- !u!114 &663249199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4658901336399500275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1301390b350b46f4188123d66b808187, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cube: {fileID: 5252008813803894624, guid: fbcdfc27f4442e74e8c526d4c20eed91, type: 3}
+  _trailRenderer: {fileID: 1141920672}
+  _minDistance: 2
 --- !u!1001 &2691740875298412382
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -124,7 +140,12 @@ PrefabInstance:
     - target: {fileID: 2691740876440323326, guid: a97d113ded8fac144b976cb03a4ccd15,
         type: 3}
       propertyPath: m_Time
-      value: 30
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691740876440323326, guid: a97d113ded8fac144b976cb03a4ccd15,
+        type: 3}
+      propertyPath: m_MinVertexDistance
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2691740876440323326, guid: a97d113ded8fac144b976cb03a4ccd15,
         type: 3}
@@ -188,6 +209,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a97d113ded8fac144b976cb03a4ccd15, type: 3}
+--- !u!96 &1141920672 stripped
+TrailRenderer:
+  m_CorrespondingSourceObject: {fileID: 2691740876440323326, guid: a97d113ded8fac144b976cb03a4ccd15,
+    type: 3}
+  m_PrefabInstance: {fileID: 2691740875298412382}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1141920673 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2691740876440323327, guid: a97d113ded8fac144b976cb03a4ccd15,

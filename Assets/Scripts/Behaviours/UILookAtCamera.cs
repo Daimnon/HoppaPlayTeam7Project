@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class UILookAtCamera : MonoBehaviour
 {
+    [SerializeField] private Camera _cam;
     [SerializeField] private Canvas _worldUI;
     [SerializeField] private Transform _mainCamTr;
 
     private void Start()
     {
-        Camera mainCam = GameManager.Instance.MainCam;
-        _worldUI.worldCamera = mainCam;
-        _mainCamTr = mainCam.transform;
+        _worldUI.worldCamera = _cam;
+        _mainCamTr = _cam.transform;
     }
     private void LateUpdate()
     {

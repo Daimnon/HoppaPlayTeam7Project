@@ -10838,10 +10838,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 663249199, guid: 43cfd56858ba61d4ebfc1c0923a6f5bd, type: 3}
-      propertyPath: _detectionLayer.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
     - target: {fileID: 1336682113178595924, guid: 43cfd56858ba61d4ebfc1c0923a6f5bd,
         type: 3}
       propertyPath: m_RootOrder
@@ -24195,11 +24191,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fire_Truck
       objectReference: {fileID: 0}
-    - target: {fileID: 7235495544061757970, guid: 3579b6a191a6262488eca857742b994d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 8008091112726679720, guid: 3579b6a191a6262488eca857742b994d,
         type: 3}
       propertyPath: m_RootOrder
@@ -27327,11 +27318,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tram_2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5739426739876850173, guid: 280c3afdbbb5a51499fe01a0fc2151d5,
-        type: 3}
-      propertyPath: m_Layer
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 280c3afdbbb5a51499fe01a0fc2151d5, type: 3}

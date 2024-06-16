@@ -10,8 +10,7 @@ public static class EventManager
     public static Action OnUnlock;
     public static Action<int> OnEarnCurrency;
     public static Action<int> OnPayCurrency;
-    public static Action<Character, bool> OnHoldResource, OnHoldWeapon;
-    public static Action<Resource> OnTakeResource, OnPayFirstResource, OnPayResource;
+    public static Action<Vector3> OnAreaClosed;
 
     public static void InvokeGameLaunched()
     {
@@ -41,23 +40,6 @@ public static class EventManager
         UnityEngine.Debug.Log("Event: BakeNavMesh");
     }
 
-    public static void InvokeHoldResource(Character chara, bool isHoldingResource)
-    {
-        if (chara == null)
-            return;
-
-        OnHoldResource?.Invoke(chara, isHoldingResource);
-        UnityEngine.Debug.Log("Event: HoldResource changed");
-    }
-    public static void InvokeHoldWeapon(Character chara, bool isHoldingWeapon)
-    {
-        if (chara == null)
-            return;
-
-        OnHoldWeapon?.Invoke(chara, isHoldingWeapon);
-        UnityEngine.Debug.Log("Event: HoldWeapon changed");
-    }
-
     public static void InvokeEarnCurrency(int amount)
     {
         if (amount > 0)
@@ -72,28 +54,12 @@ public static class EventManager
         UnityEngine.Debug.Log($"Event: PayCurrency, Price: {price}");
     }
 
-    public static void InvokeTakeResource(Resource resource)
+    public static void InvokeAreaClosed(Vector3 midPos)
     {
-        if (resource != null)
+        if (midPos != Vector3.zero)
         {
-            OnTakeResource?.Invoke(resource);
-            UnityEngine.Debug.Log($"Event: TakeResource, Resource: {resource.Type.ToString()}");
-        }
-    }
-    public static void InvokePayFirstResource(Resource resource)
-    {
-        if (resource != null)
-        {
-            OnPayFirstResource?.Invoke(resource);
-            UnityEngine.Debug.Log($"Event: PayResource, ResourceType: {resource.Type.ToString()}");
-        }
-    }
-    public static void InvokePayResource(Resource resource)
-    {
-        if (resource != null)
-        {
-            OnPayResource?.Invoke(resource);
-            UnityEngine.Debug.Log($"Event: PayResource, ResourceType: {resource.Type.ToString()}");
+            OnAreaClosed?.Invoke(midPos);
+            UnityEngine.Debug.Log($"Event: AreaClosed, Middle position: {midPos}");
         }
     }
 }
