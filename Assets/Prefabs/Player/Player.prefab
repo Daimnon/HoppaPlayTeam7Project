@@ -28,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4658901336399500275}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.9658843, z: 0, w: 0.25897402}
   m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -105,11 +105,13 @@ MonoBehaviour:
   _playerAnimator: {fileID: 1690260210798311984}
   _stick: {fileID: 0}
   _agent: {fileID: 6651857333720101100}
+  _navMeshSurface: {fileID: 0}
   _screenEdgeOffsetMargin: {x: 100, y: 50}
   _idleGestureTime: 7.5
   _exp: 0
   _expToLevelUp: 2
   _scaleIncrement: 1
+  _currentLevel: 1
 --- !u!114 &663249199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,6 +126,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cube: {fileID: 5252008813803894624, guid: fbcdfc27f4442e74e8c526d4c20eed91, type: 3}
   _trailRenderer: {fileID: 1141920672}
+  _detectionLayer:
+    serializedVersion: 2
+    m_Bits: 0
   _minDistance: 2
 --- !u!1001 &2691740875298412382
 PrefabInstance:
