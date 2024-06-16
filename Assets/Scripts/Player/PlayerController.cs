@@ -11,6 +11,7 @@ public class PlayerController : Character
     [SerializeField] private Animator _playerAnimator;
     [SerializeField] private TouchFloatStick _stick;
     [SerializeField] private NavMeshAgent _agent;
+    [SerializeField] private NavMeshSurface _navMeshSurface;
 
     [Header("Screen")]
     [SerializeField] private Vector2 _screenEdgeOffsetMargin = new(100.0f, 50.0f);
@@ -22,7 +23,8 @@ public class PlayerController : Character
     [SerializeField] private float _exp;
     [SerializeField] private float _expToLevelUp;
     [SerializeField] private float _scaleIncrement = 1.0f;
-    private float _newSize;
+    [SerializeField] private int _currentLevel = 1;
+    private float _newSize = 1f;
 
     private float _idleTime = 0.0f;
     private bool _isGesturing = false;
@@ -36,6 +38,7 @@ public class PlayerController : Character
         ETouch.Touch.onFingerDown += OnFingerDown;
         ETouch.Touch.onFingerUp += OnFingerUp;
         ETouch.Touch.onFingerMove += OnFingerMove;
+        _navMeshSurface.BuildNavMesh();
     }
     private void Update()
     {
@@ -80,11 +83,22 @@ public class PlayerController : Character
         // another way of doing so: "if (other.TryGetComponent<Consumable>(out var consumable) && consumable.size <= _newSize)"
 
         Consumable consumable = other.GetComponent<Consumable>();
-        if (consumable != null && consumable.size <= _newSize)
+        if (consumable != null && consumable.level <= _currentLevel)
         {
             _exp += consumable.expValue;
             Destroy(other.gameObject);
+            _navMeshSurface.BuildNavMesh();
             CheckLevelUp();
+            UpdateNavMesh();
+        }
+    }
+
+    private void UpdateNavMesh()
+    {
+        // Update the NavMesh after an object is destroyed
+        if (_navMeshSurface != null)
+        {
+            _navMeshSurface.BuildNavMesh();
         }
     }
 
@@ -176,10 +190,12 @@ public class PlayerController : Character
     {
         if (_exp >= _expToLevelUp)
         {
-            _newSize += _scaleIncrement; // Increase size
             _exp = 0; // Reset EXP
-            // Updating visual size (? - Another asset?)
-            transform.localScale = Vector3.one * _newSize;
+            _expToLevelUp += 50; // Increases every level
+            _currentLevel++;
+
+            _newSize += _scaleIncrement; // Increase size
+            transform.localScale = Vector3.one * _newSize; // Updating visual size (? - Another asset?)
         }
     }
 }
