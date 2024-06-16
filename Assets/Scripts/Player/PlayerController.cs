@@ -39,6 +39,7 @@ public class PlayerController : Character
         ETouch.Touch.onFingerDown += OnFingerDown;
         ETouch.Touch.onFingerUp += OnFingerUp;
         ETouch.Touch.onFingerMove += OnFingerMove;
+        _navMeshSurface.BuildNavMesh();
     }
     private void Update()
     {
@@ -87,6 +88,7 @@ public class PlayerController : Character
         {
             _exp += consumable.expValue;
             Destroy(other.gameObject);
+            _navMeshSurface.BuildNavMesh();
             CheckLevelUp();
             UpdateNavMesh();
         }
