@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -36,6 +37,7 @@ public class TerritoryClaimer : MonoBehaviour
         if (_trailPoints.Count == 0 || Vector3.Distance(_trailPoints[_trailPoints.Count - 1], currentPosition) > _minDistance)
         {
             _trailPoints.Add(currentPosition);
+            StartCoroutine(RemovePointDelayed(currentPosition));
         }
     }
     private void CheckForClosedArea()
@@ -104,6 +106,11 @@ public class TerritoryClaimer : MonoBehaviour
             }
         }
         return isInside;
+    }
+    private IEnumerator RemovePointDelayed(Vector3 point)
+    {
+        yield return new WaitForSeconds(_trailRenderer.time);
+        _trailPoints.Remove(point);
     }
     private List<GameObject> GetObjectsInClosedArea()
     {
