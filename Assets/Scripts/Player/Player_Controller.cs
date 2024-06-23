@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,8 +6,11 @@ using UnityEngine.AI;
 using UnityEngine.InputSystem.EnhancedTouch;
 using ETouch = UnityEngine.InputSystem.EnhancedTouch;
 
-public class PlayerController : Character
+public class Player_Controller : Character
 {
+    [Header("MVC Components")]
+    [SerializeField] private Player_Data _data;
+
     [Header("Components")]
     [SerializeField] private Animator _playerAnimator;
     [SerializeField] private TouchFloatStick _stick;
@@ -19,25 +23,21 @@ public class PlayerController : Character
     [Header("Animation")]
     [SerializeField] private float _idleGestureTime = 7.5f;
 
-    [Header("Stats")]
-    [SerializeField] private float _exp;
-    [SerializeField] private float _expToLevelUp;
-    [SerializeField] private float _scaleIncrement = 1.0f;
-    [SerializeField] private int _currentLevel = 1;
-    private float _newSize = 1f;
-
     private float _idleTime = 0.0f;
     private bool _isGesturing = false;
 
     private Finger _moveFinger;
     private Vector3 _fingerMoveAmount;
 
+    #region Monobehaviour Callbacks
     private void OnEnable()
     {
         EnhancedTouchSupport.Enable();
         ETouch.Touch.onFingerDown += OnFingerDown;
         ETouch.Touch.onFingerUp += OnFingerUp;
         ETouch.Touch.onFingerMove += OnFingerMove;
+        EventManager.OnGrowth += OnGrowth;
+        EventManager.OnEvolve += OnEvolve;
         _navMeshSurface.BuildNavMesh();
     }
     private void Update()
@@ -75,32 +75,19 @@ public class PlayerController : Character
         ETouch.Touch.onFingerDown -= OnFingerDown;
         ETouch.Touch.onFingerUp -= OnFingerUp;
         ETouch.Touch.onFingerMove -= OnFingerMove;
+        EventManager.OnGrowth -= OnGrowth;
         EnhancedTouchSupport.Disable();
     }
-
     private void OnTriggerEnter(Collider other) 
     {
-        // another way of doing so: "if (other.TryGetComponent<Consumable>(out var consumable) && consumable.size <= _newSize)"
-
-        Consumable consumable = other.GetComponent<Consumable>();
-        if (consumable != null && consumable.level <= _currentLevel)
+        if (other.TryGetComponent(out Consumable consumable) && consumable.transform.localScale.x <= transform.localScale.x && consumable.transform.localScale.z <= transform.localScale.z)
         {
-            _exp += consumable.expValue;
+            _data.GainExp(consumable.expValue);
             Destroy(other.gameObject);
-            _navMeshSurface.BuildNavMesh();
-            CheckLevelUp();
             UpdateNavMesh();
         }
     }
-
-    private void UpdateNavMesh()
-    {
-        // Update the NavMesh after an object is destroyed
-        if (_navMeshSurface != null)
-        {
-            _navMeshSurface.BuildNavMesh();
-        }
-    }
+    #endregion
 
     #region Fingers
     private void OnFingerDown(Finger finger)
@@ -157,6 +144,7 @@ public class PlayerController : Character
     }
     #endregion
 
+    #region Touch Calculations
     private Vector2 AdjustForAspectRatio(Vector2 position)
     {
         float aspectRatio = (float)Screen.width / Screen.height;
@@ -185,17 +173,29 @@ public class PlayerController : Character
 
         return stickPos;
     }
-    
-    private void CheckLevelUp()
-    {
-        if (_exp >= _expToLevelUp)
-        {
-            _exp = 0; // Reset EXP
-            _expToLevelUp += 50; // Increases every level
-            _currentLevel++;
+    #endregion
 
-            _newSize += _scaleIncrement; // Increase size
-            transform.localScale = Vector3.one * _newSize; // Updating visual size (? - Another asset?)
-        }
+    #region General Methods
+    private void UpdateNavMesh()
+    {
+        if (_navMeshSurface)
+            _navMeshSurface.BuildNavMesh();
     }
+    #endregion
+
+    #region Events
+    private void OnGrowth()
+    {
+        transform.localScale += Vector3.one * _data.ScaleIncrement;
+    }
+    private void OnEvolve(EvoType newEvoType)
+    {
+        int newEvoTypeNum = (int)newEvoType;
+        if (!_data.EvoModels[newEvoTypeNum] || newEvoTypeNum - 1 < 0) // models existance
+            return;
+
+        _data.EvoModels[newEvoTypeNum - 1].SetActive(false);
+        _data.EvoModels[newEvoTypeNum].SetActive(true);
+    }
+    #endregion
 }

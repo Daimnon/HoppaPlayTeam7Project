@@ -2,6 +2,6 @@ using UnityEngine;
 
 public class Consumable : MonoBehaviour
 {
-    public float level;
-    public float expValue;
+    public int level;
+    public int expValue;
 }
