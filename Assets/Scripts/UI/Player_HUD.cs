@@ -58,25 +58,12 @@ public class Player_HUD : MonoBehaviour
         EventManager.OnLevelLaunched -= OnLevelLaunched;
     }
 
-    private void Update()
+    /*private void Update()
     {
         //UpdateTimerText();
-    }
+    }*/
 
     #region General
-    private void UpdateFillBarAnimation()
-    {
-
-    }
-    public void UpdateFillBar(Image fillImg, int maxValue, int currentValue, TextMeshProUGUI maxText, TextMeshProUGUI currentText)
-    {
-        float fillAmount = Mathf.Clamp01(currentValue / maxValue);
-        fillImg.fillAmount = fillAmount;
-
-        maxText.text = maxValue.ToString();
-        currentText.text = currentValue.ToString();
-    }
-
     private string FormatLargeNumber(int number)
     {
         int magnitude = 0;
@@ -118,6 +105,18 @@ public class Player_HUD : MonoBehaviour
 
         return formattedNumber;
     }
+    private void UpdateFillBarAnimation()
+    {
+
+    }
+    public void UpdateFillBar(Image fillImg, int maxValue, int currentValue, TextMeshProUGUI maxText, TextMeshProUGUI currentText)
+    {
+        float fillAmount = Mathf.Clamp01(currentValue / maxValue);
+        fillImg.fillAmount = fillAmount;
+
+        maxText.text = maxValue.ToString();
+        currentText.text = currentValue.ToString();
+    }
     #endregion
 
     #region Currency
@@ -128,15 +127,6 @@ public class Player_HUD : MonoBehaviour
     #endregion
 
     #region Progression
-    private void UpdateLevelTextAnimation()
-    {
-
-    }
-    public void UpdateLevelText(int newLevel)
-    {
-        _levelText.text = "Lv. " + newLevel.ToString();
-    }
-
     private void UpdateTimerTextAnimation()
     {
 
@@ -151,6 +141,15 @@ public class Player_HUD : MonoBehaviour
         _timerText.text = hours.ToString("D2") + ":" + minutes.ToString("D2");
     }
 
+    private void UpdateLevelTextAnimation()
+    {
+
+    }
+    public void UpdateLevelText(int newLevel)
+    {
+        _levelText.text = "Lv. " + newLevel.ToString();
+    }
+
     private void UpdateProgressionBarAnimation()
     {
 
@@ -162,6 +161,22 @@ public class Player_HUD : MonoBehaviour
 
         int percentage = Mathf.RoundToInt(fillAmount * 100);
         _progressionText.text = percentage.ToString() + " %";
+    }
+
+    private void UpdateExpBarAnimation()
+    {
+
+    }
+    public void UpdateExpBar(int maxValue, int currentValue)
+    {
+        float fillAmount = Mathf.Clamp01(currentValue / maxValue);
+        _expBarFill.fillAmount = fillAmount;
+
+        _currentExpText.text = currentValue.ToString();
+    }
+    public void SetNewMaxExp(int newMaxExp)
+    {
+        _maxExpText.text = newMaxExp.ToString();
     }
     #endregion
 
