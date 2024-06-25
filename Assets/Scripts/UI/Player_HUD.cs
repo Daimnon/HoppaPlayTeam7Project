@@ -14,6 +14,13 @@ public class Player_HUD : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _currencyText;
     public TextMeshProUGUI CurrencyText => _currencyText;
 
+    [Header("Special Currency")]
+    [SerializeField] private Image _specialCurrencyIcon;
+    public Image SpecialCurrencyIcon => _specialCurrencyIcon;
+
+    [SerializeField] private TextMeshProUGUI _specialCurrencyText;
+    public TextMeshProUGUI SpecialCurrencyText => _specialCurrencyText;
+
     [Header("Progression")]
     [SerializeField] private Image _levelNumBg;
     public Image LevelNumBg => _levelNumBg;
@@ -52,16 +59,22 @@ public class Player_HUD : MonoBehaviour
     private void OnEnable()
     {
         EventManager.OnLevelLaunched += OnLevelLaunched;
+        EventManager.OnCurrencyChange += OnCurrencyChange;
+        EventManager.OnSpecialCurrencyChange += OnSpecialCurrencyChange;
     }
+
     private void OnDisable()
     {
         EventManager.OnLevelLaunched -= OnLevelLaunched;
+        EventManager.OnCurrencyChange -= OnCurrencyChange;
+        EventManager.OnSpecialCurrencyChange -= OnSpecialCurrencyChange;
+
     }
 
-    /*private void Update()
+    private void Update()
     {
-        //UpdateTimerText();
-    }*/
+        _timeSinceStartLevel = Time.timeSinceLevelLoad;
+    }
 
     #region General
     private string FormatLargeNumber(int number)
@@ -124,6 +137,10 @@ public class Player_HUD : MonoBehaviour
     {
         _currencyText.text = FormatLargeNumber(newCurrency);
     }
+    public void UpdateSpecialCurrency(int newSpecialCurrency)
+    {
+        _specialCurrencyText.text = FormatLargeNumber(newSpecialCurrency);
+    }
     #endregion
 
     #region Progression
@@ -184,6 +201,14 @@ public class Player_HUD : MonoBehaviour
     private void OnLevelLaunched()
     {
         _timeSinceStartLevel = Time.timeSinceLevelLoad;
+    }
+    private void OnCurrencyChange(int newCurrency)
+    {
+        UpdateCurrency(newCurrency);
+    }
+    private void OnSpecialCurrencyChange(int newSpecialCurrency)
+    {
+        UpdateSpecialCurrency(newSpecialCurrency);
     }
     #endregion
 }

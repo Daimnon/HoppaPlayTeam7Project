@@ -12,8 +12,9 @@ public static class EventManager
     public static Action OnGrowth;
     public static Action<EvoType> OnEvolve;
 
-    public static Action OnCurrencyChange;
+    public static Action<int> OnCurrencyChange, OnSpecialCurrencyChange;
     public static Action<int> OnEarnCurrency, OnPayCurrency;
+    public static Action<int> OnEarnSpecialCurrency, OnPaySpecialCurrency;
 
     public static Action OnProgressionChange;
     public static Action<int> OnProgressMade;
@@ -57,20 +58,47 @@ public static class EventManager
         OnEvolve?.Invoke(newEvoType);
         UnityEngine.Debug.Log("Event: Evolve");
     }
+
+    public static void InvokeCurrencyChange(int currentCurrency)
+    {
+        if (currentCurrency > 0)
+        {
+            OnCurrencyChange?.Invoke(currentCurrency);
+            UnityEngine.Debug.Log($"Event: CurrencyChanged, New Balance: {currentCurrency}");
+        }
+    }
+    public static void InvokeSpecialCurrencyChange(int currentSpecialCurrency)
+    {
+        OnSpecialCurrencyChange?.Invoke(currentSpecialCurrency);
+        UnityEngine.Debug.Log($"Event: SpecialCurrencyChanged, New Balance: {currentSpecialCurrency}");
+    }
+
     public static void InvokeEarnCurrency(int amount)
     {
         if (amount > 0)
         {
             OnEarnCurrency?.Invoke(amount);
-            OnCurrencyChange?.Invoke();
             UnityEngine.Debug.Log($"Event: EarnCurrency, Amount: {amount}");
         }
     }
     public static void InvokePayCurrency(int price)
     {
         OnPayCurrency?.Invoke(price);
-        OnCurrencyChange?.Invoke();
         UnityEngine.Debug.Log($"Event: PayCurrency, Price: {price}");
+    }
+
+    public static void InvokeEarnSpecialCurrency(int amount)
+    {
+        if (amount > 0)
+        {
+            OnEarnSpecialCurrency?.Invoke(amount);
+            UnityEngine.Debug.Log($"Event: EarnSpecialCurrency, Amount: {amount}");
+        }
+    }
+    public static void InvokePaySpecialCurrency(int price)
+    {
+        OnPaySpecialCurrency?.Invoke(price);
+        UnityEngine.Debug.Log($"Event: PaySpecialCurrency, Price: {price}");
     }
 
     public static void InvokeProgressMade(int amount)

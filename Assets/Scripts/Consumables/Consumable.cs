@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Consumable : MonoBehaviour
 {
-
-    public int level;
-    public int expValue;
+    [SerializeField] protected int _reward;
+    public int Reward => _reward;
 }

@@ -82,7 +82,9 @@ public class Player_Controller : Character
     {
         if (other.TryGetComponent(out Consumable consumable) && consumable.transform.localScale.x <= transform.localScale.x && consumable.transform.localScale.z <= transform.localScale.z)
         {
-            _data.GainExp(consumable.expValue);
+            _data.GainExp(consumable.Reward);
+            EventManager.InvokeEarnCurrency(consumable.Reward);
+            EventManager.InvokeEarnSpecialCurrency(consumable.Reward);
             Destroy(other.gameObject);
             UpdateNavMesh();
         }
