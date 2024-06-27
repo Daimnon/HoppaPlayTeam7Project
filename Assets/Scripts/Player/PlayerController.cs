@@ -81,7 +81,6 @@ public class PlayerController : Character
     private void OnTriggerEnter(Collider other) 
     {
         // another way of doing so: "if (other.TryGetComponent<Consumable>(out var consumable) && consumable.size <= _newSize)"
-
         Consumable consumable = other.GetComponent<Consumable>();
         if (consumable != null && consumable.level <= _currentLevel)
         {
