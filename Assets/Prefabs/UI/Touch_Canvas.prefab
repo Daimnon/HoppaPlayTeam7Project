@@ -33,7 +33,7 @@ RectTransform:
   m_Children:
   - {fileID: 436373738228790869}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -59,7 +59,6 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 1
-  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -80,7 +79,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1440, y: 2560}
   m_ScreenMatchMode: 1
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -136,11 +135,11 @@ RectTransform:
   m_Children:
   - {fileID: 777646605431363317}
   m_Father: {fileID: 4909438620006079734}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -277}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4308758922057761739
@@ -193,8 +192,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ee5e8c65f171694ab09b72e1e17c43c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _currentAspectRatio: 2
+  _scaler: {fileID: 3968120035578765249}
   _rectTr: {fileID: 436373738228790869}
+  _knobOutline: {fileID: 777646605431363317}
   _knobTr: {fileID: 3057882797794214206}
+  _joystickBgSizeOld: {x: 200, y: 200}
+  _joystickKnobSizeOld: {x: 80, y: 80}
+  _joystickBgSizeNew: {x: 300, y: 300}
+  _joystickKnobSizeNew: {x: 120, y: 120}
+  _joystickBgSizeTab: {x: 380, y: 380}
+  _joystickKnobSizeTab: {x: 160, y: 160}
 --- !u!1 &6797724484881522985
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,7 +235,7 @@ RectTransform:
   m_Children:
   - {fileID: 3057882797794214206}
   m_Father: {fileID: 436373738228790869}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -303,7 +311,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 777646605431363317}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}

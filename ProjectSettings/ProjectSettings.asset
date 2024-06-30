@@ -8,11 +8,11 @@ PlayerSettings:
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
-  defaultScreenOrientation: 4
+  defaultScreenOrientation: 0
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: HoppaPlay
   productName: DisasterFire
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -54,7 +54,7 @@ PlayerSettings:
   numberOfMipsStripped: 0
   m_StackTraceTypes: 010000000100000001000000010000000100000001000000
   iosShowActivityIndicatorOnLoading: -1
-  androidShowActivityIndicatorOnLoading: -1
+  androidShowActivityIndicatorOnLoading: 2
   iosUseCustomAppBackgroundBehavior: 0
   iosAllowHTTPDownload: 1
   allowedAutorotateToPortrait: 1
@@ -67,7 +67,7 @@ PlayerSettings:
   disableDepthAndStencilBuffers: 0
   androidStartInFullscreen: 1
   androidRenderOutsideSafeArea: 1
-  androidUseSwappy: 0
+  androidUseSwappy: 1
   androidBlitType: 0
   androidResizableWindow: 0
   androidDefaultWindowWidth: 1920
@@ -137,7 +137,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.1.0
+  bundleVersion: 0.0.2
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -884,7 +884,7 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  activeInputHandler: 2
+  activeInputHandler: 1
   windowsGamepadBackendHint: 0
   cloudProjectId: cfce46fd-6304-427a-8146-e28a1b5b6e8c
   framebufferDepthMemorylessMode: 0

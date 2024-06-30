@@ -8,10 +8,17 @@ public static class EventManager
     public static Action OnGameLaunched, OnLevelLaunched, OnOpenMenu;
     public static Action OnBakeNavMesh;
     public static Action OnUnlock;
-    public static Action<int> OnEarnCurrency;
-    public static Action<int> OnPayCurrency;
-    public static Action<Character, bool> OnHoldResource, OnHoldWeapon;
-    public static Action<Resource> OnTakeResource, OnPayFirstResource, OnPayResource;
+
+    public static Action OnGrowth;
+    public static Action<EvoType> OnEvolve;
+
+    public static Action OnCurrencyChange;
+    public static Action<int> OnEarnCurrency, OnPayCurrency;
+
+    public static Action OnProgressionChange;
+    public static Action<int> OnProgressMade;
+
+    public static Action<Vector3> OnAreaClosed;
 
     public static void InvokeGameLaunched()
     {
@@ -28,72 +35,59 @@ public static class EventManager
         OnOpenMenu?.Invoke();
         UnityEngine.Debug.Log("Event: OpenMenu");
     }
-
     public static void InvokeUnlock()
     {
         OnUnlock?.Invoke();
         UnityEngine.Debug.Log("Event: Unlock");
     }
-
     public static void InvokeBakeNavMesh()
     {
         OnBakeNavMesh?.Invoke();
         UnityEngine.Debug.Log("Event: BakeNavMesh");
     }
 
-    public static void InvokeHoldResource(Character chara, bool isHoldingResource)
+
+    public static void InvokeGrowth()
     {
-        if (chara == null)
-            return;
-
-        OnHoldResource?.Invoke(chara, isHoldingResource);
-        UnityEngine.Debug.Log("Event: HoldResource changed");
+        OnGrowth?.Invoke();
+        UnityEngine.Debug.Log("Event: Growth");
     }
-    public static void InvokeHoldWeapon(Character chara, bool isHoldingWeapon)
+    public static void InvokeEvolve(EvoType newEvoType)
     {
-        if (chara == null)
-            return;
-
-        OnHoldWeapon?.Invoke(chara, isHoldingWeapon);
-        UnityEngine.Debug.Log("Event: HoldWeapon changed");
+        OnEvolve?.Invoke(newEvoType);
+        UnityEngine.Debug.Log("Event: Evolve");
     }
-
     public static void InvokeEarnCurrency(int amount)
     {
         if (amount > 0)
         {
             OnEarnCurrency?.Invoke(amount);
+            OnCurrencyChange?.Invoke();
             UnityEngine.Debug.Log($"Event: EarnCurrency, Amount: {amount}");
         }
     }
     public static void InvokePayCurrency(int price)
     {
         OnPayCurrency?.Invoke(price);
+        OnCurrencyChange?.Invoke();
         UnityEngine.Debug.Log($"Event: PayCurrency, Price: {price}");
     }
 
-    public static void InvokeTakeResource(Resource resource)
+    public static void InvokeProgressMade(int amount)
     {
-        if (resource != null)
+        if (amount > 0)
         {
-            OnTakeResource?.Invoke(resource);
-            UnityEngine.Debug.Log($"Event: TakeResource, Resource: {resource.Type.ToString()}");
+            OnProgressMade?.Invoke(amount);
+            UnityEngine.Debug.Log($"Event: EarnCurrency, Amount: {amount}");
         }
     }
-    public static void InvokePayFirstResource(Resource resource)
+
+    public static void InvokeAreaClosed(Vector3 midPos)
     {
-        if (resource != null)
+        if (midPos != Vector3.zero)
         {
-            OnPayFirstResource?.Invoke(resource);
-            UnityEngine.Debug.Log($"Event: PayResource, ResourceType: {resource.Type.ToString()}");
-        }
-    }
-    public static void InvokePayResource(Resource resource)
-    {
-        if (resource != null)
-        {
-            OnPayResource?.Invoke(resource);
-            UnityEngine.Debug.Log($"Event: PayResource, ResourceType: {resource.Type.ToString()}");
+            OnAreaClosed?.Invoke(midPos);
+            UnityEngine.Debug.Log($"Event: AreaClosed, Middle position: {midPos}");
         }
     }
 }
