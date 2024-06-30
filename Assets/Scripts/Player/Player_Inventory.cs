@@ -46,7 +46,7 @@ public class Player_Inventory : MonoBehaviour
     private void OnEarnSpecialCurrency(int amount)
     {
         _specialCurrency += amount;
-        EventManager.InvokeCurrencyChange(_specialCurrency);
+        EventManager.InvokeSpecialCurrencyChange(_specialCurrency);
     }
     private void OnPaySpecialCurrency(int amount)
     {

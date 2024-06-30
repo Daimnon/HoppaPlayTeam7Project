@@ -22,6 +22,7 @@ public class Player_Controller : Character
 
     [Header("Animation")]
     [SerializeField] private float _idleGestureTime = 7.5f;
+    [SerializeField] private float _forceFromBiggerObjects = 5.0f;
 
     private float _idleTime = 0.0f;
     private bool _isGesturing = false;
@@ -87,23 +88,18 @@ public class Player_Controller : Character
         {
             bool isSmallerThanPlayer = consumable.transform.localScale.x <= transform.localScale.x && consumable.transform.localScale.z <= transform.localScale.z;
 
-            if (!isSmallerThanPlayer) // after this point we determine the type of the consumable in order to solve the reward.
-                return;
-
-            switch (consumable)
+            if (!isSmallerThanPlayer)
             {
-                default:
-                    EventManager.InvokeEarnExp(consumable.Reward);
-
-                    // for testing:
-                    EventManager.InvokeEarnCurrency(consumable.Reward);
-                    EventManager.InvokeEarnSpecialCurrency(consumable.Reward);
-                    EventManager.InvokeProgressMade(consumable.Reward);
-                    break;
+                Vector3 pushDirection = (transform.position - other.transform.position).normalized;
+                _agent.velocity = pushDirection * _forceFromBiggerObjects;
+                return;
             }
-            
+
+            HandleConsumableReward(consumable); // here we determine the type of the consumable in order to solve the reward.
+            HandleProgressionReward(consumable); // here we determine if the consumable is related to any of the objectives and triggers them.
+
             Destroy(other.gameObject);
-            UpdateNavMesh();
+            //UpdateNavMesh();
         }
     }
     #endregion
@@ -199,6 +195,39 @@ public class Player_Controller : Character
     {
         if (_navMeshSurface)
             _navMeshSurface.BuildNavMesh();
+    }
+    private void HandleConsumableReward(Consumable consumable)
+    {
+        switch (consumable)
+        {
+            default:
+                EventManager.InvokeEarnExp(consumable.Reward);
+                EventManager.InvokeProgressMade(consumable.ProgressionReward);
+
+                // for testing:
+                EventManager.InvokeEarnCurrency(consumable.Reward);
+                EventManager.InvokeEarnSpecialCurrency(consumable.Reward);
+                EventManager.InvokeProgressMade(consumable.Reward);
+                break;
+        }
+    }
+    private void HandleProgressionReward(Consumable consumable)
+    {
+        if (consumable.ObjectiveType != ObjectiveType.None)
+        {
+            switch (consumable.ObjectiveType)
+            {
+                case ObjectiveType.Objective1:
+                    EventManager.InvokeObjectiveTrigger1();
+                    break;
+                case ObjectiveType.Objective2:
+                    EventManager.InvokeObjectiveTrigger2();
+                    break;
+                case ObjectiveType.Objective3:
+                    EventManager.InvokeObjectiveTrigger3();
+                    break;
+            }
+        }
     }
     #endregion
 
