@@ -731,6 +731,7 @@ MonoBehaviour:
   _navMeshSurface: {fileID: 0}
   _screenEdgeOffsetMargin: {x: 100, y: 50}
   _idleGestureTime: 7.5
+  _forceFromBiggerObjects: 5
 --- !u!114 &8276632312639507445
 MonoBehaviour:
   m_ObjectHideFlags: 0
