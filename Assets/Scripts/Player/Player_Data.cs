@@ -54,6 +54,7 @@ public class Player_Data : MonoBehaviour
     {
         _currentLevel++;
         _growthLevelCounter++;
+        _hud.SetNewLevel(_currentLevel);
 
         float tempMaxExp = _maxExp * _expFactor;
         _maxExp = Mathf.RoundToInt(tempMaxExp);
@@ -71,8 +72,13 @@ public class Player_Data : MonoBehaviour
 
             if (_evolveLevelCounter >= _evolveTreshold)
             {
-                _evoType = (EvoType)(((int)_evoType + 1) % Enum.GetValues(typeof(EvoType)).Length); // increment enum
+                int currentValue = (int)_evoType;
+                int maxValue = Enum.GetValues(typeof(EvoType)).Length - 1;
+
+                _evoType = currentValue < maxValue ? (EvoType)(currentValue + 1) : _evoType;
                 EventManager.InvokeEvolve(_evoType);
+
+                //_evoType = (EvoType)(((int)_evoType + 1) % Enum.GetValues(typeof(EvoType)).Length); // increment enum
             }
         }
 

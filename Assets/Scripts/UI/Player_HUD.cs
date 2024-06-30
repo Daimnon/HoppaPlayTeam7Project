@@ -183,6 +183,10 @@ public class Player_HUD : MonoBehaviour
 
         _currentExpText.text = currentValue.ToString();
     }
+    public void SetNewLevel(int newLevel)
+    {
+        _levelNumText.text = newLevel.ToString();
+    }
     public void SetNewMaxExp(int newMaxExp)
     {
         _maxExpText.text = newMaxExp.ToString();

@@ -16,7 +16,7 @@ public static class EventManager
     public static Action<int> OnEarnCurrency, OnPayCurrency;
     public static Action<int> OnEarnSpecialCurrency, OnPaySpecialCurrency;
     public static Action<int> OnEarnExp, OnPayExp;
-    public static Action<int> OnCurrencyChange, OnSpecialCurrencyChange, OnExpChange;
+    public static Action<int> OnCurrencyChange, OnSpecialCurrencyChange/*, OnExpChange, OnLevelChange*/;
 
     public static Action<int> OnProgressMade, OnProgressLost;
     public static Action<float> OnProgressionChange;
@@ -84,7 +84,7 @@ public static class EventManager
         if (currentCurrency > 0)
         {
             OnCurrencyChange?.Invoke(currentCurrency);
-            UnityEngine.Debug.Log($"Event: CurrencyChanged, New Balance: {currentCurrency}");
+            Debug.Log($"Event: CurrencyChanged, New Balance: {currentCurrency}");
         }
     }
     public static void InvokeSpecialCurrencyChange(int currentSpecialCurrency)
@@ -92,15 +92,20 @@ public static class EventManager
         OnSpecialCurrencyChange?.Invoke(currentSpecialCurrency);
         UnityEngine.Debug.Log($"Event: SpecialCurrencyChanged, New Balance: {currentSpecialCurrency}");
     }
-    public static void InvokeExpChange(int currentExp)
+    /*public static void InvokeExpChange(int currentExp)
     {
         OnExpChange?.Invoke(currentExp);
-        UnityEngine.Debug.Log($"Event: ExpChanged, New Balance: {currentExp}");
+        Debug.Log($"Event: ExpChanged, New Balance: {currentExp}");
     }
+    public static void InvokeLevelChange(int currentLevel)
+    {
+        OnLevelChange?.Invoke(currentLevel);
+        Debug.Log($"Event: LevelChanged, New Balance: {currentLevel}");
+    }*/
     public static void InvokeProgressionChange(float clampedProgression)
     {
         OnProgressionChange?.Invoke(clampedProgression);
-        UnityEngine.Debug.Log($"Event: ExpChanged, New Balance: {clampedProgression}");
+        Debug.Log($"Event: ExpChanged, New Balance: {clampedProgression}");
     }
 
     public static void InvokeTimerChange(float newTime)
