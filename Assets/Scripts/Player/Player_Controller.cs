@@ -87,12 +87,29 @@ public class Player_Controller : Character
         if (other.TryGetComponent(out Consumable consumable))
         {
             bool isSmallerThanPlayer = consumable.transform.localScale.x <= transform.localScale.x && consumable.transform.localScale.z <= transform.localScale.z;
+            
+            Destroy(other.gameObject);
+            UpdateNavMesh();
+            
+            if (!isSmallerThanPlayer) // after this point we determine the type of the consumable in order to solve the reward.
 
             if (!isSmallerThanPlayer)
             {
                 Vector3 pushDirection = (transform.position - other.transform.position).normalized;
                 _agent.velocity = pushDirection * _forceFromBiggerObjects;
                 return;
+                
+            switch (consumable)
+            {
+                default:
+                    EventManager.InvokeEarnExp(consumable.Reward);
+
+                    // for testing:
+                    EventManager.InvokeEarnCurrency(consumable.Reward);
+                    EventManager.InvokeEarnSpecialCurrency(consumable.Reward);
+                    EventManager.InvokeProgressMade(consumable.Reward);
+                    break;
+            }
             }
 
             HandleConsumableReward(consumable); // here we determine the type of the consumable in order to solve the reward.

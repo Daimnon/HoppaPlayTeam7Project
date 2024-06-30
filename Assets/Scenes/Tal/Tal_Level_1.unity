@@ -354,8 +354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 3
-  expValue: 20
+  _reward: 0
 --- !u!65 &14580957
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3647,8 +3646,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
-  expValue: 1
+  _reward: 10
 --- !u!208 &206327759
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -4260,8 +4258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 3
-  expValue: 20
+  _reward: 0
 --- !u!65 &225963309
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4548,8 +4545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 3
-  expValue: 20
+  _reward: 0
 --- !u!65 &230132559
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4947,8 +4943,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
-  expValue: 1
+  _reward: 10
 --- !u!208 &259951657
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -7414,8 +7409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 3
-  expValue: 20
+  _reward: 0
 --- !u!65 &383593345
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7693,8 +7687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 3
-  expValue: 20
+  _reward: 0
 --- !u!65 &392079707
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7873,8 +7866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
-  expValue: 1
+  _reward: 10
 --- !u!208 &397602611
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -11919,8 +11911,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 3
-  expValue: 20
+  _reward: 0
 --- !u!65 &654388997
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12408,8 +12399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
-  expValue: 1
+  _reward: 10
 --- !u!208 &685732904
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -14676,8 +14666,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
-  expValue: 1
+  _reward: 10
 --- !u!208 &817736005
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -14824,8 +14813,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 2
-  expValue: 10
+  _reward: 0
 --- !u!65 &831086511
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15949,8 +15937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
-  expValue: 5
+  _reward: 0
 --- !u!65 &895222004
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17134,8 +17121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 3
-  expValue: 20
+  _reward: 0
 --- !u!65 &951993127
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17338,8 +17324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 3
-  expValue: 20
+  _reward: 0
 --- !u!65 &956956049
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18920,8 +18905,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
-  expValue: 1
+  _reward: 10
 --- !u!208 &1035286094
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -19396,8 +19380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
-  expValue: 1
+  _reward: 10
 --- !u!208 &1046570134
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -20219,8 +20202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 2
-  expValue: 10
+  _reward: 0
 --- !u!65 &1069001677
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21773,8 +21755,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
-  expValue: 5
+  _reward: 0
 --- !u!65 &1152972722
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22577,8 +22558,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
-  expValue: 1
+  _reward: 10
 --- !u!208 &1195778709
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -23271,8 +23251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 3
-  expValue: 20
+  _reward: 0
 --- !u!65 &1258214908
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25676,8 +25655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 2
-  expValue: 10
+  _reward: 0
 --- !u!65 &1376018998
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25850,8 +25828,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
-  expValue: 1
+  _reward: 10
 --- !u!208 &1376086754
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -26856,8 +26833,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 3
-  expValue: 20
+  _reward: 0
 --- !u!65 &1414184855
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27222,8 +27198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
-  expValue: 1
+  _reward: 10
 --- !u!208 &1439728592
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -28375,8 +28350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
-  expValue: 1
+  _reward: 10
 --- !u!208 &1512374028
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -28574,8 +28548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
-  expValue: 1
+  _reward: 10
 --- !u!208 &1525659895
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -30607,8 +30580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 2
-  expValue: 10
+  _reward: 0
 --- !u!65 &1613290471
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31096,8 +31068,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
-  expValue: 1
+  _reward: 10
 --- !u!208 &1629661192
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -31295,8 +31266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
-  expValue: 1
+  _reward: 10
 --- !u!208 &1637283092
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -32795,8 +32765,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
-  expValue: 5
+  _reward: 0
 --- !u!208 &1724589262
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -33161,8 +33130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 3
-  expValue: 20
+  _reward: 0
 --- !u!65 &1747450364
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -34473,8 +34441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 2
-  expValue: 10
+  _reward: 0
 --- !u!65 &1813299741
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -34738,8 +34705,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
-  expValue: 1
+  _reward: 10
 --- !u!208 &1847081918
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -34982,8 +34948,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 3
-  expValue: 20
+  _reward: 0
 --- !u!65 &1862372862
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -35930,8 +35895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
-  expValue: 1
+  _reward: 10
 --- !u!208 &1927250359
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -36828,8 +36792,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
-  expValue: 1
+  _reward: 10
 --- !u!208 &1971689480
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -37509,8 +37472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
-  expValue: 1
+  _reward: 10
 --- !u!208 &1993843041
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -38561,8 +38523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 2
-  expValue: 10
+  _reward: 0
 --- !u!65 &2070189194
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -39125,8 +39086,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
-  expValue: 1
+  _reward: 10
 --- !u!208 &2082522432
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -40179,8 +40139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 3
-  expValue: 20
+  _reward: 0
 --- !u!65 &2124741135
 BoxCollider:
   m_ObjectHideFlags: 0
