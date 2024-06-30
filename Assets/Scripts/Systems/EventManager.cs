@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 
 public static class EventManager
@@ -8,6 +7,8 @@ public static class EventManager
     public static Action OnGameLaunched, OnLevelLaunched, OnOpenMenu;
     public static Action OnBakeNavMesh;
     public static Action OnUnlock;
+
+    public static Action OnObjectiveTrigger1, OnObjectiveTrigger2, OnObjectiveTrigger3; 
 
     public static Action OnGrowth;
     public static Action<EvoType> OnEvolve;
@@ -34,6 +35,23 @@ public static class EventManager
         OnLevelLaunched?.Invoke();
         UnityEngine.Debug.Log("Event: LevelLaunched");
     }
+
+    public static void InvokeObjectiveTrigger1()
+    {
+        OnObjectiveTrigger1.Invoke();
+        Debug.Log("Event: ObjectiveTrigger1");
+    }
+    public static void InvokeObjectiveTrigger2()
+    {
+        OnObjectiveTrigger2.Invoke();
+        Debug.Log("Event: ObjectiveTrigger2");
+    }
+    public static void InvokeObjectiveTrigger3()
+    {
+        OnObjectiveTrigger3.Invoke();
+        Debug.Log("Event: ObjectiveTrigger3");
+    }
+
     public static void InvokeOpenMenu()
     {
         OnOpenMenu?.Invoke();
