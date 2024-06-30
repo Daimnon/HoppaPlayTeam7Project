@@ -9762,6 +9762,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac4290ca0d7a0974ca41070b9891b77f, type: 3}
+--- !u!1 &535153501 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2278014315048821682, guid: 8c392921442addb44abbc35e2fb20db1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1385065083}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &535890976
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26950,7 +26956,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 923559525}
-  initialDistance: 5
+  offset: {x: 0, y: 0, z: 0}
   zoomFactor: 1
 --- !u!1001 &1417818905
 PrefabInstance:
@@ -40780,6 +40786,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 664385751790751995, guid: b915ebabbcf7c46a1984a41d97373ad2,
+        type: 3}
+      propertyPath: joystick
+      value: 
+      objectReference: {fileID: 535153501}
+    - target: {fileID: 664385751790751995, guid: b915ebabbcf7c46a1984a41d97373ad2,
+        type: 3}
+      propertyPath: touchCanvas
+      value: 
+      objectReference: {fileID: 535153501}
     - target: {fileID: 664385751790751996, guid: b915ebabbcf7c46a1984a41d97373ad2,
         type: 3}
       propertyPath: m_Name
