@@ -19,7 +19,7 @@ public class LevelManager : MonoBehaviour
     [Header("Objective Data")]
     [SerializeField] private string[] _objectiveNames;
     [SerializeField] private int[] _objectiveConditionByNameOrder;
-    Dictionary<string, int> _objectives = new Dictionary<string, int>();
+    Dictionary<string, int> _objectives = new();
     
     [Header("Progression data")]
     [SerializeField] private int _maxProgression = 0;

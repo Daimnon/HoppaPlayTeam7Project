@@ -107,7 +107,7 @@ public class Player_Controller : Character
             HandleConsumableReward(consumable); // here we determine the type of the consumable in order to solve the reward.
             HandleProgressionReward(consumable); // here we determine if the consumable is related to any of the objectives and triggers them.
 
-            Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
             //UpdateNavMesh();
         }
     }
