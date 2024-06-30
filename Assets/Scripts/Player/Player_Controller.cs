@@ -36,6 +36,7 @@ public class Player_Controller : Character
         ETouch.Touch.onFingerDown += OnFingerDown;
         ETouch.Touch.onFingerUp += OnFingerUp;
         ETouch.Touch.onFingerMove += OnFingerMove;
+        EventManager.OnEarnExp += OnEarnExp;
         EventManager.OnGrowth += OnGrowth;
         EventManager.OnEvolve += OnEvolve;
         _navMeshSurface.BuildNavMesh();
@@ -75,16 +76,32 @@ public class Player_Controller : Character
         ETouch.Touch.onFingerDown -= OnFingerDown;
         ETouch.Touch.onFingerUp -= OnFingerUp;
         ETouch.Touch.onFingerMove -= OnFingerMove;
+        EventManager.OnEarnExp -= OnEarnExp;
         EventManager.OnGrowth -= OnGrowth;
+        EventManager.OnEvolve -= OnEvolve;
         EnhancedTouchSupport.Disable();
     }
     private void OnTriggerEnter(Collider other) 
     {
-        if (other.TryGetComponent(out Consumable consumable) && consumable.transform.localScale.x <= transform.localScale.x && consumable.transform.localScale.z <= transform.localScale.z)
+        if (other.TryGetComponent(out Consumable consumable))
         {
-            _data.GainExp(consumable.Reward);
-            EventManager.InvokeEarnCurrency(consumable.Reward);
-            EventManager.InvokeEarnSpecialCurrency(consumable.Reward);
+            bool isSmallerThanPlayer = consumable.transform.localScale.x <= transform.localScale.x && consumable.transform.localScale.z <= transform.localScale.z;
+
+            if (!isSmallerThanPlayer) // after this point we determine the type of the consumable in order to solve the reward.
+                return;
+
+            switch (consumable)
+            {
+                default:
+                    EventManager.InvokeEarnExp(consumable.Reward);
+
+                    // for testing:
+                    EventManager.InvokeEarnCurrency(consumable.Reward);
+                    EventManager.InvokeEarnSpecialCurrency(consumable.Reward);
+                    EventManager.InvokeProgressMade(consumable.Reward);
+                    break;
+            }
+            
             Destroy(other.gameObject);
             UpdateNavMesh();
         }
@@ -186,6 +203,10 @@ public class Player_Controller : Character
     #endregion
 
     #region Events
+    private void OnEarnExp(int expToGain)
+    {
+        _data.GainExp(expToGain);
+    }
     private void OnGrowth()
     {
         transform.localScale += Vector3.one * _data.ScaleIncrement;

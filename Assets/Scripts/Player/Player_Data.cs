@@ -75,14 +75,20 @@ public class Player_Data : MonoBehaviour
                 EventManager.InvokeEvolve(_evoType);
             }
         }
-    }
-    public void GainExp(int newExp)
-    {
-        _currentExp = newExp;
-        _hud.UpdateExpBar(_maxExp, _currentExp);
 
+        CheckLevelUp();
+    }
+    private void CheckLevelUp()
+    {
         if (_currentExp >= _maxExp)
             LevelUp();
+    }
+    public void GainExp(int expToGain)
+    {
+        _currentExp += expToGain;
+        _hud.UpdateExpBar(_maxExp, _currentExp);
+
+        CheckLevelUp();
     }
     public void IncreaseGrowth(float newScaleIncrement)
     {

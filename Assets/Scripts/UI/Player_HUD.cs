@@ -40,8 +40,6 @@ public class Player_HUD : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _timerText;
     public TextMeshProUGUI TimerText => _timerText;
 
-    private float _timeSinceStartLevel = 0.0f;
-
     [Header("Exp")]
     [SerializeField] private Image _expBarFill;
     public Image ExpBarFill => _expBarFill;
@@ -61,19 +59,16 @@ public class Player_HUD : MonoBehaviour
         EventManager.OnLevelLaunched += OnLevelLaunched;
         EventManager.OnCurrencyChange += OnCurrencyChange;
         EventManager.OnSpecialCurrencyChange += OnSpecialCurrencyChange;
+        EventManager.OnProgressionChange += OnProgressionChange;
+        EventManager.OnTimerChange += OnTimerChange;
     }
-
     private void OnDisable()
     {
         EventManager.OnLevelLaunched -= OnLevelLaunched;
         EventManager.OnCurrencyChange -= OnCurrencyChange;
         EventManager.OnSpecialCurrencyChange -= OnSpecialCurrencyChange;
-
-    }
-
-    private void Update()
-    {
-        _timeSinceStartLevel = Time.timeSinceLevelLoad;
+        EventManager.OnProgressionChange -= OnProgressionChange;
+        EventManager.OnTimerChange -= OnTimerChange;
     }
 
     #region General
@@ -89,17 +84,17 @@ public class Player_HUD : MonoBehaviour
             magnitude++;
         }
 
-        // Format the number
+        // Format the number with 3 decimal places
         string formattedNumber = tempNumber.ToString("0.000");
 
         // If the number is less than 1, remove the leading zero
         if (tempNumber < 1)
         {
-            formattedNumber = formattedNumber.Substring(1);
+            formattedNumber = formattedNumber.Substring(1); // Remove the leading zero for numbers < 1
         }
         else
         {
-            // Ensure we have exactly 3 digits before the decimal point
+            // Ensure we have at least 1 digit before the decimal point
             if (tempNumber < 10)
             {
                 formattedNumber = "00" + formattedNumber;
@@ -110,11 +105,11 @@ public class Player_HUD : MonoBehaviour
             }
         }
 
-        // Add the appropriate suffix
-        formattedNumber = formattedNumber.Substring(0, 3) + formattedNumber.Substring(4, 3) + _currencySuffixes[magnitude];
+        // Remove all leading zeros and trim trailing zeros and decimal point if necessary
+        formattedNumber = formattedNumber.TrimStart('0').TrimEnd('0').TrimEnd('.');
 
-        // Trim trailing zeros and decimal point if necessary
-        formattedNumber = formattedNumber.TrimEnd('0').TrimEnd('.');
+        // Add the appropriate suffix
+        formattedNumber += _currencySuffixes[magnitude];
 
         return formattedNumber;
     }
@@ -122,14 +117,14 @@ public class Player_HUD : MonoBehaviour
     {
 
     }
-    public void UpdateFillBar(Image fillImg, int maxValue, int currentValue, TextMeshProUGUI maxText, TextMeshProUGUI currentText)
+    public void UpdateFillBar(Image fillImg, int maxValue, float currentValue, TextMeshProUGUI maxText, TextMeshProUGUI currentText) // currentValue is float for correct clamp in fillAmount
     {
         float fillAmount = Mathf.Clamp01(currentValue / maxValue);
         fillImg.fillAmount = fillAmount;
 
         maxText.text = maxValue.ToString();
         currentText.text = currentValue.ToString();
-    }
+    } 
     #endregion
 
     #region Currency
@@ -148,14 +143,12 @@ public class Player_HUD : MonoBehaviour
     {
 
     }
-    public void UpdateTimerText()
+    public void UpdateTimerText(float timeSinceStartup)
     {
-        float elapsedTime = Time.time - _timeSinceStartLevel;
+        int minutes = Mathf.FloorToInt(timeSinceStartup / 60) % 60;
+        int seconds = Mathf.FloorToInt(timeSinceStartup) % 60;
 
-        int hours = Mathf.FloorToInt(elapsedTime / 3600) % 24;
-        int minutes = Mathf.FloorToInt(elapsedTime / 60) % 60;
-
-        _timerText.text = hours.ToString("D2") + ":" + minutes.ToString("D2");
+        _timerText.text = minutes.ToString("D2") + ":" + seconds.ToString("D2");
     }
 
     private void UpdateLevelTextAnimation()
@@ -171,12 +164,11 @@ public class Player_HUD : MonoBehaviour
     {
 
     }
-    public void UpdateProgressionBar(int maxValue, int currentValue)
+    public void UpdateProgressionBar(float clampedProgression) // currentValue is float for correct clamp in fillAmount
     {
-        float fillAmount = Mathf.Clamp01(currentValue / maxValue);
-        _progressionFill.fillAmount = fillAmount;
+        _progressionFill.fillAmount = clampedProgression;
 
-        int percentage = Mathf.RoundToInt(fillAmount * 100);
+        int percentage = Mathf.RoundToInt(clampedProgression * 100);
         _progressionText.text = percentage.ToString() + " %";
     }
 
@@ -184,7 +176,7 @@ public class Player_HUD : MonoBehaviour
     {
 
     }
-    public void UpdateExpBar(int maxValue, int currentValue)
+    public void UpdateExpBar(int maxValue, float currentValue) // currentValue is float for correct clamp in fillAmount
     {
         float fillAmount = Mathf.Clamp01(currentValue / maxValue);
         _expBarFill.fillAmount = fillAmount;
@@ -200,7 +192,6 @@ public class Player_HUD : MonoBehaviour
     #region Events
     private void OnLevelLaunched()
     {
-        _timeSinceStartLevel = Time.timeSinceLevelLoad;
     }
     private void OnCurrencyChange(int newCurrency)
     {
@@ -209,6 +200,14 @@ public class Player_HUD : MonoBehaviour
     private void OnSpecialCurrencyChange(int newSpecialCurrency)
     {
         UpdateSpecialCurrency(newSpecialCurrency);
+    }
+    private void OnProgressionChange(float newClampedProgression)
+    {
+        UpdateProgressionBar(newClampedProgression);
+    }
+    private void OnTimerChange(float timeSinceStartup)
+    {
+        UpdateTimerText(timeSinceStartup);
     }
     #endregion
 }
