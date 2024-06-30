@@ -29,6 +29,9 @@ public class LevelManager : MonoBehaviour
     private void OnEnable()
     {
         EventManager.OnProgressMade += OnProgressMade;
+        EventManager.OnObjectiveTrigger1 += OnObjectiveTrigger1;
+        EventManager.OnObjectiveTrigger2 += OnObjectiveTrigger2;
+        EventManager.OnObjectiveTrigger3 += OnObjectiveTrigger3;
     }
     private void Start()
     {
@@ -41,10 +44,12 @@ public class LevelManager : MonoBehaviour
     {
         HandleLoseCondition();
     }
-
     private void OnDisable()
     {
         EventManager.OnProgressMade -= OnProgressMade;
+        EventManager.OnObjectiveTrigger1 -= OnObjectiveTrigger1;
+        EventManager.OnObjectiveTrigger2 -= OnObjectiveTrigger2;
+        EventManager.OnObjectiveTrigger3 -= OnObjectiveTrigger3;
     }
 
     private void CompleteLevel()
@@ -79,7 +84,7 @@ public class LevelManager : MonoBehaviour
         _loseCanvas.SetActive(true);
     }
 
-    private int GetCondition(string objectiveName)
+    public int GetCondition(string objectiveName)
     {
         _objectives.TryGetValue(objectiveName, out int condition);
         return condition;
@@ -88,5 +93,17 @@ public class LevelManager : MonoBehaviour
     private void OnProgressMade(int progressToMake)
     {
         MakeProgress(progressToMake);
+    }
+    private void OnObjectiveTrigger1()
+    {
+
+    }
+    private void OnObjectiveTrigger2()
+    {
+
+    }
+    private void OnObjectiveTrigger3()
+    {
+
     }
 }

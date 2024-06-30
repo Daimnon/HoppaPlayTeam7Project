@@ -137,8 +137,19 @@ public class TerritoryClaimer : MonoBehaviour
     #region Events
     private void OnAreaClosed(Vector3 midPos) // need to carry on from here
     {
-        if (GetObjectsInClosedArea().Count > 0)
-            Debug.Log(GetObjectsInClosedArea()[0].name);
+        List<GameObject> objectsInClosedArea = GetObjectsInClosedArea();
+        if (objectsInClosedArea.Count > 0)
+        {
+            string debug = "";
+            for (int i = 0; i < objectsInClosedArea.Count; i++)
+            {
+                if (i != objectsInClosedArea.Count)
+                    debug += i+1 + ". " + objectsInClosedArea[i].name + ", " ;
+                else
+                    debug += i+1 + ". " + objectsInClosedArea[i].name + ".";
+            }
+            Debug.Log(debug);
+        }
         
         _trailPoints.Clear();
         _trailRenderer.Clear();
