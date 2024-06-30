@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem.EnhancedTouch;
 using ETouch = UnityEngine.InputSystem.EnhancedTouch;
@@ -12,10 +13,12 @@ public class Player_Controller : Character
     [SerializeField] private Player_Data _data;
 
     [Header("Components")]
+    [SerializeField] private CinemachineVirtualCamera _vCam;
     [SerializeField] private Animator _playerAnimator;
     [SerializeField] private TouchFloatStick _stick;
     [SerializeField] private NavMeshAgent _agent;
     [SerializeField] private NavMeshSurface _navMeshSurface;
+    private CinemachineFramingTransposer _framingTransposer;
 
     [Header("Screen")]
     [SerializeField] private Vector2 _screenEdgeOffsetMargin = new(100.0f, 50.0f);
@@ -25,6 +28,8 @@ public class Player_Controller : Character
     [SerializeField] private float _forceFromBiggerObjects = 5.0f;
 
     private float _idleTime = 0.0f;
+    private float _initialCameraDistance;
+    private float _initialSpeed;
     private bool _isGesturing = false;
 
     private Finger _moveFinger;
@@ -40,7 +45,11 @@ public class Player_Controller : Character
         EventManager.OnEarnExp += OnEarnExp;
         EventManager.OnGrowth += OnGrowth;
         EventManager.OnEvolve += OnEvolve;
-        _navMeshSurface.BuildNavMesh();
+
+        _framingTransposer = _vCam.GetCinemachineComponent<CinemachineFramingTransposer>();
+        _initialCameraDistance = _framingTransposer.m_CameraDistance;
+        _initialSpeed = _agent.speed;
+        //_navMeshSurface.BuildNavMesh();
     }
     private void Update()
     {
@@ -239,6 +248,10 @@ public class Player_Controller : Character
     private void OnGrowth()
     {
         transform.localScale += Vector3.one * _data.ScaleIncrement;
+        float newCameraDistance = _initialCameraDistance * transform.localScale.x;
+
+        _framingTransposer.m_CameraDistance = newCameraDistance;
+        _agent.speed = _initialSpeed * transform.localScale.x;
     }
     private void OnEvolve(EvoType newEvoType)
     {

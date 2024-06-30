@@ -653,10 +653,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 716541820651770128}
-  - {fileID: 1043449180157063289}
-  - {fileID: 2691740876895397791}
   - {fileID: 543450651688514331}
   - {fileID: 543450651636638188}
+  - {fileID: 1043449180157063289}
+  - {fileID: 2691740876895397791}
   - {fileID: 3945558382993796084}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -725,6 +725,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data: {fileID: 8276632312639507445}
+  _vCam: {fileID: 0}
   _playerAnimator: {fileID: 2023560737}
   _stick: {fileID: 0}
   _agent: {fileID: 4516841554617216228}
@@ -747,6 +748,7 @@ MonoBehaviour:
   _evoType: 0
   _hud: {fileID: 0}
   _evoModels:
+  - {fileID: 196604025613405098}
   - {fileID: 919132147953527201}
   - {fileID: 919132147903757142}
   _maxExp: 10
@@ -808,7 +810,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1043449179206962013}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &1043449180157063290
 ParticleSystem:
@@ -6066,7 +6068,7 @@ PrefabInstance:
     - target: {fileID: 2691740876440323327, guid: a97d113ded8fac144b976cb03a4ccd15,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2691740876440323327, guid: a97d113ded8fac144b976cb03a4ccd15,
         type: 3}
@@ -6142,7 +6144,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 12bdbb10960b7d34c829d87b2b608f7e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 12bdbb10960b7d34c829d87b2b608f7e,
         type: 3}
@@ -6212,7 +6214,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 12bdbb10960b7d34c829d87b2b608f7e,
         type: 3}
       propertyPath: m_Name
-      value: Team7_Player_2
+      value: Team7_Player_Evo_2
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 12bdbb10960b7d34c829d87b2b608f7e,
         type: 3}
@@ -6243,7 +6245,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 390f3ac06608f1342a5eeef4ffa9c263,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 390f3ac06608f1342a5eeef4ffa9c263,
         type: 3}
@@ -6313,7 +6315,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 390f3ac06608f1342a5eeef4ffa9c263,
         type: 3}
       propertyPath: m_Name
-      value: Team7_Player_Evo3
+      value: Team7_Player_Evo_3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 390f3ac06608f1342a5eeef4ffa9c263,
         type: 3}
@@ -6429,7 +6431,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 95677a7f4fb83c74096ccad07cebb039,
         type: 3}
       propertyPath: m_Name
-      value: Player_GFX
+      value: Team7_Player_Evo_1
       objectReference: {fileID: 0}
     - target: {fileID: 6317578925029434746, guid: 95677a7f4fb83c74096ccad07cebb039,
         type: 3}
