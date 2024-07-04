@@ -14,10 +14,13 @@ public class Player_Controller : Character
     [SerializeField] private ConsumableObjectPool _consumablePool;
 
     [Header("Components")]
+    [SerializeField] private GameObject[] _evoModels;
+    [SerializeField] private Animator[] _animators;
+    [SerializeField] private Animator _currentAnimator;
     [SerializeField] private CinemachineVirtualCamera _vCam;
-    [SerializeField] private Animator _playerAnimator;
     [SerializeField] private TouchFloatStick _stick;
     [SerializeField] private NavMeshAgent _agent;
+
     [SerializeField] private NavMeshSurface _navMeshSurface;
     private CinemachineFramingTransposer _framingTransposer;
 
@@ -61,7 +64,7 @@ public class Player_Controller : Character
         _agent.Move(scaledMovement);
 
         /* animation */
-        _playerAnimator.SetFloat("Move Speed", scaledMovement.normalized.magnitude);
+        _currentAnimator.SetFloat("Move Speed", scaledMovement.normalized.magnitude);
 
         /* idle gesture */
         if (scaledMovement == Vector3.zero)
@@ -71,7 +74,7 @@ public class Player_Controller : Character
             if (_idleTime >= _idleGestureTime && !_isGesturing)
             {
                 _isGesturing = true;
-                _playerAnimator.SetBool("Is Gesturing", _isGesturing);
+                _currentAnimator.SetBool("Is Gesturing", _isGesturing);
             }
         }
         else if (_idleTime != 0)
@@ -79,7 +82,7 @@ public class Player_Controller : Character
             _idleTime = 0;
 
             _isGesturing = false;
-            _playerAnimator.SetBool("Is Gesturing", _isGesturing);
+            _currentAnimator.SetBool("Is Gesturing", _isGesturing);
         }
     }
     private void OnDisable()
@@ -257,11 +260,14 @@ public class Player_Controller : Character
     private void OnEvolve(EvoType newEvoType)
     {
         int newEvoTypeNum = (int)newEvoType;
-        if (!_data.EvoModels[newEvoTypeNum] || newEvoTypeNum - 1 < 0) // models existance
+        if (!_evoModels[newEvoTypeNum] || newEvoTypeNum - 1 < 0) // models existance
             return;
 
-        _data.EvoModels[newEvoTypeNum - 1].SetActive(false);
-        _data.EvoModels[newEvoTypeNum].SetActive(true);
+        _evoModels[newEvoTypeNum - 1].SetActive(false);
+        _evoModels[newEvoTypeNum].SetActive(true);
+
+        // after evolution
+        _currentAnimator = _animators[newEvoTypeNum];
     }
     #endregion
 }
