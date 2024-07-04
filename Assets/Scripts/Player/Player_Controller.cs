@@ -11,6 +11,7 @@ public class Player_Controller : Character
 {
     [Header("MVC Components")]
     [SerializeField] private Player_Data _data;
+    [SerializeField] private ConsumableObjectPool _consumablePool;
 
     [Header("Components")]
     [SerializeField] private CinemachineVirtualCamera _vCam;
@@ -107,7 +108,7 @@ public class Player_Controller : Character
             HandleConsumableReward(consumable); // here we determine the type of the consumable in order to solve the reward.
             HandleProgressionReward(consumable); // here we determine if the consumable is related to any of the objectives and triggers them.
 
-            other.gameObject.SetActive(false);
+            _consumablePool.ReturnConsumableToPool(consumable);
             //UpdateNavMesh();
         }
     }
