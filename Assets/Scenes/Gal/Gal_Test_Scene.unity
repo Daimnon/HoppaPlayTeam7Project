@@ -437,7 +437,7 @@ RectTransform:
   m_Children:
   - {fileID: 1697773614}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2131,7 +2131,7 @@ PrefabInstance:
     - target: {fileID: 4909438620006079734, guid: 8c392921442addb44abbc35e2fb20db1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4909438620006079734, guid: 8c392921442addb44abbc35e2fb20db1,
         type: 3}
@@ -3071,9 +3071,9 @@ MonoBehaviour:
   _loseCanvas: {fileID: 2058925775}
   _objectiveNames: []
   _objectiveConditionByNameOrder: 
-  _maxProgression: 30
+  _maxProgression: 18
   _currentProgression: 0
-  _timeLimit: 40
+  _timeLimit: 60
 --- !u!4 &1773232822
 Transform:
   m_ObjectHideFlags: 0

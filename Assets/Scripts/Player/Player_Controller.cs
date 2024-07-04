@@ -35,6 +35,8 @@ public class Player_Controller : Character
     private float _initialCameraDistance;
     private float _initialSpeed;
     private bool _isGesturing = false;
+    private bool _isAlive = true;
+    private bool _canDetectInput = true;
 
     private Finger _moveFinger;
     private Vector3 _fingerMoveAmount;
@@ -49,6 +51,7 @@ public class Player_Controller : Character
         EventManager.OnEarnExp += OnEarnExp;
         EventManager.OnGrowth += OnGrowth;
         EventManager.OnEvolve += OnEvolve;
+        EventManager.OnLose += OnLose;
 
         _framingTransposer = _vCam.GetCinemachineComponent<CinemachineFramingTransposer>();
         _initialCameraDistance = _framingTransposer.m_CameraDistance;
@@ -93,6 +96,7 @@ public class Player_Controller : Character
         EventManager.OnEarnExp -= OnEarnExp;
         EventManager.OnGrowth -= OnGrowth;
         EventManager.OnEvolve -= OnEvolve;
+        EventManager.OnLose -= OnLose;
         EnhancedTouchSupport.Disable();
     }
     private void OnTriggerEnter(Collider other) 
@@ -120,6 +124,12 @@ public class Player_Controller : Character
     #region Fingers
     private void OnFingerDown(Finger finger)
     {
+        if (!_canDetectInput)
+        {
+            OnFingerUp(finger);
+            return;
+        }
+
         /* get touch input position */
         Vector2 touchPosition = finger.screenPosition;
 
@@ -143,6 +153,12 @@ public class Player_Controller : Character
     }
     private void OnFingerMove(Finger finger)
     {
+        if (!_canDetectInput)
+        {
+            OnFingerUp(finger);
+            return;
+        }
+
         /* joystick movement */
         if (finger == _moveFinger)
         {
@@ -268,6 +284,10 @@ public class Player_Controller : Character
 
         // after evolution
         _currentAnimator = _animators[newEvoTypeNum];
+    }
+    private void OnLose()
+    {
+        _canDetectInput = false;
     }
     #endregion
 }

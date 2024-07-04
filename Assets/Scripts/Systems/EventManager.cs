@@ -5,6 +5,7 @@ using UnityEngine;
 public static class EventManager
 {
     public static Action OnGameLaunched, OnLevelLaunched, OnOpenMenu;
+    public static Action OnLose;
     public static Action OnBakeNavMesh;
     public static Action OnUnlock;
 
@@ -34,6 +35,12 @@ public static class EventManager
     {
         OnLevelLaunched?.Invoke();
         UnityEngine.Debug.Log("Event: LevelLaunched");
+    }
+
+    public static void InvokeLose()
+    {
+        OnLose?.Invoke();
+        UnityEngine.Debug.Log("Event: Lose");
     }
 
     public static void InvokeObjectiveTrigger1()
