@@ -17,6 +17,8 @@ public class Player_Controller : Character
     [SerializeField] private GameObject[] _evoModels;
     [SerializeField] private Animator[] _animators;
     [SerializeField] private Animator _currentAnimator;
+    [SerializeField] private GameObject _growVFX;
+    [SerializeField] private Transform[] _growVFXParticles;
     [SerializeField] private CinemachineVirtualCamera _vCam;
     [SerializeField] private TouchFloatStick _stick;
     [SerializeField] private NavMeshAgent _agent;
@@ -28,6 +30,8 @@ public class Player_Controller : Character
     [SerializeField] private Vector2 _screenEdgeOffsetMargin = new(100.0f, 50.0f);
 
     [Header("Animation")]
+    [SerializeField] private float _growFVXTime = 1.0f;
+
     [SerializeField] private float _idleGestureTime = 7.5f;
     [SerializeField] private float _forceFromBiggerObjects = 5.0f;
 
@@ -258,6 +262,16 @@ public class Player_Controller : Character
             }
         }
     }
+    private IEnumerator DoGrowAnimaion()
+    {
+        for (int i = 0; i < _growVFXParticles.Length; i++)
+        {
+            _growVFXParticles[i].localScale = transform.localScale;
+        }
+        _growVFX.SetActive(true);
+        yield return new WaitForSeconds(_growFVXTime);
+        _growVFX.SetActive(false);
+    }
     #endregion
 
     #region Events
@@ -284,6 +298,7 @@ public class Player_Controller : Character
 
         // after evolution
         _currentAnimator = _animators[newEvoTypeNum];
+        StartCoroutine(DoGrowAnimaion());
     }
     private void OnLose()
     {
