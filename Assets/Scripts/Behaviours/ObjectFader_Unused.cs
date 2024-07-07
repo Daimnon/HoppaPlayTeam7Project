@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class ObjectFader : MonoBehaviour
+public class ObjectFader_Unused : MonoBehaviour
 {
     [SerializeField] private Material _mat;
     [SerializeField] private float _targetOpacity;

@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraManager : MonoBehaviour
+public class CameraManager_Unused : MonoBehaviour
 {
     [SerializeField] private Player_Controller _player;
     [SerializeField] private float _distanceFromCameraToPlayer;
     private const string _playerTag = "Player";
     private const string _consumableTag = "Consumable";
 
-    private ObjectFader _fader;
+    private ObjectFader_Unused _fader;
     private Vector3 _directionToPlayer;
 
     private void Start()
@@ -37,7 +37,7 @@ public class CameraManager : MonoBehaviour
             }
             else if (hitCollider.CompareTag(_consumableTag))
             {
-                _fader = hitCollider.GetComponent<ObjectFader>();
+                _fader = hitCollider.GetComponent<ObjectFader_Unused>();
 
                 if (_fader)
                     _fader.ShouldFade = true;

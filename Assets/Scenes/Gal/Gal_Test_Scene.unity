@@ -1504,8 +1504,8 @@ GameObject:
   - component: {fileID: 825619398}
   - component: {fileID: 825619397}
   - component: {fileID: 825619401}
-  m_Layer: 0
-  m_Name: Cube
+  m_Layer: 6
+  m_Name: fader tester
   m_TagString: Consumable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1519,7 +1519,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 825619396}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -1598,13 +1598,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 825619396}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38f003c0305700b489843641d995b4ad, type: 3}
+  m_Script: {fileID: 11500000, guid: 99b3d44050d91fb4aad7465218bbcd03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mat: {fileID: 2100000, guid: d4e0da0f1f5e2af418c43d4bd3911b88, type: 2}
-  _targetOpacity: 0
-  _fadeSpeed: 1
-  _shouldFade: 0
+  _renderers:
+  - {fileID: 825619398}
+  _position: {x: 0, y: 0, z: 0}
 --- !u!114 &879965516 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5052870274008115571, guid: cfdd622c625b6ef4788d1650fd9e37e5,
@@ -3888,11 +3887,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1654684282}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffbba779e817bff4a8d15a236ef5a554, type: 3}
+  m_Script: {fileID: 11500000, guid: e2940c0628036bd4ea6690876a16bc3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 2030210916}
-  _distanceFromCameraToPlayer: 0
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  _playerPosOffset: {x: 0, y: 0, z: 0}
+  _directionFromCamToPlayer: {x: -0.05538918, y: -0.8307709, z: 0.5538517}
+  _camTr: {fileID: 1984298085}
+  _playerTr: {fileID: 2030210913}
+  _targetAlpha: 0.33
+  _fadeSpeed: 0.5
+  _distanceFromPlayer: 8
+  _retainShadows: 1
+  _objectsBlockingView: []
 --- !u!1 &2019931437 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1323933382902447164, guid: 96736e34751cd014199e2daff6372f5b,
@@ -3912,7 +3921,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mat: {fileID: 2100000, guid: b71f9a059e4914c408321d05460cdbaa, type: 2}
-  _targetOpacity: 0.5
+  _targetOpacity: 0
   _fadeSpeed: 1
   _shouldFade: 0
 --- !u!4 &2030210913 stripped
@@ -3921,18 +3930,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 241306941}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2030210916 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2761447709847105067, guid: 6b89d7a8d8b113845b888ad478f255a6,
-    type: 3}
-  m_PrefabInstance: {fileID: 241306941}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d46fa5b9889c5e408227276ccd947f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2040543464
 GameObject:
   m_ObjectHideFlags: 0
