@@ -17,7 +17,9 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject _loseCanvas;
 
     [Header("Objective Data")]
-    [SerializeField] private ObjectiveData[] objectives;
+    [SerializeField] private ObjectiveData[] _objectives;
+    public ObjectiveData[] Objectives => _objectives;
+
 
     // track the progress and completion status of each objective
     private Dictionary<ObjectiveType, int> _objectiveProgress = new();
@@ -39,10 +41,10 @@ public class LevelManager : MonoBehaviour
     }
     private void Start()
     {
-        foreach (var objective in objectives)
+        foreach (var objective in _objectives)
         {
-            _objectiveProgress[objective.objectiveType] = 0;
-            _objectiveCompletion[objective.objectiveType] = false;
+            _objectiveProgress[objective.ObjectiveType] = 0;
+            _objectiveCompletion[objective.ObjectiveType] = false;
         }
 
         EventManager.InvokeLevelLaunched();
@@ -62,9 +64,9 @@ public class LevelManager : MonoBehaviour
     private void CompleteLevel()
     {
         int starsEarned = 0;
-        foreach (var objective in objectives)
+        foreach (var objective in _objectives)
         {
-            if (_objectiveCompletion[objective.objectiveType])
+            if (_objectiveCompletion[objective.ObjectiveType])
             {
                 starsEarned++;
             }
@@ -81,7 +83,7 @@ public class LevelManager : MonoBehaviour
     public void MakeProgress(int progressToMake)
     {
         _currentProgression += progressToMake;
-        float newClampedProgression = Mathf.Clamp01((float)_currentProgression / _maxProgression); // currentValue is float for correct clamp in fillAmount
+        float newClampedProgression = Mathf.Clamp01((float)_currentProgression / _maxProgression);
         EventManager.InvokeProgressionChange(newClampedProgression);
 
         CheckProgressCompletion();
@@ -129,15 +131,15 @@ public class LevelManager : MonoBehaviour
         UpdateObjective(ObjectiveType.Objective3);
     }
 
-    private void UpdateObjective(ObjectiveType objectiveType)
+    public void UpdateObjective(ObjectiveType objectiveType)
     {
-        var objective = Array.Find(objectives, obj => obj.objectiveType == objectiveType);
+        var objective = Array.Find(_objectives, obj => obj.ObjectiveType == objectiveType);
         _objectiveProgress[objectiveType]++;
         
-        if (_objectiveProgress[objectiveType] >= objective.completionCondition && !_objectiveCompletion[objectiveType])
+        if (_objectiveProgress[objectiveType] >= objective.CompletionCondition && !_objectiveCompletion[objectiveType])
         {
             _objectiveCompletion[objectiveType] = true;
-            Debug.Log(objective.notificationText); // Will be changed to a message on screen, now just for testing
+            Debug.Log(objective.NotificationText); // Will be changed to a message on screen, now just for testing
         }
     }
 }

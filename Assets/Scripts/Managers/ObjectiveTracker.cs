@@ -7,19 +7,14 @@ public class ObjectiveTracker : MonoBehaviour
 {
     public LevelManager levelManager;
 
-    private void Update()
+    private void Start()
     {
-    //     if (/* condition for Objective1 */)
-    //     {
-    //         levelManager.OnObjectiveTrigger1();
-    //     }
-    //     if (/* condition for Objective2 */)
-    //     {
-    //         levelManager.OnObjectiveTrigger2();
-    //     }
-    //     if (/* condition for Objective3 */)
-    //     {
-    //         levelManager.OnObjectiveTrigger3();
-    //     }
-    // }
+        foreach (var objective in levelManager.Objectives)
+        {
+            if (objective.ConditionEvent != null)
+            {
+                objective.ConditionEvent.AddListener(() => levelManager.UpdateObjective(objective.ObjectiveType));
+            }
+        }
+    }
 }
