@@ -15,8 +15,7 @@ public class Player_Data : MonoBehaviour
     [SerializeField] private EvoType _evoType = EvoType.First;
     public EvoType @EvoType => _evoType;
 
-    [SerializeField] private GameObject[] _evoModels;
-    public GameObject[] EvoModels => _evoModels;
+    [SerializeField] private Player_HUD _hud;
 
     [SerializeField] private int _maxExp = 10;
     public int MaxExp => _maxExp;
@@ -52,9 +51,11 @@ public class Player_Data : MonoBehaviour
     {
         _currentLevel++;
         _growthLevelCounter++;
+        _hud.SetNewLevel(_currentLevel);
 
         float tempMaxExp = _maxExp * _expFactor;
         _maxExp = Mathf.RoundToInt(tempMaxExp);
+        _hud.SetNewMaxExp(_maxExp);
 
         if (_growthLevelCounter >= _growthTreshold)
         {
@@ -68,17 +69,29 @@ public class Player_Data : MonoBehaviour
 
             if (_evolveLevelCounter >= _evolveTreshold)
             {
-                _evoType = (EvoType)(((int)_evoType + 1) % Enum.GetValues(typeof(EvoType)).Length); // increment enum
+                int currentValue = (int)_evoType;
+                int maxValue = Enum.GetValues(typeof(EvoType)).Length - 1;
+
+                _evoType = currentValue < maxValue ? (EvoType)(currentValue + 1) : _evoType;
                 EventManager.InvokeEvolve(_evoType);
+
+                //_evoType = (EvoType)(((int)_evoType + 1) % Enum.GetValues(typeof(EvoType)).Length); // increment enum
             }
         }
-    }
-    public void GainExp(int newExp)
-    {
-        _currentExp = newExp;
 
+        CheckLevelUp();
+    }
+    private void CheckLevelUp()
+    {
         if (_currentExp >= _maxExp)
             LevelUp();
+    }
+    public void GainExp(int expToGain)
+    {
+        _currentExp += expToGain;
+        _hud.UpdateExpBar(_maxExp, _currentExp);
+
+        CheckLevelUp();
     }
     public void IncreaseGrowth(float newScaleIncrement)
     {

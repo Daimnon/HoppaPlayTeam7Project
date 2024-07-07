@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem.EnhancedTouch;
 using ETouch = UnityEngine.InputSystem.EnhancedTouch;
@@ -10,21 +11,36 @@ public class Player_Controller : Character
 {
     [Header("MVC Components")]
     [SerializeField] private Player_Data _data;
+    [SerializeField] private ConsumableObjectPool _consumablePool;
 
     [Header("Components")]
-    [SerializeField] private Animator _playerAnimator;
+    [SerializeField] private GameObject[] _evoModels;
+    [SerializeField] private Animator[] _animators;
+    [SerializeField] private Animator _currentAnimator;
+    [SerializeField] private GameObject _growVFX;
+    [SerializeField] private Transform[] _growVFXParticles;
+    [SerializeField] private CinemachineVirtualCamera _vCam;
     [SerializeField] private TouchFloatStick _stick;
     [SerializeField] private NavMeshAgent _agent;
+
     [SerializeField] private NavMeshSurface _navMeshSurface;
+    private CinemachineFramingTransposer _framingTransposer;
 
     [Header("Screen")]
     [SerializeField] private Vector2 _screenEdgeOffsetMargin = new(100.0f, 50.0f);
 
     [Header("Animation")]
+    [SerializeField] private float _growFVXTime = 1.0f;
+
     [SerializeField] private float _idleGestureTime = 7.5f;
+    [SerializeField] private float _forceFromBiggerObjects = 5.0f;
 
     private float _idleTime = 0.0f;
+    private float _initialCameraDistance;
+    private float _initialSpeed;
     private bool _isGesturing = false;
+    private bool _isAlive = true;
+    private bool _canDetectInput = true;
 
     private Finger _moveFinger;
     private Vector3 _fingerMoveAmount;
@@ -36,9 +52,15 @@ public class Player_Controller : Character
         ETouch.Touch.onFingerDown += OnFingerDown;
         ETouch.Touch.onFingerUp += OnFingerUp;
         ETouch.Touch.onFingerMove += OnFingerMove;
+        EventManager.OnEarnExp += OnEarnExp;
         EventManager.OnGrowth += OnGrowth;
         EventManager.OnEvolve += OnEvolve;
-        _navMeshSurface.BuildNavMesh();
+        EventManager.OnLose += OnLose;
+
+        _framingTransposer = _vCam.GetCinemachineComponent<CinemachineFramingTransposer>();
+        _initialCameraDistance = _framingTransposer.m_CameraDistance;
+        _initialSpeed = _agent.speed;
+        //_navMeshSurface.BuildNavMesh();
     }
     private void Update()
     {
@@ -49,7 +71,7 @@ public class Player_Controller : Character
         _agent.Move(scaledMovement);
 
         /* animation */
-        _playerAnimator.SetFloat("Move Speed", scaledMovement.normalized.magnitude);
+        _currentAnimator.SetFloat("Move Speed", scaledMovement.normalized.magnitude);
 
         /* idle gesture */
         if (scaledMovement == Vector3.zero)
@@ -59,7 +81,7 @@ public class Player_Controller : Character
             if (_idleTime >= _idleGestureTime && !_isGesturing)
             {
                 _isGesturing = true;
-                _playerAnimator.SetBool("Is Gesturing", _isGesturing);
+                _currentAnimator.SetBool("Is Gesturing", _isGesturing);
             }
         }
         else if (_idleTime != 0)
@@ -67,7 +89,7 @@ public class Player_Controller : Character
             _idleTime = 0;
 
             _isGesturing = false;
-            _playerAnimator.SetBool("Is Gesturing", _isGesturing);
+            _currentAnimator.SetBool("Is Gesturing", _isGesturing);
         }
     }
     private void OnDisable()
@@ -75,16 +97,30 @@ public class Player_Controller : Character
         ETouch.Touch.onFingerDown -= OnFingerDown;
         ETouch.Touch.onFingerUp -= OnFingerUp;
         ETouch.Touch.onFingerMove -= OnFingerMove;
+        EventManager.OnEarnExp -= OnEarnExp;
         EventManager.OnGrowth -= OnGrowth;
+        EventManager.OnEvolve -= OnEvolve;
+        EventManager.OnLose -= OnLose;
         EnhancedTouchSupport.Disable();
     }
     private void OnTriggerEnter(Collider other) 
     {
-        if (other.TryGetComponent(out Consumable consumable) && consumable.transform.localScale.x <= transform.localScale.x && consumable.transform.localScale.z <= transform.localScale.z)
+        if (other.TryGetComponent(out Consumable consumable))
         {
-            _data.GainExp(consumable.expValue);
-            Destroy(other.gameObject);
-            UpdateNavMesh();
+            bool isSmallerThanPlayer = consumable.transform.localScale.x <= transform.localScale.x && consumable.transform.localScale.z <= transform.localScale.z;
+
+            if (!isSmallerThanPlayer)
+            {
+                Vector3 pushDirection = (transform.position - other.transform.position).normalized;
+                _agent.velocity = pushDirection * _forceFromBiggerObjects;
+                return;
+            }
+
+            HandleConsumableReward(consumable); // here we determine the type of the consumable in order to solve the reward.
+            HandleProgressionReward(consumable); // here we determine if the consumable is related to any of the objectives and triggers them.
+
+            _consumablePool.ReturnConsumableToPool(consumable);
+            //UpdateNavMesh();
         }
     }
     #endregion
@@ -92,6 +128,12 @@ public class Player_Controller : Character
     #region Fingers
     private void OnFingerDown(Finger finger)
     {
+        if (!_canDetectInput)
+        {
+            OnFingerUp(finger);
+            return;
+        }
+
         /* get touch input position */
         Vector2 touchPosition = finger.screenPosition;
 
@@ -115,6 +157,12 @@ public class Player_Controller : Character
     }
     private void OnFingerMove(Finger finger)
     {
+        if (!_canDetectInput)
+        {
+            OnFingerUp(finger);
+            return;
+        }
+
         /* joystick movement */
         if (finger == _moveFinger)
         {
@@ -181,21 +229,80 @@ public class Player_Controller : Character
         if (_navMeshSurface)
             _navMeshSurface.BuildNavMesh();
     }
+    private void HandleConsumableReward(Consumable consumable)
+    {
+        switch (consumable)
+        {
+            default:
+                EventManager.InvokeEarnExp(consumable.Reward);
+                EventManager.InvokeProgressMade(consumable.ProgressionReward);
+
+                // for testing:
+                EventManager.InvokeEarnCurrency(consumable.Reward);
+                EventManager.InvokeEarnSpecialCurrency(consumable.Reward);
+                EventManager.InvokeProgressMade(consumable.Reward);
+                break;
+        }
+    }
+    private void HandleProgressionReward(Consumable consumable)
+    {
+        if (consumable.ObjectiveType != ObjectiveType.None)
+        {
+            switch (consumable.ObjectiveType)
+            {
+                case ObjectiveType.Objective1:
+                    EventManager.InvokeObjectiveTrigger1();
+                    break;
+                case ObjectiveType.Objective2:
+                    EventManager.InvokeObjectiveTrigger2();
+                    break;
+                case ObjectiveType.Objective3:
+                    EventManager.InvokeObjectiveTrigger3();
+                    break;
+            }
+        }
+    }
+    private IEnumerator DoGrowAnimaion()
+    {
+        for (int i = 0; i < _growVFXParticles.Length; i++)
+        {
+            _growVFXParticles[i].localScale = transform.localScale;
+        }
+        _growVFX.SetActive(true);
+        yield return new WaitForSeconds(_growFVXTime);
+        _growVFX.SetActive(false);
+    }
     #endregion
 
     #region Events
+    private void OnEarnExp(int expToGain)
+    {
+        _data.GainExp(expToGain);
+    }
     private void OnGrowth()
     {
         transform.localScale += Vector3.one * _data.ScaleIncrement;
+        float newCameraDistance = _initialCameraDistance * transform.localScale.x;
+
+        _framingTransposer.m_CameraDistance = newCameraDistance;
+        _agent.speed = _initialSpeed * transform.localScale.x;
     }
     private void OnEvolve(EvoType newEvoType)
     {
         int newEvoTypeNum = (int)newEvoType;
-        if (!_data.EvoModels[newEvoTypeNum] || newEvoTypeNum - 1 < 0) // models existance
+        if (!_evoModels[newEvoTypeNum] || newEvoTypeNum - 1 < 0) // models existance
             return;
 
-        _data.EvoModels[newEvoTypeNum - 1].SetActive(false);
-        _data.EvoModels[newEvoTypeNum].SetActive(true);
+        _evoModels[newEvoTypeNum - 1].SetActive(false);
+        _evoModels[newEvoTypeNum].SetActive(true);
+
+        // after evolution
+        _currentAnimator = _animators[newEvoTypeNum];
+        StartCoroutine(DoGrowAnimaion());
+    }
+    private void OnLose()
+    {
+        _canDetectInput = false;
     }
     #endregion
 }

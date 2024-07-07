@@ -14,6 +14,13 @@ public class Player_HUD : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _currencyText;
     public TextMeshProUGUI CurrencyText => _currencyText;
 
+    [Header("Special Currency")]
+    [SerializeField] private Image _specialCurrencyIcon;
+    public Image SpecialCurrencyIcon => _specialCurrencyIcon;
+
+    [SerializeField] private TextMeshProUGUI _specialCurrencyText;
+    public TextMeshProUGUI SpecialCurrencyText => _specialCurrencyText;
+
     [Header("Progression")]
     [SerializeField] private Image _levelNumBg;
     public Image LevelNumBg => _levelNumBg;
@@ -33,8 +40,6 @@ public class Player_HUD : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _timerText;
     public TextMeshProUGUI TimerText => _timerText;
 
-    private float _timeSinceStartLevel = 0.0f;
-
     [Header("Exp")]
     [SerializeField] private Image _expBarFill;
     public Image ExpBarFill => _expBarFill;
@@ -52,31 +57,21 @@ public class Player_HUD : MonoBehaviour
     private void OnEnable()
     {
         EventManager.OnLevelLaunched += OnLevelLaunched;
+        EventManager.OnCurrencyChange += OnCurrencyChange;
+        EventManager.OnSpecialCurrencyChange += OnSpecialCurrencyChange;
+        EventManager.OnProgressionChange += OnProgressionChange;
+        EventManager.OnTimerChange += OnTimerChange;
     }
     private void OnDisable()
     {
         EventManager.OnLevelLaunched -= OnLevelLaunched;
-    }
-
-    private void Update()
-    {
-        //UpdateTimerText();
+        EventManager.OnCurrencyChange -= OnCurrencyChange;
+        EventManager.OnSpecialCurrencyChange -= OnSpecialCurrencyChange;
+        EventManager.OnProgressionChange -= OnProgressionChange;
+        EventManager.OnTimerChange -= OnTimerChange;
     }
 
     #region General
-    private void UpdateFillBarAnimation()
-    {
-
-    }
-    public void UpdateFillBar(Image fillImg, int maxValue, int currentValue, TextMeshProUGUI maxText, TextMeshProUGUI currentText)
-    {
-        float fillAmount = Mathf.Clamp01(currentValue / maxValue);
-        fillImg.fillAmount = fillAmount;
-
-        maxText.text = maxValue.ToString();
-        currentText.text = currentValue.ToString();
-    }
-
     private string FormatLargeNumber(int number)
     {
         int magnitude = 0;
@@ -89,17 +84,17 @@ public class Player_HUD : MonoBehaviour
             magnitude++;
         }
 
-        // Format the number
+        // Format the number with 3 decimal places
         string formattedNumber = tempNumber.ToString("0.000");
 
         // If the number is less than 1, remove the leading zero
         if (tempNumber < 1)
         {
-            formattedNumber = formattedNumber.Substring(1);
+            formattedNumber = formattedNumber.Substring(1); // Remove the leading zero for numbers < 1
         }
         else
         {
-            // Ensure we have exactly 3 digits before the decimal point
+            // Ensure we have at least 1 digit before the decimal point
             if (tempNumber < 10)
             {
                 formattedNumber = "00" + formattedNumber;
@@ -110,14 +105,26 @@ public class Player_HUD : MonoBehaviour
             }
         }
 
-        // Add the appropriate suffix
-        formattedNumber = formattedNumber.Substring(0, 3) + formattedNumber.Substring(4, 3) + _currencySuffixes[magnitude];
+        // Remove all leading zeros and trim trailing zeros and decimal point if necessary
+        formattedNumber = formattedNumber.TrimStart('0').TrimEnd('0').TrimEnd('.');
 
-        // Trim trailing zeros and decimal point if necessary
-        formattedNumber = formattedNumber.TrimEnd('0').TrimEnd('.');
+        // Add the appropriate suffix
+        formattedNumber += _currencySuffixes[magnitude];
 
         return formattedNumber;
     }
+    private void UpdateFillBarAnimation()
+    {
+
+    }
+    public void UpdateFillBar(Image fillImg, int maxValue, float currentValue, TextMeshProUGUI maxText, TextMeshProUGUI currentText) // currentValue is float for correct clamp in fillAmount
+    {
+        float fillAmount = Mathf.Clamp01(currentValue / maxValue);
+        fillImg.fillAmount = fillAmount;
+
+        maxText.text = maxValue.ToString();
+        currentText.text = currentValue.ToString();
+    } 
     #endregion
 
     #region Currency
@@ -125,9 +132,25 @@ public class Player_HUD : MonoBehaviour
     {
         _currencyText.text = FormatLargeNumber(newCurrency);
     }
+    public void UpdateSpecialCurrency(int newSpecialCurrency)
+    {
+        _specialCurrencyText.text = FormatLargeNumber(newSpecialCurrency);
+    }
     #endregion
 
     #region Progression
+    private void UpdateTimerTextAnimation()
+    {
+
+    }
+    public void UpdateTimerText(float timeSinceStartup)
+    {
+        int minutes = Mathf.FloorToInt(timeSinceStartup / 60) % 60;
+        int seconds = Mathf.FloorToInt(timeSinceStartup) % 60;
+
+        _timerText.text = minutes.ToString("D2") + ":" + seconds.ToString("D2");
+    }
+
     private void UpdateLevelTextAnimation()
     {
 
@@ -137,38 +160,58 @@ public class Player_HUD : MonoBehaviour
         _levelText.text = "Lv. " + newLevel.ToString();
     }
 
-    private void UpdateTimerTextAnimation()
-    {
-
-    }
-    public void UpdateTimerText()
-    {
-        float elapsedTime = Time.time - _timeSinceStartLevel;
-
-        int hours = Mathf.FloorToInt(elapsedTime / 3600) % 24;
-        int minutes = Mathf.FloorToInt(elapsedTime / 60) % 60;
-
-        _timerText.text = hours.ToString("D2") + ":" + minutes.ToString("D2");
-    }
-
     private void UpdateProgressionBarAnimation()
     {
 
     }
-    public void UpdateProgressionBar(int maxValue, int currentValue)
+    public void UpdateProgressionBar(float clampedProgression) // currentValue is float for correct clamp in fillAmount
+    {
+        _progressionFill.fillAmount = clampedProgression;
+
+        int percentage = Mathf.RoundToInt(clampedProgression * 100);
+        _progressionText.text = percentage.ToString() + " %";
+    }
+
+    private void UpdateExpBarAnimation()
+    {
+
+    }
+    public void UpdateExpBar(int maxValue, float currentValue) // currentValue is float for correct clamp in fillAmount
     {
         float fillAmount = Mathf.Clamp01(currentValue / maxValue);
-        _progressionFill.fillAmount = fillAmount;
+        _expBarFill.fillAmount = fillAmount;
 
-        int percentage = Mathf.RoundToInt(fillAmount * 100);
-        _progressionText.text = percentage.ToString() + " %";
+        _currentExpText.text = currentValue.ToString();
+    }
+    public void SetNewLevel(int newLevel)
+    {
+        _levelNumText.text = newLevel.ToString();
+    }
+    public void SetNewMaxExp(int newMaxExp)
+    {
+        _maxExpText.text = newMaxExp.ToString();
     }
     #endregion
 
     #region Events
     private void OnLevelLaunched()
     {
-        _timeSinceStartLevel = Time.timeSinceLevelLoad;
+    }
+    private void OnCurrencyChange(int newCurrency)
+    {
+        UpdateCurrency(newCurrency);
+    }
+    private void OnSpecialCurrencyChange(int newSpecialCurrency)
+    {
+        UpdateSpecialCurrency(newSpecialCurrency);
+    }
+    private void OnProgressionChange(float newClampedProgression)
+    {
+        UpdateProgressionBar(newClampedProgression);
+    }
+    private void OnTimerChange(float timeSinceStartup)
+    {
+        UpdateTimerText(timeSinceStartup);
     }
     #endregion
 }
