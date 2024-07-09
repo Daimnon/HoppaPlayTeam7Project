@@ -17,9 +17,6 @@ public class Player_Data : MonoBehaviour
 
     [SerializeField] private Player_HUD _hud;
 
-    [SerializeField] private GameObject[] _evoModels;
-    public GameObject[] EvoModels => _evoModels;
-
     [SerializeField] private int _maxExp = 10;
     public int MaxExp => _maxExp;
 

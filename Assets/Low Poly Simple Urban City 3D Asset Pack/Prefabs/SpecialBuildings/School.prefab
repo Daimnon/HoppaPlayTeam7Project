@@ -43,12 +43,13 @@ GameObject:
   - component: {fileID: 3795131342651719157}
   - component: {fileID: 2329895329488617197}
   - component: {fileID: 3152890893302876297}
+  - component: {fileID: 1181286173489043287}
   m_Layer: 0
   m_Name: School
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &3795131342651719157
 Transform:
@@ -115,3 +116,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &1181286173489043287
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5362611682583719250}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 17.721, y: 8.102, z: 31.418001}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 8.1, z: -14.777}
+  m_TimeToStationary: 0.5

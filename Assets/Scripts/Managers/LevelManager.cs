@@ -30,6 +30,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private int _currentProgression = 0;
     [SerializeField] private float _timeLimit = 0.0f;
 
+    private bool _hasLost = false;
+
     private void OnEnable()
     {
         EventManager.OnProgressMade += OnProgressMade;
@@ -89,6 +91,9 @@ public class LevelManager : MonoBehaviour
 
     private void HandleLoseCondition()
     {
+        if (_hasLost)
+            return;
+
         _timeLimit -= Time.deltaTime;
         EventManager.InvokeTimerChange(_timeLimit);
 
@@ -99,6 +104,13 @@ public class LevelManager : MonoBehaviour
     {
         // do lose condition logic
         _loseCanvas.SetActive(true);
+        EventManager.InvokeLose();
+        _hasLost = true;
+    }
+
+    public void ReloadLevel()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
     }
 
     private void OnProgressMade(int progressToMake)
