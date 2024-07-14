@@ -829,6 +829,21 @@ PrefabInstance:
       propertyPath: _hud
       value: 
       objectReference: {fileID: 574387809}
+    - target: {fileID: 8276632312639507445, guid: 6b89d7a8d8b113845b888ad478f255a6,
+        type: 3}
+      propertyPath: _maxExp
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8276632312639507445, guid: 6b89d7a8d8b113845b888ad478f255a6,
+        type: 3}
+      propertyPath: _expFactor
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8276632312639507445, guid: 6b89d7a8d8b113845b888ad478f255a6,
+        type: 3}
+      propertyPath: _growthTreshold
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b89d7a8d8b113845b888ad478f255a6, type: 3}
 --- !u!114 &241306942 stripped
