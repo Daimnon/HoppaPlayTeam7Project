@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1009096044697210659}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FlowerBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,6 +104,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlowerBox
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0cd79567f04815148b018c47b6aeaa27,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0cd79567f04815148b018c47b6aeaa27, type: 3}
 --- !u!4 &8604158793231490234 stripped
@@ -112,3 +117,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8134246020426021713}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8945218106950518272 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0cd79567f04815148b018c47b6aeaa27,
+    type: 3}
+  m_PrefabInstance: {fileID: 8134246020426021713}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &17295613455526958
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8945218106950518272}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.7368225, y: 0.99354, z: 0.49733528}
+  m_Center: {x: 0.027143538, y: 0.49677, z: -0.019803718}
+--- !u!114 &2089765898546529624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8945218106950518272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectiveType: 3
+  _level: 3
+  _progressionReward: 0

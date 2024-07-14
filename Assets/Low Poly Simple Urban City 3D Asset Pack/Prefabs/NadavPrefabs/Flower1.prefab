@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8236437519446527698}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Flower1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,8 +104,47 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flower1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4d496dc9156b11c4d9829c7cd7074be8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d496dc9156b11c4d9829c7cd7074be8, type: 3}
+--- !u!1 &235327071285575814 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4d496dc9156b11c4d9829c7cd7074be8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1118411582474272215}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &6993577128129865873
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 235327071285575814}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.43573493, y: 0.6785835, z: 0.32826608}
+  m_Center: {x: 0.0155606195, y: 0.33929175, z: -0.026951768}
+--- !u!114 &8192050574826704173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 235327071285575814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectiveType: 3
+  _level: 1
+  _progressionReward: 0
 --- !u!4 &580924863476324924 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4d496dc9156b11c4d9829c7cd7074be8,

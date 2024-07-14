@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3298294888084158888}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrassSmall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,8 +104,47 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrassSmall
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53def55ab869e5c4cb89587e5799609f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53def55ab869e5c4cb89587e5799609f, type: 3}
+--- !u!1 &5131343474102129191 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 53def55ab869e5c4cb89587e5799609f,
+    type: 3}
+  m_PrefabInstance: {fileID: 5473941050130001782}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &3558580846278409951
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5131343474102129191}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.6360412, y: 0.5358012, z: 0.9908048}
+  m_Center: {x: -0.029027853, y: 0.2415155, z: -0.15232015}
+--- !u!114 &8445715745064945269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5131343474102129191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectiveType: 3
+  _level: 1
+  _progressionReward: 0
 --- !u!4 &5511809044258490525 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 53def55ab869e5c4cb89587e5799609f,

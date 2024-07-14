@@ -23,10 +23,10 @@ public class FadingObjectHandler : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(CheckForObjects());
         Vector3 correctPlayerOffset = _playerTr.position + _playerPosOffset;
         _distanceFromPlayer = Vector3.Distance(_camTr.position, correctPlayerOffset);
         _directionFromCamToPlayer = (correctPlayerOffset - _camTr.position).normalized;
+        StartCoroutine(CheckForObjects());
     }
 
     private IEnumerator CheckForObjects()
@@ -99,7 +99,7 @@ public class FadingObjectHandler : MonoBehaviour
                 if (material.HasProperty("_Color"))
                 {
                     float currentAlpha = material.color.a;
-                    currentAlpha = Mathf.Lerp(fadingObject.OriginalAlpha[i], _targetAlpha, time * _fadeSpeed);
+                    currentAlpha = Mathf.Lerp(currentAlpha, _targetAlpha, time * _fadeSpeed);
                     material.color = new Color(material.color.r, material.color.g, material.color.b, currentAlpha);
                 }
             }
@@ -115,7 +115,7 @@ public class FadingObjectHandler : MonoBehaviour
     {
         float time = 0;
 
-        while (fadingObject.Materials[0].color.a < _targetAlpha)
+        while (fadingObject.Materials[0].color.a < fadingObject.OriginalAlpha[0])
         {
             for (int i = 0; i < fadingObject.Materials.Count; i++)
             {
@@ -123,7 +123,7 @@ public class FadingObjectHandler : MonoBehaviour
                 if (material.HasProperty("_Color"))
                 {
                     float currentAlpha = material.color.a;
-                    currentAlpha = Mathf.Lerp(_targetAlpha, fadingObject.OriginalAlpha[i], time * _fadeSpeed);
+                    currentAlpha = Mathf.Lerp(currentAlpha, fadingObject.OriginalAlpha[i], time * _fadeSpeed);
                     material.color = new Color(material.color.r, material.color.g, material.color.b, currentAlpha);
                 }
             }

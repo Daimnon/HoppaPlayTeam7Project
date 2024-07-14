@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 1177731139114268019}
   - component: {fileID: 2880051611359345366}
   - component: {fileID: 5357815066365468}
-  m_Layer: 0
+  - component: {fileID: 2986316795766048930}
+  - component: {fileID: 2815345048016469488}
+  m_Layer: 6
   m_Name: Trash_Bag_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,3 +85,31 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2986316795766048930
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1951171995934797769}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.60654145, y: 0.69777215, z: 0.5952679}
+  m_Center: {x: 0.0000009536743, y: 0.34888625, z: 0.0000019073486}
+--- !u!114 &2815345048016469488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1951171995934797769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectiveType: 3
+  _level: 3
+  _progressionReward: 0

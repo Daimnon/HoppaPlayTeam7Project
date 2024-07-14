@@ -9,9 +9,11 @@ using ETouch = UnityEngine.InputSystem.EnhancedTouch;
 
 public class Player_Controller : Character
 {
+    [Header("Systems")]
+    [SerializeField] private ConsumableObjectPool _consumablePool;
+
     [Header("MVC Components")]
     [SerializeField] private Player_Data _data;
-    [SerializeField] private ConsumableObjectPool _consumablePool;
 
     [Header("Components")]
     [SerializeField] private GameObject[] _evoModels;
@@ -107,7 +109,7 @@ public class Player_Controller : Character
     {
         if (other.TryGetComponent(out Consumable consumable))
         {
-            bool isSmallerThanPlayer = consumable.transform.localScale.x <= transform.localScale.x && consumable.transform.localScale.z <= transform.localScale.z;
+            bool isSmallerThanPlayer = consumable.Level <= _data.CurrentLevel;
 
             if (!isSmallerThanPlayer)
             {
