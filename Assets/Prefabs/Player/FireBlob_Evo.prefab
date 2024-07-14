@@ -710,7 +710,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 0.4
-  m_BaseOffset: 0
+  m_BaseOffset: 0.2
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &2761447709847105067
@@ -725,8 +725,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d46fa5b9889c5e408227276ccd947f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _data: {fileID: 8276632312639507445}
   _consumablePool: {fileID: 0}
+  _data: {fileID: 8276632312639507445}
   _evoModels:
   - {fileID: 3872164329612934426}
   - {fileID: 2994331266083954935}
@@ -744,11 +744,13 @@ MonoBehaviour:
   - {fileID: 6761748241188787172}
   - {fileID: 6761748242218298275}
   _vCam: {fileID: 0}
+  _collider: {fileID: 2030210914}
   _stick: {fileID: 0}
   _agent: {fileID: 4516841554617216228}
   _navMeshSurface: {fileID: 0}
   _screenEdgeOffsetMargin: {x: 100, y: 50}
   _growFVXTime: 2
+  _growColliderBy: 0.2
   _idleGestureTime: 7.5
   _forceFromBiggerObjects: 5
 --- !u!114 &8276632312639507445
@@ -765,14 +767,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _evoType: 0
   _hud: {fileID: 0}
-  _maxExp: 10
+  _maxExp: 150
   _currentExp: 0
-  _expFactor: 1.25
+  _expFactor: 1.5
   _scaleIncrement: 1
   _scaleIncrementFactor: 1.25
   _currentLevel: 1
   _growthLevelCounter: 1
-  _growthTreshold: 5
+  _growthTreshold: 1
   _evolveLevelCounter: 1
   _evolveTreshold: 5
 --- !u!114 &8886142532772693667

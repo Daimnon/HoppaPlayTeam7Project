@@ -2076,31 +2076,11 @@ PrefabInstance:
       propertyPath: _navMeshSurface
       value: 
       objectReference: {fileID: 1699292166}
-    - target: {fileID: 4516841554617216228, guid: 6b89d7a8d8b113845b888ad478f255a6,
-        type: 3}
-      propertyPath: m_BaseOffset
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 8276632312639507445, guid: 6b89d7a8d8b113845b888ad478f255a6,
         type: 3}
       propertyPath: _hud
       value: 
       objectReference: {fileID: 287014501}
-    - target: {fileID: 8276632312639507445, guid: 6b89d7a8d8b113845b888ad478f255a6,
-        type: 3}
-      propertyPath: _maxExp
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 8276632312639507445, guid: 6b89d7a8d8b113845b888ad478f255a6,
-        type: 3}
-      propertyPath: _expFactor
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8276632312639507445, guid: 6b89d7a8d8b113845b888ad478f255a6,
-        type: 3}
-      propertyPath: _growthTreshold
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b89d7a8d8b113845b888ad478f255a6, type: 3}
 --- !u!114 &33449215 stripped

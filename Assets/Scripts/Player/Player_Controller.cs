@@ -22,6 +22,7 @@ public class Player_Controller : Character
     [SerializeField] private GameObject _growVFX;
     [SerializeField] private Transform[] _growVFXParticles;
     [SerializeField] private CinemachineVirtualCamera _vCam;
+    [SerializeField] private SphereCollider _collider;
     [SerializeField] private TouchFloatStick _stick;
     [SerializeField] private NavMeshAgent _agent;
 
@@ -33,6 +34,7 @@ public class Player_Controller : Character
 
     [Header("Animation")]
     [SerializeField] private float _growFVXTime = 1.0f;
+    [SerializeField] private float _growColliderBy = 0.2f;
 
     [SerializeField] private float _idleGestureTime = 7.5f;
     [SerializeField] private float _forceFromBiggerObjects = 5.0f;
@@ -41,8 +43,8 @@ public class Player_Controller : Character
     private float _initialCameraDistance;
     private float _initialSpeed;
     private bool _isGesturing = false;
-    private bool _isAlive = true;
     private bool _canDetectInput = true;
+    private bool _isAlive = true;
 
     private Finger _moveFinger;
     private Vector3 _fingerMoveAmount;
@@ -264,14 +266,23 @@ public class Player_Controller : Character
             }
         }
     }
-    private IEnumerator DoGrowAnimaion()
+    private IEnumerator DoGrowAnimaion(int newEvoTypeNum)
     {
         for (int i = 0; i < _growVFXParticles.Length; i++)
         {
             _growVFXParticles[i].localScale = transform.localScale;
         }
         _growVFX.SetActive(true);
-        yield return new WaitForSeconds(_growFVXTime);
+        yield return new WaitForSeconds(_growFVXTime /2);
+
+        _evoModels[newEvoTypeNum - 1].SetActive(false);
+        _evoModels[newEvoTypeNum].SetActive(true);
+
+        // after evolution
+        _currentAnimator = _animators[newEvoTypeNum];
+        yield return new WaitForSeconds(_growFVXTime /2);
+
+        _collider.radius += _growColliderBy;
         _growVFX.SetActive(false);
     }
     #endregion
@@ -295,12 +306,7 @@ public class Player_Controller : Character
         if (!_evoModels[newEvoTypeNum] || newEvoTypeNum - 1 < 0) // models existance
             return;
 
-        _evoModels[newEvoTypeNum - 1].SetActive(false);
-        _evoModels[newEvoTypeNum].SetActive(true);
-
-        // after evolution
-        _currentAnimator = _animators[newEvoTypeNum];
-        StartCoroutine(DoGrowAnimaion());
+        StartCoroutine(DoGrowAnimaion(newEvoTypeNum));
     }
     private void OnLose()
     {
