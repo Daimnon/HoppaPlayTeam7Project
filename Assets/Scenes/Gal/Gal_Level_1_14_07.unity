@@ -2076,6 +2076,16 @@ PrefabInstance:
       propertyPath: _navMeshSurface
       value: 
       objectReference: {fileID: 1699292166}
+    - target: {fileID: 2761447709847105067, guid: 6b89d7a8d8b113845b888ad478f255a6,
+        type: 3}
+      propertyPath: _forceFromBiggerObjects
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3949301832213088113, guid: 6b89d7a8d8b113845b888ad478f255a6,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8276632312639507445, guid: 6b89d7a8d8b113845b888ad478f255a6,
         type: 3}
       propertyPath: _hud

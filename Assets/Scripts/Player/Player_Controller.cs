@@ -6,6 +6,7 @@ using Cinemachine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem.EnhancedTouch;
 using ETouch = UnityEngine.InputSystem.EnhancedTouch;
+using UnityEngine.InputSystem;
 
 public class Player_Controller : Character
 {
@@ -52,6 +53,7 @@ public class Player_Controller : Character
     #region Monobehaviour Callbacks
     private void OnEnable()
     {
+        Cursor.visible = false;
         EnhancedTouchSupport.Enable();
         ETouch.Touch.onFingerDown += OnFingerDown;
         ETouch.Touch.onFingerUp += OnFingerUp;

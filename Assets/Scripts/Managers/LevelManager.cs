@@ -86,6 +86,7 @@ public class LevelManager : MonoBehaviour
     private void GameOver()
     {
         // do lose condition logic
+        _timeLimit = 0;
         _loseCanvas.SetActive(true);
         EventManager.InvokeLose();
         _hasLost = true;
