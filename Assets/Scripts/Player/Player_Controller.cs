@@ -30,6 +30,12 @@ public class Player_Controller : Character
     [SerializeField] private NavMeshSurface _navMeshSurface;
     private CinemachineFramingTransposer _framingTransposer;
 
+    [Header("Object Detector")]
+    [SerializeField] private float _detectionRadius = 5.0f;
+    [SerializeField] private LayerMask _detectionLayer;
+    private HashSet<Collider> detectedItems = new HashSet<Collider>();
+    private float _totalDetectionRadius;
+
     [Header("Screen")]
     [SerializeField] private Vector2 _screenEdgeOffsetMargin = new(100.0f, 50.0f);
 
@@ -53,7 +59,6 @@ public class Player_Controller : Character
     #region Monobehaviour Callbacks
     private void OnEnable()
     {
-        Cursor.visible = false;
         EnhancedTouchSupport.Enable();
         ETouch.Touch.onFingerDown += OnFingerDown;
         ETouch.Touch.onFingerUp += OnFingerUp;
@@ -97,6 +102,11 @@ public class Player_Controller : Character
             _isGesturing = false;
             _currentAnimator.SetBool("Is Gesturing", _isGesturing);
         }
+    }
+    private void FixedUpdate()
+    {
+        /* ObjectDetector */
+        DetectObjects();
     }
     private void OnDisable()
     {
@@ -286,6 +296,52 @@ public class Player_Controller : Character
 
         _collider.radius += _growColliderBy;
         _growVFX.SetActive(false);
+    }
+    #endregion
+
+    #region ObjectDetector
+    private void DetectObjects()
+    {
+        _totalDetectionRadius = transform.position.x + _detectionRadius;
+
+        Collider[] detectedObjects = Physics.OverlapSphere(transform.position, _totalDetectionRadius, _detectionLayer);
+
+        foreach (Collider collider in detectedObjects)
+        {
+            if (!collider.TryGetComponent(out Consumable consumable))
+                return;
+
+            bool isSmallerThanPlayer = consumable.Level <= _data.CurrentLevel;
+
+            if (!isSmallerThanPlayer)
+            {
+                //Vector3 pushDirection = (transform.position - other.transform.position).normalized;
+                //_agent.velocity = pushDirection * _forceFromBiggerObjects;
+                return;
+            }
+
+            HashSet<Collider> currentDetectedItems = new HashSet<Collider>(detectedObjects);
+
+            foreach (Collider item in currentDetectedItems)
+            {
+                if (!detectedItems.Contains(item))
+                {
+                    Debug.Log("Newly detected item: " + item.gameObject.name);
+                    consumable.ApplyOutline();
+                }
+            }
+
+            foreach (Collider item in detectedItems)
+            {
+                if (!currentDetectedItems.Contains(item))
+                {
+                    Debug.Log("No longer detected item: " + item.gameObject.name);
+                    consumable.RemoveOutline();
+                }
+            }
+
+            detectedItems = currentDetectedItems;
+        }
     }
     #endregion
 

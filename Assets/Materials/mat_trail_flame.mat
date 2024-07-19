@@ -7,12 +7,12 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player_Body
-  m_Shader: {fileID: -6465566751694194690, guid: 33fff0e130003a04085459fe4c8161aa,
+  m_Name: mat_trail_flame
+  m_Shader: {fileID: -6465566751694194690, guid: d6cf5766c3c3f8d479a6620aea21a6c3,
     type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
-  m_LightmapFlags: 2
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -21,6 +21,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _MainTexture:
+        m_Texture: {fileID: 2800000, guid: 405164054aabc8f4c91c0b58f4a621e9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -35,21 +39,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Edge_Color_Scale: 5
-    - _Fresnal_Power: 3.7
-    - _Glow_Spread: 2
-    - _Metallic: -3.97
+    - _DissolveScale: 35
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Smooth: 0
     m_Colors:
-    - _Base_Color: {r: 1, g: 0, b: 0, a: 1}
-    - _Edge_Color: {r: 0.8631574, g: 1, b: 0.40197787, a: 1}
-    - _Emission: {r: 0, g: 0, b: 0, a: 0}
-    - _Fresnal_Color: {r: 2, g: 0.2901961, b: 0, a: 1}
-    - _GlowColor: {r: 1, g: 0, b: 0, a: 1}
+    - _Color01: {r: 1, g: 0, b: 0.01863098, a: 1}
+    - _Color02: {r: 1.0592737, g: 0.9039875, b: 0, a: 1}
+    - _DissolveSpeed: {r: 0.025, g: 0.025, b: 0, a: 0}
+    - _MainTextureSpeed: {r: 0.05, g: 0.05, b: 0, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &1239714508909110273
+--- !u!114 &2442812148979069480
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
