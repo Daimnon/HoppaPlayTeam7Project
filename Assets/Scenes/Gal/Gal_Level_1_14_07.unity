@@ -2090,6 +2090,11 @@ PrefabInstance:
       propertyPath: _detectionRadiusMultiplier
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7319223985297757944, guid: 6b89d7a8d8b113845b888ad478f255a6,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 615186949}
     - target: {fileID: 8276632312639507445, guid: 6b89d7a8d8b113845b888ad478f255a6,
         type: 3}
       propertyPath: _hud
@@ -14210,6 +14215,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3813976060357044549, guid: 887575a2458f77241962ed085e6f9607,
+        type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 3813976060939731162, guid: 887575a2458f77241962ed085e6f9607,
         type: 3}
       propertyPath: m_Pivot.x
@@ -14354,6 +14364,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player_HUD
+      objectReference: {fileID: 0}
+    - target: {fileID: 3813976061721406820, guid: 887575a2458f77241962ed085e6f9607,
+        type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3813976061920613151, guid: 887575a2458f77241962ed085e6f9607,
+        type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3813976062310799499, guid: 887575a2458f77241962ed085e6f9607,
+        type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 887575a2458f77241962ed085e6f9607, type: 3}

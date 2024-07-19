@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +5,6 @@ using Cinemachine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem.EnhancedTouch;
 using ETouch = UnityEngine.InputSystem.EnhancedTouch;
-using UnityEngine.InputSystem;
 
 public class Player_Controller : Character
 {
@@ -43,15 +41,15 @@ public class Player_Controller : Character
     [SerializeField] private float _growFVXTime = 1.0f;
     [SerializeField] private float _growColliderBy = 0.2f;
 
-    [SerializeField] private float _idleGestureTime = 7.5f;
     [SerializeField] private float _forceFromBiggerObjects = 5.0f;
+    //[SerializeField] private float _idleGestureTime = 7.5f;
 
-    private float _idleTime = 0.0f;
+    //private float _idleTime = 0.0f;
     private float _initialCameraDistance;
     private float _initialSpeed;
-    private bool _isGesturing = false;
+    //private bool _isGesturing = false;
     private bool _canDetectInput = true;
-    private bool _isAlive = true;
+    //private bool _isAlive = true;
 
     private Finger _moveFinger;
     private Vector3 _fingerMoveAmount;
@@ -73,6 +71,10 @@ public class Player_Controller : Character
         _initialSpeed = _agent.speed;
         //_navMeshSurface.BuildNavMesh();
     }
+    private void Start()
+    {
+        DetectObjects();
+    }
     private void Update()
     {
         /* movement */
@@ -85,7 +87,7 @@ public class Player_Controller : Character
         _currentAnimator.SetFloat("Move Speed", scaledMovement.normalized.magnitude);
 
         /* idle gesture */
-        if (scaledMovement == Vector3.zero)
+        /*if (scaledMovement == Vector3.zero)
         {
             _idleTime += Time.deltaTime;
 
@@ -101,8 +103,7 @@ public class Player_Controller : Character
 
             _isGesturing = false;
             _currentAnimator.SetBool("Is Gesturing", _isGesturing);
-        }
-        //DetectObjects();
+        }*/
     }
     private void OnDisable()
     {
