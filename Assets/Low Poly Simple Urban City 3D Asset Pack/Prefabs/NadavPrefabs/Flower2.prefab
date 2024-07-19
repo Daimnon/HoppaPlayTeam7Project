@@ -145,9 +145,17 @@ MonoBehaviour:
   _objectiveType: 3
   _level: 1
   _progressionReward: 0
+  _rendererToOutline: {fileID: 2065954745358274067}
+  _originalOutlineMat: {fileID: 2100000, guid: 06f6b6c3542045b4b896f52838a63ffc, type: 2}
 --- !u!4 &927902299752445308 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c710d680c0591264ebb99f8640048a82,
+    type: 3}
+  m_PrefabInstance: {fileID: 822517456458109591}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &2065954745358274067 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: c710d680c0591264ebb99f8640048a82,
     type: 3}
   m_PrefabInstance: {fileID: 822517456458109591}
   m_PrefabAsset: {fileID: 0}

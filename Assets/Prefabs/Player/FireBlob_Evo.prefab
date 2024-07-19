@@ -748,11 +748,15 @@ MonoBehaviour:
   _stick: {fileID: 0}
   _agent: {fileID: 4516841554617216228}
   _navMeshSurface: {fileID: 0}
+  _detectionRadius: 10
+  _detectionLayer:
+    serializedVersion: 2
+    m_Bits: 64
   _screenEdgeOffsetMargin: {x: 100, y: 50}
   _growFVXTime: 2
   _growColliderBy: 0.2
   _idleGestureTime: 7.5
-  _forceFromBiggerObjects: 5
+  _forceFromBiggerObjects: 3
 --- !u!114 &8276632312639507445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5886,7 +5890,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &7956028782805787621
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1986,6 +1986,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2030210914, guid: 6b89d7a8d8b113845b888ad478f255a6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1043449179206962013, guid: 6b89d7a8d8b113845b888ad478f255a6,
         type: 3}
       propertyPath: m_RootOrder
@@ -2078,23 +2082,13 @@ PrefabInstance:
       objectReference: {fileID: 1699292166}
     - target: {fileID: 2761447709847105067, guid: 6b89d7a8d8b113845b888ad478f255a6,
         type: 3}
-      propertyPath: _detectionLayer.m_Bits
-      value: 64
+      propertyPath: _detectionRadius
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 2761447709847105067, guid: 6b89d7a8d8b113845b888ad478f255a6,
         type: 3}
-      propertyPath: _forceFromBiggerObjects
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3949301832213088113, guid: 6b89d7a8d8b113845b888ad478f255a6,
-        type: 3}
-      propertyPath: m_PresetInfoIsWorld
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8116732335846712927, guid: 6b89d7a8d8b113845b888ad478f255a6,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 126
+      propertyPath: _detectionRadiusMultiplier
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8276632312639507445, guid: 6b89d7a8d8b113845b888ad478f255a6,
         type: 3}
@@ -11740,6 +11734,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1995396878}
     m_Modifications:
+    - target: {fileID: 3238893818196322377, guid: f6151e4719635974eaa7afbcb69dd895,
+        type: 3}
+      propertyPath: _rendererToOutline
+      value: 
+      objectReference: {fileID: 227294398}
+    - target: {fileID: 3238893818196322377, guid: f6151e4719635974eaa7afbcb69dd895,
+        type: 3}
+      propertyPath: _originalOutlineMat
+      value: 
+      objectReference: {fileID: 2100000, guid: 06f6b6c3542045b4b896f52838a63ffc, type: 2}
     - target: {fileID: 4843938808396872110, guid: f6151e4719635974eaa7afbcb69dd895,
         type: 3}
       propertyPath: m_Name
@@ -11817,6 +11821,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6151e4719635974eaa7afbcb69dd895, type: 3}
+--- !u!23 &227294398 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6357355197778811003, guid: f6151e4719635974eaa7afbcb69dd895,
+    type: 3}
+  m_PrefabInstance: {fileID: 227294397}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &228913712
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52012,7 +52022,7 @@ MonoBehaviour:
   _objectiveConditionByNameOrder: 
   _maxProgression: 50
   _currentProgression: 0
-  _timeLimit: 60
+  _timeLimit: 6000
 --- !u!4 &1138020288
 Transform:
   m_ObjectHideFlags: 0

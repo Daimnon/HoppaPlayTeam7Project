@@ -113,3 +113,5 @@ MonoBehaviour:
   _objectiveType: 3
   _level: 5
   _progressionReward: 0
+  _rendererToOutline: {fileID: 5692581832626115940}
+  _originalOutlineMat: {fileID: 2100000, guid: 06f6b6c3542045b4b896f52838a63ffc, type: 2}

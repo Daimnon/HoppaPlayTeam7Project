@@ -33,7 +33,7 @@ public class Player_Controller : Character
     [Header("Object Detector")]
     [SerializeField] private float _detectionRadius = 5.0f;
     [SerializeField] private LayerMask _detectionLayer;
-    private HashSet<Collider> detectedItems = new HashSet<Collider>();
+    private List<Collider> _detectedItems = new();
     private float _totalDetectionRadius;
 
     [Header("Screen")]
@@ -102,11 +102,7 @@ public class Player_Controller : Character
             _isGesturing = false;
             _currentAnimator.SetBool("Is Gesturing", _isGesturing);
         }
-    }
-    private void FixedUpdate()
-    {
-        /* ObjectDetector */
-        DetectObjects();
+        //DetectObjects();
     }
     private void OnDisable()
     {
@@ -170,6 +166,7 @@ public class Player_Controller : Character
             // Adjust position based on aspect ratio
             _stick.RectTr.anchoredPosition = ClampStickDownPos(AdjustForAspectRatio(touchPosition));
         }
+        DetectObjects();
     }
     private void OnFingerMove(Finger finger)
     {
@@ -194,6 +191,7 @@ public class Player_Controller : Character
             _stick.KnobTr.anchoredPosition = knobPos;
             _fingerMoveAmount = knobPos / maxMoveLenght;
         }
+        DetectObjects();
     }
     private void OnFingerUp(Finger finger)
     {
@@ -205,6 +203,7 @@ public class Player_Controller : Character
             _stick.gameObject.SetActive(false);
             _fingerMoveAmount = Vector3.zero;
         }
+        DetectObjects();
     }
     #endregion
 
@@ -296,51 +295,57 @@ public class Player_Controller : Character
 
         _collider.radius += _growColliderBy;
         _growVFX.SetActive(false);
+        DetectObjects();
     }
     #endregion
 
     #region ObjectDetector
     private void DetectObjects()
     {
-        _totalDetectionRadius = transform.position.x + _detectionRadius;
+        _totalDetectionRadius = _collider.radius + _detectionRadius * transform.localScale.x;
 
-        Collider[] detectedObjects = Physics.OverlapSphere(transform.position, _totalDetectionRadius, _detectionLayer);
+        Collider[] detectedObjects = Physics.OverlapSphere(_collider.bounds.center, _totalDetectionRadius, _detectionLayer);
+        List<Collider> detectedObjectList = new(detectedObjects);
 
-        foreach (Collider collider in detectedObjects)
+        // Add newly detected items
+        foreach (Collider collider in detectedObjectList)
         {
             if (!collider.TryGetComponent(out Consumable consumable))
-                return;
+                continue;
 
-            bool isSmallerThanPlayer = consumable.Level <= _data.CurrentLevel;
+            bool isBurnable = consumable.Level <= _data.CurrentLevel;
 
-            if (!isSmallerThanPlayer)
+            // Skip smaller objects
+            if (!isBurnable)
+                continue;
+
+            if (!_detectedItems.Contains(collider))
             {
-                //Vector3 pushDirection = (transform.position - other.transform.position).normalized;
-                //_agent.velocity = pushDirection * _forceFromBiggerObjects;
-                return;
+                Debug.Log("Newly detected item: " + collider.gameObject.name);
+                _detectedItems.Add(collider);
+                consumable.ApplyOutline();
             }
+        }
 
-            HashSet<Collider> currentDetectedItems = new HashSet<Collider>(detectedObjects);
-
-            foreach (Collider item in currentDetectedItems)
+        // Remove items no longer detected
+        List<Collider> itemsToRemove = new();
+        foreach (Collider item in _detectedItems)
+        {
+            if (!detectedObjectList.Contains(item))
             {
-                if (!detectedItems.Contains(item))
-                {
-                    Debug.Log("Newly detected item: " + item.gameObject.name);
-                    consumable.ApplyOutline();
-                }
-            }
-
-            foreach (Collider item in detectedItems)
-            {
-                if (!currentDetectedItems.Contains(item))
+                if (item.TryGetComponent(out Consumable consumable))
                 {
                     Debug.Log("No longer detected item: " + item.gameObject.name);
                     consumable.RemoveOutline();
                 }
+                itemsToRemove.Add(item);
             }
+        }
 
-            detectedItems = currentDetectedItems;
+        // Update the detectedItems list
+        foreach (Collider item in itemsToRemove)
+        {
+            _detectedItems.Remove(item);
         }
     }
     #endregion
@@ -357,6 +362,7 @@ public class Player_Controller : Character
 
         _framingTransposer.m_CameraDistance = newCameraDistance;
         _agent.speed = _initialSpeed * transform.localScale.x;
+        DetectObjects();
     }
     private void OnEvolve(EvoType newEvoType)
     {
@@ -371,4 +377,12 @@ public class Player_Controller : Character
         _canDetectInput = false;
     }
     #endregion
+
+    private void OnDrawGizmos()
+    {
+        Color color = Color.red;
+        color.a = 0.5f;
+        Gizmos.color = color;
+        Gizmos.DrawSphere(_collider.bounds.center, _totalDetectionRadius);
+    }
 }

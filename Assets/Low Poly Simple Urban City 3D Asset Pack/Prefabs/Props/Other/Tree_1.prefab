@@ -114,6 +114,8 @@ MonoBehaviour:
   _objectiveType: 3
   _level: 6
   _progressionReward: 0
+  _rendererToOutline: {fileID: 7301202565836025519}
+  _originalOutlineMat: {fileID: 2100000, guid: 06f6b6c3542045b4b896f52838a63ffc, type: 2}
 --- !u!1001 &5116260440800700701
 PrefabInstance:
   m_ObjectHideFlags: 0

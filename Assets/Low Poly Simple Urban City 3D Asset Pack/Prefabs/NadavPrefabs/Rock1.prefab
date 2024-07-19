@@ -111,6 +111,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 283ccb2560e57424da3026f9025f883b, type: 3}
+--- !u!23 &7758614199326792689 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 283ccb2560e57424da3026f9025f883b,
+    type: 3}
+  m_PrefabInstance: {fileID: 8966023782146656117}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8119109358442478116 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 283ccb2560e57424da3026f9025f883b,
@@ -145,6 +151,8 @@ MonoBehaviour:
   _objectiveType: 3
   _level: 2
   _progressionReward: 0
+  _rendererToOutline: {fileID: 7758614199326792689}
+  _originalOutlineMat: {fileID: 2100000, guid: 06f6b6c3542045b4b896f52838a63ffc, type: 2}
 --- !u!4 &8928120580091355294 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 283ccb2560e57424da3026f9025f883b,
