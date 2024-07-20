@@ -1,23 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class TerritoryClaimer : MonoBehaviour
 {
     [Header("Components")]
-    [SerializeField] private GameObject cube;
+    [SerializeField] private ConsumableObjectPool _consumablePool;
     [SerializeField] private TrailRenderer _trailRenderer;
+
 
     [Header("Data")]
     [SerializeField] private LayerMask _detectionLayer;
     [SerializeField] private float _minDistance = 2.0f; // should increase while growing in size
 
     private readonly List<Vector3> _trailPoints = new();
+    
+    [Header("VFXs")]
+    [SerializeField] private VisualEffect _explosionVFX;
+    [SerializeField] private float _explosionTimeToReset = 5.0f;
+    private List<Coroutine> _explosionCoroutines = new();
 
     #region Monobehaviour Callbacks
     private void OnEnable()
     {
         EventManager.OnAreaClosed += OnAreaClosed;
+        _explosionVFX.Reinit();
+        _explosionVFX.Stop();
     }
     private void Update()
     {
@@ -112,9 +121,9 @@ public class TerritoryClaimer : MonoBehaviour
         yield return new WaitForSeconds(_trailRenderer.time);
         _trailPoints.Remove(point);
     }
-    private List<GameObject> GetObjectsInClosedArea()
+    private List<Consumable> GetConsumablesInClosedArea()
     {
-        List<GameObject> objectsInClosedArea = new List<GameObject>();
+        List<Consumable> consumablesInClosedArea = new();
 
         // Calculate bounding box
         Bounds bounds = CalculateBoundingBox(_trailPoints);
@@ -124,21 +133,44 @@ public class TerritoryClaimer : MonoBehaviour
 
         foreach (var collider in colliders)
         {
-            if (IsPointInPolygon(collider.transform.position, _trailPoints))
+            if (IsPointInPolygon(collider.transform.position, _trailPoints) && collider.TryGetComponent(out Consumable consumable))
             {
-                objectsInClosedArea.Add(collider.gameObject);
+                consumablesInClosedArea.Add(consumable);
             }
         }
 
-        return objectsInClosedArea;
+        return consumablesInClosedArea;
+    }
+    #endregion
+
+    #region VFX Methods
+    private void ResetExplosion()
+    {
+        _explosionVFX.Reinit();
+        _explosionVFX.Stop();
+        _explosionVFX.transform.SetParent(transform);
+    }
+    private void PlayExplosion(Vector3 pos)
+    {
+        _explosionVFX.transform.localScale = transform.parent.localScale;
+        _explosionVFX.transform.SetParent(null);
+        _explosionVFX.transform.position = pos;
+        _explosionVFX.Play();
+    }
+    private IEnumerator ExplosionRoutine(Vector3 midPos)
+    {
+        PlayExplosion(midPos);
+        yield return new WaitForSeconds(_explosionTimeToReset);
+
+        ResetExplosion();
     }
     #endregion
 
     #region Events
     private void OnAreaClosed(Vector3 midPos) // need to carry on from here
     {
-        List<GameObject> objectsInClosedArea = GetObjectsInClosedArea();
-        if (objectsInClosedArea.Count > 0)
+        List<Consumable> consumablesInClosedArea = GetConsumablesInClosedArea();
+        /*if (objectsInClosedArea.Count > 0)
         {
             string debug = "";
             for (int i = 0; i < objectsInClosedArea.Count; i++)
@@ -149,8 +181,23 @@ public class TerritoryClaimer : MonoBehaviour
                     debug += i+1 + ". " + objectsInClosedArea[i].name + ".";
             }
             Debug.Log(debug);
+        }*/
+
+        for (int i = 0; i < consumablesInClosedArea.Count; i++)
+        {
+            _consumablePool.ReturnConsumableToPool(consumablesInClosedArea[i]);
         }
-        
+
+        if (_explosionCoroutines.Count > 0)
+        {
+            for (int i = 0; i < _explosionCoroutines.Count; i++)
+            {
+                StopCoroutine(_explosionCoroutines[i]);
+            }
+        }
+        _explosionCoroutines.Clear();
+        _explosionCoroutines.Add(StartCoroutine(ExplosionRoutine(midPos)));
+
         _trailPoints.Clear();
         _trailRenderer.Clear();
         Debug.Log("Closed shape detected!");

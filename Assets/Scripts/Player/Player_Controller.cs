@@ -5,6 +5,7 @@ using Cinemachine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem.EnhancedTouch;
 using ETouch = UnityEngine.InputSystem.EnhancedTouch;
+using UnityEngine.VFX;
 
 public class Player_Controller : Character
 {
@@ -37,18 +38,18 @@ public class Player_Controller : Character
     [Header("Screen")]
     [SerializeField] private Vector2 _screenEdgeOffsetMargin = new(100.0f, 50.0f);
 
-    [Header("Animation")]
+    [Header("Animation and VFXs")]
+    [SerializeField] private Transform _headFlame;
     [SerializeField] private float _growFVXTime = 1.0f;
     [SerializeField] private float _growColliderBy = 0.2f;
-
     [SerializeField] private float _forceFromBiggerObjects = 5.0f;
     //[SerializeField] private float _idleGestureTime = 7.5f;
 
-    //private float _idleTime = 0.0f;
     private float _initialCameraDistance;
     private float _initialSpeed;
-    //private bool _isGesturing = false;
     private bool _canDetectInput = true;
+    //private float _idleTime = 0.0f;
+    //private bool _isGesturing = false;
     //private bool _isAlive = true;
 
     private Finger _moveFinger;
@@ -359,8 +360,9 @@ public class Player_Controller : Character
     private void OnGrowth()
     {
         transform.localScale += Vector3.one * _data.ScaleIncrement;
-        float newCameraDistance = _initialCameraDistance * transform.localScale.x;
+        _headFlame.localScale = transform.localScale * ((int)_data.EvoType + 1);
 
+        float newCameraDistance = _initialCameraDistance * transform.localScale.x;
         _framingTransposer.m_CameraDistance = newCameraDistance;
         _agent.speed = _initialSpeed * transform.localScale.x;
         DetectObjects();
