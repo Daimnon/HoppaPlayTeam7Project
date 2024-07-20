@@ -19,12 +19,13 @@ public class TerritoryClaimer : MonoBehaviour
     [Header("VFXs")]
     [SerializeField] private VisualEffect _explosionVFX;
     [SerializeField] private float _explosionTimeToReset = 5.0f;
-    private List<Coroutine> _explosionCoroutines = new();
+    private List<Coroutine> _explosionCoroutines;
 
     #region Monobehaviour Callbacks
     private void OnEnable()
     {
         EventManager.OnAreaClosed += OnAreaClosed;
+        _explosionCoroutines = new();
         _explosionVFX.Reinit();
         _explosionVFX.Stop();
     }
@@ -152,7 +153,7 @@ public class TerritoryClaimer : MonoBehaviour
     }
     private void PlayExplosion(Vector3 pos)
     {
-        _explosionVFX.transform.localScale = transform.parent.localScale;
+        _explosionVFX.transform.localScale = transform.localScale;
         _explosionVFX.transform.SetParent(null);
         _explosionVFX.transform.position = pos;
         _explosionVFX.Play();
