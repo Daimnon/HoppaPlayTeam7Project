@@ -47,6 +47,11 @@ public class Player_Controller : Character
 
     private float _initialCameraDistance;
     private float _initialSpeed;
+
+    private const float _eatAnimationTime = 0.5f;
+    private float _eatAnimationTimer = 0;
+    private bool _isEating = false;
+
     private bool _canDetectInput = true;
     //private float _idleTime = 0.0f;
     //private bool _isGesturing = false;
@@ -75,6 +80,7 @@ public class Player_Controller : Character
     private void Start()
     {
         DetectObjects();
+        _eatAnimationTimer = _eatAnimationTime;
     }
     private void Update()
     {
@@ -86,6 +92,7 @@ public class Player_Controller : Character
 
         /* animation */
         _currentAnimator.SetFloat("Move Speed", scaledMovement.normalized.magnitude);
+        HandleEatingAnimation();
 
         /* idle gesture */
         /*if (scaledMovement == Vector3.zero)
@@ -134,6 +141,15 @@ public class Player_Controller : Character
             HandleProgressionReward(consumable); // here we determine if the consumable is related to any of the objectives and triggers them.
 
             _consumablePool.ReturnConsumableToPool(consumable);
+
+            if (_eatAnimationTimer == _eatAnimationTime) // is reset
+            {
+                _isEating = true;
+                _currentAnimator.SetBool("Is Eating", _isEating);
+                //_currentAnimator.ResetTrigger("Has Consumed");
+                Debug.Log("Consumed was triggered");
+            }
+
             //UpdateNavMesh();
         }
     }
@@ -279,8 +295,23 @@ public class Player_Controller : Character
             }
         }
     }
+    private void HandleEatingAnimation()
+    {
+        if (_isEating)
+            _eatAnimationTimer -= Time.deltaTime;
+
+        if (_eatAnimationTimer <= 0)
+        {
+            _eatAnimationTimer = _eatAnimationTime;
+            _isEating = false;
+            _currentAnimator.SetBool("Is Eating", _isEating);
+            _currentAnimator.ResetTrigger("Has Consumed");
+            Debug.Log("Consumed was reset");
+        }
+    }
     private IEnumerator DoGrowAnimaion(int newEvoTypeNum)
     {
+        _currentAnimator.SetBool("Is Evolving", true);
         for (int i = 0; i < _growVFXParticles.Length; i++)
         {
             _growVFXParticles[i].localScale = transform.localScale;
@@ -311,6 +342,7 @@ public class Player_Controller : Character
         _collider.radius += _growColliderBy;
         _growVFX.SetActive(false);
         DetectObjects();
+        _currentAnimator.SetBool("Is Evolving", false);
     }
     #endregion
 
