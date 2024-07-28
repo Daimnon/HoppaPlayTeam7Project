@@ -293,6 +293,19 @@ public class Player_Controller : Character
 
         // after evolution
         _currentAnimator = _animators[newEvoTypeNum];
+        
+        if (_data.EvoType == EvoType.Third)
+        {
+            Vector3 newFireScale = transform.localScale;
+            newFireScale *= (int)_data.EvoType + 2;
+            newFireScale.z += 10;
+            _headFlame.localScale = newFireScale;
+        }
+        else
+        {
+            _headFlame.localScale = transform.localScale * ((int)_data.EvoType + 2);
+        }
+
         yield return new WaitForSeconds(_growFVXTime /2);
 
         _collider.radius += _growColliderBy;
@@ -360,7 +373,10 @@ public class Player_Controller : Character
     private void OnGrowth()
     {
         transform.localScale += Vector3.one * _data.ScaleIncrement;
-        _headFlame.localScale = transform.localScale * ((int)_data.EvoType + 1);
+
+        Vector3 newFireScale = transform.localScale;
+        newFireScale *= (int)_data.EvoType + 1;
+        _headFlame.localScale = newFireScale;
 
         float newCameraDistance = _initialCameraDistance * transform.localScale.x;
         _framingTransposer.m_CameraDistance = newCameraDistance;

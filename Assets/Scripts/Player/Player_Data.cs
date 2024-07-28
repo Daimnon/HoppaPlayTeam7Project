@@ -74,6 +74,7 @@ public class Player_Data : MonoBehaviour
 
                 _evoType = currentValue < maxValue ? (EvoType)(currentValue + 1) : _evoType;
                 EventManager.InvokeEvolve(_evoType);
+                _evolveLevelCounter = 0;
 
                 //_evoType = (EvoType)(((int)_evoType + 1) % Enum.GetValues(typeof(EvoType)).Length); // increment enum
             }
