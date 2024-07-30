@@ -38,17 +38,17 @@ public class AspectRatioDetector : MonoBehaviour
 
         if (aspectRatio < _aspectRatioThresholdOldPhoneNewPhone)
         {
-            Debug.Log("DeviceType: NewPhone " + aspectRatio);
+            // Debug.Log("DeviceType: NewPhone " + aspectRatio);
             return DeviceType.NewPhone;
         }
         else if (aspectRatio > _aspectRatioThresholdNewPhoneTablet)
         {
-            Debug.Log("DeviceType: Tablet " + aspectRatio);
+            // Debug.Log("DeviceType: Tablet " + aspectRatio);
             return DeviceType.Tablet;
         }
         else
         {
-            Debug.Log("DeviceType: OldPhone " + aspectRatio);
+            // Debug.Log("DeviceType: OldPhone " + aspectRatio);
             return DeviceType.OldPhone;
         }
     }

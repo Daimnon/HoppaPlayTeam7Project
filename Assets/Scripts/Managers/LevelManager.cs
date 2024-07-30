@@ -17,9 +17,13 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject _loseCanvas;
 
     [Header("Objective Data")]
-    [SerializeField] private string[] _objectiveNames;
-    [SerializeField] private int[] _objectiveConditionByNameOrder;
-    Dictionary<string, int> _objectives = new();
+    [SerializeField] private ObjectiveData[] _objectives;
+    public ObjectiveData[] Objectives => _objectives;
+
+
+    // track the progress and completion status of each objective
+    private Dictionary<ObjectiveType, int> _objectiveProgress = new();
+    private Dictionary<ObjectiveType, bool> _objectiveCompletion = new();
     
     [Header("Progression data")]
     [SerializeField] private int _maxProgression = 0;
@@ -37,8 +41,11 @@ public class LevelManager : MonoBehaviour
     }
     private void Start()
     {
-        for (int i = 0; i < _objectives.Keys.Count; i++)
-            _objectives.Add(_objectiveNames[i], _objectiveConditionByNameOrder[i]);
+        foreach (var objective in _objectives)
+        {
+            _objectiveProgress[objective.ObjectiveType] = 0;
+            _objectiveCompletion[objective.ObjectiveType] = false;
+        }
 
         EventManager.InvokeLevelLaunched();
     }
@@ -56,8 +63,18 @@ public class LevelManager : MonoBehaviour
 
     private void CompleteLevel()
     {
-        // do completion logic
+        int starsEarned = 0;
+        foreach (var objective in _objectives)
+        {
+            if (_objectiveCompletion[objective.ObjectiveType])
+            {
+                starsEarned++;
+            }
+        }
+        
+        Debug.Log("Stars Earned: " + starsEarned);
     }
+
     private void CheckProgressCompletion()
     {
         if (_currentProgression >= _maxProgression)
@@ -66,7 +83,7 @@ public class LevelManager : MonoBehaviour
     public void MakeProgress(int progressToMake)
     {
         _currentProgression += progressToMake;
-        float newClampedProgression = Mathf.Clamp01((float)_currentProgression / _maxProgression); // currentValue is float for correct clamp in fillAmount
+        float newClampedProgression = Mathf.Clamp01((float)_currentProgression / _maxProgression);
         EventManager.InvokeProgressionChange(newClampedProgression);
 
         CheckProgressCompletion();
@@ -97,26 +114,32 @@ public class LevelManager : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
     }
 
-    public int GetCondition(string objectiveName)
-    {
-        _objectives.TryGetValue(objectiveName, out int condition);
-        return condition;
-    }
-
     private void OnProgressMade(int progressToMake)
     {
         MakeProgress(progressToMake);
     }
     private void OnObjectiveTrigger1()
     {
-
+        UpdateObjective(ObjectiveType.Objective1);
     }
     private void OnObjectiveTrigger2()
     {
-
+        UpdateObjective(ObjectiveType.Objective2);
     }
     private void OnObjectiveTrigger3()
     {
+        UpdateObjective(ObjectiveType.Objective3);
+    }
 
+    public void UpdateObjective(ObjectiveType objectiveType)
+    {
+        var objective = Array.Find(_objectives, obj => obj.ObjectiveType == objectiveType);
+        _objectiveProgress[objectiveType]++;
+        
+        if (_objectiveProgress[objectiveType] >= objective.CompletionCondition && !_objectiveCompletion[objectiveType])
+        {
+            _objectiveCompletion[objectiveType] = true;
+            Debug.Log(objective.NotificationText); // Will be changed to a message on screen, now just for testing
+        }
     }
 }

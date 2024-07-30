@@ -135,6 +135,18 @@ public class Player_Controller : Character
                 Vector3 pushDirection = (transform.position - other.transform.position).normalized;
                 _agent.velocity = pushDirection * _forceFromBiggerObjects;
                 return;
+                
+            switch (consumable)
+            {
+                default:
+                    EventManager.InvokeEarnExp(consumable.Reward);
+
+                    // for testing:
+                    EventManager.InvokeEarnCurrency(consumable.Reward);
+                    EventManager.InvokeEarnSpecialCurrency(consumable.Reward);
+                    EventManager.InvokeProgressMade(consumable.Reward);
+                    break;
+            }
             }
 
             HandleConsumableReward(consumable); // here we determine the type of the consumable in order to solve the reward.
