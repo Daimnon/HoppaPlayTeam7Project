@@ -3,16 +3,16 @@ using UnityEngine;
 
 public class Consumable : MonoBehaviour
 {
-    [SerializeField] protected ObjectiveType _objectiveType;
+    [SerializeField] protected ObjectiveType _objectiveType; // for quests
     public ObjectiveType ObjectiveType => _objectiveType;
 
-    [SerializeField] protected int _level;
+    [SerializeField] protected int _level; // determines in which lvl the player can consume this
     public int Level => _level;
 
-    [SerializeField] protected int _progressionReward;
+    [SerializeField] protected int _progressionReward; // level progress
     public int ProgressionReward => _progressionReward;
 
-    protected int _reward;
+    protected int _reward; // player exp
     public int Reward => _reward;
 
     protected const float _rewardFactor = 1.4f;
