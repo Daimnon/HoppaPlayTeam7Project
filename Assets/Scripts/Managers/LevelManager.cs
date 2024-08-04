@@ -61,7 +61,7 @@ public class LevelManager : MonoBehaviour
         EventManager.OnObjectiveTrigger3 -= OnObjectiveTrigger3;
     }
 
-    private void CompleteLevel()
+    private void CalculateStars()
     {
         int starsEarned = 0;
         foreach (var objective in _objectives)
@@ -78,7 +78,7 @@ public class LevelManager : MonoBehaviour
     private void CheckProgressCompletion()
     {
         if (_currentProgression >= _maxProgression)
-            CompleteLevel();
+            CalculateStars();
     }
     public void MakeProgress(int progressToMake)
     {
@@ -103,6 +103,7 @@ public class LevelManager : MonoBehaviour
     private void GameOver()
     {
         // do lose condition logic
+        CalculateStars();
         _timeLimit = 0;
         _loseCanvas.SetActive(true);
         EventManager.InvokeLose();
@@ -135,11 +136,19 @@ public class LevelManager : MonoBehaviour
     {
         var objective = Array.Find(_objectives, obj => obj.ObjectiveType == objectiveType);
         _objectiveProgress[objectiveType]++;
+
+        Debug.Log("another point: " + _objectiveProgress[objectiveType].ToString());
         
         if (_objectiveProgress[objectiveType] >= objective.CompletionCondition && !_objectiveCompletion[objectiveType])
         {
             _objectiveCompletion[objectiveType] = true;
             Debug.Log(objective.NotificationText); // Will be changed to a message on screen, now just for testing
         }
+    }
+
+    internal void ExtendTime(int additionalTime)
+    {
+        _timeLimit += additionalTime;
+        EventManager.InvokeTimerChange(_timeLimit);
     }
 }

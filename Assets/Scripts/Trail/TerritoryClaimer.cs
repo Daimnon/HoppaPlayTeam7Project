@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +21,10 @@ public class TerritoryClaimer : MonoBehaviour
     [SerializeField] private VisualEffect _explosionVFX;
     [SerializeField] private float _explosionTimeToReset = 5.0f;
     private List<Coroutine> _explosionCoroutines;
+
+    private float _firePower = 1.0f;
+    private float _fireRange = 1.0f;
+
 
     #region Monobehaviour Callbacks
     private void OnEnable()
@@ -238,5 +243,11 @@ public class TerritoryClaimer : MonoBehaviour
             }
             Gizmos.DrawLine(_trailPoints[_trailPoints.Count - 1], _trailPoints[0]);
         }
+    }
+
+    public void IncreaseFirePower(float powerIncrement, float rangeIncrement)
+    {
+        _firePower += powerIncrement;
+        _fireRange += rangeIncrement;
     }
 }

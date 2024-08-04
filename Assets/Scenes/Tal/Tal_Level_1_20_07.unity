@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17944366, g: 0.22468814, b: 0.30633205, a: 1}
+  m_IndirectSpecularColor: {r: 0.1794176, g: 0.2246298, b: 0.3062795, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -28733,7 +28733,7 @@ PrefabInstance:
     - target: {fileID: 5422624482594111744, guid: 6bf1f74f1a1b0274e97d6741c79c5505,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.3068867
+      value: -4.306886
       objectReference: {fileID: 0}
     - target: {fileID: 5422624482594111744, guid: 6bf1f74f1a1b0274e97d6741c79c5505,
         type: 3}
@@ -28748,7 +28748,7 @@ PrefabInstance:
     - target: {fileID: 5422624482594111744, guid: 6bf1f74f1a1b0274e97d6741c79c5505,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.88112193
+      value: 0.8811219
       objectReference: {fileID: 0}
     - target: {fileID: 5422624482594111744, guid: 6bf1f74f1a1b0274e97d6741c79c5505,
         type: 3}
@@ -52034,8 +52034,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _loseCanvas: {fileID: 1530433963}
-  _objectiveNames: []
-  _objectiveConditionByNameOrder: 
+  _objectives:
+  - {fileID: 11400000, guid: dd1fb2c3a871e4fb593fb3f13113a24f, type: 2}
   _maxProgression: 50
   _currentProgression: 0
   _timeLimit: 90
@@ -57685,7 +57685,7 @@ PrefabInstance:
     - target: {fileID: 3388745752941628739, guid: cfdd622c625b6ef4788d1650fd9e37e5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.3068867
+      value: -4.306886
       objectReference: {fileID: 0}
     - target: {fileID: 3388745752941628739, guid: cfdd622c625b6ef4788d1650fd9e37e5,
         type: 3}

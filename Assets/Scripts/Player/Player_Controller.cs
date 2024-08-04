@@ -6,6 +6,7 @@ using UnityEngine.AI;
 using UnityEngine.InputSystem.EnhancedTouch;
 using ETouch = UnityEngine.InputSystem.EnhancedTouch;
 using UnityEngine.VFX;
+using System;
 
 public class Player_Controller : Character
 {
@@ -447,5 +448,11 @@ public class Player_Controller : Character
         color.a = 0.5f;
         Gizmos.color = color;
         Gizmos.DrawSphere(_collider.bounds.center, _totalDetectionRadius);
+    }
+
+    public void IncreaseSize(float sizeIncrement)
+    {
+        transform.localScale += Vector3.one * sizeIncrement;
+        DetectObjects();
     }
 }
