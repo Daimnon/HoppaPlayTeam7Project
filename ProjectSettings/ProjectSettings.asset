@@ -163,7 +163,7 @@ PlayerSettings:
   applicationIdentifier:
     Android: com.UnityTechnologies.com.unity.template.urpblank
     Standalone: com.UnityTechnologies.com.unity.template.urp-blank
-    iPhone: com.Unity-Technologies.com.unity.template.urp-blank
+    iPhone: com.HoppaPlay.DisasterFire
   buildNumber:
     Standalone: 0
     iPhone: 0

@@ -53,7 +53,7 @@ public class Player_Controller : Character
     private float _eatAnimationTimer = 0;
     private bool _isEating = false;
 
-    private bool _canDetectInput = true;
+    public bool _canDetectInput = true;
     //private float _idleTime = 0.0f;
     //private bool _isGesturing = false;
     //private bool _isAlive = true;

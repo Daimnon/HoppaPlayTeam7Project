@@ -1,8 +1,15 @@
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using System;
 
 public class UpgradeSystem : MonoBehaviour
 {
+    [Header("Text References")]
+    [SerializeField] private TMP_Text timerUpgradePriceText;
+    [SerializeField] private TMP_Text sizeUpgradePriceText;
+    [SerializeField] private TMP_Text firePowerUpgradePriceText;
+
     private int timerUpgradeLevel = 0;
     private int sizeUpgradeLevel = 0;
     private int firePowerUpgradeLevel = 0;
@@ -12,21 +19,46 @@ public class UpgradeSystem : MonoBehaviour
     private Player_Inventory playerInventory;
     private TerritoryClaimer territoryClaimer;
     private Player_HUD playerHUD;
+    private Player_Data playerData;
 
-    void Start()
+    private void Start()
     {
         levelManager = FindObjectOfType<LevelManager>();
         playerController = FindObjectOfType<Player_Controller>();
         playerInventory = FindObjectOfType<Player_Inventory>();
         territoryClaimer = FindObjectOfType<TerritoryClaimer>();
         playerHUD = FindObjectOfType<Player_HUD>();
+        playerData = playerController.GetComponent<Player_Data>();
 
         UpdateGoldUI();
+        UpdatePriceUI();
     }
 
-    void UpdateGoldUI()
+    private void UpdateGoldUI()
     {
         playerHUD.UpdateCurrency(playerInventory.Currency);
+    }
+
+    private void UpdatePriceUI()
+    {
+        UpdatePriceText(timerUpgradePriceText, timerUpgradeLevel);
+        UpdatePriceText(sizeUpgradePriceText, sizeUpgradeLevel);
+        UpdatePriceText(firePowerUpgradePriceText, firePowerUpgradeLevel);
+    }
+
+    private void UpdatePriceText(TMP_Text priceText, int upgradeLevel)
+    {
+        int cost = GetUpgradeCost(upgradeLevel);
+        priceText.text = cost.ToString();
+
+        if (playerInventory.Currency >= cost)
+        {
+            priceText.color = Color.black;
+        }
+        else
+        {
+            priceText.color = Color.red;
+        }
     }
 
     public void PurchaseTimerUpgrade()
@@ -38,6 +70,7 @@ public class UpgradeSystem : MonoBehaviour
             timerUpgradeLevel++;
             levelManager.ExtendTime(2);
             UpdateGoldUI();
+            UpdatePriceUI();
         }
     }
 
@@ -48,8 +81,9 @@ public class UpgradeSystem : MonoBehaviour
         {
             playerInventory.OnPayCurrency(cost);
             sizeUpgradeLevel++;
-            playerController.IncreaseSize(sizeUpgradeLevel * 0.5f); // Example increment
+            playerData.LevelUp(); // Level increment
             UpdateGoldUI();
+            UpdatePriceUI();
         }
     }
 
@@ -62,10 +96,11 @@ public class UpgradeSystem : MonoBehaviour
             firePowerUpgradeLevel++;
             territoryClaimer.IncreaseFirePower(firePowerUpgradeLevel * 1.0f, firePowerUpgradeLevel * 0.5f); // Example increments
             UpdateGoldUI();
+            UpdatePriceUI();
         }
     }
 
-    int GetUpgradeCost(int level)
+    private int GetUpgradeCost(int level)
     {
         return 100 * (level + 1);
     }

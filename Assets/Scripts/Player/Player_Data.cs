@@ -47,7 +47,7 @@ public class Player_Data : MonoBehaviour
     [SerializeField] private int _evolveTreshold = 5;
     public int EvolveTreshold => _evolveTreshold;
 
-    private void LevelUp()
+    public void LevelUp()
     {
         _currentLevel++;
         _growthLevelCounter++;

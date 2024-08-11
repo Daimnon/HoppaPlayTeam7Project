@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum ObjectiveType // None should always be last, **should not expand casually as all ObjectiveTypes will reset**
 {
@@ -14,7 +15,15 @@ public enum ObjectiveType // None should always be last, **should not expand cas
 public class LevelManager : MonoBehaviour
 {
     [Header("Components")]
+    private Player_Controller player_Controller;
     [SerializeField] private GameObject _loseCanvas;
+    [SerializeField] private GameObject _startCanvas;
+
+    [Header("UI Elements")]
+    [SerializeField] private List<Sprite> _starSprites;
+    [SerializeField] private Image _starImage;
+    [SerializeField] private GameObject _completionPopup;
+    [SerializeField] private TMPro.TextMeshProUGUI _popupText;
 
     [Header("Objective Data")]
     [SerializeField] private ObjectiveData[] _objectives;
@@ -41,6 +50,9 @@ public class LevelManager : MonoBehaviour
     }
     private void Start()
     {
+        player_Controller = FindObjectOfType<Player_Controller>();
+        player_Controller._canDetectInput = false;
+
         foreach (var objective in _objectives)
         {
             _objectiveProgress[objective.ObjectiveType] = 0;
@@ -61,6 +73,12 @@ public class LevelManager : MonoBehaviour
         EventManager.OnObjectiveTrigger3 -= OnObjectiveTrigger3;
     }
 
+    public void StartGame()
+    {
+        _startCanvas.SetActive(false);
+        player_Controller._canDetectInput = true;
+    }
+
     private void CalculateStars()
     {
         int starsEarned = 0;
@@ -73,6 +91,15 @@ public class LevelManager : MonoBehaviour
         }
         
         Debug.Log("Stars Earned: " + starsEarned);
+        ShowStars(starsEarned);
+    }
+
+    private void ShowStars(int starsEarned)
+    {
+        if (starsEarned >= 0 && starsEarned < _starSprites.Count)
+        {
+            _starImage.sprite = _starSprites[starsEarned];
+        }
     }
 
     private void CheckProgressCompletion()
@@ -142,8 +169,23 @@ public class LevelManager : MonoBehaviour
         if (_objectiveProgress[objectiveType] >= objective.CompletionCondition && !_objectiveCompletion[objectiveType])
         {
             _objectiveCompletion[objectiveType] = true;
+            ShowCompletionPopup(objective.NotificationText);
             Debug.Log(objective.NotificationText); // Will be changed to a message on screen, now just for testing
         }
+    }
+
+    private void ShowCompletionPopup(string message)
+    {
+        _popupText.text = message;
+        _completionPopup.SetActive(true);
+
+        StartCoroutine(HideCompletionPopup());
+    }
+
+    private IEnumerator HideCompletionPopup()
+    {
+        yield return new WaitForSeconds(4.0f);
+        _completionPopup.SetActive(false);
     }
 
     internal void ExtendTime(int additionalTime)
