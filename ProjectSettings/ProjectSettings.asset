@@ -163,7 +163,7 @@ PlayerSettings:
   applicationIdentifier:
     Android: com.UnityTechnologies.com.unity.template.urpblank
     Standalone: com.UnityTechnologies.com.unity.template.urp-blank
-    iPhone: com.Unity-Technologies.com.unity.template.urp-blank
+    iPhone: com.HoppaPlay.DisasterFire
   buildNumber:
     Standalone: 0
     iPhone: 0
@@ -898,7 +898,11 @@ PlayerSettings:
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
   cloudServicesEnabled:
-    Build: 1
+    Build: 0
+    Game Performance: 0
+    Purchasing: 0
+    UDP: 0
+    Unity Ads: 0
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -913,11 +917,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 1
   windowsGamepadBackendHint: 0
-  cloudProjectId: cfce46fd-6304-427a-8146-e28a1b5b6e8c
+  cloudProjectId: b5f4956c-31bc-4835-bfab-08c6103de816
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: DisasterFire
-  organizationId: daimnon
+  organizationId: talbarda
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 

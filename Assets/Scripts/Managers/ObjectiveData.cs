@@ -13,8 +13,8 @@ public class ObjectiveData : ScriptableObject
     [SerializeField] private ObjectiveType _objectiveType;
     public ObjectiveType ObjectiveType => _objectiveType;
 
-    [SerializeField] private Consumable _collectedPrefab;
-    public Consumable CollectedPrefab => _collectedPrefab;
+    [SerializeField] private GameObject _collectedPrefab;
+    public GameObject CollectedPrefab => _collectedPrefab;
     
     [SerializeField] private int _completionCondition;
     public int CompletionCondition => _completionCondition;

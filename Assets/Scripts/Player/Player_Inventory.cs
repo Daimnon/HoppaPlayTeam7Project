@@ -31,7 +31,7 @@ public class Player_Inventory : MonoBehaviour
         _currency += amount;
         EventManager.InvokeCurrencyChange(_currency);
     }
-    private void OnPayCurrency(int amount)
+    public void OnPayCurrency(int amount)
     {
         if (_currency - amount < 0)
         {
