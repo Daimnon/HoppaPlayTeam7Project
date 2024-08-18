@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class Consumable : MonoBehaviour
 {
@@ -28,7 +29,20 @@ public class Consumable : MonoBehaviour
 
     private void Start()
     {
+        CalculateExp();
+        InitializeOutlineShader();
+    }
+
+    private void CalculateExp_Deprecated()
+    {
         _reward = (int)(_initialExpValue * _level * _rewardFactor);
+    }
+    private void CalculateExp()
+    {
+        _reward = 3 * (int)Mathf.Pow(2, _level - 1);
+    }
+    private void InitializeOutlineShader()
+    {
         _outlineMat = new Material(_originalOutlineMat);
 
         int rendererToOutlineMaterialArrayLenght = _rendererToOutline.materials.Length;
@@ -49,7 +63,6 @@ public class Consumable : MonoBehaviour
         _renderingMaterialsList.Add(_outlineMat);
         _renderingMaterials = _renderingMaterialsList.ToArray();
     }
-
     public void ApplyOutline()
     {
         _rendererToOutline.materials = _renderingMaterials;
