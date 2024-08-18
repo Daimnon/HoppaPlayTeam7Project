@@ -38,8 +38,10 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private int _maxProgression = 0;
     [SerializeField] private int _currentProgression = 0;
     [SerializeField] private float _timeLimit = 0.0f;
+    public float TimeLimit => _timeLimit;
 
     private bool _hasLost = false;
+    private bool _gameStarted = false;
 
     private void OnEnable()
     {
@@ -47,6 +49,7 @@ public class LevelManager : MonoBehaviour
         EventManager.OnObjectiveTrigger1 += OnObjectiveTrigger1;
         EventManager.OnObjectiveTrigger2 += OnObjectiveTrigger2;
         EventManager.OnObjectiveTrigger3 += OnObjectiveTrigger3;
+        EventManager.OnGameLaunched += StartGame;
     }
     private void Start()
     {
@@ -63,20 +66,26 @@ public class LevelManager : MonoBehaviour
     }
     private void Update()
     {
-        HandleLoseCondition();
+        if (_gameStarted)
+        {
+            HandleLoseCondition();
+        }
     }
+
     private void OnDisable()
     {
         EventManager.OnProgressMade -= OnProgressMade;
         EventManager.OnObjectiveTrigger1 -= OnObjectiveTrigger1;
         EventManager.OnObjectiveTrigger2 -= OnObjectiveTrigger2;
         EventManager.OnObjectiveTrigger3 -= OnObjectiveTrigger3;
+        EventManager.OnGameLaunched -= StartGame;
     }
 
     public void StartGame()
     {
         _startCanvas.SetActive(false);
         player_Controller._canDetectInput = true;
+        _gameStarted = true;
     }
 
     private void CalculateStars()

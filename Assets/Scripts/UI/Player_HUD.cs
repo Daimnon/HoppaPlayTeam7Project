@@ -49,6 +49,7 @@ public class Player_HUD : MonoBehaviour
     public TextMeshProUGUI MaxExpText => _maxExpText;
     public TextMeshProUGUI CurrentExpText => _currentExpText;
 
+    private LevelManager _levelManager; 
     private string[] _currencySuffixes = { "", "K", "M", "B", "T" };
 
     private void OnEnable()
@@ -66,6 +67,11 @@ public class Player_HUD : MonoBehaviour
         EventManager.OnSpecialCurrencyChange -= OnSpecialCurrencyChange;
         EventManager.OnProgressionChange -= OnProgressionChange;
         EventManager.OnTimerChange -= OnTimerChange;
+    }
+
+    private void Start()
+    {
+        _levelManager = FindObjectOfType<LevelManager>();
     }
 
     #region General
@@ -193,6 +199,7 @@ public class Player_HUD : MonoBehaviour
     #region Events
     private void OnLevelLaunched()
     {
+        UpdateTimerText(_levelManager != null ? _levelManager.TimeLimit : 0);
     }
     private void OnCurrencyChange(int newCurrency)
     {
