@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 2726038719857358448}
   - component: {fileID: 1331673853776230869}
   - component: {fileID: 3864080892839398687}
+  - component: {fileID: 2291555012388641084}
+  - component: {fileID: 5418368131758028548}
   m_Layer: 0
   m_Name: Box_1
   m_TagString: Untagged
@@ -83,3 +85,33 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2291555012388641084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3359409797177715914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectiveType: 0
+  _level: 4
+  _progressionReward: 0
+  _rendererToOutline: {fileID: 3864080892839398687}
+  _originalOutlineMat: {fileID: 2100000, guid: 06f6b6c3542045b4b896f52838a63ffc, type: 2}
+--- !u!65 &5418368131758028548
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3359409797177715914}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.65150326, y: 0.65150326, z: 0.65150326}
+  m_Center: {x: 0, y: 0.32575163, z: 0}

@@ -138,7 +138,8 @@ public class Player_Controller : Character
                 Vector3 pushDirection = (transform.position - other.transform.position).normalized;
                 _agent.velocity = pushDirection * _forceFromBiggerObjects;
                 return;
-                
+            }
+
             switch (consumable)
             {
                 default:
@@ -149,7 +150,6 @@ public class Player_Controller : Character
                     EventManager.InvokeEarnSpecialCurrency(consumable.Reward);
                     EventManager.InvokeProgressMade(consumable.Reward);
                     break;
-            }
             }
 
             HandleConsumableReward(consumable); // here we determine the type of the consumable in order to solve the reward.
@@ -320,7 +320,7 @@ public class Player_Controller : Character
             _eatAnimationTimer = _eatAnimationTime;
             _isEating = false;
             _currentAnimator.SetBool("Is Eating", _isEating);
-            _currentAnimator.ResetTrigger("Has Consumed");
+            //_currentAnimator.ResetTrigger("Has Consumed");
             Debug.Log("Consumed was reset");
         }
     }
@@ -459,7 +459,15 @@ public class Player_Controller : Character
 
     public void IncreaseSize(float sizeIncrement)
     {
-        transform.localScale += Vector3.one * sizeIncrement;
+        transform.localScale += Vector3.one * _data.ScaleIncrement * sizeIncrement;
+
+        Vector3 newFireScale = transform.localScale;
+        newFireScale *= (int)_data.EvoType + 1;
+        _headFlame.localScale = newFireScale;
+
+        float newCameraDistance = _initialCameraDistance * transform.localScale.x;
+        _framingTransposer.m_CameraDistance = newCameraDistance;
+        _agent.speed = _initialSpeed * transform.localScale.x;
         DetectObjects();
     }
 }

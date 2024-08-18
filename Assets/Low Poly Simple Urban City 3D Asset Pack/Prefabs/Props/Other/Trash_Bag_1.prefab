@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objectiveType: 0
-  _level: 1
+  _level: 2
   _progressionReward: 0
   _rendererToOutline: {fileID: 4493903202982350566}
   _originalOutlineMat: {fileID: 2100000, guid: 06f6b6c3542045b4b896f52838a63ffc, type: 2}

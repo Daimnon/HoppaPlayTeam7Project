@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2806868196696413276}
   - component: {fileID: 1250914746767596537}
   - component: {fileID: 3943133592308264755}
+  - component: {fileID: 7115090372659501239}
   m_Layer: 0
   m_Name: Bus_1
   m_TagString: Untagged
@@ -83,3 +84,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7115090372659501239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3294435270369087206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectiveType: 0
+  _level: 11
+  _progressionReward: 0
+  _rendererToOutline: {fileID: 3943133592308264755}
+  _originalOutlineMat: {fileID: 2100000, guid: 06f6b6c3542045b4b896f52838a63ffc, type: 2}

@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 987167708103694311}
   - component: {fileID: 5639138023727964764}
   - component: {fileID: 1830618125247493100}
+  - component: {fileID: 1841043227042111350}
   - component: {fileID: 9065950151975951394}
-  m_Layer: 0
+  - component: {fileID: 6774759787529635398}
+  m_Layer: 6
   m_Name: Police_Station
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,6 +86,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1841043227042111350
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5921921195902539461}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 14.724908, y: 10.368642, z: 8.378456}
+  m_Center: {x: -0.29758978, y: 5.1779103, z: 0.3946613}
 --- !u!208 &9065950151975951394
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -100,6 +115,23 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: -0.298, y: 5.1780005, z: 0.395}
   m_TimeToStationary: 0.5
+--- !u!114 &6774759787529635398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5921921195902539461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectiveType: 0
+  _level: 14
+  _progressionReward: 0
+  _rendererToOutline: {fileID: 1830618125247493100}
+  _originalOutlineMat: {fileID: 2100000, guid: 06f6b6c3542045b4b896f52838a63ffc, type: 2}
 --- !u!1 &6157636754687172351
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,7 +141,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6791290439983219781}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Police_Station
   m_TagString: Untagged
   m_Icon: {fileID: 0}

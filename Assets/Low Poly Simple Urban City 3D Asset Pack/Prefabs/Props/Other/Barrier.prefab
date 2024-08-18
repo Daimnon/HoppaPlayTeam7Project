@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 6960832486868366550}
   - component: {fileID: 6284214526473059187}
   - component: {fileID: 8129829214868623289}
-  m_Layer: 0
+  - component: {fileID: 8944465109839399098}
+  - component: {fileID: 7850791008790612194}
+  m_Layer: 6
   m_Name: Barrier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,3 +85,33 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8944465109839399098
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7769282103224168044}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.8835483, y: 1.5150179, z: 0.7599196}
+  m_Center: {x: 0, y: 0.75750893, z: 0.0000038146973}
+--- !u!114 &7850791008790612194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7769282103224168044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectiveType: 0
+  _level: 10
+  _progressionReward: 0
+  _rendererToOutline: {fileID: 0}
+  _originalOutlineMat: {fileID: 0}

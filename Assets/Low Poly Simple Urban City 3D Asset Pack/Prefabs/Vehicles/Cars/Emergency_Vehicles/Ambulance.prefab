@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 2528055771141382573}
   - component: {fileID: 1493698371004476936}
   - component: {fileID: 3701494387874585282}
+  - component: {fileID: 2904617020378413440}
+  - component: {fileID: 5113593450497716814}
   m_Layer: 0
   m_Name: Ambulance
   m_TagString: Untagged
@@ -83,3 +85,33 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2904617020378413440
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2908944898091809559}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.426696, y: 2.8345528, z: 5.8210826}
+  m_Center: {x: 0, y: 1.4172764, z: 0}
+--- !u!114 &5113593450497716814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2908944898091809559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectiveType: 0
+  _level: 11
+  _progressionReward: 0
+  _rendererToOutline: {fileID: 3701494387874585282}
+  _originalOutlineMat: {fileID: 2100000, guid: 06f6b6c3542045b4b896f52838a63ffc, type: 2}

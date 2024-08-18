@@ -54,8 +54,6 @@ public class LevelManager : MonoBehaviour
             _objectiveProgress[objective.ObjectiveType] = 0;
             _objectiveCompletion[objective.ObjectiveType] = false;
         }
-
-        EventManager.InvokeLevelLaunched();
     }
     private void Update()
     {
@@ -72,6 +70,7 @@ public class LevelManager : MonoBehaviour
     public void StartGame()
     {
         _startCanvas.SetActive(false);
+        EventManager.InvokeLevelLaunched();
     }
 
     private void CalculateStars()
