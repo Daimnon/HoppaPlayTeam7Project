@@ -83,6 +83,12 @@ public class Player_Data : MonoBehaviour
             }
         }
 
+        if (_currentLevel >= 5)
+        {
+            EventManager.InvokeObjectiveTrigger1();
+            Debug.Log("Player reached level 5, objective 1 completed.");
+        }
+
         CheckLevelUp();
     }
     private void CheckLevelUp()

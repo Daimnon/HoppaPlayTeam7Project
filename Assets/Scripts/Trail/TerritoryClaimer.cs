@@ -24,6 +24,7 @@ public class TerritoryClaimer : MonoBehaviour
 
     private float _firePower = 1.0f;
     private float _fireRange = 1.0f;
+    private int _explosionCount = 0;
 
 
     #region Monobehaviour Callbacks
@@ -207,6 +208,13 @@ public class TerritoryClaimer : MonoBehaviour
         _trailPoints.Clear();
         _trailRenderer.Clear();
         Debug.Log("Closed shape detected!");
+
+        _explosionCount++;
+        if (_explosionCount >= 3)
+        {
+            EventManager.InvokeObjectiveTrigger3();
+            Debug.Log("Objective 3 completed with explosion count: " + _explosionCount);
+        }
     }
     #endregion
 
