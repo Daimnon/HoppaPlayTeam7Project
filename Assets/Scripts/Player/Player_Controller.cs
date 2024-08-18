@@ -53,7 +53,7 @@ public class Player_Controller : Character
     private float _eatAnimationTimer = 0;
     private bool _isEating = false;
 
-    public bool _canDetectInput = true;
+    private bool _canDetectInput = false;
     //private float _idleTime = 0.0f;
     //private bool _isGesturing = false;
     //private bool _isAlive = true;
@@ -72,6 +72,7 @@ public class Player_Controller : Character
         EventManager.OnGrowth += OnGrowth;
         EventManager.OnEvolve += OnEvolve;
         EventManager.OnLose += OnLose;
+        EventManager.OnLevelLaunched += OnLevelLaunched;
 
         _framingTransposer = _vCam.GetCinemachineComponent<CinemachineFramingTransposer>();
         _initialCameraDistance = _framingTransposer.m_CameraDistance;
@@ -123,6 +124,7 @@ public class Player_Controller : Character
         EventManager.OnGrowth -= OnGrowth;
         EventManager.OnEvolve -= OnEvolve;
         EventManager.OnLose -= OnLose;
+        EventManager.OnLevelLaunched -= OnLevelLaunched;
         EnhancedTouchSupport.Disable();
     }
     private void OnTriggerEnter(Collider other) 
@@ -439,6 +441,11 @@ public class Player_Controller : Character
     private void OnLose()
     {
         _canDetectInput = false;
+    }
+
+    private void OnLevelLaunched()
+    {
+        _canDetectInput = true;
     }
     #endregion
 

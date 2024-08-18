@@ -56,6 +56,9 @@ public class Player_Data : MonoBehaviour
         float tempMaxExp = _maxExp * _expFactor;
         _maxExp = Mathf.RoundToInt(tempMaxExp);
         _hud.SetNewMaxExp(_maxExp);
+        
+        _currentExp = 0;
+        _hud.UpdateExpBar(_maxExp, _currentExp);
 
         if (_growthLevelCounter >= _growthTreshold)
         {

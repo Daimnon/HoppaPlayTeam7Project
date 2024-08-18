@@ -25,14 +25,17 @@ public class Player_HUD : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _levelNumText;
     public TextMeshProUGUI LevelNumText => _levelNumText;
 
+    [SerializeField] private Image _timerBg;
+    public Image TimerBg => _timerBg;
+
+    [SerializeField] private Image _progressionIcon;
+    public Image ProgressionIcon => _progressionIcon;
+
     [SerializeField] private Image _progressionFill;
     public Image ProgressionFill => _progressionFill;
 
     [SerializeField] private TextMeshProUGUI _progressionText;
     public TextMeshProUGUI ProgressionText => _progressionText;
-
-    [SerializeField] private Image _timerBg;
-    public Image TimerBg => _timerBg;
 
     [SerializeField] private TextMeshProUGUI _timerText;
     public TextMeshProUGUI TimerText => _timerText;
