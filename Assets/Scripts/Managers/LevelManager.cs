@@ -15,7 +15,6 @@ public enum ObjectiveType // None should always be last, **should not expand cas
 public class LevelManager : MonoBehaviour
 {
     [Header("Components")]
-    private Player_Controller player_Controller;
     [SerializeField] private GameObject _loseCanvas;
     [SerializeField] private GameObject _startCanvas;
 
@@ -50,9 +49,6 @@ public class LevelManager : MonoBehaviour
     }
     private void Start()
     {
-        player_Controller = FindObjectOfType<Player_Controller>();
-        player_Controller._canDetectInput = false;
-
         foreach (var objective in _objectives)
         {
             _objectiveProgress[objective.ObjectiveType] = 0;
@@ -76,7 +72,6 @@ public class LevelManager : MonoBehaviour
     public void StartGame()
     {
         _startCanvas.SetActive(false);
-        player_Controller._canDetectInput = true;
     }
 
     private void CalculateStars()
