@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3701494387874585282}
   - component: {fileID: 2904617020378413440}
   - component: {fileID: 5113593450497716814}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ambulance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2908944898091809559}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2.426696, y: 2.8345528, z: 5.8210826}
@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectiveType: 0
+  _objectiveType: 1
   _level: 11
   _progressionReward: 0
   _rendererToOutline: {fileID: 3701494387874585282}

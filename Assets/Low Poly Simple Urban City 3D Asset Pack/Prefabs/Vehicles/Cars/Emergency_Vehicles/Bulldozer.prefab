@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 2133594953162467821}
   - component: {fileID: 3041010411569653320}
   - component: {fileID: 997302755881079426}
+  - component: {fileID: 7989898890219798645}
   - component: {fileID: 4398971789333121589}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bulldozer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,6 +85,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7989898890219798645
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646028154367701847}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.9874196, y: 4.57481, z: 8.165853}
+  m_Center: {x: 0, y: 2.287405, z: -0.0000038146973}
 --- !u!114 &4398971789333121589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectiveType: 0
+  _objectiveType: 1
   _level: 11
   _progressionReward: 0
   _rendererToOutline: {fileID: 997302755881079426}

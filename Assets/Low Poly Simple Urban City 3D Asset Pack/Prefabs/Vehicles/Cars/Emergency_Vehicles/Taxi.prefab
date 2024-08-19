@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 1614354726248751972}
   - component: {fileID: 2434350100270066881}
   - component: {fileID: 444866585003841547}
+  - component: {fileID: 5481328586836594579}
   - component: {fileID: 3910786116162679921}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Taxi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,6 +85,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5481328586836594579
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102204373591914974}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.247918, y: 1.9772949, z: 5.5286865}
+  m_Center: {x: 0, y: 0.98864746, z: 0.0000076293945}
 --- !u!114 &3910786116162679921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectiveType: 0
+  _objectiveType: 1
   _level: 11
   _progressionReward: 0
   _rendererToOutline: {fileID: 444866585003841547}

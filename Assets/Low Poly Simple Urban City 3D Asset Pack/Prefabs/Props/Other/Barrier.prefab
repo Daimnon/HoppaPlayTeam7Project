@@ -110,8 +110,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectiveType: 0
+  _objectiveType: 1
   _level: 10
   _progressionReward: 0
-  _rendererToOutline: {fileID: 0}
-  _originalOutlineMat: {fileID: 0}
+  _rendererToOutline: {fileID: 8129829214868623289}
+  _originalOutlineMat: {fileID: 2100000, guid: 06f6b6c3542045b4b896f52838a63ffc, type: 2}

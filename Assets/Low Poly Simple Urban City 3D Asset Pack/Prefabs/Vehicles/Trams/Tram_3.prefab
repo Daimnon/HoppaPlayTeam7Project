@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 959925671184821553}
   - component: {fileID: 4250708494051762836}
   - component: {fileID: 2096842974110422622}
+  - component: {fileID: 6248258459395572408}
   - component: {fileID: 868281629951916352}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tram_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,6 +85,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6248258459395572408
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439531849737287563}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.1897447, y: 5.2846403, z: 19.025385}
+  m_Center: {x: 0.0000025108457, y: 2.6423202, z: -0.0000019073486}
 --- !u!114 &868281629951916352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectiveType: 0
+  _objectiveType: 1
   _level: 12
   _progressionReward: 0
   _rendererToOutline: {fileID: 2096842974110422622}

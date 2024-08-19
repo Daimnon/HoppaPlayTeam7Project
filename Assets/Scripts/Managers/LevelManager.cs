@@ -37,8 +37,10 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private int _maxProgression = 0;
     [SerializeField] private int _currentProgression = 0;
     [SerializeField] private float _timeLimit = 0.0f;
+    public float TimeLimit => _timeLimit;
 
     private bool _hasLost = false;
+    private bool _gameStarted = false;
 
     private void OnEnable()
     {
