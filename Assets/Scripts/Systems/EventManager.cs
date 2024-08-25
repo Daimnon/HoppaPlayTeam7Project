@@ -12,6 +12,7 @@ public static class EventManager
     public static Action OnObjectiveTrigger1, OnObjectiveTrigger2, OnObjectiveTrigger3; 
 
     public static Action OnGrowth;
+    public static Action<SceneType> OnSceneChange;
     public static Action<EvoType> OnEvolve;
 
     public static Action<int> OnEarnCurrency, OnPayCurrency;
@@ -79,6 +80,11 @@ public static class EventManager
     {
         OnGrowth?.Invoke();
         UnityEngine.Debug.Log("Event: Growth");
+    }
+    public static void InvokeSceneChange(SceneType nextScene)
+    {
+        OnSceneChange?.Invoke(nextScene);
+        UnityEngine.Debug.Log("Event: SceneChange");
     }
     public static void InvokeEvolve(EvoType newEvoType)
     {
