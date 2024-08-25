@@ -69,6 +69,9 @@ public class Consumable : MonoBehaviour
     }
     public void RemoveOutline()
     {
+        if (!_rendererToOutline)
+            return;
+
         _rendererToOutline.materials = _originalMaterials;
     }
 }

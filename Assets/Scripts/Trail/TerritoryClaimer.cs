@@ -159,9 +159,9 @@ public class TerritoryClaimer : MonoBehaviour
     }
     private void PlayExplosion(Vector3 pos)
     {
-        _explosionVFX.transform.localScale = transform.localScale;
         _explosionVFX.transform.SetParent(null);
         _explosionVFX.transform.position = pos;
+        _explosionVFX.transform.localScale = transform.localScale / 2f;
         _explosionVFX.Play();
     }
     private IEnumerator ExplosionRoutine(Vector3 midPos)
@@ -210,7 +210,7 @@ public class TerritoryClaimer : MonoBehaviour
         Debug.Log("Closed shape detected!");
 
         _explosionCount++;
-        if (_explosionCount >= 3)
+        if (_explosionCount >= 3) // fix for objective
         {
             EventManager.InvokeObjectiveTrigger3();
             Debug.Log("Objective 3 completed with explosion count: " + _explosionCount);
