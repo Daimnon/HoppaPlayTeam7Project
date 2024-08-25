@@ -59,7 +59,10 @@ public class LevelManager : MonoBehaviour
     }
     private void Update()
     {
-        HandleLoseCondition();
+        if (!_gameStarted)
+            return;
+
+        HandleLoseCondition(); // considering to change for coroutine, more performant - need testing?
     }
     private void OnDisable()
     {
@@ -72,6 +75,7 @@ public class LevelManager : MonoBehaviour
     public void StartGame()
     {
         _startCanvas.SetActive(false);
+        _gameStarted = true;
         EventManager.InvokeLevelLaunched();
     }
 
