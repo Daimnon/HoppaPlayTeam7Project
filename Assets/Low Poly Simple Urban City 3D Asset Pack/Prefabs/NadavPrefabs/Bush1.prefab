@@ -111,6 +111,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5cdc679f90c730445a4bc3a1300ef5ac, type: 3}
+--- !u!23 &7130834381105170068 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 5cdc679f90c730445a4bc3a1300ef5ac,
+    type: 3}
+  m_PrefabInstance: {fileID: 8445451855374850576}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8268323910713703931 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5cdc679f90c730445a4bc3a1300ef5ac,
@@ -123,6 +129,19 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8445451855374850576}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &6806640613318646427
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8787979066818242369}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.3276612, y: 1.5247656, z: 1.3276614}
+  m_Center: {x: 0, y: 0.7623828, z: 0}
 --- !u!114 &2294338198828704767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,18 +157,5 @@ MonoBehaviour:
   _objectiveType: 1
   _level: 4
   _progressionReward: 0
-  _rendererToOutline: {fileID: 0}
-  _originalOutlineMat: {fileID: 0}
---- !u!65 &6806640613318646427
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8787979066818242369}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.3276612, y: 1.5247656, z: 1.3276614}
-  m_Center: {x: 0, y: 0.7623828, z: 0}
+  _rendererToOutline: {fileID: 7130834381105170068}
+  _originalOutlineMat: {fileID: 2100000, guid: 06f6b6c3542045b4b896f52838a63ffc, type: 2}

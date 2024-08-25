@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 8632877055539875275}
   - component: {fileID: 5776663361060337921}
   - component: {fileID: 5727704945493746415}
-  m_Layer: 0
+  - component: {fileID: 937207663009804175}
+  m_Layer: 6
   m_Name: Box_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,8 +97,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectiveType: 0
+  _objectiveType: 1
   _level: 2
   _progressionReward: 0
   _rendererToOutline: {fileID: 5776663361060337921}
   _originalOutlineMat: {fileID: 2100000, guid: 06f6b6c3542045b4b896f52838a63ffc, type: 2}
+--- !u!65 &937207663009804175
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5416186344305875156}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.65150326, y: 0.65150326, z: 0.65150326}
+  m_Center: {x: 0, y: 0.32575163, z: 0}

@@ -15,7 +15,7 @@ MonoBehaviour:
   _objectiveDescription: Reach 100% growth within the time limit.
   _objectiveType: 0
   _collectedPrefab: {fileID: 0}
-  _completionCondition: 1
+  _completionCondition: 1000
   _notificationText: 'Task completed: reached 100% growth '
   _conditionEvent:
     m_PersistentCalls:
