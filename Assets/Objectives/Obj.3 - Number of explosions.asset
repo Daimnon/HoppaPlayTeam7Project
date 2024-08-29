@@ -15,8 +15,8 @@ MonoBehaviour:
   _objectiveDescription: Create a set number of explosions with the flame trail
   _objectiveType: 2
   _collectedPrefab: {fileID: 0}
-  _completionCondition: 1000
-  _notificationText: 'Task completed:  create a set number of explosions'
+  _completionCondition: 1
+  _notificationText: Objective 3 Completed
   _conditionEvent:
     m_PersistentCalls:
       m_Calls: []
