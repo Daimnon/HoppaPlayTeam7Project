@@ -25,6 +25,7 @@ public class TerritoryClaimer : MonoBehaviour
     private float _firePower = 1.0f;
     private float _fireRange = 1.0f;
     private int _explosionCount = 0;
+    private SoundManager soundManager;
 
 
     #region Monobehaviour Callbacks
@@ -35,6 +36,12 @@ public class TerritoryClaimer : MonoBehaviour
         _explosionVFX.Reinit();
         _explosionVFX.Stop();
     }
+    
+    private void Start() 
+    {
+        soundManager = FindObjectOfType<SoundManager>();
+    }
+
     private void Update()
     {
         TrackPosition();
@@ -209,6 +216,7 @@ public class TerritoryClaimer : MonoBehaviour
         _trailRenderer.Clear();
         Debug.Log("Closed shape detected!");
 
+        soundManager.PlayFireExplosionSound();
         _explosionCount++;
         if (_explosionCount >= 3) // fix for objective
         {

@@ -20,6 +20,7 @@ public class UpgradeSystem : MonoBehaviour
     private TerritoryClaimer territoryClaimer;
     private Player_HUD playerHUD;
     private Player_Data playerData;
+    private SoundManager soundManager;
 
     private void Start()
     {
@@ -29,6 +30,7 @@ public class UpgradeSystem : MonoBehaviour
         territoryClaimer = FindObjectOfType<TerritoryClaimer>();
         playerHUD = FindObjectOfType<Player_HUD>();
         playerData = playerController.GetComponent<Player_Data>();
+        soundManager = FindObjectOfType<SoundManager>();
 
         UpdateGoldUI();
         UpdatePriceUI();
@@ -37,6 +39,7 @@ public class UpgradeSystem : MonoBehaviour
     private void UpdateGoldUI()
     {
         playerHUD.UpdateCurrency(playerInventory.Currency);
+
     }
 
     private void UpdatePriceUI()
@@ -69,6 +72,7 @@ public class UpgradeSystem : MonoBehaviour
             playerInventory.OnPayCurrency(cost);
             timerUpgradeLevel++;
             levelManager.ExtendTime(2);
+            soundManager.PlayCoinSound();
             UpdateGoldUI();
             UpdatePriceUI();
         }
@@ -81,7 +85,8 @@ public class UpgradeSystem : MonoBehaviour
         {
             playerInventory.OnPayCurrency(cost);
             sizeUpgradeLevel++;
-            playerData.LevelUp(); // Level increment
+            playerData.LevelUp();
+            soundManager.PlayCoinSound();
             UpdateGoldUI();
             UpdatePriceUI();
         }
@@ -95,6 +100,7 @@ public class UpgradeSystem : MonoBehaviour
             playerInventory.OnPayCurrency(cost);
             firePowerUpgradeLevel++;
             territoryClaimer.IncreaseFirePower(firePowerUpgradeLevel * 1.0f, firePowerUpgradeLevel * 0.5f); // Example increments
+            soundManager.PlayCoinSound();
             UpdateGoldUI();
             UpdatePriceUI();
         }
