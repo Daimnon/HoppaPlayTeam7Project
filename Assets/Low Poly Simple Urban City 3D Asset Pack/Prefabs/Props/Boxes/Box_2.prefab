@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 8894510512177654869}
   - component: {fileID: 5530558583707313136}
   - component: {fileID: 7720448438127318842}
-  - component: {fileID: 3755405084475906354}
   - component: {fileID: 2458665630883337520}
+  - component: {fileID: 3755405084475906354}
+  - component: {fileID: 5536693204293024459}
   m_Layer: 6
   m_Name: Box_2
   m_TagString: Untagged
@@ -85,6 +86,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2458665630883337520
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8080713936756012783}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.2785158, y: 0.6360614, z: 0.57085186}
+  m_Center: {x: 0.0000009536743, y: 0.3180307, z: 0}
 --- !u!114 &3755405084475906354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,16 +116,18 @@ MonoBehaviour:
   _progressionReward: 0
   _rendererToOutline: {fileID: 7720448438127318842}
   _originalOutlineMat: {fileID: 2100000, guid: 06f6b6c3542045b4b896f52838a63ffc, type: 2}
---- !u!65 &2458665630883337520
-BoxCollider:
+--- !u!114 &5536693204293024459
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8080713936756012783}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.2785158, y: 0.6360614, z: 0.57085186}
-  m_Center: {x: 0.0000009536743, y: 0.3180307, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99b3d44050d91fb4aad7465218bbcd03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderers:
+  - {fileID: 7720448438127318842}
+  _position: {x: 0, y: 0, z: 0}

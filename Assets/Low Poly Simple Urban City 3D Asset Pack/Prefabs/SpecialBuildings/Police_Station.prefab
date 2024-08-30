@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1841043227042111350}
   - component: {fileID: 9065950151975951394}
   - component: {fileID: 6774759787529635398}
+  - component: {fileID: 4698888918865805711}
   m_Layer: 6
   m_Name: Police_Station
   m_TagString: Untagged
@@ -132,6 +133,21 @@ MonoBehaviour:
   _progressionReward: 0
   _rendererToOutline: {fileID: 1830618125247493100}
   _originalOutlineMat: {fileID: 2100000, guid: 06f6b6c3542045b4b896f52838a63ffc, type: 2}
+--- !u!114 &4698888918865805711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5921921195902539461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99b3d44050d91fb4aad7465218bbcd03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderers:
+  - {fileID: 1830618125247493100}
+  _position: {x: 0, y: 0, z: 0}
 --- !u!1 &6157636754687172351
 GameObject:
   m_ObjectHideFlags: 0

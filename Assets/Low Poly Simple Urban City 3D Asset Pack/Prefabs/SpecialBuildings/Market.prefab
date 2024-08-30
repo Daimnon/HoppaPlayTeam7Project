@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 1585746330459973239}
   - component: {fileID: 5559952057112097012}
   - component: {fileID: 8697236807141586222}
+  - component: {fileID: 5461555013403715288}
   m_Layer: 6
   m_Name: Market
   m_TagString: Untagged
@@ -164,3 +165,18 @@ MonoBehaviour:
   _progressionReward: 0
   _rendererToOutline: {fileID: 4890936629023072409}
   _originalOutlineMat: {fileID: 2100000, guid: 06f6b6c3542045b4b896f52838a63ffc, type: 2}
+--- !u!114 &5461555013403715288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8050941180124998157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99b3d44050d91fb4aad7465218bbcd03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderers:
+  - {fileID: 4890936629023072409}
+  _position: {x: 0, y: 0, z: 0}

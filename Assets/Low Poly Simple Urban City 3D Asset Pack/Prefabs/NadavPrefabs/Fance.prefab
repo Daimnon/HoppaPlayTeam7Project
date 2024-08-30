@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2293309488419229141}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Fance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,6 +136,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.7836668, y: 1.3188866, z: 0.16732666}
   m_Center: {x: -0.004999995, y: 0.6544433, z: 0.004999999}
+--- !u!114 &355903725331186567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3197931627946839115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99b3d44050d91fb4aad7465218bbcd03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderers:
+  - {fileID: 3990657316015680926}
+  _position: {x: 0, y: 0, z: 0}
 --- !u!114 &5442491191135375200
 MonoBehaviour:
   m_ObjectHideFlags: 0

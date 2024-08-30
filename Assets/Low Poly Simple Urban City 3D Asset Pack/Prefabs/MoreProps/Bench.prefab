@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 5465158946204421514}
   - component: {fileID: 6305573677142167381}
   - component: {fileID: 1347609895341923343}
+  - component: {fileID: 3495542630928297335}
   m_Layer: 6
   m_Name: Bench
   m_TagString: Untagged
@@ -147,3 +148,18 @@ MonoBehaviour:
   _progressionReward: 0
   _rendererToOutline: {fileID: 5465158946204421514}
   _originalOutlineMat: {fileID: 2100000, guid: 06f6b6c3542045b4b896f52838a63ffc, type: 2}
+--- !u!114 &3495542630928297335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5825645172314057823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99b3d44050d91fb4aad7465218bbcd03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderers:
+  - {fileID: 5465158946204421514}
+  _position: {x: 0, y: 0, z: 0}

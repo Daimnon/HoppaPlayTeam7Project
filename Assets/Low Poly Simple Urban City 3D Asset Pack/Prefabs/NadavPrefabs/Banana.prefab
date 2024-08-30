@@ -126,6 +126,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be7a8ffb0e72ffd47b07569cebc2e6e7, type: 3}
+--- !u!23 &5168580232117886251 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: be7a8ffb0e72ffd47b07569cebc2e6e7,
+    type: 3}
+  m_PrefabInstance: {fileID: 5799486196176159151}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6336934706812151364 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: be7a8ffb0e72ffd47b07569cebc2e6e7,
@@ -166,5 +172,5 @@ MonoBehaviour:
   _objectiveType: 1
   _level: 1
   _progressionReward: 0
-  _rendererToOutline: {fileID: 0}
-  _originalOutlineMat: {fileID: 0}
+  _rendererToOutline: {fileID: 5168580232117886251}
+  _originalOutlineMat: {fileID: 2100000, guid: 06f6b6c3542045b4b896f52838a63ffc, type: 2}

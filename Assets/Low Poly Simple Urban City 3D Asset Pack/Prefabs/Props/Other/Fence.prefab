@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1200737170789110331}
   - component: {fileID: 5206307262186765095}
   - component: {fileID: 7714708231130234747}
+  - component: {fileID: 3385990508390641255}
   m_Layer: 6
   m_Name: Fence
   m_TagString: Untagged
@@ -115,3 +116,18 @@ MonoBehaviour:
   _progressionReward: 0
   _rendererToOutline: {fileID: 1200737170789110331}
   _originalOutlineMat: {fileID: 2100000, guid: 06f6b6c3542045b4b896f52838a63ffc, type: 2}
+--- !u!114 &3385990508390641255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 840234040158172142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99b3d44050d91fb4aad7465218bbcd03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderers:
+  - {fileID: 1200737170789110331}
+  _position: {x: 0, y: 0, z: 0}

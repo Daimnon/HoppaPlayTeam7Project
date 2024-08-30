@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5841970594459740303}
   - component: {fileID: 801290418723090065}
   - component: {fileID: 7365049038078196708}
+  - component: {fileID: 7704928877501233640}
   m_Layer: 6
   m_Name: Building_1
   m_TagString: Untagged
@@ -115,3 +116,18 @@ MonoBehaviour:
   _progressionReward: 0
   _rendererToOutline: {fileID: 5841970594459740303}
   _originalOutlineMat: {fileID: 2100000, guid: 06f6b6c3542045b4b896f52838a63ffc, type: 2}
+--- !u!114 &7704928877501233640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5337369454485653850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99b3d44050d91fb4aad7465218bbcd03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderers:
+  - {fileID: 5841970594459740303}
+  _position: {x: 0, y: 0, z: 0}

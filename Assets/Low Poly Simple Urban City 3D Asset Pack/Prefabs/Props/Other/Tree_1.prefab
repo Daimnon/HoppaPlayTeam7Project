@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7301202565836025519}
   - component: {fileID: 1516629974081908536}
   - component: {fileID: 6091333096248416697}
+  - component: {fileID: 3339395697251263409}
   m_Layer: 6
   m_Name: Tree_1
   m_TagString: Untagged
@@ -116,6 +117,21 @@ MonoBehaviour:
   _progressionReward: 0
   _rendererToOutline: {fileID: 7301202565836025519}
   _originalOutlineMat: {fileID: 2100000, guid: 06f6b6c3542045b4b896f52838a63ffc, type: 2}
+--- !u!114 &3339395697251263409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9102875994649005946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99b3d44050d91fb4aad7465218bbcd03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderers:
+  - {fileID: 7301202565836025519}
+  _position: {x: 0, y: 0, z: 0}
 --- !u!1001 &5116260440800700701
 PrefabInstance:
   m_ObjectHideFlags: 0
