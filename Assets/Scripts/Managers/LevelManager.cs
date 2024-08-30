@@ -39,6 +39,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private float _timeLimit = 0.0f;
     public float TimeLimit => _timeLimit;
 
+    private SoundManager soundManager;
     private bool _hasLost = false;
     private bool _gameStarted = false;
 
@@ -51,6 +52,8 @@ public class LevelManager : MonoBehaviour
     }
     private void Start()
     {
+        soundManager = FindAnyObjectByType<SoundManager>();
+
         foreach (var objective in _objectives)
         {
             _objectiveProgress[objective.ObjectiveType] = 0;
@@ -178,7 +181,7 @@ public class LevelManager : MonoBehaviour
     {
         _popupText.text = message;
         _completionPopup.SetActive(true);
-
+        soundManager.PlayCatSound();
         StartCoroutine(HideCompletionPopup());
     }
 
