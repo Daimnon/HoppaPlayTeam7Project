@@ -28,6 +28,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private ObjectiveData[] _objectives;
     public ObjectiveData[] Objectives => _objectives;
 
+    private float _timeSinceStart = 0;
 
     // track the progress and completion status of each objective
     private Dictionary<ObjectiveType, int> _objectiveProgress = new();

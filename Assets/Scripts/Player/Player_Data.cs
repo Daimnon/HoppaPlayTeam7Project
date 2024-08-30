@@ -35,6 +35,9 @@ public class Player_Data : MonoBehaviour
     [SerializeField] private int _currentLevel = 1;
     public int CurrentLevel => _currentLevel;
 
+    [SerializeField] private int _maxGrowth = 20;
+    public int MaxGrowth => _maxGrowth;
+
     [SerializeField] private int _growthLevelCounter = 1;
     public int GrowthLevelCounter => _growthLevelCounter;
 
@@ -89,12 +92,20 @@ public class Player_Data : MonoBehaviour
             Debug.Log("Player reached level 5, objective 1 completed.");
         }
 
+        if (_growthLevelCounter > _maxGrowth)
+        {
+            //EventManager.InvokeGrowthMaxed();
+            return;
+        }
+
         CheckLevelUp();
     }
     private void CheckLevelUp()
     {
         if (_currentExp >= _maxExp)
             LevelUp();
+
+        
     }
     public void GainExp(int expToGain)
     {
@@ -102,9 +113,5 @@ public class Player_Data : MonoBehaviour
         _hud.UpdateExpBar(_maxExp, _currentExp);
 
         CheckLevelUp();
-    }
-    public void IncreaseGrowth(float newScaleIncrement)
-    {
-        _scaleIncrement = newScaleIncrement;
     }
 }

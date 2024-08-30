@@ -146,9 +146,9 @@ public class Player_Controller : Character
                     EventManager.InvokeEarnExp(consumable.Reward);
 
                     // for testing:
-                    EventManager.InvokeEarnCurrency(consumable.Reward);
+                    /*EventManager.InvokeEarnCurrency(consumable.Reward);
                     EventManager.InvokeEarnSpecialCurrency(consumable.Reward);
-                    EventManager.InvokeProgressMade(consumable.Reward);
+                    EventManager.InvokeProgressMade(consumable.Reward);*/
                     break;
             }
 
