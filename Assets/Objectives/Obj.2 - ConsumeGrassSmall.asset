@@ -17,7 +17,7 @@ MonoBehaviour:
   _collectedPrefab: {fileID: 225162169543590403, guid: 4a766031bbcb00240b5a0708f7394968,
     type: 3}
   _completionCondition: 10
-  _notificationText: Objective 2 Completed
+  _notificationText: Objects Collected
   _conditionEvent:
     m_PersistentCalls:
       m_Calls: []

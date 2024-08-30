@@ -181,7 +181,7 @@ public class LevelManager : MonoBehaviour
     {
         _popupText.text = message;
         _completionPopup.SetActive(true);
-        soundManager.PlayCatSound();
+        //soundManager.PlayCatSound();
         StartCoroutine(HideCompletionPopup());
     }
 
