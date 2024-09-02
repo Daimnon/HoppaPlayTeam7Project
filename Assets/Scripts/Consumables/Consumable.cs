@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static Cinemachine.DocumentationSortingAttribute;
 
 public class Consumable : MonoBehaviour
 {
@@ -31,6 +30,10 @@ public class Consumable : MonoBehaviour
     {
         CalculateExp();
         InitializeOutlineShader();
+    }
+    private void OnDisable()
+    {
+        SoundManager.Instance.PlayPickupSound();
     }
 
     private void CalculateExp_Deprecated()

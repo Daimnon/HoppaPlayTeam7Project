@@ -17,6 +17,7 @@ public class LevelManager : MonoBehaviour
     [Header("Components")]
     [SerializeField] private GameObject _loseCanvas;
     [SerializeField] private GameObject _startCanvas;
+    [SerializeField] private SoundManager _soundManager;
 
     [Header("UI Elements")]
     [SerializeField] private List<Sprite> _starSprites;
@@ -40,7 +41,6 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private float _timeLimit = 0.0f;
     public float TimeLimit => _timeLimit;
 
-    private SoundManager soundManager;
     private bool _hasLost = false;
     private bool _gameStarted = false;
 
@@ -53,7 +53,8 @@ public class LevelManager : MonoBehaviour
     }
     private void Start()
     {
-        soundManager = FindAnyObjectByType<SoundManager>();
+        if (!_soundManager)
+            _soundManager = FindAnyObjectByType<SoundManager>();
 
         foreach (var objective in _objectives)
         {
@@ -182,7 +183,7 @@ public class LevelManager : MonoBehaviour
     {
         _popupText.text = message;
         _completionPopup.SetActive(true);
-        soundManager.PlayCatSound();
+        _soundManager.PlayCatSound();
         StartCoroutine(HideCompletionPopup());
     }
 
