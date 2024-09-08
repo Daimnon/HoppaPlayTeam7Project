@@ -151,8 +151,8 @@ MonoBehaviour:
   _objectiveType: 1
   _level: 1
   _progressionReward: 1
-  _outline: {fileID: 2238008248655815569}
---- !u!114 &2238008248655815569
+  _outline: {fileID: 7539361863359548581}
+--- !u!114 &7539361863359548581
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
