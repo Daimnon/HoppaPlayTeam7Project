@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29d3d97cde40a46ab9011c95fe56e06b, type: 3}
+  m_Name: Obj.3 - Number of explosions
+  m_EditorClassIdentifier: 
+  _objectiveDescription: Create a set number of explosions with the flame trail
+  _objectiveType: 2
+  _collectedPrefab: {fileID: 0}
+  _completionCondition: 1
+  _notificationText: Objective 3 Completed
+  _conditionEvent:
+    m_PersistentCalls:
+      m_Calls: []

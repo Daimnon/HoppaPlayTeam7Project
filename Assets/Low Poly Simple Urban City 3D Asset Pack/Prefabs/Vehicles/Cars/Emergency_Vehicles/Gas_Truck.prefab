@@ -11,7 +11,10 @@ GameObject:
   - component: {fileID: 2539071637568880562}
   - component: {fileID: 1482603086580084759}
   - component: {fileID: 3708631756829623517}
-  m_Layer: 0
+  - component: {fileID: 1159330762429565186}
+  - component: {fileID: 1243794162088466944}
+  - component: {fileID: 1028777680572468515}
+  m_Layer: 6
   m_Name: Gas_Truck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,3 +86,48 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1159330762429565186
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2915879132325717256}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.3924215, y: 3.0350902, z: 8.210792}
+  m_Center: {x: 0, y: 1.5175451, z: 0.0000076293945}
+--- !u!114 &1243794162088466944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2915879132325717256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectiveType: 1
+  _level: 11
+  _progressionReward: 0
+  _rendererToOutline: {fileID: 3708631756829623517}
+  _originalOutlineMat: {fileID: 2100000, guid: 06f6b6c3542045b4b896f52838a63ffc, type: 2}
+--- !u!114 &1028777680572468515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2915879132325717256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99b3d44050d91fb4aad7465218bbcd03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderers:
+  - {fileID: 3708631756829623517}
+  _position: {x: 0, y: 0, z: 0}

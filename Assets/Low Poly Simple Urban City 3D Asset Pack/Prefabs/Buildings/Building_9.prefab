@@ -11,7 +11,10 @@ GameObject:
   - component: {fileID: 7026000295285956488}
   - component: {fileID: 6210047851288858669}
   - component: {fileID: 8199492342484362471}
-  m_Layer: 0
+  - component: {fileID: 4359808016219319385}
+  - component: {fileID: 5478497664041344611}
+  - component: {fileID: 3359180393024926910}
+  m_Layer: 6
   m_Name: Building_9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,3 +86,48 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4359808016219319385
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7695119763558581554}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.8027396, y: 9.038, z: 10.138221}
+  m_Center: {x: 0, y: 4.519, z: 0.0000038146973}
+--- !u!114 &5478497664041344611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7695119763558581554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectiveType: 1
+  _level: 13
+  _progressionReward: 0
+  _rendererToOutline: {fileID: 8199492342484362471}
+  _originalOutlineMat: {fileID: 2100000, guid: 06f6b6c3542045b4b896f52838a63ffc, type: 2}
+--- !u!114 &3359180393024926910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7695119763558581554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99b3d44050d91fb4aad7465218bbcd03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderers:
+  - {fileID: 8199492342484362471}
+  _position: {x: 0, y: 0, z: 0}

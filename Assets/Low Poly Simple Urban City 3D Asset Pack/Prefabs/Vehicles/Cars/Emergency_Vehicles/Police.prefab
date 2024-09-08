@@ -11,7 +11,10 @@ GameObject:
   - component: {fileID: 1788606808321810097}
   - component: {fileID: 3422089200387936532}
   - component: {fileID: 619601975448839646}
-  m_Layer: 0
+  - component: {fileID: 6336172957266566172}
+  - component: {fileID: 5758159272392257334}
+  - component: {fileID: 9095518453140010881}
+  m_Layer: 6
   m_Name: Police
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,3 +86,48 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6336172957266566172
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412363122834768907}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.408282, y: 1.8256794, z: 5.4405203}
+  m_Center: {x: 0, y: 0.9128397, z: 0}
+--- !u!114 &5758159272392257334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412363122834768907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectiveType: 1
+  _level: 11
+  _progressionReward: 0
+  _rendererToOutline: {fileID: 619601975448839646}
+  _originalOutlineMat: {fileID: 2100000, guid: 06f6b6c3542045b4b896f52838a63ffc, type: 2}
+--- !u!114 &9095518453140010881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412363122834768907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99b3d44050d91fb4aad7465218bbcd03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderers:
+  - {fileID: 619601975448839646}
+  _position: {x: 0, y: 0, z: 0}

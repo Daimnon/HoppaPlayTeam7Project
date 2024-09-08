@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2293309488419229141}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Fance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,11 +104,73 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fance
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7f532a1801cde324c999848393bbcc7c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f532a1801cde324c999848393bbcc7c, type: 3}
 --- !u!4 &2822214848982701809 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7f532a1801cde324c999848393bbcc7c,
+    type: 3}
+  m_PrefabInstance: {fileID: 2350945039264198938}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3197931627946839115 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7f532a1801cde324c999848393bbcc7c,
+    type: 3}
+  m_PrefabInstance: {fileID: 2350945039264198938}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &6057472854978797921
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3197931627946839115}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.7836668, y: 1.3188866, z: 0.16732666}
+  m_Center: {x: -0.004999995, y: 0.6544433, z: 0.004999999}
+--- !u!114 &355903725331186567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3197931627946839115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99b3d44050d91fb4aad7465218bbcd03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderers:
+  - {fileID: 3990657316015680926}
+  _position: {x: 0, y: 0, z: 0}
+--- !u!114 &5442491191135375200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3197931627946839115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectiveType: 1
+  _level: 5
+  _progressionReward: 0
+  _rendererToOutline: {fileID: 3990657316015680926}
+  _originalOutlineMat: {fileID: 2100000, guid: 06f6b6c3542045b4b896f52838a63ffc, type: 2}
+--- !u!23 &3990657316015680926 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 7f532a1801cde324c999848393bbcc7c,
     type: 3}
   m_PrefabInstance: {fileID: 2350945039264198938}
   m_PrefabAsset: {fileID: 0}

@@ -111,6 +111,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cdc44e90b27d1e3498433fe511e43d1b, type: 3}
+--- !u!23 &4912845688128569693 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: cdc44e90b27d1e3498433fe511e43d1b,
+    type: 3}
+  m_PrefabInstance: {fileID: 6047343357986086361}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6081763589384403506 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: cdc44e90b27d1e3498433fe511e43d1b,
@@ -148,6 +154,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectiveType: 3
-  _level: 4
+  _objectiveType: 1
+  _level: 5
   _progressionReward: 0
+  _rendererToOutline: {fileID: 4912845688128569693}
+  _originalOutlineMat: {fileID: 2100000, guid: 06f6b6c3542045b4b896f52838a63ffc, type: 2}
+--- !u!114 &2305318287758734450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6858159177359499400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99b3d44050d91fb4aad7465218bbcd03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderers:
+  - {fileID: 4912845688128569693}
+  _position: {x: 0, y: 0, z: 0}

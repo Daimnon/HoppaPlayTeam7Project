@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -28,14 +25,17 @@ public class Player_HUD : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _levelNumText;
     public TextMeshProUGUI LevelNumText => _levelNumText;
 
+    [SerializeField] private Image _timerBg;
+    public Image TimerBg => _timerBg;
+
+    [SerializeField] private Image _progressionIcon;
+    public Image ProgressionIcon => _progressionIcon;
+
     [SerializeField] private Image _progressionFill;
     public Image ProgressionFill => _progressionFill;
 
     [SerializeField] private TextMeshProUGUI _progressionText;
     public TextMeshProUGUI ProgressionText => _progressionText;
-
-    [SerializeField] private Image _timerBg;
-    public Image TimerBg => _timerBg;
 
     [SerializeField] private TextMeshProUGUI _timerText;
     public TextMeshProUGUI TimerText => _timerText;
@@ -52,6 +52,7 @@ public class Player_HUD : MonoBehaviour
     public TextMeshProUGUI MaxExpText => _maxExpText;
     public TextMeshProUGUI CurrentExpText => _currentExpText;
 
+    private LevelManager _levelManager; 
     private string[] _currencySuffixes = { "", "K", "M", "B", "T" };
 
     private void OnEnable()
@@ -69,6 +70,11 @@ public class Player_HUD : MonoBehaviour
         EventManager.OnSpecialCurrencyChange -= OnSpecialCurrencyChange;
         EventManager.OnProgressionChange -= OnProgressionChange;
         EventManager.OnTimerChange -= OnTimerChange;
+    }
+
+    private void Start()
+    {
+        _levelManager = FindObjectOfType<LevelManager>();
     }
 
     #region General
@@ -196,6 +202,7 @@ public class Player_HUD : MonoBehaviour
     #region Events
     private void OnLevelLaunched()
     {
+        UpdateTimerText(_levelManager != null ? _levelManager.TimeLimit : 0);
     }
     private void OnCurrencyChange(int newCurrency)
     {

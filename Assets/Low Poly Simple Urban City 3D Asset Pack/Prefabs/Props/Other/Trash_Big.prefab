@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5928611082187663457}
   - component: {fileID: 1177179615925533570}
   - component: {fileID: 6816869388088646261}
+  - component: {fileID: 3538597790743733796}
   m_Layer: 6
   m_Name: Trash_Big
   m_TagString: Untagged
@@ -110,6 +111,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectiveType: 3
-  _level: 4
+  _objectiveType: 1
+  _level: 7
   _progressionReward: 0
+  _rendererToOutline: {fileID: 5928611082187663457}
+  _originalOutlineMat: {fileID: 2100000, guid: 06f6b6c3542045b4b896f52838a63ffc, type: 2}
+--- !u!114 &3538597790743733796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5280000169877883316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99b3d44050d91fb4aad7465218bbcd03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderers:
+  - {fileID: 5928611082187663457}
+  _position: {x: 0, y: 0, z: 0}

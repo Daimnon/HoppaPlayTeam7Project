@@ -142,12 +142,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectiveType: 3
+  _objectiveType: 1
   _level: 1
-  _progressionReward: 0
+  _progressionReward: 1
+  _rendererToOutline: {fileID: 6644724541204460530}
+  _originalOutlineMat: {fileID: 2100000, guid: 06f6b6c3542045b4b896f52838a63ffc, type: 2}
 --- !u!4 &5511809044258490525 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 53def55ab869e5c4cb89587e5799609f,
+    type: 3}
+  m_PrefabInstance: {fileID: 5473941050130001782}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &6644724541204460530 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 53def55ab869e5c4cb89587e5799609f,
     type: 3}
   m_PrefabInstance: {fileID: 5473941050130001782}
   m_PrefabAsset: {fileID: 0}

@@ -1,23 +1,49 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class TerritoryClaimer : MonoBehaviour
 {
     [Header("Components")]
-    [SerializeField] private GameObject cube;
+    [SerializeField] private ConsumableObjectPool _consumablePool;
     [SerializeField] private TrailRenderer _trailRenderer;
 
     [Header("Data")]
     [SerializeField] private LayerMask _detectionLayer;
-    [SerializeField] private float _minDistance = 2.0f; // should increase while growing in size
+    [SerializeField] private float _minDistance = 1.0f; // should increase while growing in size
+    [SerializeField] private float _intersectDistance;
 
     private readonly List<Vector3> _trailPoints = new();
+    private List<Vector3> _closedTrailPoints = new();
+    private List<Vector3> _closedTrailPointsForGizmos = new();
+    private float _startingMinDistance;
+    
+    [Header("VFXs")]
+    [SerializeField] private VisualEffect _explosionVFX;
+    [SerializeField] private float _explosionTimeToReset = 5.0f;
+    private List<Coroutine> _explosionCoroutines;
+
+    private float _firePower = 1.0f;
+    private float _fireRange = 1.0f;
+    private int _explosionCount = 0;
+    private SoundManager soundManager;
 
     #region Monobehaviour Callbacks
     private void OnEnable()
     {
         EventManager.OnAreaClosed += OnAreaClosed;
+        EventManager.OnGrowth += OnGrowth;
+        _explosionCoroutines = new();
+        _explosionVFX.Reinit();
+        _explosionVFX.Stop();
+    }
+    private void Start() 
+    {
+        soundManager = FindObjectOfType<SoundManager>();
+        _intersectDistance = transform.localScale.x;
+        _startingMinDistance = _minDistance;
     }
     private void Update()
     {
@@ -27,6 +53,7 @@ public class TerritoryClaimer : MonoBehaviour
     private void OnDisable()
     {
         EventManager.OnAreaClosed -= OnAreaClosed;
+        EventManager.OnGrowth -= OnGrowth;
     }
     #endregion
 
@@ -42,56 +69,26 @@ public class TerritoryClaimer : MonoBehaviour
     }
     private void CheckForClosedArea()
     {
-        if (_trailPoints.Count < 3) return;
+        if (_trailPoints.Count < 4) return;
 
         Vector3 currentPosition = transform.position;
-        if (Vector3.Distance(_trailPoints[0], currentPosition) < _minDistance)
+        for (int i = 0; i < _trailPoints.Count - 2; i++) // skip recent points
         {
-            Vector3 midPos = CalculateCentroid(_trailPoints);
-            Debug.Log("Centroid of territory" + midPos);
+            Vector3 pointA = _trailPoints[i];
+            Vector3 pointB = _trailPoints[i + 1];
 
-            EventManager.InvokeAreaClosed(CalculateCentroid(_trailPoints));
+            if (IsPlayerCrossingLineSegment(pointA, pointB, currentPosition))
+            {
+                Vector3 intersectionPoint = GetIntersectionPoint(pointA, pointB, currentPosition);
+                _closedTrailPoints = GetPointsFromIntersection(_trailPoints, i, intersectionPoint);
+                _closedTrailPointsForGizmos = _closedTrailPoints; // gizmos
+                Vector3 midPos = CalculateCentroid(_closedTrailPoints);
+
+                Debug.Log("Center of closed area: " + midPos);
+                EventManager.InvokeAreaClosed(midPos);
+                break;
+            }
         }
-    }
-    private Vector3 CalculateCentroid(List<Vector3> points)
-    {
-        float signedArea = 0f;
-        float cx = 0f;
-        float cz = 0f;
-
-        for (int i = 0; i < points.Count; i++)
-        {
-            Vector3 p0 = points[i];
-            Vector3 p1 = points[(i + 1) % points.Count];
-
-            float a = p0.x * p1.z - p1.x * p0.z;
-            signedArea += a;
-            cx += (p0.x + p1.x) * a;
-            cz += (p0.z + p1.z) * a;
-        }
-
-        signedArea *= 0.5f;
-        cx /= (6f * signedArea);
-        cz /= (6f * signedArea);
-        
-        return new Vector3(cx, transform.position.y, cz);
-    }
-
-    private Bounds CalculateBoundingBox(List<Vector3> points)
-    {
-        Vector3 min = points[0];
-        Vector3 max = points[0];
-
-        foreach (var point in points)
-        {
-            min = Vector3.Min(min, point);
-            max = Vector3.Max(max, point);
-        }
-
-        Vector3 center = (min + max) / 2;
-        Vector3 size = max - min;
-
-        return new Bounds(center, size);
     }
     private bool IsPointInPolygon(Vector3 point, List<Vector3> polygon)
     {
@@ -107,53 +104,185 @@ public class TerritoryClaimer : MonoBehaviour
         }
         return isInside;
     }
+    private bool IsPlayerCrossingLineSegment(Vector3 pointA, Vector3 pointB, Vector3 playerPosition)
+    {
+        float distanceFromLine = DistanceFromPointToLineSegment(pointA, pointB, playerPosition);
+        return distanceFromLine < _intersectDistance;
+    }
+    private Vector3 GetIntersectionPoint(Vector3 pointA, Vector3 pointB, Vector3 playerPosition)
+    {
+        // Here, you can calculate the exact intersection point based on the player's movement
+        // For now, we'll use a placeholder that returns the midpoint between pointA and pointB
+        return (pointA + pointB) / 2f;
+    }
+    private List<Vector3> GetPointsFromIntersection(List<Vector3> trailPoints, int intersectionIndex, Vector3 intersectionPoint)
+    {
+        // Create a new list starting from the intersection point
+        List<Vector3> closedAreaPoints = new()
+        {
+            // Add the intersection point first
+            intersectionPoint
+        };
+
+        // Add all the points from the intersection index onwards
+        for (int i = intersectionIndex + 1; i < trailPoints.Count; i++)
+        {
+            closedAreaPoints.Add(trailPoints[i]);
+        }
+
+        // Also include the current position to complete the closed area
+        closedAreaPoints.Add(trailPoints[intersectionIndex]); // First point to close the area
+
+        return closedAreaPoints;
+    }
+    private Vector3 CalculateCentroid(List<Vector3> points)
+    {
+        float signedArea = 0f;
+        float cx = 0f;
+        float cz = 0f;
+
+        for (int i = 0; i < points.Count; i++)
+        {
+            Vector3 p0 = points[i];
+            Vector3 p1 = points[(i + 1) % points.Count];
+
+            float a = p0.x * p1.z - p1.x * p0.z; // shoelace formula
+            signedArea += a;
+            cx += (p0.x + p1.x) * a;
+            cz += (p0.z + p1.z) * a;
+        }
+
+        signedArea *= 0.5f;
+        cx /= (6f * signedArea);
+        cz /= (6f * signedArea);
+        
+        return new Vector3(cx, transform.position.y, cz);
+    }
+
+    private float DistanceFromPointToLineSegment(Vector3 pointA, Vector3 pointB, Vector3 playerPosition)
+    {
+        Vector3 lineDirection = pointB - pointA;
+        Vector3 playerToA = playerPosition - pointA;
+
+        float t = Vector3.Dot(playerToA, lineDirection) / Vector3.Dot(lineDirection, lineDirection);
+        t = Mathf.Clamp01(t);
+
+        Vector3 closestPoint = pointA + t * lineDirection;
+        return Vector3.Distance(playerPosition, closestPoint);
+    }
+    private Bounds CalculateBoundingBox(List<Vector3> points)
+    {
+        if (points == null || points.Count == 0)
+            return new Bounds(Vector3.zero, Vector3.zero);
+
+        Vector3 min = points[0];
+        Vector3 max = points[0];
+
+        foreach (var point in points)
+        {
+            min = Vector3.Min(min, point);
+            max = Vector3.Max(max, point);
+        }
+
+        // y value to be zero for not missing objects
+        min.y = 0;
+
+        // calculate the center and size with new min Y
+        Vector3 center = (min + max) / 2;
+        Vector3 size = max - min;
+
+        return new Bounds(center, size);
+    }
     private IEnumerator RemovePointDelayed(Vector3 point)
     {
         yield return new WaitForSeconds(_trailRenderer.time);
         _trailPoints.Remove(point);
     }
-    private List<GameObject> GetObjectsInClosedArea()
+    private List<Consumable> GetConsumablesInClosedArea()
     {
-        List<GameObject> objectsInClosedArea = new List<GameObject>();
+        List<Consumable> consumablesInClosedArea = new();
 
-        // Calculate bounding box
-        Bounds bounds = CalculateBoundingBox(_trailPoints);
-
-        // Use Physics.OverlapBox to get all colliders in the bounding box
+        Bounds bounds = CalculateBoundingBox(_closedTrailPoints);
         Collider[] colliders = Physics.OverlapBox(bounds.center, bounds.extents, Quaternion.identity, _detectionLayer);
 
         foreach (var collider in colliders)
         {
-            if (IsPointInPolygon(collider.transform.position, _trailPoints))
-            {
-                objectsInClosedArea.Add(collider.gameObject);
-            }
+            if (IsPointInPolygon(collider.transform.position, _closedTrailPoints) && collider.TryGetComponent(out Consumable consumable))
+                consumablesInClosedArea.Add(consumable);
         }
 
-        return objectsInClosedArea;
+        _closedTrailPoints = new();
+        return consumablesInClosedArea;
+    }
+    #endregion
+
+    #region VFX Methods
+    private void ResetExplosion()
+    {
+        _explosionVFX.Reinit();
+        _explosionVFX.Stop();
+        _explosionVFX.transform.SetParent(transform);
+    }
+    private void PlayExplosion(Vector3 pos)
+    {
+        _explosionVFX.transform.SetParent(null);
+        _explosionVFX.transform.position = pos;
+        _explosionVFX.transform.localScale = transform.localScale / 2f;
+        _explosionVFX.Play();
+    }
+    private IEnumerator ExplosionRoutine(Vector3 midPos)
+    {
+        PlayExplosion(midPos);
+        yield return new WaitForSeconds(_explosionTimeToReset);
+
+        ResetExplosion();
+    }
+    #endregion
+
+    #region Upgrades
+    public void IncreaseFirePower(float powerIncrement, float rangeIncrement)
+    {
+        _firePower += powerIncrement;
+        _fireRange += rangeIncrement;
     }
     #endregion
 
     #region Events
     private void OnAreaClosed(Vector3 midPos) // need to carry on from here
     {
-        List<GameObject> objectsInClosedArea = GetObjectsInClosedArea();
-        if (objectsInClosedArea.Count > 0)
+        List<Consumable> consumablesInClosedArea = GetConsumablesInClosedArea();
+        for (int i = 0; i < consumablesInClosedArea.Count; i++)
         {
-            string debug = "";
-            for (int i = 0; i < objectsInClosedArea.Count; i++)
-            {
-                if (i != objectsInClosedArea.Count)
-                    debug += i+1 + ". " + objectsInClosedArea[i].name + ", " ;
-                else
-                    debug += i+1 + ". " + objectsInClosedArea[i].name + ".";
-            }
-            Debug.Log(debug);
+            _consumablePool.ReturnConsumableToPool(consumablesInClosedArea[i]);
         }
-        
+
+        if (_explosionCoroutines.Count > 0)
+        {
+            for (int i = 0; i < _explosionCoroutines.Count; i++)
+            {
+                StopCoroutine(_explosionCoroutines[i]);
+            }
+        }
+        _explosionCoroutines.Clear();
+        _explosionCoroutines.Add(StartCoroutine(ExplosionRoutine(midPos)));
+
         _trailPoints.Clear();
         _trailRenderer.Clear();
         Debug.Log("Closed shape detected!");
+
+        soundManager.PlayFireExplosionSound();
+        _explosionCount++;
+
+        if (_explosionCount >= 3) // fix for objective
+        {
+            EventManager.InvokeObjectiveTrigger3();
+            Debug.Log("Objective 3 completed with explosion count: " + _explosionCount);
+        }
+    }
+    private void OnGrowth()
+    {
+        _minDistance = _startingMinDistance * transform.localScale.x;
+        _intersectDistance = transform.localScale.x;
     }
     #endregion
 
@@ -161,34 +290,34 @@ public class TerritoryClaimer : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
 
-        // Draw lines between the trail points
+        // draw lines between the trail points
         for (int i = 0; i < _trailPoints.Count - 1; i++)
         {
             Gizmos.DrawLine(_trailPoints[i], _trailPoints[i + 1]);
         }
 
-        // Draw line from the last trail point to the player's current position
+        // draw line from the last trail point to the player's current position
         if (_trailPoints.Count > 0)
-        {
             Gizmos.DrawLine(_trailPoints[_trailPoints.Count - 1], transform.position);
-        }
 
-        // Draw spheres at each trail point
+        // draw spheres at each trail point
         Gizmos.color = Color.blue;
         foreach (var point in _trailPoints)
         {
             Gizmos.DrawSphere(point, 0.1f);
         }
 
-        // If a closed area is detected, draw green lines connecting the points in the loop
-        if (_trailPoints.Count > 2 && Vector3.Distance(_trailPoints[0], transform.position) < _minDistance)
+        // draw green lines connecting the points in the closed area loop
+        if (_closedTrailPointsForGizmos != null && _closedTrailPointsForGizmos.Count > 1)
         {
             Gizmos.color = Color.green;
-            for (int i = 0; i < _trailPoints.Count - 1; i++)
+            for (int i = 0; i < _closedTrailPointsForGizmos.Count - 1; i++)
             {
-                Gizmos.DrawLine(_trailPoints[i], _trailPoints[i + 1]);
+                Gizmos.DrawLine(_closedTrailPointsForGizmos[i], _closedTrailPointsForGizmos[i + 1]);
             }
-            Gizmos.DrawLine(_trailPoints[_trailPoints.Count - 1], _trailPoints[0]);
+
+            // draw line to close the loop
+            Gizmos.DrawLine(_closedTrailPointsForGizmos[_closedTrailPointsForGizmos.Count - 1], _closedTrailPointsForGizmos[0]);
         }
     }
 }

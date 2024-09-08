@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 136283604452875267}
   - component: {fileID: 6892562556524537480}
   - component: {fileID: -236479902525090648}
+  - component: {fileID: 615186951}
   m_Layer: 0
   m_Name: Main_Camera
   m_TagString: MainCamera
@@ -45,7 +46,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -59,7 +60,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 300
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -153,3 +154,27 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &615186951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8896685733708562264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2940c0628036bd4ea6690876a16bc3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  _playerPosOffset: {x: 0, y: 0, z: 0}
+  _directionFromCamToPlayer: {x: -0.05538918, y: -0.8307709, z: 0.5538517}
+  _camTr: {fileID: 5422624482594111744}
+  _playerTr: {fileID: 0}
+  _targetAlpha: 0.33
+  _fadeSpeed: 0.5
+  _distanceFromPlayer: 8
+  _retainShadows: 1
+  _objectsBlockingView: []
