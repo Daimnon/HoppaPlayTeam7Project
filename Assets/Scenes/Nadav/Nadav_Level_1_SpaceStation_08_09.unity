@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18168691, g: 0.22734535, b: 0.3074192, a: 1}
+  m_IndirectSpecularColor: {r: 0.17971753, g: 0.22502527, b: 0.30654263, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -328,6 +328,51 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 713096617398752500, guid: 648cf9366711bf94e8a2f49ee6fcacd5,
+        type: 3}
+      propertyPath: outlineWidth
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 713096617398752500, guid: 648cf9366711bf94e8a2f49ee6fcacd5,
+        type: 3}
+      propertyPath: outlineColor.b
+      value: 0.82745105
+      objectReference: {fileID: 0}
+    - target: {fileID: 713096617398752500, guid: 648cf9366711bf94e8a2f49ee6fcacd5,
+        type: 3}
+      propertyPath: outlineColor.g
+      value: 0.95294124
+      objectReference: {fileID: 0}
+    - target: {fileID: 713096617398752500, guid: 648cf9366711bf94e8a2f49ee6fcacd5,
+        type: 3}
+      propertyPath: outlineColor.r
+      value: 0.9960785
+      objectReference: {fileID: 0}
+    - target: {fileID: 5696602872916583925, guid: 648cf9366711bf94e8a2f49ee6fcacd5,
+        type: 3}
+      propertyPath: _outline
+      value: 
+      objectReference: {fileID: 737196782}
+    - target: {fileID: 8427501758846953884, guid: 648cf9366711bf94e8a2f49ee6fcacd5,
+        type: 3}
+      propertyPath: outlineWidth
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8427501758846953884, guid: 648cf9366711bf94e8a2f49ee6fcacd5,
+        type: 3}
+      propertyPath: outlineColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8427501758846953884, guid: 648cf9366711bf94e8a2f49ee6fcacd5,
+        type: 3}
+      propertyPath: outlineColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8427501758846953884, guid: 648cf9366711bf94e8a2f49ee6fcacd5,
+        type: 3}
+      propertyPath: outlineColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8921647392676517690, guid: 648cf9366711bf94e8a2f49ee6fcacd5,
         type: 3}
       propertyPath: m_RootOrder
@@ -880,6 +925,30 @@ MonoBehaviour:
   _distanceFromPlayer: 8
   _retainShadows: 1
   _objectsBlockingView: []
+--- !u!1 &737196778 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 940184221437489166, guid: 648cf9366711bf94e8a2f49ee6fcacd5,
+    type: 3}
+  m_PrefabInstance: {fileID: 46144873}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &737196782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 737196778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab8ca3407e172c4db129ddd95ea9afb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 4
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &758845896
 GameObject:
   m_ObjectHideFlags: 0
@@ -1043,7 +1112,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 0.8867924, g: 0.83505553, b: 0.6901922, a: 1}
-  m_Intensity: 1
+  m_Intensity: 1.47
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1086,7 +1155,7 @@ Light:
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_ColorTemperature: 7877
+  m_ColorTemperature: 8302
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
@@ -1100,14 +1169,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 845632907}
-  m_LocalRotation: {x: -0.17931995, y: 0.44937804, z: -0.4889482, w: -0.72583294}
+  m_LocalRotation: {x: -0.48140913, y: 0.18727522, z: -0.63713336, w: -0.572044}
   m_LocalPosition: {x: 0, y: 29.49, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 44.408, y: -41.89, z: -309.828}
+  m_LocalEulerAnglesHint: {x: 52.131, y: 40.563, z: -243.345}
 --- !u!114 &879132621 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 773983558053576870, guid: 404988be43eec854ba7e0d92506d6720,

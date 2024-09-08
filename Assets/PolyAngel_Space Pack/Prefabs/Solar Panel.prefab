@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5859312443170442302}
   - component: {fileID: 7881981405512993153}
   - component: {fileID: 7187573276630239404}
+  - component: {fileID: 798214250765434279}
   m_Layer: 6
   m_Name: Solar Panel
   m_TagString: Untagged
@@ -100,8 +101,7 @@ MonoBehaviour:
   _objectiveType: 1
   _level: 1
   _progressionReward: 1
-  _rendererToOutline: {fileID: 0}
-  _originalOutlineMat: {fileID: 0}
+  _outline: {fileID: 798214250765434279}
 --- !u!65 &7187573276630239404
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -115,3 +115,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.4136438, y: 2.1151617, z: 1.5758493}
   m_Center: {x: 0, y: -0.29445216, z: 0.03972893}
+--- !u!114 &798214250765434279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5354931619580669419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab8ca3407e172c4db129ddd95ea9afb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 5
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []

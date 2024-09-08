@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8078571925366604340}
   - component: {fileID: 6338866042768160510}
   - component: {fileID: 5873352886872663376}
+  - component: {fileID: 6111303282148703885}
   m_Layer: 6
   m_Name: Trunk_01
   m_TagString: Untagged
@@ -97,7 +98,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objectiveType: 0
-  _level: 1
+  _level: 2
   _progressionReward: 1
-  _rendererToOutline: {fileID: 0}
-  _originalOutlineMat: {fileID: 0}
+  _outline: {fileID: 6111303282148703885}
+--- !u!114 &6111303282148703885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5546413172616124203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab8ca3407e172c4db129ddd95ea9afb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
