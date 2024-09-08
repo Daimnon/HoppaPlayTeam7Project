@@ -130,7 +130,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.43573493, y: 0.6785835, z: 0.32826608}
   m_Center: {x: 0.0155606195, y: 0.33929175, z: -0.026951768}
---- !u!114 &351155061714018214
+--- !u!114 &2557737965860647530
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 0
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 20
+  outlineWidth: 4
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -163,7 +163,7 @@ MonoBehaviour:
   _objectiveType: 1
   _level: 1
   _progressionReward: 1
-  _outline: {fileID: 351155061714018214}
+  _outline: {fileID: 2557737965860647530}
 --- !u!4 &580924863476324924 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4d496dc9156b11c4d9829c7cd7074be8,

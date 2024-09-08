@@ -62,27 +62,27 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 53def55ab869e5c4cb89587e5799609f,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.18301319
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 53def55ab869e5c4cb89587e5799609f,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.18301319
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 53def55ab869e5c4cb89587e5799609f,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.6830126
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 53def55ab869e5c4cb89587e5799609f,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: -0.6830126
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 53def55ab869e5c4cb89587e5799609f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 53def55ab869e5c4cb89587e5799609f,
         type: 3}
@@ -92,7 +92,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 53def55ab869e5c4cb89587e5799609f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: -150
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 53def55ab869e5c4cb89587e5799609f,
         type: 3}
@@ -117,7 +117,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5473941050130001782}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &3558580846278409951
+--- !u!65 &6771259495128363277
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,8 +128,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.6360412, y: 0.5358012, z: 0.9908048}
-  m_Center: {x: -0.029027853, y: 0.2415155, z: -0.15232015}
+  m_Size: {x: 0.0068530226, y: 0.008300009, z: 0.0044428534}
+  m_Center: {x: -0.0004503401, y: 0.0011601911, z: 0.0022113037}
 --- !u!114 &8445715745064945269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,8 +145,8 @@ MonoBehaviour:
   _objectiveType: 1
   _level: 1
   _progressionReward: 1
-  _outline: {fileID: 5865206264989692724}
---- !u!114 &5865206264989692724
+  _outline: {fileID: 4242040127609738374}
+--- !u!114 &4242040127609738374
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -160,7 +160,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 0
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 20
+  outlineWidth: 4
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []

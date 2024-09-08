@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2986316795766048930}
   - component: {fileID: 2815345048016469488}
   - component: {fileID: 9092538573474643204}
-  - component: {fileID: 7249667468483752681}
+  - component: {fileID: 8923297947801817432}
   m_Layer: 6
   m_Name: Trash_Bag_2
   m_TagString: Untagged
@@ -115,7 +115,7 @@ MonoBehaviour:
   _objectiveType: 1
   _level: 3
   _progressionReward: 0
-  _outline: {fileID: 7249667468483752681}
+  _outline: {fileID: 8923297947801817432}
 --- !u!114 &9092538573474643204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,7 +131,7 @@ MonoBehaviour:
   _renderers:
   - {fileID: 5357815066365468}
   _position: {x: 0, y: 0, z: 0}
---- !u!114 &7249667468483752681
+--- !u!114 &8923297947801817432
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 0
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 20
+  outlineWidth: 4
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []

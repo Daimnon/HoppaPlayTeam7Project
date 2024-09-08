@@ -62,27 +62,27 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: be9628ae05968d44997acaf0d8b9a3e2,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: be9628ae05968d44997acaf0d8b9a3e2,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: be9628ae05968d44997acaf0d8b9a3e2,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: be9628ae05968d44997acaf0d8b9a3e2,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: be9628ae05968d44997acaf0d8b9a3e2,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: be9628ae05968d44997acaf0d8b9a3e2,
         type: 3}
@@ -92,11 +92,16 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: be9628ae05968d44997acaf0d8b9a3e2,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: be9628ae05968d44997acaf0d8b9a3e2,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b71f9a059e4914c408321d05460cdbaa, type: 2}
+    - target: {fileID: -7511558181221131132, guid: be9628ae05968d44997acaf0d8b9a3e2,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: b71f9a059e4914c408321d05460cdbaa, type: 2}
     - target: {fileID: 919132149155446097, guid: be9628ae05968d44997acaf0d8b9a3e2,
@@ -117,7 +122,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7927549786398788903}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &4959820436777726691
+--- !u!65 &7724897443722711154
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,8 +133,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.0622057, y: 0.95395803, z: 1.0241455}
-  m_Center: {x: 0.13924254, y: 0.46856362, z: -0.14806403}
+  m_Size: {x: 0.010484377, y: 0.009939825, z: 0.008958923}
+  m_Center: {x: 0.001365307, y: 0.0014571566, z: 0.004787999}
 --- !u!114 &6671857490074076024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,8 +150,8 @@ MonoBehaviour:
   _objectiveType: 1
   _level: 2
   _progressionReward: 1
-  _outline: {fileID: 36912022949057179}
---- !u!114 &36912022949057179
+  _outline: {fileID: 0}
+--- !u!114 &6659105505766391847
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -160,7 +165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 0
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 20
+  outlineWidth: 4
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []

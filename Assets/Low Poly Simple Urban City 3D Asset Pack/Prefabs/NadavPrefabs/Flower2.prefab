@@ -99,6 +99,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b71f9a059e4914c408321d05460cdbaa, type: 2}
+    - target: {fileID: -7511558181221131132, guid: c710d680c0591264ebb99f8640048a82,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: b71f9a059e4914c408321d05460cdbaa, type: 2}
     - target: {fileID: 919132149155446097, guid: c710d680c0591264ebb99f8640048a82,
         type: 3}
       propertyPath: m_Name
@@ -145,8 +150,8 @@ MonoBehaviour:
   _objectiveType: 1
   _level: 1
   _progressionReward: 1
-  _outline: {fileID: 70421454693442866}
---- !u!114 &70421454693442866
+  _outline: {fileID: 3220427322381174625}
+--- !u!114 &3220427322381174625
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -160,7 +165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 0
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 20
+  outlineWidth: 4
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []

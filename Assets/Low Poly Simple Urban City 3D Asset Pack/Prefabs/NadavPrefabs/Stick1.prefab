@@ -145,8 +145,8 @@ MonoBehaviour:
   _objectiveType: 1
   _level: 1
   _progressionReward: 0
-  _outline: {fileID: 978728611953219890}
---- !u!114 &978728611953219890
+  _outline: {fileID: 6450064368178605332}
+--- !u!114 &6450064368178605332
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -160,7 +160,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 0
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 20
+  outlineWidth: 4
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
