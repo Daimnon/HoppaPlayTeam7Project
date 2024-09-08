@@ -16,6 +16,8 @@ public class TerritoryClaimer : MonoBehaviour
     [SerializeField] private float _intersectDistance;
 
     private readonly List<Vector3> _trailPoints = new();
+    private List<Vector3> _closedTrailPoints = new();
+    private List<Vector3> _closedTrailPointsForGizmos = new();
     private float _startingMinDistance;
     
     [Header("VFXs")]
@@ -65,22 +67,6 @@ public class TerritoryClaimer : MonoBehaviour
             StartCoroutine(RemovePointDelayed(currentPosition));
         }
     }
-
-    /* old check for closed area method (optimized but cannot close if not intersecting start point)
-     * private void CheckForClosedArea()
-    {
-        if (_trailPoints.Count < 3) return;
-
-        Vector3 currentPosition = transform.position;
-        if (Vector3.Distance(_trailPoints[0], currentPosition) < _minDistance)
-        {
-            Vector3 midPos = CalculateCentroid(_trailPoints);
-            Debug.Log("Centroid of territory" + midPos);
-
-            EventManager.InvokeAreaClosed(CalculateCentroid(_trailPoints));
-        }
-    }*/
-
     private void CheckForClosedArea()
     {
         if (_trailPoints.Count < 4) return;
@@ -94,8 +80,9 @@ public class TerritoryClaimer : MonoBehaviour
             if (IsPlayerCrossingLineSegment(pointA, pointB, currentPosition))
             {
                 Vector3 intersectionPoint = GetIntersectionPoint(pointA, pointB, currentPosition);
-                List<Vector3> closedAreaPoints = GetPointsFromIntersection(_trailPoints, i, intersectionPoint);
-                Vector3 midPos = CalculateCentroid(closedAreaPoints);
+                _closedTrailPoints = GetPointsFromIntersection(_trailPoints, i, intersectionPoint);
+                _closedTrailPointsForGizmos = _closedTrailPoints; // gizmos
+                Vector3 midPos = CalculateCentroid(_closedTrailPoints);
 
                 Debug.Log("Center of closed area: " + midPos);
                 EventManager.InvokeAreaClosed(midPos);
@@ -185,6 +172,9 @@ public class TerritoryClaimer : MonoBehaviour
     }
     private Bounds CalculateBoundingBox(List<Vector3> points)
     {
+        if (points == null || points.Count == 0)
+            return new Bounds(Vector3.zero, Vector3.zero);
+
         Vector3 min = points[0];
         Vector3 max = points[0];
 
@@ -194,6 +184,10 @@ public class TerritoryClaimer : MonoBehaviour
             max = Vector3.Max(max, point);
         }
 
+        // y value to be zero for not missing objects
+        min.y = 0;
+
+        // calculate the center and size with new min Y
         Vector3 center = (min + max) / 2;
         Vector3 size = max - min;
 
@@ -208,20 +202,16 @@ public class TerritoryClaimer : MonoBehaviour
     {
         List<Consumable> consumablesInClosedArea = new();
 
-        // Calculate bounding box
-        Bounds bounds = CalculateBoundingBox(_trailPoints);
-
-        // Use Physics.OverlapBox to get all colliders in the bounding box
+        Bounds bounds = CalculateBoundingBox(_closedTrailPoints);
         Collider[] colliders = Physics.OverlapBox(bounds.center, bounds.extents, Quaternion.identity, _detectionLayer);
 
         foreach (var collider in colliders)
         {
-            if (IsPointInPolygon(collider.transform.position, _trailPoints) && collider.TryGetComponent(out Consumable consumable))
-            {
+            if (IsPointInPolygon(collider.transform.position, _closedTrailPoints) && collider.TryGetComponent(out Consumable consumable))
                 consumablesInClosedArea.Add(consumable);
-            }
         }
 
+        _closedTrailPoints = new();
         return consumablesInClosedArea;
     }
     #endregion
@@ -261,19 +251,6 @@ public class TerritoryClaimer : MonoBehaviour
     private void OnAreaClosed(Vector3 midPos) // need to carry on from here
     {
         List<Consumable> consumablesInClosedArea = GetConsumablesInClosedArea();
-        /*if (objectsInClosedArea.Count > 0)
-        {
-            string debug = "";
-            for (int i = 0; i < objectsInClosedArea.Count; i++)
-            {
-                if (i != objectsInClosedArea.Count)
-                    debug += i+1 + ". " + objectsInClosedArea[i].name + ", " ;
-                else
-                    debug += i+1 + ". " + objectsInClosedArea[i].name + ".";
-            }
-            Debug.Log(debug);
-        }*/
-
         for (int i = 0; i < consumablesInClosedArea.Count; i++)
         {
             _consumablePool.ReturnConsumableToPool(consumablesInClosedArea[i]);
@@ -295,6 +272,7 @@ public class TerritoryClaimer : MonoBehaviour
 
         soundManager.PlayFireExplosionSound();
         _explosionCount++;
+
         if (_explosionCount >= 3) // fix for objective
         {
             EventManager.InvokeObjectiveTrigger3();
@@ -312,34 +290,34 @@ public class TerritoryClaimer : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
 
-        // Draw lines between the trail points
+        // draw lines between the trail points
         for (int i = 0; i < _trailPoints.Count - 1; i++)
         {
             Gizmos.DrawLine(_trailPoints[i], _trailPoints[i + 1]);
         }
 
-        // Draw line from the last trail point to the player's current position
+        // draw line from the last trail point to the player's current position
         if (_trailPoints.Count > 0)
-        {
             Gizmos.DrawLine(_trailPoints[_trailPoints.Count - 1], transform.position);
-        }
 
-        // Draw spheres at each trail point
+        // draw spheres at each trail point
         Gizmos.color = Color.blue;
         foreach (var point in _trailPoints)
         {
             Gizmos.DrawSphere(point, 0.1f);
         }
 
-        // If a closed area is detected, draw green lines connecting the points in the loop
-        if (_trailPoints.Count > 2 && Vector3.Distance(_trailPoints[0], transform.position) < _minDistance)
+        // draw green lines connecting the points in the closed area loop
+        if (_closedTrailPointsForGizmos != null && _closedTrailPointsForGizmos.Count > 1)
         {
             Gizmos.color = Color.green;
-            for (int i = 0; i < _trailPoints.Count - 1; i++)
+            for (int i = 0; i < _closedTrailPointsForGizmos.Count - 1; i++)
             {
-                Gizmos.DrawLine(_trailPoints[i], _trailPoints[i + 1]);
+                Gizmos.DrawLine(_closedTrailPointsForGizmos[i], _closedTrailPointsForGizmos[i + 1]);
             }
-            Gizmos.DrawLine(_trailPoints[_trailPoints.Count - 1], _trailPoints[0]);
+
+            // draw line to close the loop
+            Gizmos.DrawLine(_closedTrailPointsForGizmos[_closedTrailPointsForGizmos.Count - 1], _closedTrailPointsForGizmos[0]);
         }
     }
 }

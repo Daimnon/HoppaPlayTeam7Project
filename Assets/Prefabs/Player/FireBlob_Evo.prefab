@@ -711,7 +711,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 0.4
-  m_BaseOffset: 0.2
+  m_BaseOffset: 0.19
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &2761447709847105067
@@ -800,7 +800,7 @@ MonoBehaviour:
   _detectionLayer:
     serializedVersion: 2
     m_Bits: 64
-  _minDistance: 2
+  _minDistance: 1
   _intersectDistance: 0.2
   _explosionVFX: {fileID: 5973231555418993285}
   _explosionTimeToReset: 5
