@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2096842974110422622}
   - component: {fileID: 6248258459395572408}
   - component: {fileID: 868281629951916352}
+  - component: {fileID: 6121608375269579032}
   m_Layer: 6
   m_Name: Tram_3
   m_TagString: Untagged
@@ -113,5 +114,22 @@ MonoBehaviour:
   _objectiveType: 1
   _level: 12
   _progressionReward: 0
-  _rendererToOutline: {fileID: 2096842974110422622}
-  _originalOutlineMat: {fileID: 2100000, guid: 06f6b6c3542045b4b896f52838a63ffc, type: 2}
+  _outline: {fileID: 6121608375269579032}
+--- !u!114 &6121608375269579032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439531849737287563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab8ca3407e172c4db129ddd95ea9afb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 20
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []

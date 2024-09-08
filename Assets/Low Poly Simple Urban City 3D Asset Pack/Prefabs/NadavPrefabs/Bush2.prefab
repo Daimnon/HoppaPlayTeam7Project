@@ -145,8 +145,7 @@ MonoBehaviour:
   _objectiveType: 1
   _level: 4
   _progressionReward: 0
-  _rendererToOutline: {fileID: 6495555012141405597}
-  _originalOutlineMat: {fileID: 2100000, guid: 06f6b6c3542045b4b896f52838a63ffc, type: 2}
+  _outline: {fileID: 3079097519826367302}
 --- !u!114 &7299969375423201855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,6 +161,24 @@ MonoBehaviour:
   _renderers:
   - {fileID: 6495555012141405597}
   _position: {x: 0, y: 0, z: 0}
+--- !u!114 &3079097519826367302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4693917043166934088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab8ca3407e172c4db129ddd95ea9afb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 20
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!4 &5363773974703353586 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 82a822ff548cc64438bbc0be9a2733b1,
