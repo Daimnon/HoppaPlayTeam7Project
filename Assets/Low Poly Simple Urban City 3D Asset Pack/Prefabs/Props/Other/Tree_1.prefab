@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1516629974081908536}
   - component: {fileID: 6091333096248416697}
   - component: {fileID: 3339395697251263409}
+  - component: {fileID: 5085954218705048388}
   m_Layer: 6
   m_Name: Tree_1
   m_TagString: Untagged
@@ -115,8 +116,7 @@ MonoBehaviour:
   _objectiveType: 1
   _level: 6
   _progressionReward: 0
-  _rendererToOutline: {fileID: 7301202565836025519}
-  _originalOutlineMat: {fileID: 2100000, guid: 06f6b6c3542045b4b896f52838a63ffc, type: 2}
+  _outline: {fileID: 5085954218705048388}
 --- !u!114 &3339395697251263409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,6 +132,24 @@ MonoBehaviour:
   _renderers:
   - {fileID: 7301202565836025519}
   _position: {x: 0, y: 0, z: 0}
+--- !u!114 &5085954218705048388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9102875994649005946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab8ca3407e172c4db129ddd95ea9afb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 20
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &5116260440800700701
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -242,27 +260,3 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5116260440800700701}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &4789150554470827183 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 393749191456091570, guid: cd1633d99a19c1f44b2156aaa6784683,
-    type: 3}
-  m_PrefabInstance: {fileID: 5116260440800700701}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2819188030350607311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4789150554470827183}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []

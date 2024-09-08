@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6864740992859640672}
   - component: {fileID: 5731210155355483606}
   - component: {fileID: 1646844314982839068}
+  - component: {fileID: 6696980628951613309}
   m_Layer: 6
   m_Name: Car_3_3
   m_TagString: Untagged
@@ -113,5 +114,22 @@ MonoBehaviour:
   _objectiveType: 1
   _level: 11
   _progressionReward: 0
-  _rendererToOutline: {fileID: 6864740992859640672}
-  _originalOutlineMat: {fileID: 2100000, guid: 06f6b6c3542045b4b896f52838a63ffc, type: 2}
+  _outline: {fileID: 6696980628951613309}
+--- !u!114 &6696980628951613309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4919208424876126901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab8ca3407e172c4db129ddd95ea9afb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 20
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []

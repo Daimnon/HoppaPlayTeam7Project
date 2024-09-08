@@ -67,7 +67,7 @@ public class OutlineAltered : MonoBehaviour
     private Color outlineColor = Color.white;
 
     [SerializeField, Range(0f, 20f)]
-    private float outlineWidth = 2f;
+    private float outlineWidth = 20f;
 
     [Header("Optional")]
 
@@ -345,7 +345,7 @@ public class OutlineAltered : MonoBehaviour
     [ContextMenu("Disable Outline")]
     public void RemoveOutline()
     {
-        if (!isOutlineApplied) return;
+        if (!isOutlineApplied || !gameObject.activeInHierarchy) return;
 
         StartCoroutine(RemoveOutlineRoutine());
     }

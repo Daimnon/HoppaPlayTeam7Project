@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 207694746281454971}
   - component: {fileID: 3794294768764880170}
   - component: {fileID: 8747315823615752145}
+  - component: {fileID: -2384856268726464298}
   m_Layer: 6
   m_Name: Road_Barrier
   m_TagString: Untagged
@@ -114,8 +115,7 @@ MonoBehaviour:
   _objectiveType: 1
   _level: 7
   _progressionReward: 0
-  _rendererToOutline: {fileID: 5787850279268539428}
-  _originalOutlineMat: {fileID: 2100000, guid: 06f6b6c3542045b4b896f52838a63ffc, type: 2}
+  _outline: {fileID: -2384856268726464298}
 --- !u!114 &8747315823615752145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,3 +131,21 @@ MonoBehaviour:
   _renderers:
   - {fileID: 5787850279268539428}
   _position: {x: 0, y: 0, z: 0}
+--- !u!114 &-2384856268726464298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5427522932507016689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab8ca3407e172c4db129ddd95ea9afb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 20
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
