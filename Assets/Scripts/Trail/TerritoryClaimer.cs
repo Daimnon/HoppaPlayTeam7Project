@@ -83,26 +83,70 @@ public class TerritoryClaimer : MonoBehaviour
 
     private void CheckForClosedArea()
     {
-        // Only check for closure when there are enough points to form a proper area
-        if (_trailPoints.Count < 4) return; // You need at least 4 points (3 points form a triangle, and a 4th is needed to "close" it)
+        if (_trailPoints.Count < 4) return;
 
         Vector3 currentPosition = transform.position;
-
-        // Loop through the older trail points and check if the player intersects any older trail segment
-        for (int i = 0; i < _trailPoints.Count - 2; i++) // Skip the last segment(s)
+        for (int i = 0; i < _trailPoints.Count - 2; i++) // skip recent points
         {
             Vector3 pointA = _trailPoints[i];
             Vector3 pointB = _trailPoints[i + 1];
 
             if (IsPlayerCrossingLineSegment(pointA, pointB, currentPosition))
             {
-                Vector3 midPos = CalculateCentroid(_trailPoints);
-                Debug.Log("Centroid of territory" + midPos);
+                Vector3 intersectionPoint = GetIntersectionPoint(pointA, pointB, currentPosition);
+                List<Vector3> closedAreaPoints = GetPointsFromIntersection(_trailPoints, i, intersectionPoint);
+                Vector3 midPos = CalculateCentroid(closedAreaPoints);
 
+                Debug.Log("Center of closed area: " + midPos);
                 EventManager.InvokeAreaClosed(midPos);
-                break; // Area is closed, no need to continue checking
+                break;
             }
         }
+    }
+    private bool IsPointInPolygon(Vector3 point, List<Vector3> polygon)
+    {
+        bool isInside = false;
+        int j = polygon.Count - 1;
+        for (int i = 0; i < polygon.Count; j = i++)
+        {
+            if (((polygon[i].z > point.z) != (polygon[j].z > point.z)) &&
+                (point.x < (polygon[j].x - polygon[i].x) * (point.z - polygon[i].z) / (polygon[j].z - polygon[i].z) + polygon[i].x))
+            {
+                isInside = !isInside;
+            }
+        }
+        return isInside;
+    }
+    private bool IsPlayerCrossingLineSegment(Vector3 pointA, Vector3 pointB, Vector3 playerPosition)
+    {
+        float distanceFromLine = DistanceFromPointToLineSegment(pointA, pointB, playerPosition);
+        return distanceFromLine < _intersectDistance;
+    }
+    private Vector3 GetIntersectionPoint(Vector3 pointA, Vector3 pointB, Vector3 playerPosition)
+    {
+        // Here, you can calculate the exact intersection point based on the player's movement
+        // For now, we'll use a placeholder that returns the midpoint between pointA and pointB
+        return (pointA + pointB) / 2f;
+    }
+    private List<Vector3> GetPointsFromIntersection(List<Vector3> trailPoints, int intersectionIndex, Vector3 intersectionPoint)
+    {
+        // Create a new list starting from the intersection point
+        List<Vector3> closedAreaPoints = new()
+        {
+            // Add the intersection point first
+            intersectionPoint
+        };
+
+        // Add all the points from the intersection index onwards
+        for (int i = intersectionIndex + 1; i < trailPoints.Count; i++)
+        {
+            closedAreaPoints.Add(trailPoints[i]);
+        }
+
+        // Also include the current position to complete the closed area
+        closedAreaPoints.Add(trailPoints[intersectionIndex]); // First point to close the area
+
+        return closedAreaPoints;
     }
     private Vector3 CalculateCentroid(List<Vector3> points)
     {
@@ -115,7 +159,7 @@ public class TerritoryClaimer : MonoBehaviour
             Vector3 p0 = points[i];
             Vector3 p1 = points[(i + 1) % points.Count];
 
-            float a = p0.x * p1.z - p1.x * p0.z;
+            float a = p0.x * p1.z - p1.x * p0.z; // shoelace formula
             signedArea += a;
             cx += (p0.x + p1.x) * a;
             cz += (p0.z + p1.z) * a;
@@ -128,11 +172,6 @@ public class TerritoryClaimer : MonoBehaviour
         return new Vector3(cx, transform.position.y, cz);
     }
 
-    private bool IsPlayerCrossingLineSegment(Vector3 pointA, Vector3 pointB, Vector3 playerPosition)
-    {
-        float distanceFromLine = DistanceFromPointToLineSegment(pointA, pointB, playerPosition);
-        return distanceFromLine < _intersectDistance;
-    }
     private float DistanceFromPointToLineSegment(Vector3 pointA, Vector3 pointB, Vector3 playerPosition)
     {
         Vector3 lineDirection = pointB - pointA;
@@ -159,20 +198,6 @@ public class TerritoryClaimer : MonoBehaviour
         Vector3 size = max - min;
 
         return new Bounds(center, size);
-    }
-    private bool IsPointInPolygon(Vector3 point, List<Vector3> polygon)
-    {
-        bool isInside = false;
-        int j = polygon.Count - 1;
-        for (int i = 0; i < polygon.Count; j = i++)
-        {
-            if (((polygon[i].z > point.z) != (polygon[j].z > point.z)) &&
-                (point.x < (polygon[j].x - polygon[i].x) * (point.z - polygon[i].z) / (polygon[j].z - polygon[i].z) + polygon[i].x))
-            {
-                isInside = !isInside;
-            }
-        }
-        return isInside;
     }
     private IEnumerator RemovePointDelayed(Vector3 point)
     {
