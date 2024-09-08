@@ -10,7 +10,6 @@ public class TerritoryClaimer : MonoBehaviour
     [SerializeField] private ConsumableObjectPool _consumablePool;
     [SerializeField] private TrailRenderer _trailRenderer;
 
-
     [Header("Data")]
     [SerializeField] private LayerMask _detectionLayer;
     [SerializeField] private float _minDistance = 1.0f; // should increase while growing in size
@@ -28,7 +27,6 @@ public class TerritoryClaimer : MonoBehaviour
     private float _fireRange = 1.0f;
     private int _explosionCount = 0;
     private SoundManager soundManager;
-
 
     #region Monobehaviour Callbacks
     private void OnEnable()
@@ -319,5 +317,4 @@ public class TerritoryClaimer : MonoBehaviour
             Gizmos.DrawLine(_trailPoints[_trailPoints.Count - 1], _trailPoints[0]);
         }
     }
-
 }
