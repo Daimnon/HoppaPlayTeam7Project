@@ -30,6 +30,9 @@ public class Consumable : MonoBehaviour
     {
         CalculateExp();
         InitializeOutlineShader();
+
+        // quick and dirty
+        _progressionReward = 1;
     }
     private void OnDisable()
     {

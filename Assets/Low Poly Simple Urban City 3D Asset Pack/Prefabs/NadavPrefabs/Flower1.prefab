@@ -144,7 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectiveType: 1
   _level: 1
-  _progressionReward: 0
+  _progressionReward: 1
   _rendererToOutline: {fileID: 1748787302692102483}
   _originalOutlineMat: {fileID: 2100000, guid: 06f6b6c3542045b4b896f52838a63ffc, type: 2}
 --- !u!4 &580924863476324924 stripped

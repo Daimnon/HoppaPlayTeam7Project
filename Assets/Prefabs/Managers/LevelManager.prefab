@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _loseCanvas: {fileID: 0}
   _startCanvas: {fileID: 0}
+  _soundManager: {fileID: 0}
   _starSprites:
   - {fileID: 21300000, guid: 37f07fbaf7f9add4c94fe0ba1ff5db43, type: 3}
   - {fileID: 21300000, guid: 7447508782dc7b44bb35c965ba01d11b, type: 3}
@@ -58,6 +59,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dd1fb2c3a871e4fb593fb3f13113a24f, type: 2}
   - {fileID: 11400000, guid: 1f969035dfdce4f96a8d99c623d24dee, type: 2}
   - {fileID: 11400000, guid: 2b88430a904d3443cbffad99ddc72731, type: 2}
-  _maxProgression: 50
+  _maxProgression: 2000
   _currentProgression: 0
   _timeLimit: 90
