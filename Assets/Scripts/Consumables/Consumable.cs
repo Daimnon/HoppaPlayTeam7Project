@@ -26,10 +26,12 @@ public class Consumable : MonoBehaviour
     private List<Material> _renderingMaterialsList;
     private Material _outlineMat;
 
+    public OutlineAltered Outline;
+
     private void Start()
     {
         CalculateExp();
-        InitializeOutlineShader();
+        //InitializeOutlineShader();
 
         // quick and dirty
         _progressionReward = 1;
@@ -47,7 +49,7 @@ public class Consumable : MonoBehaviour
     {
         _reward = 3 * (int)Mathf.Pow(_rewardFactor, _level - 1);
     }
-    private void InitializeOutlineShader()
+    /*private void InitializeOutlineShader()
     {
         _outlineMat = new Material(_originalOutlineMat);
 
@@ -79,5 +81,5 @@ public class Consumable : MonoBehaviour
             return;
 
         _rendererToOutline.materials = _originalMaterials;
-    }
+    }*/
 }

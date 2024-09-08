@@ -354,18 +354,17 @@ public class OutlineAltered : MonoBehaviour
         DisableOutline();
         yield return null;
 
-        UpdateMaterialProperties();
+        //UpdateMaterialProperties();
         isOutlineApplied = false;
     }
     private void DisableOutline()
     {
         foreach (var renderer in renderers)
         {
-            // Append outline shaders
             var materials = renderer.sharedMaterials.ToList();
 
-            materials.Add(outlineMaskMaterial);
-            materials.Add(outlineFillMaterial);
+            materials.Remove(outlineMaskMaterial);
+            materials.Remove(outlineFillMaterial);
 
             renderer.materials = materials.ToArray();
         }
