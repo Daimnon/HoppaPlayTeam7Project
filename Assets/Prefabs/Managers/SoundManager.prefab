@@ -180,6 +180,8 @@ MonoBehaviour:
   catSound: {fileID: 8300000, guid: f3d3f8a19c7764cb58a1e54b6d835de8, type: 3}
   coinSound: {fileID: 8300000, guid: 41448d0f43d559743a1d0d76be1878ae, type: 3}
   fireExplosionSound: {fileID: 8300000, guid: d16e4f361ada85d4c9cf2914a9bc391c, type: 3}
+  pickupSound: {fileID: 8300000, guid: bbfbde8f70202794eb7256551b9552a8, type: 3}
+  buttonPlaySound: {fileID: 8300000, guid: 6d9165bb327fb59449f5861a6189c682, type: 3}
   audioSource: {fileID: 2104197625082888410}
 --- !u!82 &2104197625082888410
 AudioSource:
@@ -193,7 +195,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0

@@ -772,12 +772,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _evoType: 0
   _hud: {fileID: 0}
-  _maxExp: 150
+  _maxExp: 100
   _currentExp: 0
-  _expFactor: 1.5
+  _expFactor: 2.1
   _scaleIncrement: 1
   _scaleIncrementFactor: 1.25
   _currentLevel: 1
+  _maxGrowth: 20
   _growthLevelCounter: 1
   _growthTreshold: 1
   _evolveLevelCounter: 1
@@ -799,7 +800,8 @@ MonoBehaviour:
   _detectionLayer:
     serializedVersion: 2
     m_Bits: 64
-  _minDistance: 1
+  _minDistance: 2
+  _intersectDistance: 0.2
   _explosionVFX: {fileID: 5973231555418993285}
   _explosionTimeToReset: 5
 --- !u!1 &1043449180157063284
@@ -6087,7 +6089,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
+      objectReference: {fileID: 2100000, guid: ad73a7830f1f56d41bc4cf36b50ca3e7, type: 2}
     - target: {fileID: 2691740876440323326, guid: a97d113ded8fac144b976cb03a4ccd15,
         type: 3}
       propertyPath: m_Parameters.widthMultiplier

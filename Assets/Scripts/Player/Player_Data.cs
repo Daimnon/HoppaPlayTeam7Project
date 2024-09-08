@@ -17,19 +17,19 @@ public class Player_Data : MonoBehaviour
 
     [SerializeField] private Player_HUD _hud;
 
-    [SerializeField] private int _maxExp = 10;
+    [SerializeField] private int _maxExp = 100;
     public int MaxExp => _maxExp;
 
     [SerializeField] private int _currentExp = 0;
     public int CurrentExp => _currentExp;
 
-    [SerializeField] private float _expFactor = 1.25f;
+    [SerializeField] private float _expFactor = 2.1f;
     public float ExpFactor => _expFactor;
 
     [SerializeField] private float _scaleIncrement = 1.0f;
     public float ScaleIncrement => _scaleIncrement;
 
-    [SerializeField] private float _scaleIncrementFactor = 1.5f;
+    [SerializeField] private float _scaleIncrementFactor = 1.25f;
     public float ScaleIncrementFactor => _scaleIncrementFactor;
 
     [SerializeField] private int _currentLevel = 1;
@@ -41,7 +41,7 @@ public class Player_Data : MonoBehaviour
     [SerializeField] private int _growthLevelCounter = 1;
     public int GrowthLevelCounter => _growthLevelCounter;
 
-    [SerializeField] private int _growthTreshold = 5;
+    [SerializeField] private int _growthTreshold = 1;
     public int GrowthTreshold => _growthTreshold;
 
     [SerializeField] private int _evolveLevelCounter = 1;

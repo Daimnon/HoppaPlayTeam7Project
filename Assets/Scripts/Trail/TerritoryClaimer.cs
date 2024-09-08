@@ -13,9 +13,11 @@ public class TerritoryClaimer : MonoBehaviour
 
     [Header("Data")]
     [SerializeField] private LayerMask _detectionLayer;
-    [SerializeField] private float _minDistance = 2.0f; // should increase while growing in size
+    [SerializeField] private float _minDistance = 1.0f; // should increase while growing in size
+    [SerializeField] private float _intersectDistance;
 
     private readonly List<Vector3> _trailPoints = new();
+    private float _startingMinDistance;
     
     [Header("VFXs")]
     [SerializeField] private VisualEffect _explosionVFX;
@@ -32,16 +34,17 @@ public class TerritoryClaimer : MonoBehaviour
     private void OnEnable()
     {
         EventManager.OnAreaClosed += OnAreaClosed;
+        EventManager.OnGrowth += OnGrowth;
         _explosionCoroutines = new();
         _explosionVFX.Reinit();
         _explosionVFX.Stop();
     }
-    
     private void Start() 
     {
         soundManager = FindObjectOfType<SoundManager>();
+        _intersectDistance = transform.localScale.x;
+        _startingMinDistance = _minDistance;
     }
-
     private void Update()
     {
         TrackPosition();
@@ -50,6 +53,7 @@ public class TerritoryClaimer : MonoBehaviour
     private void OnDisable()
     {
         EventManager.OnAreaClosed -= OnAreaClosed;
+        EventManager.OnGrowth -= OnGrowth;
     }
     #endregion
 
@@ -63,7 +67,9 @@ public class TerritoryClaimer : MonoBehaviour
             StartCoroutine(RemovePointDelayed(currentPosition));
         }
     }
-    private void CheckForClosedArea()
+
+    /* old check for closed area method (optimized but cannot close if not intersecting start point)
+     * private void CheckForClosedArea()
     {
         if (_trailPoints.Count < 3) return;
 
@@ -74,6 +80,30 @@ public class TerritoryClaimer : MonoBehaviour
             Debug.Log("Centroid of territory" + midPos);
 
             EventManager.InvokeAreaClosed(CalculateCentroid(_trailPoints));
+        }
+    }*/
+
+    private void CheckForClosedArea()
+    {
+        // Only check for closure when there are enough points to form a proper area
+        if (_trailPoints.Count < 4) return; // You need at least 4 points (3 points form a triangle, and a 4th is needed to "close" it)
+
+        Vector3 currentPosition = transform.position;
+
+        // Loop through the older trail points and check if the player intersects any older trail segment
+        for (int i = 0; i < _trailPoints.Count - 2; i++) // Skip the last segment(s)
+        {
+            Vector3 pointA = _trailPoints[i];
+            Vector3 pointB = _trailPoints[i + 1];
+
+            if (IsPlayerCrossingLineSegment(pointA, pointB, currentPosition))
+            {
+                Vector3 midPos = CalculateCentroid(_trailPoints);
+                Debug.Log("Centroid of territory" + midPos);
+
+                EventManager.InvokeAreaClosed(midPos);
+                break; // Area is closed, no need to continue checking
+            }
         }
     }
     private Vector3 CalculateCentroid(List<Vector3> points)
@@ -100,6 +130,22 @@ public class TerritoryClaimer : MonoBehaviour
         return new Vector3(cx, transform.position.y, cz);
     }
 
+    private bool IsPlayerCrossingLineSegment(Vector3 pointA, Vector3 pointB, Vector3 playerPosition)
+    {
+        float distanceFromLine = DistanceFromPointToLineSegment(pointA, pointB, playerPosition);
+        return distanceFromLine < _intersectDistance;
+    }
+    private float DistanceFromPointToLineSegment(Vector3 pointA, Vector3 pointB, Vector3 playerPosition)
+    {
+        Vector3 lineDirection = pointB - pointA;
+        Vector3 playerToA = playerPosition - pointA;
+
+        float t = Vector3.Dot(playerToA, lineDirection) / Vector3.Dot(lineDirection, lineDirection);
+        t = Mathf.Clamp01(t);
+
+        Vector3 closestPoint = pointA + t * lineDirection;
+        return Vector3.Distance(playerPosition, closestPoint);
+    }
     private Bounds CalculateBoundingBox(List<Vector3> points)
     {
         Vector3 min = points[0];
@@ -180,6 +226,14 @@ public class TerritoryClaimer : MonoBehaviour
     }
     #endregion
 
+    #region Upgrades
+    public void IncreaseFirePower(float powerIncrement, float rangeIncrement)
+    {
+        _firePower += powerIncrement;
+        _fireRange += rangeIncrement;
+    }
+    #endregion
+
     #region Events
     private void OnAreaClosed(Vector3 midPos) // need to carry on from here
     {
@@ -224,6 +278,11 @@ public class TerritoryClaimer : MonoBehaviour
             Debug.Log("Objective 3 completed with explosion count: " + _explosionCount);
         }
     }
+    private void OnGrowth()
+    {
+        _minDistance = _startingMinDistance * transform.localScale.x;
+        _intersectDistance = transform.localScale.x;
+    }
     #endregion
 
     protected void OnDrawGizmos()
@@ -261,9 +320,4 @@ public class TerritoryClaimer : MonoBehaviour
         }
     }
 
-    public void IncreaseFirePower(float powerIncrement, float rangeIncrement)
-    {
-        _firePower += powerIncrement;
-        _fireRange += rangeIncrement;
-    }
 }

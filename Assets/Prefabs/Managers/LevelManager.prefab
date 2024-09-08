@@ -61,4 +61,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2b88430a904d3443cbffad99ddc72731, type: 2}
   _maxProgression: 2000
   _currentProgression: 0
-  _timeLimit: 90
+  _timeLimit: 30

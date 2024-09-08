@@ -45,7 +45,7 @@ public class Consumable : MonoBehaviour
     }
     private void CalculateExp()
     {
-        _reward = 3 * (int)Mathf.Pow(2, _level - 1);
+        _reward = 3 * (int)Mathf.Pow(_rewardFactor, _level - 1);
     }
     private void InitializeOutlineShader()
     {
