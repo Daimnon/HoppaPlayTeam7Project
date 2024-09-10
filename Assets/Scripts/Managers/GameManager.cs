@@ -5,7 +5,6 @@ using UnityEngine;
 
 public enum SceneType
 {
-    Lobby,
     Level1,
     Level2,
     Level3,
@@ -26,12 +25,19 @@ public class GameManager : MonoBehaviour
         EventManager.OnSceneChange -= OnSceneChange;
     }
 
+    public void ChangeScene()
+    {
+        Debug.Log("Changing scene, next scene");
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1);
+    }
     public void ChangeScene(SceneType nextScene)
     {
+        Debug.Log("Changing scene, next scene" + nextScene.ToString());
         UnityEngine.SceneManagement.SceneManager.LoadScene((int)nextScene);
     }
     public void ChangeScene(int nextSceneBuildIndex)
     {
+        Debug.Log("Changing scene, next scene" + ((SceneType)nextSceneBuildIndex).ToString());
         UnityEngine.SceneManagement.SceneManager.LoadScene(nextSceneBuildIndex);
     }
 

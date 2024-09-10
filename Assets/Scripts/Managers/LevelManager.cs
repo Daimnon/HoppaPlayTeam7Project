@@ -124,7 +124,10 @@ public class LevelManager : MonoBehaviour
     private void HandleLoseCondition()
     {
         if (_hasLost)
+        {
+            EventManager.InvokeTimerChange(_timeLimit);
             return;
+        }
 
         _timeLimit -= Time.deltaTime;
         EventManager.InvokeTimerChange(_timeLimit);
@@ -136,7 +139,7 @@ public class LevelManager : MonoBehaviour
     {
         // do lose condition logic
         CalculateStars();
-        _timeLimit = 0;
+        _timeLimit = 0.0f;
         _loseCanvas.SetActive(true);
         EventManager.InvokeLose();
         _hasLost = true;

@@ -218,6 +218,11 @@ public class Player_HUD : MonoBehaviour
     }
     private void OnTimerChange(float timeSinceStartup)
     {
+        if (timeSinceStartup <= 0)
+        {
+            UpdateTimerText(0);
+        }
+
         UpdateTimerText(timeSinceStartup);
     }
     #endregion
