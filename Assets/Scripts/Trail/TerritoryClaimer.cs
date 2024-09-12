@@ -8,6 +8,7 @@ public class TerritoryClaimer : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField] private ConsumableObjectPool _consumablePool;
+    [SerializeField] private FlameObjectPool _flamePool;
     [SerializeField] private TrailRenderer _trailRenderer;
 
     [Header("Data")]
@@ -29,6 +30,7 @@ public class TerritoryClaimer : MonoBehaviour
     private float _fireRange = 1.0f;
     private int _explosionCount = 0;
     private SoundManager soundManager;
+    private List<Flame> _flames = new List<Flame>();
 
     #region Monobehaviour Callbacks
     private void OnEnable()
@@ -64,6 +66,7 @@ public class TerritoryClaimer : MonoBehaviour
         if (_trailPoints.Count == 0 || Vector3.Distance(_trailPoints[_trailPoints.Count - 1], currentPosition) > _minDistance)
         {
             _trailPoints.Add(currentPosition);
+            _flames.Add(_flamePool.GetFlameFromPool(currentPosition));
             StartCoroutine(RemovePointDelayed(currentPosition));
         }
     }
@@ -196,6 +199,8 @@ public class TerritoryClaimer : MonoBehaviour
     private IEnumerator RemovePointDelayed(Vector3 point)
     {
         yield return new WaitForSeconds(_trailRenderer.time);
+        _flamePool.ReturnFlameToPool(_flames[0]);
+        _flames.RemoveAt(0);
         _trailPoints.Remove(point);
     }
     private List<Consumable> GetConsumablesInClosedArea()
@@ -256,6 +261,11 @@ public class TerritoryClaimer : MonoBehaviour
             _consumablePool.ReturnConsumableToPool(consumablesInClosedArea[i]);
         }
 
+        for (int i = 0; i < _flames.Count; i++)
+        {
+            _flamePool.ReturnFlameToPool(_flames[i]);
+        }
+
         if (_explosionCoroutines.Count > 0)
         {
             for (int i = 0; i < _explosionCoroutines.Count; i++)
@@ -268,6 +278,7 @@ public class TerritoryClaimer : MonoBehaviour
 
         _trailPoints.Clear();
         _trailRenderer.Clear();
+        _flames.Clear();
         Debug.Log("Closed shape detected!");
 
         soundManager.PlayFireExplosionSound();
