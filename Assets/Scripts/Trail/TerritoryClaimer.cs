@@ -10,7 +10,7 @@ public class TerritoryClaimer : MonoBehaviour
     [SerializeField] private ConsumableObjectPool _consumablePool;
     [SerializeField] private FlameObjectPool _flamePool;
     [SerializeField] private TrailRenderer _trailRenderer;
-
+    
     [Header("Data")]
     [SerializeField] private LayerMask _detectionLayer;
     [SerializeField] private float _minDistance = 1.0f; // should increase while growing in size
@@ -26,6 +26,13 @@ public class TerritoryClaimer : MonoBehaviour
     [SerializeField] private float _timeForExplosionToDieOut = 5.0f;
     [SerializeField] private float _explosionScaleFactor = 6.0f;
     private List<Coroutine> _explosionCoroutines;
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip[] _igniteAudioClip;
+    [SerializeField] private AudioClip _explosionAudioClip;
+    [SerializeField] private Vector2 _ignitePitch = new (0.5f,1.5f);
+    private int _igniteCouter = 0;
 
     private float _firePower = 1.0f;
     private float _fireRange = 1.0f;
@@ -67,9 +74,19 @@ public class TerritoryClaimer : MonoBehaviour
         if (_trailPoints.Count == 0 || Vector3.Distance(_trailPoints[_trailPoints.Count - 1], currentPosition) > _minDistance)
         {
             _trailPoints.Add(currentPosition);
+
             Flame trailFlame = _flamePool.GetFlameFromPool(currentPosition);
             trailFlame.GrowFlame(transform.localScale);
             _flames.Add(trailFlame);
+
+            _audioSource.pitch = UnityEngine.Random.Range(_ignitePitch.x, _ignitePitch.y);
+
+            _igniteCouter++;  
+            if (_igniteCouter == 1)
+                _audioSource.PlayOneShot(_igniteAudioClip[UnityEngine.Random.Range(0, 2)]);
+            else if (_igniteCouter > 2)
+                _igniteCouter = 0;
+
             StartCoroutine(RemovePointDelayed(currentPosition));
         }
     }
@@ -245,6 +262,7 @@ public class TerritoryClaimer : MonoBehaviour
         //PlayExplosion(midPos);
         Flame explosionFlame = _flamePool.GetFlameFromPool(midPos);
         explosionFlame.DoExplosion(transform.localScale * _explosionScaleFactor);
+        _audioSource.PlayOneShot(_explosionAudioClip);
         yield return new WaitForSeconds(_timeForExplosionToDieOut);
         yield return explosionFlame.EndExplosion();
 
