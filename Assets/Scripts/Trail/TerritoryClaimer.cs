@@ -23,7 +23,8 @@ public class TerritoryClaimer : MonoBehaviour
     
     [Header("VFXs")]
     [SerializeField] private VisualEffect _explosionVFX;
-    [SerializeField] private float _explosionTimeToReset = 5.0f;
+    [SerializeField] private float _timeForExplosionToDieOut = 5.0f;
+    [SerializeField] private float _explosionScaleFactor = 6.0f;
     private List<Coroutine> _explosionCoroutines;
 
     private float _firePower = 1.0f;
@@ -66,7 +67,9 @@ public class TerritoryClaimer : MonoBehaviour
         if (_trailPoints.Count == 0 || Vector3.Distance(_trailPoints[_trailPoints.Count - 1], currentPosition) > _minDistance)
         {
             _trailPoints.Add(currentPosition);
-            _flames.Add(_flamePool.GetFlameFromPool(currentPosition));
+            Flame trailFlame = _flamePool.GetFlameFromPool(currentPosition);
+            trailFlame.GrowFlame(transform.localScale);
+            _flames.Add(trailFlame);
             StartCoroutine(RemovePointDelayed(currentPosition));
         }
     }
@@ -198,7 +201,9 @@ public class TerritoryClaimer : MonoBehaviour
     }
     private IEnumerator RemovePointDelayed(Vector3 point)
     {
+        if (!_flames[0]) yield break;
         yield return new WaitForSeconds(_trailRenderer.time);
+
         _flamePool.ReturnFlameToPool(_flames[0]);
         _flames.RemoveAt(0);
         _trailPoints.Remove(point);
@@ -237,10 +242,14 @@ public class TerritoryClaimer : MonoBehaviour
     }
     private IEnumerator ExplosionRoutine(Vector3 midPos)
     {
-        PlayExplosion(midPos);
-        yield return new WaitForSeconds(_explosionTimeToReset);
+        //PlayExplosion(midPos);
+        Flame explosionFlame = _flamePool.GetFlameFromPool(midPos);
+        explosionFlame.DoExplosion(transform.localScale * _explosionScaleFactor);
+        yield return new WaitForSeconds(_timeForExplosionToDieOut);
+        yield return explosionFlame.EndExplosion();
 
-        ResetExplosion();
+        explosionFlame.ResetExplosion();
+        _flamePool.ReturnFlameToPool(explosionFlame);
     }
     #endregion
 
