@@ -484,7 +484,7 @@ GameObject:
   - component: {fileID: 5515639982742819362}
   - component: {fileID: 5515639982742819365}
   m_Layer: 5
-  m_Name: Start_Game_Button
+  m_Name: StartGame_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -690,7 +690,7 @@ PrefabInstance:
     - target: {fileID: 6416840911582035668, guid: fd480e1d6aef4f049bb70f800e2100ca,
         type: 3}
       propertyPath: m_Name
-      value: PowerUp_FirePower_btn
+      value: PowerUp_FirePower_Btn
       objectReference: {fileID: 0}
     - target: {fileID: 6416840911582035669, guid: fd480e1d6aef4f049bb70f800e2100ca,
         type: 3}
@@ -900,7 +900,7 @@ PrefabInstance:
     - target: {fileID: 6416840911582035668, guid: fd480e1d6aef4f049bb70f800e2100ca,
         type: 3}
       propertyPath: m_Name
-      value: PowerUp_ExtraTime_btn
+      value: PowerUp_ExtraTime_Btn
       objectReference: {fileID: 0}
     - target: {fileID: 6416840911582035669, guid: fd480e1d6aef4f049bb70f800e2100ca,
         type: 3}
@@ -1115,7 +1115,7 @@ PrefabInstance:
     - target: {fileID: 6416840911582035668, guid: fd480e1d6aef4f049bb70f800e2100ca,
         type: 3}
       propertyPath: m_Name
-      value: PowerUp_Grow_btn
+      value: PowerUp_Grow_Btn
       objectReference: {fileID: 0}
     - target: {fileID: 6416840911582035669, guid: fd480e1d6aef4f049bb70f800e2100ca,
         type: 3}

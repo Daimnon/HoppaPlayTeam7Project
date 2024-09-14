@@ -17,13 +17,12 @@ public class LevelManager : MonoBehaviour
     [Header("Components")]
     [SerializeField] private GameManager _gameManager;
     [SerializeField] private SoundManager _soundManager;
-    [SerializeField] private GameObject _loseCanvas;
-    [SerializeField] private GameObject _startCanvas;
+    [SerializeField] private Canvas _startCanvas, _completionCanvas, _loseCanvas;
 
     [Header("UI Elements")]
     [SerializeField] private List<Sprite> _starSprites;
     [SerializeField] private Image _starImage;
-    [SerializeField] private GameObject _completionPopup;
+    [SerializeField] private Canvas _objectivePopUp;
     [SerializeField] private TMPro.TextMeshProUGUI _popupText;
 
     [Header("Objective Data")]
@@ -52,6 +51,7 @@ public class LevelManager : MonoBehaviour
         EventManager.OnObjectiveTrigger1 += OnObjectiveTrigger1;
         EventManager.OnObjectiveTrigger2 += OnObjectiveTrigger2;
         EventManager.OnObjectiveTrigger3 += OnObjectiveTrigger3;
+        EventManager.OnLevelComplete += OnLevelComplete;
     }
     private void Start()
     {
@@ -77,6 +77,7 @@ public class LevelManager : MonoBehaviour
         EventManager.OnObjectiveTrigger1 -= OnObjectiveTrigger1;
         EventManager.OnObjectiveTrigger2 -= OnObjectiveTrigger2;
         EventManager.OnObjectiveTrigger3 -= OnObjectiveTrigger3;
+        EventManager.OnLevelComplete -= OnLevelComplete;
     }
     #endregion
 
@@ -114,19 +115,19 @@ public class LevelManager : MonoBehaviour
     private void CheckProgressCompletion()
     {
         if (_currentProgression >= _maxProgression)
-            CalculateStars();
+            EventManager.InvokeLevelComplete();
     }
     private void ShowCompletionPopup(string message)
     {
         _popupText.text = message;
-        _completionPopup.SetActive(true);
+        _objectivePopUp.gameObject.SetActive(true);
         _soundManager.PlayCatSound();
         //StartCoroutine(HideCompletionPopup());
     }
     private IEnumerator HideCompletionPopup()
     {
         yield return new WaitForSeconds(2.0f);
-        _completionPopup.SetActive(false);
+        _objectivePopUp.gameObject.SetActive(false);
     }
 
     private void HandleLoseCondition()
@@ -148,7 +149,7 @@ public class LevelManager : MonoBehaviour
         // do lose condition logic
         CalculateStars();
         _timeLimit = 0.0f;
-        _loseCanvas.SetActive(true);
+        _loseCanvas.gameObject.SetActive(true);
         EventManager.InvokeLose();
         _hasLost = true;
     }
@@ -161,7 +162,7 @@ public class LevelManager : MonoBehaviour
 
     public void StartGame()
     {
-        _startCanvas.SetActive(false);
+        _startCanvas.gameObject.SetActive(false);
         _gameStarted = true;
         EventManager.InvokeLevelLaunched();
     }
@@ -171,7 +172,22 @@ public class LevelManager : MonoBehaviour
     }
     public void ProceedToNextLevel()
     {
+        _gameManager.ChangeScene();
+    }
 
+    public void UpdateObjective(ObjectiveType objectiveType)
+    {
+        ObjectiveData objective = Array.Find(_objectives, obj => obj.ObjectiveType == objectiveType);
+        _objectiveProgress[objectiveType]++;
+
+        Debug.Log("another point: " + _objectiveProgress[objectiveType].ToString());
+        
+        if (_objectiveProgress[objectiveType] >= objective.CompletionCondition && !_objectiveCompletion[objectiveType])
+        {
+            _objectiveCompletion[objectiveType] = true;
+            ShowCompletionPopup(objective.NotificationText);
+            Debug.Log(objective.NotificationText); // Will be changed to a message on screen, now just for testing
+        }
     }
 
     private void OnProgressMade(int progressToMake)
@@ -190,18 +206,10 @@ public class LevelManager : MonoBehaviour
     {
         UpdateObjective(ObjectiveType.Objective3);
     }
-    public void UpdateObjective(ObjectiveType objectiveType)
-    {
-        ObjectiveData objective = Array.Find(_objectives, obj => obj.ObjectiveType == objectiveType);
-        _objectiveProgress[objectiveType]++;
 
-        Debug.Log("another point: " + _objectiveProgress[objectiveType].ToString());
-        
-        if (_objectiveProgress[objectiveType] >= objective.CompletionCondition && !_objectiveCompletion[objectiveType])
-        {
-            _objectiveCompletion[objectiveType] = true;
-            ShowCompletionPopup(objective.NotificationText);
-            Debug.Log(objective.NotificationText); // Will be changed to a message on screen, now just for testing
-        }
+    private void OnLevelComplete()
+    {
+        CalculateStars();
+        _completionCanvas.gameObject.SetActive(true);
     }
 }

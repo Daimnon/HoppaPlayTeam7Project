@@ -26,6 +26,9 @@ public class GameManager : MonoBehaviour
         EventManager.OnSceneChange -= OnSceneChange;
     }
 
+    /// <summary>
+    /// change scene to next scene in build order
+    /// </summary>
     public void ChangeScene()
     {
         Debug.Log("Changing scene, next scene");

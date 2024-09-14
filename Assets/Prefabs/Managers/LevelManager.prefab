@@ -44,16 +44,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b149c5d0e7abc244a9f113bf162f0b83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _loseCanvas: {fileID: 0}
-  _startCanvas: {fileID: 0}
+  _gameManager: {fileID: 0}
   _soundManager: {fileID: 0}
+  _startCanvas: {fileID: 0}
+  _completionCanvas: {fileID: 0}
+  _loseCanvas: {fileID: 0}
   _starSprites:
   - {fileID: 21300000, guid: 37f07fbaf7f9add4c94fe0ba1ff5db43, type: 3}
   - {fileID: 21300000, guid: 7447508782dc7b44bb35c965ba01d11b, type: 3}
   - {fileID: 21300000, guid: c3de95d9ddb41cf48aa61aba825cc315, type: 3}
   - {fileID: 21300000, guid: 75f5c286c299d534ba06bb482172720f, type: 3}
   _starImage: {fileID: 0}
-  _completionPopup: {fileID: 0}
+  _objectivePopUp: {fileID: 0}
   _popupText: {fileID: 0}
   _objectives:
   - {fileID: 11400000, guid: dd1fb2c3a871e4fb593fb3f13113a24f, type: 2}
