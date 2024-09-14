@@ -1,0 +1,625 @@
+fileFormatVersion: 2
+guid: 383616601983d744c9a6f9022352e2ae
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: atl_ui_bar_fill_green
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7451
+        width: 8318
+        height: 957
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 350, y: 350, z: 350, w: 350}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0427e15e972e4ea459c5e0747e686be5
+      internalID: 784124375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: atl_ui_bar_bg_darkBlue
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 6200
+        width: 8318
+        height: 961
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 350, y: 350, z: 350, w: 350}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c50d1c3b98297154cbafa2bbe13197b4
+      internalID: 1173334695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: atl_ui_btn_green
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4932
+        width: 4150
+        height: 1018
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 400, y: 400, z: 400, w: 400}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41fd81b6a984acf449496fc5d2d9c8d4
+      internalID: 708518983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: atl_ui_switch_off
+      rect:
+        serializedVersion: 2
+        x: 4200
+        y: 4898
+        width: 2153
+        height: 1079
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c281dc7561288547a3959da2de4eea0
+      internalID: -705774901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: atl_ui_switch_on
+      rect:
+        serializedVersion: 2
+        x: 6374
+        y: 4898
+        width: 2160
+        height: 1079
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 665a289221b53f84a9b3cc503245f56c
+      internalID: -1140703555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: atl_ui_btn_red
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3694
+        width: 4150
+        height: 1006
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 400, y: 400, z: 400, w: 400}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b9df72f1d065044dadc9af2c19c149e
+      internalID: 1252186945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: atl_ui_icon_currency
+      rect:
+        serializedVersion: 2
+        x: 4232
+        y: 3661
+        width: 1068
+        height: 1068
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2131abd21a433064bbc848efc67eca52
+      internalID: 1901983496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: atl_ui_icon_specialCurrency
+      rect:
+        serializedVersion: 2
+        x: 5305
+        y: 3661
+        width: 1068
+        height: 1068
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25f1d048c274428499f73e31c51a46b6
+      internalID: 1386090295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: atl_ui_icon_start
+      rect:
+        serializedVersion: 2
+        x: 7474
+        y: 3661
+        width: 1060
+        height: 1068
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: facb78be6a555094782324b362013f27
+      internalID: 916720232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ss_UI_04_13
+      rect:
+        serializedVersion: 2
+        x: 8026
+        y: 4675
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5949a4a0659718e439cc0c33d5c0c7ba
+      internalID: 1918851765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: atl_ui_icon_heart
+      rect:
+        serializedVersion: 2
+        x: 6375
+        y: 3661
+        width: 1068
+        height: 1068
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64df361779cd83b4bbfee347846676ee
+      internalID: -1125215954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: atl_ui_btn_blue
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2400
+        width: 4151
+        height: 1025
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 400, y: 400, z: 400, w: 400}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b73d0151c92719439fcfe84e9622604
+      internalID: 440565389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: atl_ui_icon_home
+      rect:
+        serializedVersion: 2
+        x: 6572
+        y: 2621
+        width: 666
+        height: 674
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed61d2efca0b90c489018cf6a5d9a5c5
+      internalID: -129918872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: atl_ui_settings
+      rect:
+        serializedVersion: 2
+        x: 4474
+        y: 2621
+        width: 660
+        height: 674
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73b3767693f41ca49abcc4ca82d66ba9
+      internalID: 1874256047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: atl_ui_icon_powerU
+      rect:
+        serializedVersion: 2
+        x: 7635
+        y: 2621
+        width: 733
+        height: 674
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d366857f2026947489aaff63317277d8
+      internalID: 1049286536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: atl_ui_icon_extraTime
+      rect:
+        serializedVersion: 2
+        x: 5546
+        y: 2621
+        width: 733
+        height: 674
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99eb36a0f508ee448911aa6a02c75bee
+      internalID: -1235414174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ss_UI_04_27
+      rect:
+        serializedVersion: 2
+        x: 6563
+        y: 3025
+        width: 13
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24c73dbca77b0b54099bdfb3562bcbc4
+      internalID: -1392825579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ss_UI_04_32
+      rect:
+        serializedVersion: 2
+        x: 4775
+        y: 2613
+        width: 50
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 157fd4a252c78144a8212fcbc1c8c291
+      internalID: 2093396150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: atl_ui_btn_purple
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1223
+        width: 4150
+        height: 1004
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 400, y: 400, z: 400, w: 400}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5e9c4e07fe516646a684dfe7e68bceb
+      internalID: 2089568572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: atl_ui_icon_grow
+      rect:
+        serializedVersion: 2
+        x: 4430
+        y: 1517
+        width: 812
+        height: 674
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a45dae74fadff8f4ba311e45370a76a9
+      internalID: -352090295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: atl_ui_icon_info
+      rect:
+        serializedVersion: 2
+        x: 5528
+        y: 1429
+        width: 674
+        height: 674
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2b3696fdf41fa64fa2e008f271b35a8
+      internalID: -1267688835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: atl_ui_btn_yellow
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 25
+        width: 4151
+        height: 1025
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 400, y: 400, z: 400, w: 400}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a502ebfa65c6e704f922ad8e8a59c555
+      internalID: -2078246841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 158390eb647396b42816fe52974c8d94
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      atl_ui_bar_bg_darkBlue: 1173334695
+      atl_ui_bar_fill_green: 784124375
+      atl_ui_btn_blue: 440565389
+      atl_ui_btn_green: 708518983
+      atl_ui_btn_purple: 2089568572
+      atl_ui_btn_red: 1252186945
+      atl_ui_btn_yellow: -2078246841
+      atl_ui_icon_currency: 1901983496
+      atl_ui_icon_extraTime: -1235414174
+      atl_ui_icon_grow: -352090295
+      atl_ui_icon_heart: -1125215954
+      atl_ui_icon_home: -129918872
+      atl_ui_icon_info: -1267688835
+      atl_ui_icon_powerU: 1049286536
+      atl_ui_icon_specialCurrency: 1386090295
+      atl_ui_icon_start: 916720232
+      atl_ui_settings: 1874256047
+      atl_ui_switch_off: -705774901
+      atl_ui_switch_on: -1140703555
+      ss_UI_04_11: 2065606024
+      ss_UI_04_13: 1918851765
+      ss_UI_04_15: 679865010
+      ss_UI_04_16: -1056096662
+      ss_UI_04_18: -763011074
+      ss_UI_04_20: 1463760533
+      ss_UI_04_21: 149432878
+      ss_UI_04_23: -193552332
+      ss_UI_04_25: 2060696119
+      ss_UI_04_27: -1392825579
+      ss_UI_04_28: -1451334920
+      ss_UI_04_29: 940431653
+      ss_UI_04_3: -1243085106
+      ss_UI_04_30: 1353559456
+      ss_UI_04_31: -1223512180
+      ss_UI_04_32: 2093396150
+      ss_UI_04_36: -1736250757
+      ss_UI_04_37: 1039095109
+      ss_UI_04_38: -876544565
+      ss_UI_04_6: -1265421387
+      ss_UI_04_7: -1401133489
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

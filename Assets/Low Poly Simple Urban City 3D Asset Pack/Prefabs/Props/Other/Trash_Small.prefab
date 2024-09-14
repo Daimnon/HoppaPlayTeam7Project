@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 3146491133151377636}
   - component: {fileID: 2019106416486807361}
   - component: {fileID: 4314934287112110987}
-  - component: {fileID: 1785716236733039806}
   - component: {fileID: 9217259706580160216}
   - component: {fileID: 8759589920154407538}
   - component: {fileID: -5426225883976697098}
+  - component: {fileID: 7821431126384674012}
   m_Layer: 6
   m_Name: Trash_Small
   m_TagString: Untagged
@@ -87,19 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1785716236733039806
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2369251498285015646}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.7533796, y: 1.0211786, z: 0.7533796}
-  m_Center: {x: 0, y: 0.5105893, z: 0}
 --- !u!114 &9217259706580160216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,3 +136,17 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!136 &7821431126384674012
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2369251498285015646}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.3766898
+  m_Height: 1.0211786
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.5105893, z: 0}

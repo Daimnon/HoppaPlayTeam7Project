@@ -53,7 +53,7 @@ public class ConsumableObjectPool : MonoBehaviour
             }
         }
 
-        // If no inactive money objects are available, create a new one
+        // If no inactive consumable is available, create a new one
         Consumable newConsumable = Instantiate(_prefabs[consumableType], transform);
         _objectPool.Add(newConsumable);
         newConsumable.gameObject.SetActive(true);
