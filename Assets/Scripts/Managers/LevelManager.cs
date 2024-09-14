@@ -44,6 +44,7 @@ public class LevelManager : MonoBehaviour
     private bool _hasLost = false;
     private bool _gameStarted = false;
 
+    #region Unity Callbacks
     private void OnEnable()
     {
         EventManager.OnProgressMade += OnProgressMade;
@@ -76,20 +77,23 @@ public class LevelManager : MonoBehaviour
         EventManager.OnObjectiveTrigger2 -= OnObjectiveTrigger2;
         EventManager.OnObjectiveTrigger3 -= OnObjectiveTrigger3;
     }
+    #endregion
 
-    public void StartGame()
+
+    private void MakeProgress(int progressToMake)
     {
-        _startCanvas.SetActive(false);
-        _gameStarted = true;
-        EventManager.InvokeLevelLaunched();
-    }
+        _currentProgression += progressToMake;
+        float newClampedProgression = Mathf.Clamp01((float)_currentProgression / _maxProgression);
+        EventManager.InvokeProgressionChange(newClampedProgression);
 
+        CheckProgressCompletion();
+    }
     private void CalculateStars()
     {
         int starsEarned = 0;
-        foreach (var objective in _objectives)
+        for (int i = 0; i < _objectives.Length; i++)
         {
-            if (_objectiveCompletion[objective.ObjectiveType])
+            if (_objectiveCompletion[_objectives[i].ObjectiveType])
             {
                 starsEarned++;
             }
@@ -98,8 +102,7 @@ public class LevelManager : MonoBehaviour
         Debug.Log("Stars Earned: " + starsEarned);
         ShowStars(starsEarned);
     }
-
-    private void ShowStars(int starsEarned)
+    private void ShowStars(int starsEarned) // maybe should be called SetStars 
     {
         if (starsEarned >= 0 && starsEarned < _starSprites.Count)
         {
@@ -112,13 +115,17 @@ public class LevelManager : MonoBehaviour
         if (_currentProgression >= _maxProgression)
             CalculateStars();
     }
-    public void MakeProgress(int progressToMake)
+    private void ShowCompletionPopup(string message)
     {
-        _currentProgression += progressToMake;
-        float newClampedProgression = Mathf.Clamp01((float)_currentProgression / _maxProgression);
-        EventManager.InvokeProgressionChange(newClampedProgression);
-
-        CheckProgressCompletion();
+        _popupText.text = message;
+        _completionPopup.SetActive(true);
+        _soundManager.PlayCatSound();
+        //StartCoroutine(HideCompletionPopup());
+    }
+    private IEnumerator HideCompletionPopup()
+    {
+        yield return new WaitForSeconds(2.0f);
+        _completionPopup.SetActive(false);
     }
 
     private void HandleLoseCondition()
@@ -145,6 +152,18 @@ public class LevelManager : MonoBehaviour
         _hasLost = true;
     }
 
+    internal void ExtendTime(int additionalTime)
+    {
+        _timeLimit += additionalTime;
+        EventManager.InvokeTimerChange(_timeLimit);
+    }
+
+    public void StartGame()
+    {
+        _startCanvas.SetActive(false);
+        _gameStarted = true;
+        EventManager.InvokeLevelLaunched();
+    }
     public void ReloadLevel()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
@@ -166,10 +185,9 @@ public class LevelManager : MonoBehaviour
     {
         UpdateObjective(ObjectiveType.Objective3);
     }
-
     public void UpdateObjective(ObjectiveType objectiveType)
     {
-        var objective = Array.Find(_objectives, obj => obj.ObjectiveType == objectiveType);
+        ObjectiveData objective = Array.Find(_objectives, obj => obj.ObjectiveType == objectiveType);
         _objectiveProgress[objectiveType]++;
 
         Debug.Log("another point: " + _objectiveProgress[objectiveType].ToString());
@@ -180,25 +198,5 @@ public class LevelManager : MonoBehaviour
             ShowCompletionPopup(objective.NotificationText);
             Debug.Log(objective.NotificationText); // Will be changed to a message on screen, now just for testing
         }
-    }
-
-    private void ShowCompletionPopup(string message)
-    {
-        _popupText.text = message;
-        _completionPopup.SetActive(true);
-        _soundManager.PlayCatSound();
-        StartCoroutine(HideCompletionPopup());
-    }
-
-    private IEnumerator HideCompletionPopup()
-    {
-        yield return new WaitForSeconds(2.0f);
-        _completionPopup.SetActive(false);
-    }
-
-    internal void ExtendTime(int additionalTime)
-    {
-        _timeLimit += additionalTime;
-        EventManager.InvokeTimerChange(_timeLimit);
     }
 }
