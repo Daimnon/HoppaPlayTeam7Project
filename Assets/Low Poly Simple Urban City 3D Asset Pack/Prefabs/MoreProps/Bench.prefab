@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 6305573677142167381}
   - component: {fileID: 1347609895341923343}
   - component: {fileID: 3495542630928297335}
-  - component: {fileID: 4371374716868688962}
+  - component: {fileID: 4187502880039206576}
   m_Layer: 6
   m_Name: Bench
   m_TagString: Untagged
@@ -147,7 +147,7 @@ MonoBehaviour:
   _objectiveType: 1
   _level: 5
   _progressionReward: 0
-  _outline: {fileID: 4371374716868688962}
+  _outline: {fileID: 4187502880039206576}
 --- !u!114 &3495542630928297335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,7 +163,7 @@ MonoBehaviour:
   _renderers:
   - {fileID: 5465158946204421514}
   _position: {x: 0, y: 0, z: 0}
---- !u!114 &4371374716868688962
+--- !u!114 &4187502880039206576
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -177,7 +177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 0
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 20
+  outlineWidth: 4
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
