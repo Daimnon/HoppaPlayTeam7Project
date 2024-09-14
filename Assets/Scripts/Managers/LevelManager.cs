@@ -15,9 +15,10 @@ public enum ObjectiveType // None should always be last, **should not expand cas
 public class LevelManager : MonoBehaviour
 {
     [Header("Components")]
+    [SerializeField] private GameManager _gameManager;
+    [SerializeField] private SoundManager _soundManager;
     [SerializeField] private GameObject _loseCanvas;
     [SerializeField] private GameObject _startCanvas;
-    [SerializeField] private SoundManager _soundManager;
 
     [Header("UI Elements")]
     [SerializeField] private List<Sprite> _starSprites;
@@ -167,6 +168,10 @@ public class LevelManager : MonoBehaviour
     public void ReloadLevel()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+    }
+    public void ProceedToNextLevel()
+    {
+
     }
 
     private void OnProgressMade(int progressToMake)

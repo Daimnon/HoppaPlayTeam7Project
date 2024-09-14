@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Gal/Gal_Level_1_18_08.unity
+    path: Assets/Scenes/Gal/Gal_Level_1.unity
     guid: 232a5f80ff5ade64cb70612cf6c22204
   m_configObjects: {}
