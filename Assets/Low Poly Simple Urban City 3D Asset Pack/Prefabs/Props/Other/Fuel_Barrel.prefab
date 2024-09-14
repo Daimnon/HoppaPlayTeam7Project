@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 2271270224055212082}
   - component: {fileID: 2894398017567496087}
   - component: {fileID: 1138848720019022685}
-  - component: {fileID: 9219252326841577314}
   - component: {fileID: 326535576171508044}
   - component: {fileID: 1019024727800109136}
   - component: {fileID: 4450005177805685090}
+  - component: {fileID: 5476807178720525729}
   m_Layer: 6
   m_Name: Fuel_Barrel
   m_TagString: Untagged
@@ -87,19 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &9219252326841577314
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1499413424437445256}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.69414634, y: 0.9466588, z: 0.69414634}
-  m_Center: {x: 0, y: 0.4733294, z: 0}
 --- !u!114 &326535576171508044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,3 +136,17 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!136 &5476807178720525729
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499413424437445256}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.34707317
+  m_Height: 0.9466588
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.4733294, z: 0}

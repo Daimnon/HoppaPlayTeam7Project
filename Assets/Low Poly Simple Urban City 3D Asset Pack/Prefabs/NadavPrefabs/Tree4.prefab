@@ -135,7 +135,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.4027116, y: 2.41, z: 1.3311868}
-  m_Center: {x: 0.000000029802322, y: 3.79, z: 0}
+  m_Center: {x: 0, y: 3.65, z: 0}
 --- !u!65 &6494017143119847256
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -144,11 +144,29 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5876999602682172974}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.4027116, y: 2.5, z: 1.3311868}
-  m_Center: {x: 0.000000029802322, y: 1.3, z: 0}
+  m_Size: {x: 0.35, y: 2.25, z: 0.35}
+  m_Center: {x: 0, y: 1.125, z: 0.0175}
+--- !u!114 &1413054079664461262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5876999602682172974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab8ca3407e172c4db129ddd95ea9afb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 20
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!114 &8433240023945066677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,24 +198,6 @@ MonoBehaviour:
   _renderers:
   - {fileID: 5372706875698853883}
   _position: {x: 0, y: 0, z: 0}
---- !u!114 &1413054079664461262
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5876999602682172974}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ab8ca3407e172c4db129ddd95ea9afb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 20
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!4 &6540524824153541780 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ee0bd2b782c7dce428b0f3d29f4c81db,
