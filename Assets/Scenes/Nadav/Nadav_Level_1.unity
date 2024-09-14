@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 0
-  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
+  m_SubtractiveShadowColor: {r: 0.41960785, g: 0.47843137, b: 0.627451, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18168691, g: 0.22734535, b: 0.3074192, a: 1}
+  m_IndirectSpecularColor: {r: 0.1833713, g: 0.22898233, b: 0.3061174, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -140,7 +140,7 @@ PrefabInstance:
     - target: {fileID: 1043449179206962013, guid: 6b89d7a8d8b113845b888ad478f255a6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.156
+      value: -4.41
       objectReference: {fileID: 0}
     - target: {fileID: 1043449179206962013, guid: 6b89d7a8d8b113845b888ad478f255a6,
         type: 3}
@@ -150,7 +150,7 @@ PrefabInstance:
     - target: {fileID: 1043449179206962013, guid: 6b89d7a8d8b113845b888ad478f255a6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -28.579
+      value: -32.1
       objectReference: {fileID: 0}
     - target: {fileID: 1043449179206962013, guid: 6b89d7a8d8b113845b888ad478f255a6,
         type: 3}
@@ -324,46 +324,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 402515796791763600, guid: e18f6c47cd7f2794eb4a8089ec81b49a,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.767
-      objectReference: {fileID: 0}
-    - target: {fileID: 402515796791763600, guid: e18f6c47cd7f2794eb4a8089ec81b49a,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.359
-      objectReference: {fileID: 0}
-    - target: {fileID: 402515796791763600, guid: e18f6c47cd7f2794eb4a8089ec81b49a,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.61237216
-      objectReference: {fileID: 0}
-    - target: {fileID: 402515796791763600, guid: e18f6c47cd7f2794eb4a8089ec81b49a,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.612372
-      objectReference: {fileID: 0}
-    - target: {fileID: 402515796791763600, guid: e18f6c47cd7f2794eb4a8089ec81b49a,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.35355392
-      objectReference: {fileID: 0}
-    - target: {fileID: 402515796791763600, guid: e18f6c47cd7f2794eb4a8089ec81b49a,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.35355422
-      objectReference: {fileID: 0}
-    - target: {fileID: 402515796791763600, guid: e18f6c47cd7f2794eb4a8089ec81b49a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 402515796791763600, guid: e18f6c47cd7f2794eb4a8089ec81b49a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -300
-      objectReference: {fileID: 0}
     - target: {fileID: 5326602649111747244, guid: e18f6c47cd7f2794eb4a8089ec81b49a,
         type: 3}
       propertyPath: m_Name
@@ -815,17 +775,17 @@ PrefabInstance:
     - target: {fileID: 5422624482594111744, guid: 6bf1f74f1a1b0274e97d6741c79c5505,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.7128868
+      value: -3.9668868
       objectReference: {fileID: 0}
     - target: {fileID: 5422624482594111744, guid: 6bf1f74f1a1b0274e97d6741c79c5505,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.2561655
+      value: 7.256165
       objectReference: {fileID: 0}
     - target: {fileID: 5422624482594111744, guid: 6bf1f74f1a1b0274e97d6741c79c5505,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -33.00981
+      value: -36.53081
       objectReference: {fileID: 0}
     - target: {fileID: 5422624482594111744, guid: 6bf1f74f1a1b0274e97d6741c79c5505,
         type: 3}
@@ -1074,7 +1034,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 0.8867924, g: 0.83505553, b: 0.6901922, a: 1}
-  m_Intensity: 1
+  m_Intensity: 1.28
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1117,7 +1077,7 @@ Light:
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_ColorTemperature: 7877
+  m_ColorTemperature: 6406
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
@@ -1131,14 +1091,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 845632907}
-  m_LocalRotation: {x: -0.17931995, y: 0.44937804, z: -0.4889482, w: -0.72583294}
+  m_LocalRotation: {x: 0.16932394, y: 0.53913593, z: -0.6852271, w: -0.45948422}
   m_LocalPosition: {x: 0, y: 29.49, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 44.408, y: -41.89, z: -309.828}
+  m_LocalEulerAnglesHint: {x: 35.68, y: -63.588, z: -270.253}
 --- !u!114 &879132621 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 773983558053576870, guid: 404988be43eec854ba7e0d92506d6720,
@@ -1365,17 +1325,17 @@ PrefabInstance:
     - target: {fileID: 3388745752941628739, guid: cfdd622c625b6ef4788d1650fd9e37e5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.7128868
+      value: -3.9668868
       objectReference: {fileID: 0}
     - target: {fileID: 3388745752941628739, guid: cfdd622c625b6ef4788d1650fd9e37e5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.2561655
+      value: 7.256165
       objectReference: {fileID: 0}
     - target: {fileID: 3388745752941628739, guid: cfdd622c625b6ef4788d1650fd9e37e5,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -33.00981
+      value: -36.53081
       objectReference: {fileID: 0}
     - target: {fileID: 3388745752941628739, guid: cfdd622c625b6ef4788d1650fd9e37e5,
         type: 3}

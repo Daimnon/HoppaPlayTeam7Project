@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 6802800562000966264}
   - component: {fileID: 4640116773092233212}
   - component: {fileID: 891137939825650124}
-  - component: {fileID: 862527825241677926}
+  - component: {fileID: 6737287720772291653}
   m_Layer: 6
   m_Name: Hospital
   m_TagString: Untagged
@@ -146,8 +146,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectiveType: 1
   _level: 14
-  _progressionReward: 0
-  _outline: {fileID: 862527825241677926}
+  _progressionReward: 1
+  _outline: {fileID: 6737287720772291653}
 --- !u!114 &891137939825650124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,7 +163,7 @@ MonoBehaviour:
   _renderers:
   - {fileID: 7365769524826355032}
   _position: {x: 0, y: 0, z: 0}
---- !u!114 &862527825241677926
+--- !u!114 &6737287720772291653
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -177,7 +177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 0
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 20
+  outlineWidth: 4
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []

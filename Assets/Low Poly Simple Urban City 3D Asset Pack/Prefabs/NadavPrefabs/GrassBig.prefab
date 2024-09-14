@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objectiveType: 1
-  _level: 2
+  _level: 1
   _progressionReward: 1
   _outline: {fileID: 6659105505766391847}
 --- !u!4 &7606274081217538764 stripped

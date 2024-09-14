@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 4493903202982350566}
   - component: {fileID: 20735935563851697}
   - component: {fileID: 2176823931848952873}
-  - component: {fileID: 5977460596016845401}
   - component: {fileID: 5954546543551376593}
+  - component: {fileID: 8313224885335028558}
   m_Layer: 6
   m_Name: Trash_Bag_1
   m_TagString: Untagged
@@ -101,8 +101,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectiveType: 1
   _level: 2
-  _progressionReward: 0
-  _outline: {fileID: 5977460596016845401}
+  _progressionReward: 1
+  _outline: {fileID: 8313224885335028558}
 --- !u!114 &2176823931848952873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,24 +118,6 @@ MonoBehaviour:
   _renderers:
   - {fileID: 4493903202982350566}
   _position: {x: 0, y: 0, z: 0}
---- !u!114 &5977460596016845401
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2692432772633423667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ab8ca3407e172c4db129ddd95ea9afb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 20
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!135 &5954546543551376593
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -149,3 +131,21 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.339487
   m_Center: {x: 0, y: 0.339487, z: 0}
+--- !u!114 &8313224885335028558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2692432772633423667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab8ca3407e172c4db129ddd95ea9afb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
