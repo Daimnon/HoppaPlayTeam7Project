@@ -38,7 +38,7 @@ public class TerritoryClaimer : MonoBehaviour
     private float _fireRange = 1.0f;
     private int _explosionCount = 0;
     private SoundManager soundManager;
-    private List<Flame> _flames = new List<Flame>();
+    private List<Flame> _flames = new ();
 
     #region Monobehaviour Callbacks
     private void OnEnable()
@@ -87,7 +87,7 @@ public class TerritoryClaimer : MonoBehaviour
             else if (_igniteCouter > 2)
                 _igniteCouter = 0;
 
-            StartCoroutine(RemovePointDelayed(currentPosition));
+            StartCoroutine(RemovePointDelayed(currentPosition, trailFlame));
         }
     }
     private void CheckForClosedArea()
@@ -216,13 +216,12 @@ public class TerritoryClaimer : MonoBehaviour
 
         return new Bounds(center, size);
     }
-    private IEnumerator RemovePointDelayed(Vector3 point)
+    private IEnumerator RemovePointDelayed(Vector3 point, Flame trailFlame)
     {
-        if (!_flames[0]) yield break;
         yield return new WaitForSeconds(_trailRenderer.time);
 
-        _flamePool.ReturnFlameToPool(_flames[0]);
-        _flames.RemoveAt(0);
+        _flames.Remove(trailFlame);
+        _flamePool.ReturnFlameToPool(trailFlame);
         _trailPoints.Remove(point);
     }
     private List<Consumable> GetConsumablesInClosedArea()
@@ -280,7 +279,7 @@ public class TerritoryClaimer : MonoBehaviour
     #endregion
 
     #region Events
-    private void OnAreaClosed(Vector3 midPos) // need to carry on from here
+    private void OnAreaClosed(Vector3 midPos)
     {
         List<Consumable> consumablesInClosedArea = GetConsumablesInClosedArea();
         for (int i = 0; i < consumablesInClosedArea.Count; i++)
@@ -293,15 +292,7 @@ public class TerritoryClaimer : MonoBehaviour
             _flamePool.ReturnFlameToPool(_flames[i]);
         }
 
-        if (_explosionCoroutines.Count > 0)
-        {
-            for (int i = 0; i < _explosionCoroutines.Count; i++)
-            {
-                StopCoroutine(_explosionCoroutines[i]);
-            }
-        }
-        _explosionCoroutines.Clear();
-        _explosionCoroutines.Add(StartCoroutine(ExplosionRoutine(midPos)));
+        StartCoroutine(ExplosionRoutine(midPos));
 
         _trailPoints.Clear();
         _trailRenderer.Clear();
@@ -311,7 +302,7 @@ public class TerritoryClaimer : MonoBehaviour
         soundManager.PlayFireExplosionSound();
         _explosionCount++;
 
-        if (_explosionCount >= 3) // fix for objective
+        if (_explosionCount >= 3)
         {
             EventManager.InvokeObjectiveTrigger3();
             Debug.Log("Objective 3 completed with explosion count: " + _explosionCount);
