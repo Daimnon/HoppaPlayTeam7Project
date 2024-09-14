@@ -2,6 +2,7 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum SceneType
 {
@@ -28,17 +29,30 @@ public class GameManager : MonoBehaviour
     public void ChangeScene()
     {
         Debug.Log("Changing scene, next scene");
-        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1);
+        int nextSceneBuildIndex = SceneManager.GetActiveScene().buildIndex + 1;
+
+        if (SceneManager.GetSceneByBuildIndex(nextSceneBuildIndex) != null)
+            SceneManager.LoadScene(nextSceneBuildIndex);
+        else
+            SceneManager.LoadScene(0);
     }
-    public void ChangeScene(SceneType nextScene)
+    public void ChangeScene(SceneType nextSceneType)
     {
-        Debug.Log("Changing scene, next scene" + nextScene.ToString());
-        UnityEngine.SceneManagement.SceneManager.LoadScene((int)nextScene);
+        Debug.Log("Changing scene, next scene" + nextSceneType.ToString());
+        int sceneBuildIndex = (int)nextSceneType;
+
+        if (SceneManager.GetSceneByBuildIndex(sceneBuildIndex) != null)
+            SceneManager.LoadScene(sceneBuildIndex);
+        else
+            Debug.LogError("Scene in build index " + sceneBuildIndex + " does not exist!");
     }
-    public void ChangeScene(int nextSceneBuildIndex)
+    public void ChangeScene(int sceneBuildIndex)
     {
-        Debug.Log("Changing scene, next scene" + ((SceneType)nextSceneBuildIndex).ToString());
-        UnityEngine.SceneManagement.SceneManager.LoadScene(nextSceneBuildIndex);
+        Debug.Log("Changing scene, next scene" + ((SceneType)sceneBuildIndex).ToString());
+        if (SceneManager.GetSceneByBuildIndex(sceneBuildIndex) != null)
+            SceneManager.LoadScene(sceneBuildIndex);
+        else
+            Debug.LogError("Scene in build index " + sceneBuildIndex + " does not exist!");
     }
 
     private void OnSceneChange(SceneType nextScene)

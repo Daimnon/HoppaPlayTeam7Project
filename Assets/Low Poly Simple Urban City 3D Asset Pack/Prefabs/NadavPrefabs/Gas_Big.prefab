@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 5212658007897166873}
   - component: {fileID: 9221348121131441084}
   - component: {fileID: 6349011196935516022}
-  - component: {fileID: 3479688685256328515}
   - component: {fileID: 6112670040788558603}
   - component: {fileID: 4075267408489783994}
   - component: {fileID: 681952308477369449}
+  - component: {fileID: 325613253418415190}
   m_Layer: 6
   m_Name: Gas_Big
   m_TagString: Untagged
@@ -87,19 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3479688685256328515
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4835956135586303651}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.666134, y: 2.57465, z: 1.666134}
-  m_Center: {x: 0, y: 1.287325, z: 0}
 --- !u!114 &6112670040788558603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,3 +136,17 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!136 &325613253418415190
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4835956135586303651}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.833067
+  m_Height: 2.57465
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.287325, z: 0}

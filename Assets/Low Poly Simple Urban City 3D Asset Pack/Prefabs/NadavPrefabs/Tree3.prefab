@@ -134,8 +134,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.08, y: 4.436829, z: 0.88}
-  m_Center: {x: 0.0040276656, y: 2.2184145, z: 0.05}
+  m_Size: {x: 0.8, y: 2, z: 0.7}
+  m_Center: {x: 0.09, y: 1, z: 0.05}
 --- !u!114 &3628914931039112005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,21 +152,6 @@ MonoBehaviour:
   _level: 6
   _progressionReward: 0
   _outline: {fileID: 6743578450818595155}
---- !u!114 &9194390942909405162
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8281861531052501386}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99b3d44050d91fb4aad7465218bbcd03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _renderers:
-  - {fileID: 7633576487042730079}
-  _position: {x: 0, y: 0, z: 0}
 --- !u!114 &6743578450818595155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,6 +170,34 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &9194390942909405162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8281861531052501386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99b3d44050d91fb4aad7465218bbcd03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderers:
+  - {fileID: 7633576487042730079}
+  _position: {x: 0, y: 0, z: 0}
+--- !u!135 &2919889832019036902
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8281861531052501386}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.35
+  m_Center: {x: -0.15, y: 3.26, z: 0.25622642}
 --- !u!4 &8765347938918150960 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 340133ed6f23db5458902c87168d66fd,
