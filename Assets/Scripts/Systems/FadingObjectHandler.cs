@@ -71,6 +71,9 @@ public class FadingObjectHandler : MonoBehaviour
     }
     private IEnumerator FadeObjectOut(FadingObject fadingObject)
     {
+        if (fadingObject.Materials.Count < 1)
+            yield break;
+
         foreach (Material material in fadingObject.Materials)
         {
             material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
@@ -91,7 +94,8 @@ public class FadingObjectHandler : MonoBehaviour
 
         float time = 0;
 
-        while (fadingObject.Materials[0].color.a > _targetAlpha)
+        Material firstMat = fadingObject.Materials[0];
+        while (firstMat.color.a > _targetAlpha)
         {
             for (int i = 0; i < fadingObject.Materials.Count; i++)
             {
@@ -113,9 +117,13 @@ public class FadingObjectHandler : MonoBehaviour
 
     private IEnumerator FadeObjectIn(FadingObject fadingObject)
     {
+        if (fadingObject.Materials.Count < 1)
+            yield break;
+
         float time = 0;
 
-        while (fadingObject.Materials[0].color.a < fadingObject.OriginalAlpha[0])
+        Material firstMat = fadingObject.Materials[0];
+        while (firstMat.color.a < fadingObject.OriginalAlpha[0])
         {
             for (int i = 0; i < fadingObject.Materials.Count; i++)
             {
