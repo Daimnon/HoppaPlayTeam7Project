@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3722010999494884200}
   - component: {fileID: 6873015087819750383}
   - component: {fileID: 1217810356226271182}
-  - component: {fileID: 8606640249028935494}
+  - component: {fileID: 2777169487164840518}
   m_Layer: 6
   m_Name: Newspaper_Stand
   m_TagString: Untagged
@@ -114,8 +114,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectiveType: 1
   _level: 8
-  _progressionReward: 0
-  _outline: {fileID: 8606640249028935494}
+  _progressionReward: 384
+  _outline: {fileID: 2777169487164840518}
 --- !u!114 &1217810356226271182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,7 +131,7 @@ MonoBehaviour:
   _renderers:
   - {fileID: 7122181758882388872}
   _position: {x: 0, y: 0, z: 0}
---- !u!114 &8606640249028935494
+--- !u!114 &2777169487164840518
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 0
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 20
+  outlineWidth: 4
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []

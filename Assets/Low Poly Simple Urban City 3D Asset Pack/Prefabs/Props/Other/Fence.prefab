@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5206307262186765095}
   - component: {fileID: 7714708231130234747}
   - component: {fileID: 3385990508390641255}
-  - component: {fileID: 6376170767899487991}
+  - component: {fileID: 5945055948490396247}
   m_Layer: 6
   m_Name: Fence
   m_TagString: Untagged
@@ -115,7 +115,7 @@ MonoBehaviour:
   _objectiveType: 1
   _level: 5
   _progressionReward: 0
-  _outline: {fileID: 6376170767899487991}
+  _outline: {fileID: 5945055948490396247}
 --- !u!114 &3385990508390641255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,7 +131,7 @@ MonoBehaviour:
   _renderers:
   - {fileID: 1200737170789110331}
   _position: {x: 0, y: 0, z: 0}
---- !u!114 &6376170767899487991
+--- !u!114 &5945055948490396247
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 0
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 20
+  outlineWidth: 4
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []

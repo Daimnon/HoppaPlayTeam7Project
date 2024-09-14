@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 2945545883520452201}
   - component: {fileID: 623610528867333904}
   - component: {fileID: 8244800491549101626}
-  - component: {fileID: -5059972064866991237}
   - component: {fileID: 8485337410134703690}
+  - component: {fileID: 3082001367207747462}
   m_Layer: 6
   m_Name: Hydrant
   m_TagString: Untagged
@@ -101,8 +101,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectiveType: 1
   _level: 4
-  _progressionReward: 0
-  _outline: {fileID: -5059972064866991237}
+  _progressionReward: 24
+  _outline: {fileID: 3082001367207747462}
 --- !u!114 &8244800491549101626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,24 +118,6 @@ MonoBehaviour:
   _renderers:
   - {fileID: 2945545883520452201}
   _position: {x: 0, y: 0, z: 0}
---- !u!114 &-5059972064866991237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3738078055998318524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ab8ca3407e172c4db129ddd95ea9afb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 20
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!136 &8485337410134703690
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -150,3 +132,21 @@ CapsuleCollider:
   m_Height: 1.0733479
   m_Direction: 1
   m_Center: {x: 0, y: 0.53667396, z: 0}
+--- !u!114 &3082001367207747462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3738078055998318524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab8ca3407e172c4db129ddd95ea9afb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []

@@ -144,24 +144,19 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8134246020426021713}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2066099938172736178
-MonoBehaviour:
+--- !u!65 &6267520810980695639
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8945218106950518272}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ab8ca3407e172c4db129ddd95ea9afb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 20
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
+  serializedVersion: 2
+  m_Size: {x: 1.7368225, y: 0.99082136, z: 0.49733528}
+  m_Center: {x: 0.014051437, y: 0.19674659, z: -0.03944193}
 --- !u!114 &2089765898546529624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,7 +172,7 @@ MonoBehaviour:
   _objectiveType: 1
   _level: 2
   _progressionReward: 0
-  _outline: {fileID: 2066099938172736178}
+  _outline: {fileID: 8293875852425024016}
 --- !u!114 &3680557131815358068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,16 +188,21 @@ MonoBehaviour:
   _renderers:
   - {fileID: 7431836626403338197}
   _position: {x: 0, y: 0, z: 0}
---- !u!65 &6267520810980695639
-BoxCollider:
+--- !u!114 &8293875852425024016
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8945218106950518272}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.7368225, y: 0.99082136, z: 0.49733528}
-  m_Center: {x: 0.014051437, y: 0.19674659, z: -0.03944193}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab8ca3407e172c4db129ddd95ea9afb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []

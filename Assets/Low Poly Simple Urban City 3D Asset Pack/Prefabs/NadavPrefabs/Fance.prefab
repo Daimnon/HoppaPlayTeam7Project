@@ -164,10 +164,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objectiveType: 1
-  _level: 5
-  _progressionReward: 0
-  _outline: {fileID: 957432939946711716}
---- !u!114 &957432939946711716
+  _level: 7
+  _progressionReward: 192
+  _outline: {fileID: 1908400976538562457}
+--- !u!114 &1908400976538562457
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -181,7 +181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 0
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 20
+  outlineWidth: 4
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
