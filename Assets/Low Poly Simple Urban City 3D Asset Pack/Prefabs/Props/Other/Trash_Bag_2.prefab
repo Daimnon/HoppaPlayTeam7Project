@@ -113,8 +113,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objectiveType: 1
-  _level: 3
-  _progressionReward: 0
+  _level: 2
+  _progressionReward: 6
   _outline: {fileID: 8923297947801817432}
 --- !u!114 &9092538573474643204
 MonoBehaviour:
