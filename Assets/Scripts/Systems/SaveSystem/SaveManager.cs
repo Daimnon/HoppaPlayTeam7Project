@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Playables;
 
 public class SaveManager : MonoBehaviour
 {
@@ -27,7 +26,8 @@ public class SaveManager : MonoBehaviour
     {
         EventManager.OnLevelLaunched += OnLevelLaunched;
         EventManager.OnLevelComplete += OnLevelComplete;
-        _fileDataHandler = new FileDataHandler(Application.persistentDataPath, _fileName);
+        EventManager.OnReloadLevel += OnReloadLevel;
+        _fileDataHandler = new FileDataHandler(Application.persistentDataPath + "/", _fileName);
         _saveables = FindAllSaveables();
         LoadGame();
     }
@@ -35,6 +35,7 @@ public class SaveManager : MonoBehaviour
     {
         EventManager.OnLevelLaunched -= OnLevelLaunched;
         EventManager.OnLevelComplete -= OnLevelComplete;
+        EventManager.OnReloadLevel -= OnReloadLevel;
     }
 
     public void NewGame()
@@ -79,6 +80,11 @@ public class SaveManager : MonoBehaviour
     private void OnLevelLaunched()
     {
         SaveGame();
+    }
+    private void OnReloadLevel()
+    {
+        SaveGame();
+        LoadGame();
     }
     private void OnLevelComplete()
     {

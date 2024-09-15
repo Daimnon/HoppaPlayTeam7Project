@@ -11,7 +11,7 @@ public static class EventManager
     #endregion
 
     #region GameLoop
-    public static Action OnGameLaunched, OnLevelLaunched, OnLevelComplete, OnLose;
+    public static Action OnGameLaunched, OnLevelLaunched, OnReloadLevel, OnLevelComplete, OnLose;
     public static Action OnOpenMenu;
     #endregion
 
@@ -72,6 +72,11 @@ public static class EventManager
     {
         OnLevelLaunched?.Invoke();
         UnityEngine.Debug.Log("Event: LevelLaunched");
+    }
+    public static void InvokeReloadLevel()
+    {
+        OnReloadLevel?.Invoke();
+        UnityEngine.Debug.Log("Event: ReloadLevel");
     }
     public static void InvokeLevelComplete()
     {

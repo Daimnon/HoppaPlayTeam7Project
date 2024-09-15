@@ -175,7 +175,8 @@ public class LevelManager : MonoBehaviour, ISaveable
     }
     public void ReloadLevel()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+        EventManager.InvokeReloadLevel();
+        _gameManager.ChangeScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
     }
     public void ProceedToNextLevel()
     {
