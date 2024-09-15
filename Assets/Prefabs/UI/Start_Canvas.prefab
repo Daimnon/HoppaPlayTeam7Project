@@ -614,6 +614,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1049286536, guid: 383616601983d744c9a6f9022352e2ae,
         type: 3}
+    - target: {fileID: 1258285302963326091, guid: fd480e1d6aef4f049bb70f800e2100ca,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.5019608
+      objectReference: {fileID: 0}
     - target: {fileID: 5271346524680742603, guid: fd480e1d6aef4f049bb70f800e2100ca,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -651,6 +656,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6416840910912639652, guid: fd480e1d6aef4f049bb70f800e2100ca,
         type: 3}
+      propertyPath: m_text
+      value: '100
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6416840910912639652, guid: fd480e1d6aef4f049bb70f800e2100ca,
+        type: 3}
       propertyPath: m_fontAsset
       value: 
       objectReference: {fileID: 11400000, guid: db4967f08d9ae864d8cd761841b7d1f1,
@@ -669,6 +681,11 @@ PrefabInstance:
     - target: {fileID: 6416840910912639652, guid: fd480e1d6aef4f049bb70f800e2100ca,
         type: 3}
       propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6416840910912639834, guid: fd480e1d6aef4f049bb70f800e2100ca,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6416840911582035668, guid: fd480e1d6aef4f049bb70f800e2100ca,
@@ -783,13 +800,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6416840911582035670, guid: fd480e1d6aef4f049bb70f800e2100ca,
         type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6416840911582035670, guid: fd480e1d6aef4f049bb70f800e2100ca,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6416840911582035670, guid: fd480e1d6aef4f049bb70f800e2100ca,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PurchaseFirePowerUpgrade
+      value: UpgradeFirePower
+      objectReference: {fileID: 0}
+    - target: {fileID: 6416840911881743160, guid: fd480e1d6aef4f049bb70f800e2100ca,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.5019608
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd480e1d6aef4f049bb70f800e2100ca, type: 3}
@@ -846,6 +873,13 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 14.4615345
+      objectReference: {fileID: 0}
+    - target: {fileID: 6416840910912639652, guid: fd480e1d6aef4f049bb70f800e2100ca,
+        type: 3}
+      propertyPath: m_text
+      value: '100
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 6416840910912639652, guid: fd480e1d6aef4f049bb70f800e2100ca,
         type: 3}
@@ -987,7 +1021,7 @@ PrefabInstance:
     - target: {fileID: 6416840911582035670, guid: fd480e1d6aef4f049bb70f800e2100ca,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PurchaseTimerUpgrade
+      value: UpgradeTime
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd480e1d6aef4f049bb70f800e2100ca, type: 3}
@@ -1049,6 +1083,13 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 11.076922
+      objectReference: {fileID: 0}
+    - target: {fileID: 6416840910912639652, guid: fd480e1d6aef4f049bb70f800e2100ca,
+        type: 3}
+      propertyPath: m_text
+      value: '100
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 6416840910912639652, guid: fd480e1d6aef4f049bb70f800e2100ca,
         type: 3}
@@ -1186,6 +1227,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6416840911582035670, guid: fd480e1d6aef4f049bb70f800e2100ca,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UpgradeGrowth
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd480e1d6aef4f049bb70f800e2100ca, type: 3}
