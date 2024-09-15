@@ -50,17 +50,29 @@ public class Player_Data : MonoBehaviour
     [SerializeField] private int _evolveTreshold = 5;
     public int EvolveTreshold => _evolveTreshold;
 
-    public void LevelUp()
+    private void OnEnable()
+    {
+        EventManager.OnUpgrade += OnUpgrade;
+        EventManager.OnMultipleGrowth += OnMultipleLevelUp;
+    }
+    private void OnDisable()
+    {
+        EventManager.OnUpgrade -= OnUpgrade;
+        EventManager.OnMultipleGrowth -= OnMultipleLevelUp;
+    }
+
+    private void LevelUp()
     {
         _currentLevel++;
         _growthLevelCounter++;
         _hud.SetNewLevel(_currentLevel);
 
+        float tempCurrentExp = _currentExp - _maxExp;
         float tempMaxExp = _maxExp * _expFactor;
         _maxExp = Mathf.RoundToInt(tempMaxExp);
         _hud.SetNewMaxExp(_maxExp);
         
-        _currentExp = 0;
+        _currentExp = Mathf.RoundToInt(tempCurrentExp);
         _hud.UpdateExpBar(_maxExp, _currentExp);
 
         if (_growthLevelCounter >= _growthTreshold)
@@ -104,14 +116,25 @@ public class Player_Data : MonoBehaviour
     {
         if (_currentExp >= _maxExp)
             LevelUp();
-
-        
     }
     public void GainExp(int expToGain)
     {
         _currentExp += expToGain;
-        _hud.UpdateExpBar(_maxExp, _currentExp);
+        _hud.UpdateExpBar(_maxExp, _currentExp); // should be event
 
         CheckLevelUp();
     }
+
+    #region Events
+    private void OnUpgrade(UpgradeType type)
+    {
+        if (type == UpgradeType.Grow)
+            GainExp(_maxExp);
+    }
+    private void OnMultipleLevelUp(int targetLevel)
+    {
+        double expToGain = _maxExp * (Math.Pow(_expFactor, targetLevel) - 1) / (_expFactor - 1);
+        GainExp(Mathf.RoundToInt((float)expToGain));
+    }
+    #endregion
 }

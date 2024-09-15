@@ -15,6 +15,7 @@ public class TerritoryClaimer : MonoBehaviour
     [SerializeField] private LayerMask _detectionLayer;
     [SerializeField] private float _minDistance = 1.0f; // should increase while growing in size
     [SerializeField] private float _intersectDistance;
+    private float _firePower = 1.0f, _fireRange = 1.0f;
 
     private readonly List<Vector3> _trailPoints = new();
     private List<Vector3> _closedTrailPoints = new();
@@ -22,10 +23,9 @@ public class TerritoryClaimer : MonoBehaviour
     private float _startingMinDistance;
     
     [Header("VFXs")]
-    [SerializeField] private VisualEffect _explosionVFX;
+    //[SerializeField] private VisualEffect _explosionVFX;
     [SerializeField] private float _timeForExplosionToDieOut = 5.0f;
     [SerializeField] private float _explosionScaleFactor = 6.0f;
-    private List<Coroutine> _explosionCoroutines;
 
     [Header("Audio")]
     [SerializeField] private AudioSource _audioSource;
@@ -34,8 +34,6 @@ public class TerritoryClaimer : MonoBehaviour
     [SerializeField] private Vector2 _ignitePitch = new (0.5f,1.5f);
     private int _igniteCouter = 0;
 
-    private float _firePower = 1.0f;
-    private float _fireRange = 1.0f;
     private int _explosionCount = 0;
     private SoundManager soundManager;
     private List<Flame> _flames = new ();
@@ -45,9 +43,10 @@ public class TerritoryClaimer : MonoBehaviour
     {
         EventManager.OnAreaClosed += OnAreaClosed;
         EventManager.OnGrowth += OnGrowth;
-        _explosionCoroutines = new();
+        EventManager.OnUpgrade += OnUpgrade;
+        /*_explosionCoroutines = new();
         _explosionVFX.Reinit();
-        _explosionVFX.Stop();
+        _explosionVFX.Stop();*/
     }
     private void Start() 
     {
@@ -64,6 +63,7 @@ public class TerritoryClaimer : MonoBehaviour
     {
         EventManager.OnAreaClosed -= OnAreaClosed;
         EventManager.OnGrowth -= OnGrowth;
+        EventManager.OnUpgrade -= OnUpgrade;
     }
     #endregion
 
@@ -243,19 +243,19 @@ public class TerritoryClaimer : MonoBehaviour
     #endregion
 
     #region VFX Methods
-    private void ResetExplosion()
+    /*private void ResetExplosion()
     {
         _explosionVFX.Reinit();
         _explosionVFX.Stop();
         _explosionVFX.transform.SetParent(transform);
-    }
-    private void PlayExplosion(Vector3 pos)
+    }*/
+    /*private void PlayExplosion(Vector3 pos)
     {
         _explosionVFX.transform.SetParent(null);
         _explosionVFX.transform.position = pos;
         _explosionVFX.transform.localScale = transform.localScale / 2f;
         _explosionVFX.Play();
-    }
+    }*/
     private IEnumerator ExplosionRoutine(Vector3 midPos)
     {
         //PlayExplosion(midPos);
@@ -312,6 +312,11 @@ public class TerritoryClaimer : MonoBehaviour
     {
         _minDistance = _startingMinDistance * transform.localScale.x;
         _intersectDistance = transform.localScale.x;
+    }
+    private void OnUpgrade(UpgradeType type)
+    {
+        if (type == UpgradeType.FirePower)
+            IncreaseFirePower(_firePower, _fireRange);
     }
     #endregion
 

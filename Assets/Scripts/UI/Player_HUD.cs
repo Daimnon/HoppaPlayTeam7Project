@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -58,20 +60,23 @@ public class Player_HUD : MonoBehaviour
     private void OnEnable()
     {
         EventManager.OnLevelLaunched += OnLevelLaunched;
+        //EventManager.OnUpdateHUD += OnUpdateHUD;
         EventManager.OnCurrencyChange += OnCurrencyChange;
         EventManager.OnSpecialCurrencyChange += OnSpecialCurrencyChange;
         EventManager.OnProgressionChange += OnProgressionChange;
         EventManager.OnTimerChange += OnTimerChange;
+        EventManager.OnUpgrade += OnUpgrade;
     }
     private void OnDisable()
     {
         EventManager.OnLevelLaunched -= OnLevelLaunched;
+        //EventManager.OnUpdateHUD -= OnUpdateHUD;
         EventManager.OnCurrencyChange -= OnCurrencyChange;
         EventManager.OnSpecialCurrencyChange -= OnSpecialCurrencyChange;
         EventManager.OnProgressionChange -= OnProgressionChange;
         EventManager.OnTimerChange -= OnTimerChange;
+        EventManager.OnUpgrade -= OnUpgrade;
     }
-
     private void Start()
     {
         _levelManager = FindObjectOfType<LevelManager>();
@@ -119,6 +124,31 @@ public class Player_HUD : MonoBehaviour
 
         return formattedNumber;
     }
+    private int ParseFormattedLargeNumber(string formattedNumber)
+    {
+        int magnitude = 0;
+
+        for (int i = 0; i < _currencySuffixes.Length; i++)
+        {
+            string suffix = _currencySuffixes[i];
+            if (formattedNumber.EndsWith(suffix))
+            {
+                magnitude = Array.IndexOf(_currencySuffixes, suffix);
+                formattedNumber = formattedNumber.Substring(0, formattedNumber.Length - suffix.Length);
+                break;
+            }
+        }
+
+        if (double.TryParse(formattedNumber, out double tempNumber))
+        {
+            // multiply back by 1000 raised to the magnitude to restore the original number
+            double originalNumber = tempNumber * Math.Pow(1000, magnitude);
+            return (int)Math.Round(originalNumber);
+        }
+
+        throw new FormatException("Invalid formatted number string.");
+    }
+
     private void UpdateFillBarAnimation()
     {
 
@@ -137,10 +167,16 @@ public class Player_HUD : MonoBehaviour
     public void UpdateCurrency(int newCurrency)
     {
         _currencyText.text = FormatLargeNumber(newCurrency);
+
+        if (newCurrency <= 0)
+            _currencyText.text = "0";
     }
     public void UpdateSpecialCurrency(int newSpecialCurrency)
     {
         _specialCurrencyText.text = FormatLargeNumber(newSpecialCurrency);
+
+        if (newSpecialCurrency <= 0)
+            _specialCurrencyText.text = "0";
     }
     #endregion
 
@@ -224,6 +260,10 @@ public class Player_HUD : MonoBehaviour
         }
 
         UpdateTimerText(timeSinceStartup);
+    }
+    private void OnUpgrade(UpgradeType type)
+    {
+        // implement logic
     }
     #endregion
 }

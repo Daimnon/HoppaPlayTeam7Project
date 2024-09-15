@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_Inventory : MonoBehaviour
+public class Player_Inventory : MonoBehaviour, ISaveable
 {
     [SerializeField] private int _currency = 0;
     public int Currency => _currency;
@@ -18,6 +18,7 @@ public class Player_Inventory : MonoBehaviour
         EventManager.OnEarnSpecialCurrency += OnEarnSpecialCurrency;
         EventManager.OnPaySpecialCurrency += OnPaySpecialCurrency;
         EventManager.OnGrowthMaxed += OnGrowthMaxed;
+        EventManager.OnUpgrade += OnUpgrade;
     }
     private void OnDisable()
     {
@@ -26,6 +27,7 @@ public class Player_Inventory : MonoBehaviour
         EventManager.OnEarnSpecialCurrency -= OnEarnSpecialCurrency;
         EventManager.OnPaySpecialCurrency -= OnPaySpecialCurrency;
         EventManager.OnGrowthMaxed -= OnGrowthMaxed;
+        EventManager.OnUpgrade -= OnUpgrade;
     }
 
     private void OnEarnCurrency(int amount)
@@ -33,7 +35,7 @@ public class Player_Inventory : MonoBehaviour
         _currency += amount;
         EventManager.InvokeCurrencyChange(_currency);
     }
-    public void OnPayCurrency(int amount)
+    private void OnPayCurrency(int amount)
     {
         if (_currency - amount < 0)
         {
@@ -64,5 +66,20 @@ public class Player_Inventory : MonoBehaviour
     private void OnGrowthMaxed(float timeRemaining)
     {
 
+    }
+    private void OnUpgrade(UpgradeType type)
+    {
+        // implement logic
+    }
+
+    public void LoadData(GameData gameData)
+    {
+        _currency = gameData.Currency;
+        _specialCurrency = gameData.SpecialCurrency;
+    }
+    public void SaveData(ref GameData gameData)
+    {
+        gameData.Currency = _currency;
+        gameData.SpecialCurrency = _specialCurrency;
     }
 }

@@ -4,30 +4,65 @@ using UnityEngine;
 
 public static class EventManager
 {
-    public static Action OnGameLaunched, OnLevelLaunched, OnOpenMenu;
-    public static Action OnLose;
+    #region General
     public static Action OnBakeNavMesh;
-    public static Action OnUnlock;
-
-    public static Action OnObjectiveTrigger1, OnObjectiveTrigger2, OnObjectiveTrigger3; 
-
-    public static Action OnGrowth;
-    public static Action<float> OnGrowthMaxed;
+    public static Action OnUpdateHUD;
     public static Action<SceneType> OnSceneChange;
-    public static Action<EvoType> OnEvolve;
+    #endregion
 
+    #region GameLoop
+    public static Action OnGameLaunched, OnLevelLaunched, OnReloadLevel, OnLevelComplete, OnLose;
+    public static Action OnOpenMenu;
+    #endregion
+
+    #region Objective
+    public static Action OnObjectiveTrigger1, OnObjectiveTrigger2, OnObjectiveTrigger3;
+    #endregion
+
+    #region Growth
+    public static Action OnGrowth;
+    public static Action<int> OnMultipleGrowth;
+    public static Action<float> OnGrowthMaxed;
+    public static Action<EvoType> OnEvolve;
+    #endregion
+
+    #region Inventory
     public static Action<int> OnEarnCurrency, OnPayCurrency;
     public static Action<int> OnEarnSpecialCurrency, OnPaySpecialCurrency;
-    public static Action<int> OnEarnExp, OnPayExp;
     public static Action<int> OnCurrencyChange, OnSpecialCurrencyChange/*, OnExpChange, OnLevelChange*/;
+    public static Action<UpgradeType> OnUpgrade;
+    #endregion
 
+    #region Level & Progression
+    public static Action<float> OnTimerChange;
+    public static Action<int> OnEarnExp, OnPayExp;
     public static Action<int> OnProgressMade, OnProgressLost;
     public static Action<float> OnProgressionChange;
+    #endregion
 
-    public static Action<float> OnTimerChange;
-
+    #region Player Actions
     public static Action<Vector3> OnAreaClosed;
+    #endregion
 
+    #region General Event Methods
+    public static void InvokeBakeNavMesh()
+    {
+        OnBakeNavMesh?.Invoke();
+        UnityEngine.Debug.Log("Event: BakeNavMesh");
+    }
+    public static void InvokeUpdateHUD()
+    {
+        OnUpdateHUD?.Invoke();
+        UnityEngine.Debug.Log("Event: UpdateHUD");
+    }
+    public static void InvokeSceneChange(SceneType nextScene)
+    {
+        OnSceneChange?.Invoke(nextScene);
+        UnityEngine.Debug.Log("Event: SceneChange");
+    }
+    #endregion
+
+    #region GameLoop Event Methods
     public static void InvokeGameLaunched()
     {
         OnGameLaunched?.Invoke();
@@ -38,13 +73,29 @@ public static class EventManager
         OnLevelLaunched?.Invoke();
         UnityEngine.Debug.Log("Event: LevelLaunched");
     }
-
+    public static void InvokeReloadLevel()
+    {
+        OnReloadLevel?.Invoke();
+        UnityEngine.Debug.Log("Event: ReloadLevel");
+    }
+    public static void InvokeLevelComplete()
+    {
+        OnLevelComplete?.Invoke();
+        UnityEngine.Debug.Log("Event: LevelComplete");
+    }
     public static void InvokeLose()
     {
         OnLose?.Invoke();
         UnityEngine.Debug.Log("Event: Lose");
     }
+    public static void InvokeOpenMenu()
+    {
+        OnOpenMenu?.Invoke();
+        UnityEngine.Debug.Log("Event: OpenMenu");
+    }
+    #endregion
 
+    #region Objective Event Methods
     public static void InvokeObjectiveTrigger1()
     {
         OnObjectiveTrigger1.Invoke();
@@ -60,79 +111,32 @@ public static class EventManager
         OnObjectiveTrigger3.Invoke();
         Debug.Log("Event: ObjectiveTrigger3");
     }
+    #endregion
 
-    public static void InvokeOpenMenu()
-    {
-        OnOpenMenu?.Invoke();
-        UnityEngine.Debug.Log("Event: OpenMenu");
-    }
-    public static void InvokeUnlock()
-    {
-        OnUnlock?.Invoke();
-        UnityEngine.Debug.Log("Event: Unlock");
-    }
-    public static void InvokeBakeNavMesh()
-    {
-        OnBakeNavMesh?.Invoke();
-        UnityEngine.Debug.Log("Event: BakeNavMesh");
-    }
-
+    #region Growth Event Methods
     public static void InvokeGrowth()
     {
         OnGrowth?.Invoke();
         UnityEngine.Debug.Log("Event: Growth");
+    }
+    public static void InvokeMultipleGrowth(int targetLevel)
+    {
+        OnMultipleGrowth?.Invoke(targetLevel);
+        UnityEngine.Debug.Log("Event: MultipleGrowth, Target level: " + targetLevel);
     }
     public static void InvokeGrowthMaxed(float timeRemaining)
     {
         OnGrowthMaxed?.Invoke(timeRemaining);
         UnityEngine.Debug.Log("Event: GrowthMaxed");
     }
-    public static void InvokeSceneChange(SceneType nextScene)
-    {
-        OnSceneChange?.Invoke(nextScene);
-        UnityEngine.Debug.Log("Event: SceneChange");
-    }
     public static void InvokeEvolve(EvoType newEvoType)
     {
         OnEvolve?.Invoke(newEvoType);
         UnityEngine.Debug.Log("Event: Evolve");
     }
+    #endregion
 
-    public static void InvokeCurrencyChange(int currentCurrency)
-    {
-        if (currentCurrency > 0)
-        {
-            OnCurrencyChange?.Invoke(currentCurrency);
-            Debug.Log($"Event: CurrencyChanged, New Balance: {currentCurrency}");
-        }
-    }
-    public static void InvokeSpecialCurrencyChange(int currentSpecialCurrency)
-    {
-        OnSpecialCurrencyChange?.Invoke(currentSpecialCurrency);
-        UnityEngine.Debug.Log($"Event: SpecialCurrencyChanged, New Balance: {currentSpecialCurrency}");
-    }
-    /*public static void InvokeExpChange(int currentExp)
-    {
-        OnExpChange?.Invoke(currentExp);
-        Debug.Log($"Event: ExpChanged, New Balance: {currentExp}");
-    }
-    public static void InvokeLevelChange(int currentLevel)
-    {
-        OnLevelChange?.Invoke(currentLevel);
-        Debug.Log($"Event: LevelChanged, New Balance: {currentLevel}");
-    }*/
-    public static void InvokeProgressionChange(float clampedProgression)
-    {
-        OnProgressionChange?.Invoke(clampedProgression);
-        Debug.Log($"Event: ExpChanged, New Balance: {clampedProgression}");
-    }
-
-    public static void InvokeTimerChange(float newTime)
-    {
-        OnTimerChange?.Invoke(newTime);
-        //UnityEngine.Debug.Log($"Event: TimerChange, New Time: {newTime}");
-    }
-
+    #region Inventory Event Methods
     public static void InvokeEarnCurrency(int amount)
     {
         if (amount > 0)
@@ -146,7 +150,6 @@ public static class EventManager
         OnPayCurrency?.Invoke(price);
         UnityEngine.Debug.Log($"Event: PayCurrency, Price: {price}");
     }
-
     public static void InvokeEarnSpecialCurrency(int amount)
     {
         if (amount > 0)
@@ -160,7 +163,32 @@ public static class EventManager
         OnPaySpecialCurrency?.Invoke(price);
         UnityEngine.Debug.Log($"Event: PaySpecialCurrency, Price: {price}");
     }
+    public static void InvokeCurrencyChange(int currentCurrency)
+    {
+        if (currentCurrency > 0)
+        {
+            OnCurrencyChange?.Invoke(currentCurrency);
+            Debug.Log($"Event: CurrencyChanged, New Balance: {currentCurrency}");
+        }
+    }
+    public static void InvokeSpecialCurrencyChange(int currentSpecialCurrency)
+    {
+        OnSpecialCurrencyChange?.Invoke(currentSpecialCurrency);
+        UnityEngine.Debug.Log($"Event: SpecialCurrencyChanged, New Balance: {currentSpecialCurrency}");
+    }
+    public static void InvokeUpgrade(UpgradeType upgradeType)
+    {
+        OnUpgrade?.Invoke(upgradeType);
+        UnityEngine.Debug.Log($"Event: Upgrade: {upgradeType}");
+    }
+    #endregion
 
+    #region Level & Progression Event Methods
+    public static void InvokeTimerChange(float newTime)
+    {
+        OnTimerChange?.Invoke(newTime);
+        //UnityEngine.Debug.Log($"Event: TimerChange, New Time: {newTime}");
+    }
     public static void InvokeEarnExp(int amount)
     {
         if (amount > 0)
@@ -174,7 +202,6 @@ public static class EventManager
         OnPayExp?.Invoke(price);
         UnityEngine.Debug.Log($"Event: PayExp, Price: {price}");
     }
-
     public static void InvokeProgressMade(int amount)
     {
         if (amount > 0)
@@ -191,7 +218,14 @@ public static class EventManager
             UnityEngine.Debug.Log($"Event: ProgressLost, Price: {price}");
         }
     }
+    public static void InvokeProgressionChange(float clampedProgression)
+    {
+        OnProgressionChange?.Invoke(clampedProgression);
+        Debug.Log($"Event: ExpChanged, New Balance: {clampedProgression}");
+    }
+    #endregion
 
+    #region Player Actions Event Methods
     public static void InvokeAreaClosed(Vector3 midPos)
     {
         if (midPos != Vector3.zero)
@@ -200,4 +234,16 @@ public static class EventManager
             UnityEngine.Debug.Log($"Event: AreaClosed, Middle position: {midPos}");
         }
     }
+    #endregion
+
+    /*public static void InvokeExpChange(int currentExp)
+    {
+        OnExpChange?.Invoke(currentExp);
+        Debug.Log($"Event: ExpChanged, New Balance: {currentExp}");
+    }
+    public static void InvokeLevelChange(int currentLevel)
+    {
+        OnLevelChange?.Invoke(currentLevel);
+        Debug.Log($"Event: LevelChanged, New Balance: {currentLevel}");
+    }*/
 }

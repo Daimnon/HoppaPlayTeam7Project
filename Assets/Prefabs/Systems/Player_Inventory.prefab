@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 125575907771210747}
   - component: {fileID: 125575907771210744}
+  - component: {fileID: 125575907934305176}
   m_Layer: 0
   m_Name: Player_Inventory
   m_TagString: Untagged
@@ -46,3 +47,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _currency: 0
   _specialCurrency: 0
+--- !u!114 &125575907934305176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125575907771210745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67d0b822091784ad3b4b460c8d98c1b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerInventory: {fileID: 125575907771210744}
+  _soundManager: {fileID: 0}
+  _growUpgradePriceText: {fileID: 0}
+  _timeUpgradePriceText: {fileID: 0}
+  _firePowerUpgradePriceText: {fileID: 0}
+  _affordableColor: {r: 0.854902, g: 0.7686275, b: 0.16862746, a: 1}
+  _expensiveColor: {r: 1, g: 0, b: 0, a: 1}
