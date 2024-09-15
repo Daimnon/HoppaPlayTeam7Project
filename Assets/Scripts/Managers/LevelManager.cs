@@ -12,7 +12,7 @@ public enum ObjectiveType // None should always be last, **should not expand cas
     None
 }
 
-public class LevelManager : MonoBehaviour
+public class LevelManager : MonoBehaviour, ISaveable
 {
     [Header("Components")]
     [SerializeField] private GameManager _gameManager;
@@ -36,6 +36,7 @@ public class LevelManager : MonoBehaviour
     private Dictionary<ObjectiveType, bool> _objectiveCompletion = new();
     
     [Header("Progression data")]
+    [SerializeField] private int _levelID = 0;
     [SerializeField] private int _maxProgression = 0;
     [SerializeField] private int _currentProgression = 0;
     [SerializeField] private float _timeLimit = 0.0f;
@@ -211,5 +212,13 @@ public class LevelManager : MonoBehaviour
     {
         CalculateStars();
         _completionCanvas.gameObject.SetActive(true);
+    }
+
+    public void LoadData(GameData gameData)
+    {
+    }
+    public void SaveData(ref GameData gameData)
+    {
+        gameData.LevelID = _levelID;
     }
 }

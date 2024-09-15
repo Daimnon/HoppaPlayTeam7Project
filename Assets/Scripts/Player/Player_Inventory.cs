@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_Inventory : MonoBehaviour
+public class Player_Inventory : MonoBehaviour, ISaveable
 {
     [SerializeField] private int _currency = 0;
     public int Currency => _currency;
@@ -64,5 +64,16 @@ public class Player_Inventory : MonoBehaviour
     private void OnGrowthMaxed(float timeRemaining)
     {
 
+    }
+
+    public void LoadData(GameData gameData)
+    {
+        _currency = gameData.Currency;
+        _specialCurrency = gameData.SpecialCurrency;
+    }
+    public void SaveData(ref GameData gameData)
+    {
+        gameData.Currency = _currency;
+        gameData.SpecialCurrency = _specialCurrency;
     }
 }

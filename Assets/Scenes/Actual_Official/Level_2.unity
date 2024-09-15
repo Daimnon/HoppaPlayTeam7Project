@@ -1966,6 +1966,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 196346367327859034, guid: 4d02f8cc8ea11394aa76ba857ef8bf9e,
+        type: 3}
+      propertyPath: _sceneType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 196346367327859035, guid: 4d02f8cc8ea11394aa76ba857ef8bf9e,
         type: 3}
       propertyPath: m_RootOrder

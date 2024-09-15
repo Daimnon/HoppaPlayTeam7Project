@@ -11,11 +11,15 @@ public enum SceneType
     Level3,
 }
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, ISaveable
 {
+    [SerializeField] private SceneType _sceneType = SceneType.Level1;
+    [SerializeField] private Scene _loadingScene;
+
     private void OnEnable()
     {
         EventManager.OnSceneChange += OnSceneChange;
+        EventManager.OnLevelComplete += OnLevelComplete;
     }
     private void Start()
     {
@@ -24,7 +28,13 @@ public class GameManager : MonoBehaviour
     private void OnDisable()
     {
         EventManager.OnSceneChange -= OnSceneChange;
+        EventManager.OnLevelComplete -= OnLevelComplete;
     }
+
+/*    private IEnumerator ChangeSceneWithLoadingScreen()
+    {
+        SceneManager.Load
+    }*/
 
     /// <summary>
     /// change scene to next scene in build order
@@ -61,5 +71,19 @@ public class GameManager : MonoBehaviour
     private void OnSceneChange(SceneType nextScene)
     {
         ChangeScene(nextScene);
+    }
+    private void OnLevelComplete()
+    {
+        SaveManager.Instance.SaveGame();
+    }
+
+    public void LoadData(GameData gameData)
+    {
+        /*if ((int)_sceneType != gameData.LevelID) // need to fix
+            ChangeScene(gameData.LevelID);*/
+    }
+
+    public void SaveData(ref GameData gameData)
+    {
     }
 }
