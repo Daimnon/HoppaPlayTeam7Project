@@ -26,7 +26,7 @@ public class FileDataHandler
             {
                 string dataToLoad = string.Empty;
 
-                using (FileStream stream = new(fullPath, FileMode.Create))
+                using (FileStream stream = new(fullPath, FileMode.Open))
                 {
                     using (StreamReader reader = new(stream))
                     {
@@ -56,6 +56,7 @@ public class FileDataHandler
             {
                 using (StreamWriter writer = new(stream))
                 {
+                    Debug.Log(dataToStore);
                     writer.Write(dataToStore);
                 }
             }

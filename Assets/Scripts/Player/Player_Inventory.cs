@@ -18,6 +18,7 @@ public class Player_Inventory : MonoBehaviour, ISaveable
         EventManager.OnEarnSpecialCurrency += OnEarnSpecialCurrency;
         EventManager.OnPaySpecialCurrency += OnPaySpecialCurrency;
         EventManager.OnGrowthMaxed += OnGrowthMaxed;
+        EventManager.OnUpgrade += OnUpgrade;
     }
     private void OnDisable()
     {
@@ -26,6 +27,7 @@ public class Player_Inventory : MonoBehaviour, ISaveable
         EventManager.OnEarnSpecialCurrency -= OnEarnSpecialCurrency;
         EventManager.OnPaySpecialCurrency -= OnPaySpecialCurrency;
         EventManager.OnGrowthMaxed -= OnGrowthMaxed;
+        EventManager.OnUpgrade -= OnUpgrade;
     }
 
     private void OnEarnCurrency(int amount)
@@ -33,7 +35,7 @@ public class Player_Inventory : MonoBehaviour, ISaveable
         _currency += amount;
         EventManager.InvokeCurrencyChange(_currency);
     }
-    public void OnPayCurrency(int amount)
+    private void OnPayCurrency(int amount)
     {
         if (_currency - amount < 0)
         {
@@ -64,6 +66,10 @@ public class Player_Inventory : MonoBehaviour, ISaveable
     private void OnGrowthMaxed(float timeRemaining)
     {
 
+    }
+    private void OnUpgrade(UpgradeType type)
+    {
+        // implement logic
     }
 
     public void LoadData(GameData gameData)

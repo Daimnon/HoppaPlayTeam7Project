@@ -2,112 +2,135 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using System.Collections;
 
-public class UpgradeSystem : MonoBehaviour
+public enum UpgradeType
 {
-    [Header("Text References")]
-    [SerializeField] private TMP_Text timerUpgradePriceText;
-    [SerializeField] private TMP_Text sizeUpgradePriceText;
-    [SerializeField] private TMP_Text firePowerUpgradePriceText;
+    Grow,
+    Time,
+    FirePower
+}
 
-    private int timerUpgradeLevel = 0;
-    private int sizeUpgradeLevel = 0;
-    private int firePowerUpgradeLevel = 0;
+public class UpgradeSystem : MonoBehaviour, ISaveable
+{
+    [Header("Components")]
+    [SerializeField] private Player_Inventory _playerInventory;
+    [SerializeField] private SoundManager _soundManager;
+    [SerializeField] private TextMeshProUGUI _growUpgradePriceText, _timeUpgradePriceText, _firePowerUpgradePriceText;
 
-    private LevelManager levelManager;
-    private Player_Controller playerController;
-    private Player_Inventory playerInventory;
-    private TerritoryClaimer territoryClaimer;
-    private Player_HUD playerHUD;
-    private Player_Data playerData;
-    private SoundManager soundManager;
+    [Header("Text Color")]
+    [SerializeField] private Color _affordableColor = new(218, 196, 43, 255);
+    [SerializeField] private Color _expensiveColor = Color.red;
+
+    private int _growUpgradeLevel = 0;
+    private int _timeUpgradeLevel = 0;
+    private int _firePowerUpgradeLevel = 0;
 
     private void Start()
     {
-        levelManager = FindObjectOfType<LevelManager>();
-        playerController = FindObjectOfType<Player_Controller>();
-        playerInventory = FindObjectOfType<Player_Inventory>();
-        territoryClaimer = FindObjectOfType<TerritoryClaimer>();
-        playerHUD = FindObjectOfType<Player_HUD>();
-        playerData = playerController.GetComponent<Player_Data>();
-        soundManager = FindObjectOfType<SoundManager>();
+        if (!_playerInventory)
+            _playerInventory = GetComponent<Player_Inventory>();
 
-        UpdateGoldUI();
+        if (!_soundManager)
+            _soundManager = FindObjectOfType<SoundManager>();
+
         UpdatePriceUI();
     }
-
-    private void UpdateGoldUI()
+    
+    private int GetUpgradeCost(int level)
     {
-        playerHUD.UpdateCurrency(playerInventory.Currency);
-
+        return 100 * (level + 1);
     }
-
-    private void UpdatePriceUI()
-    {
-        UpdatePriceText(timerUpgradePriceText, timerUpgradeLevel);
-        UpdatePriceText(sizeUpgradePriceText, sizeUpgradeLevel);
-        UpdatePriceText(firePowerUpgradePriceText, firePowerUpgradeLevel);
-    }
-
-    private void UpdatePriceText(TMP_Text priceText, int upgradeLevel)
+    private void UpdatePriceText(TextMeshProUGUI priceText, int upgradeLevel)
     {
         int cost = GetUpgradeCost(upgradeLevel);
         priceText.text = cost.ToString();
 
-        if (playerInventory.Currency >= cost)
-        {
-            priceText.color = Color.black;
-        }
+        if (_playerInventory.Currency >= cost)
+            priceText.color = _affordableColor;
         else
+            priceText.color = _expensiveColor;
+    }
+    private void UpdatePriceUI()
+    {
+        UpdatePriceText(_timeUpgradePriceText, _timeUpgradeLevel);
+        UpdatePriceText(_growUpgradePriceText, _growUpgradeLevel);
+        UpdatePriceText(_firePowerUpgradePriceText, _firePowerUpgradeLevel);
+    }
+
+    private IEnumerator UpdatePricesAfterLoad(bool isNewLevel)
+    {
+        yield return null;
+        UpdatePriceUI();
+
+        if (isNewLevel) yield break;
+
+        EventManager.InvokeMultipleGrowth(_growUpgradeLevel);
+
+        for (int i = 0; i < _timeUpgradeLevel; i++)
         {
-            priceText.color = Color.red;
+            EventManager.InvokeUpgrade(UpgradeType.Time);
         }
     }
 
-    public void PurchaseTimerUpgrade()
+    public void UpgradeGrowth()
     {
-        int cost = GetUpgradeCost(timerUpgradeLevel);
-        if (playerInventory.Currency >= cost)
+        int cost = GetUpgradeCost(_growUpgradeLevel);
+        if (_playerInventory.Currency >= cost)
         {
-            playerInventory.OnPayCurrency(cost);
-            timerUpgradeLevel++;
-            levelManager.ExtendTime(2);
-            soundManager.PlayCoinSound();
-            UpdateGoldUI();
+            EventManager.InvokePayCurrency(cost);
+            EventManager.InvokeUpgrade(UpgradeType.Grow);
+            _growUpgradeLevel++;
+
+            _soundManager.PlayCoinSound();
+            UpdatePriceUI();
+        }
+    }
+    public void UpgradeTime()
+    {
+        int cost = GetUpgradeCost(_timeUpgradeLevel);
+        if (_playerInventory.Currency >= cost)
+        {
+            EventManager.InvokePayCurrency(cost);
+            EventManager.InvokeUpgrade(UpgradeType.Time);
+            _timeUpgradeLevel++;
+
+            _soundManager.PlayCoinSound();
+            UpdatePriceUI();
+        }
+    }
+    public void UpgradeFirePower()
+    {
+        int cost = GetUpgradeCost(_firePowerUpgradeLevel);
+        if (_playerInventory.Currency >= cost)
+        {
+            EventManager.InvokePayCurrency(cost);
+            EventManager.InvokeUpgrade(UpgradeType.FirePower);
+            _firePowerUpgradeLevel++;
+            
+            _soundManager.PlayCoinSound();
             UpdatePriceUI();
         }
     }
 
-    public void PurchaseSizeUpgrade()
+    public void LoadData(GameData gameData)
     {
-        int cost = GetUpgradeCost(sizeUpgradeLevel);
-        if (playerInventory.Currency >= cost)
+        if (gameData.IsNewLevel)
         {
-            playerInventory.OnPayCurrency(cost);
-            sizeUpgradeLevel++;
-            playerData.LevelUp();
-            soundManager.PlayCoinSound();
-            UpdateGoldUI();
-            UpdatePriceUI();
+            gameData.IsNewLevel = false;
+            StartCoroutine(UpdatePricesAfterLoad(true));
+            return;
         }
-    }
 
-    public void PurchaseFirePowerUpgrade()
-    {
-        int cost = GetUpgradeCost(firePowerUpgradeLevel);
-        if (playerInventory.Currency >= cost)
-        {
-            playerInventory.OnPayCurrency(cost);
-            firePowerUpgradeLevel++;
-            territoryClaimer.IncreaseFirePower(firePowerUpgradeLevel * 1.0f, firePowerUpgradeLevel * 0.5f); // Example increments
-            soundManager.PlayCoinSound();
-            UpdateGoldUI();
-            UpdatePriceUI();
-        }
+        _growUpgradeLevel = gameData.GrowUpgradeLevel;
+        _timeUpgradeLevel = gameData.TimeUpgradeLevel;
+        _firePowerUpgradeLevel = gameData.FirePowerUpgradeLevel;
+        StartCoroutine(UpdatePricesAfterLoad(false));
     }
-
-    private int GetUpgradeCost(int level)
+    public void SaveData(ref GameData gameData)
     {
-        return 100 * (level + 1);
+        gameData.GrowUpgradeLevel = _growUpgradeLevel;
+        gameData.TimeUpgradeLevel = _timeUpgradeLevel;
+        gameData.FirePowerUpgradeLevel = _firePowerUpgradeLevel;
     }
 }

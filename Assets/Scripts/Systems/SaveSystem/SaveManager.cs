@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class SaveManager : MonoBehaviour
 {
@@ -24,9 +25,16 @@ public class SaveManager : MonoBehaviour
     }
     private void Start()
     {
+        EventManager.OnLevelLaunched += OnLevelLaunched;
+        EventManager.OnLevelComplete += OnLevelComplete;
         _fileDataHandler = new FileDataHandler(Application.persistentDataPath, _fileName);
         _saveables = FindAllSaveables();
         LoadGame();
+    }
+    private void OnDestroy()
+    {
+        EventManager.OnLevelLaunched -= OnLevelLaunched;
+        EventManager.OnLevelComplete -= OnLevelComplete;
     }
 
     public void NewGame()
@@ -47,6 +55,10 @@ public class SaveManager : MonoBehaviour
         {
             _saveables[i].LoadData(_gameData);
         }
+
+        EventManager.InvokeTimerChange(_gameData.TimeLimit);
+        EventManager.InvokeCurrencyChange(_gameData.Currency);
+        EventManager.InvokeSpecialCurrencyChange(_gameData.SpecialCurrency);
     }
     public void SaveGame()
     {
@@ -64,6 +76,17 @@ public class SaveManager : MonoBehaviour
         return new List<ISaveable>(saveables);
     }
 
+    private void OnLevelLaunched()
+    {
+        SaveGame();
+    }
+    private void OnLevelComplete()
+    {
+        _gameData.LevelID++;
+        _gameData.IsNewLevel = true;
+
+        SaveGame();
+    }
     private void OnApplicationQuit()
     {
         SaveGame();

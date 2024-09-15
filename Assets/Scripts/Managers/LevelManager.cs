@@ -42,6 +42,9 @@ public class LevelManager : MonoBehaviour, ISaveable
     [SerializeField] private float _timeLimit = 0.0f;
     public float TimeLimit => _timeLimit;
 
+    [Header("Upgrade data")]
+    [SerializeField] private float _additionalTime = 2.0f;
+
     private bool _hasLost = false;
     private bool _gameStarted = false;
 
@@ -53,6 +56,7 @@ public class LevelManager : MonoBehaviour, ISaveable
         EventManager.OnObjectiveTrigger2 += OnObjectiveTrigger2;
         EventManager.OnObjectiveTrigger3 += OnObjectiveTrigger3;
         EventManager.OnLevelComplete += OnLevelComplete;
+        EventManager.OnUpgrade += OnUpgrade;
     }
     private void Start()
     {
@@ -64,6 +68,8 @@ public class LevelManager : MonoBehaviour, ISaveable
             _objectiveProgress[objective.ObjectiveType] = 0;
             _objectiveCompletion[objective.ObjectiveType] = false;
         }
+
+        _levelID = (int)_gameManager.SceneType;
     }
     private void Update()
     {
@@ -79,9 +85,9 @@ public class LevelManager : MonoBehaviour, ISaveable
         EventManager.OnObjectiveTrigger2 -= OnObjectiveTrigger2;
         EventManager.OnObjectiveTrigger3 -= OnObjectiveTrigger3;
         EventManager.OnLevelComplete -= OnLevelComplete;
+        EventManager.OnUpgrade -= OnUpgrade;
     }
     #endregion
-
 
     private void MakeProgress(int progressToMake)
     {
@@ -155,7 +161,7 @@ public class LevelManager : MonoBehaviour, ISaveable
         _hasLost = true;
     }
 
-    internal void ExtendTime(int additionalTime)
+    private void ExtendTime(float additionalTime)
     {
         _timeLimit += additionalTime;
         EventManager.InvokeTimerChange(_timeLimit);
@@ -213,12 +219,17 @@ public class LevelManager : MonoBehaviour, ISaveable
         CalculateStars();
         _completionCanvas.gameObject.SetActive(true);
     }
+    private void OnUpgrade(UpgradeType type)
+    {
+        if (type == UpgradeType.Time)
+            ExtendTime(_additionalTime);
+    }
 
     public void LoadData(GameData gameData)
     {
+
     }
     public void SaveData(ref GameData gameData)
     {
-        gameData.LevelID = _levelID;
     }
 }

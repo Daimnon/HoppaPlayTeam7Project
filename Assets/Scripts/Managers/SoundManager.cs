@@ -38,46 +38,55 @@ public class SoundManager : MonoBehaviour
 
     public void PlayGameOverSound()
     {
+        if (!gameOverSound) return;
         PlaySound(gameOverSound);
     }
 
     public void PlayLastSecondsSound()
     {
+        if (!lastSecondsSound) return;
         PlaySound(lastSecondsSound);
     }
 
     public void PlayLevelUpSound()
     {
+        if (!levelUpSound) return;
         PlaySound(levelUpSound);
     }
 
     public void PlayCatSound()
     {
+        if (!catSound) return;
         PlaySound(catSound);
     }
 
     public void PlayCoinSound()
     {
+        if (!coinSound) return;
         PlaySound(coinSound);
     }
     
     public void PlayFireExplosionSound()
     {
+        if (!fireExplosionSound) return;
         PlaySound(fireExplosionSound);
     }
 
     public void PlayPickupSound()
     {
+        if (!pickupSound) return;
         PlaySound(pickupSound);
     }
 
     public void PlayButtonPlay()
     {
+        if (!buttonPlaySound) return;
         PlaySound(buttonPlaySound);
     }
 
     private void PlaySound(AudioClip clip)
     {
+        if (!clip) return;
         audioSource.PlayOneShot(clip);
     }
 }
