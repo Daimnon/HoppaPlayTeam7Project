@@ -40,10 +40,19 @@ public class GameManager : MonoBehaviour, ISaveable
         Debug.Log("Changing scene, next scene");
         int nextSceneBuildIndex = SceneManager.GetActiveScene().buildIndex + 1;
 
-        if (SceneManager.GetSceneByBuildIndex(nextSceneBuildIndex) != null)
-            _sceneLoader.LoadLevel(nextSceneBuildIndex);
-        else
+        try
+        {
+            if (SceneManager.GetSceneByBuildIndex(nextSceneBuildIndex) != null)
+                _sceneLoader.LoadLevel(nextSceneBuildIndex);
+            else
+                _sceneLoader.LoadLevel(0);
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError("Issue with changing to next scene: " + e.ToString());
             _sceneLoader.LoadLevel(0);
+        }
+        
     }
 
     /// <summary>

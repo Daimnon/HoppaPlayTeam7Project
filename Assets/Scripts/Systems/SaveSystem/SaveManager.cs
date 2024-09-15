@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class SaveManager : MonoBehaviour
 {
@@ -90,6 +91,9 @@ public class SaveManager : MonoBehaviour
     {
         _gameData.LevelID++;
         _gameData.IsNewLevel = true;
+
+        if (_gameData.LevelID >= 2)
+            _gameData.LevelID = 0;
 
         SaveGame();
     }
