@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 207694746281454971}
   - component: {fileID: 3794294768764880170}
   - component: {fileID: 8747315823615752145}
-  - component: {fileID: -2384856268726464298}
+  - component: {fileID: 1478043593740108369}
   m_Layer: 6
   m_Name: Road_Barrier
   m_TagString: Untagged
@@ -114,8 +114,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectiveType: 1
   _level: 7
-  _progressionReward: 0
-  _outline: {fileID: -2384856268726464298}
+  _progressionReward: 1
+  _outline: {fileID: 1478043593740108369}
 --- !u!114 &8747315823615752145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,7 +131,7 @@ MonoBehaviour:
   _renderers:
   - {fileID: 5787850279268539428}
   _position: {x: 0, y: 0, z: 0}
---- !u!114 &-2384856268726464298
+--- !u!114 &1478043593740108369
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 0
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 20
+  outlineWidth: 4
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []

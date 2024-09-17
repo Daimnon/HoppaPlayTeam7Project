@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4706292464451929272}
   - component: {fileID: 2426667719740841774}
   - component: {fileID: 6870863740752317998}
-  - component: {fileID: 821593814110301338}
+  - component: {fileID: 5168029225729287285}
   m_Layer: 6
   m_Name: Building_2
   m_TagString: Untagged
@@ -114,8 +114,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectiveType: 1
   _level: 13
-  _progressionReward: 0
-  _outline: {fileID: 821593814110301338}
+  _progressionReward: 1
+  _outline: {fileID: 5168029225729287285}
 --- !u!114 &6870863740752317998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,7 +131,7 @@ MonoBehaviour:
   _renderers:
   - {fileID: 7822166125991569276}
   _position: {x: 0, y: 0, z: 0}
---- !u!114 &821593814110301338
+--- !u!114 &5168029225729287285
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 0
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 20
+  outlineWidth: 4
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 459036246128662463}
   - component: {fileID: 2280081401225925348}
   - component: {fileID: 3589201645050865116}
-  - component: {fileID: -2912264133918991410}
+  - component: {fileID: 2492333910268749051}
   m_Layer: 6
   m_Name: Traffic_Light_2
   m_TagString: Untagged
@@ -127,9 +127,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectiveType: 1
   _level: 9
-  _progressionReward: 0
-  _outline: {fileID: -2912264133918991410}
---- !u!114 &-2912264133918991410
+  _progressionReward: 1
+  _outline: {fileID: 2492333910268749051}
+--- !u!114 &2492333910268749051
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 0
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 20
+  outlineWidth: 4
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []

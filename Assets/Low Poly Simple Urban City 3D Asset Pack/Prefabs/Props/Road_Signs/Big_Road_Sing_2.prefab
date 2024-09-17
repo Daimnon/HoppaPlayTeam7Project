@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8141874335523977970}
   - component: {fileID: 1108926484733385926}
   - component: {fileID: 3292011161485045895}
-  - component: {fileID: -73608995233466989}
+  - component: {fileID: 8570858282492224840}
   m_Layer: 6
   m_Name: Big_Road_Sing_2
   m_TagString: Untagged
@@ -127,9 +127,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectiveType: 1
   _level: 7
-  _progressionReward: 0
-  _outline: {fileID: -73608995233466989}
---- !u!114 &-73608995233466989
+  _progressionReward: 1
+  _outline: {fileID: 8570858282492224840}
+--- !u!114 &8570858282492224840
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 0
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 20
+  outlineWidth: 4
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
