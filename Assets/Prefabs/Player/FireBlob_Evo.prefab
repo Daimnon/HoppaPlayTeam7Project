@@ -778,7 +778,7 @@ MonoBehaviour:
   _hud: {fileID: 0}
   _maxExp: 100
   _currentExp: 0
-  _expFactor: 2.1
+  _expFactor: 1.8
   _scaleIncrement: 1
   _scaleIncrementFactor: 1.25
   _currentLevel: 1
@@ -799,7 +799,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1301390b350b46f4188123d66b808187, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _consumablePool: {fileID: 0}
+  _playerController: {fileID: 2761447709847105067}
   _flamePool: {fileID: 0}
   _trailRenderer: {fileID: 2691740876895397790}
   _detectionLayer:
@@ -807,7 +807,6 @@ MonoBehaviour:
     m_Bits: 64
   _minDistance: 1
   _intersectDistance: 0.2
-  _explosionVFX: {fileID: 0}
   _timeForExplosionToDieOut: 5
   _explosionScaleFactor: 6
   _audioSource: {fileID: 354511764}
@@ -1375,7 +1374,7 @@ PrefabInstance:
     - target: {fileID: 2691740876440323326, guid: a97d113ded8fac144b976cb03a4ccd15,
         type: 3}
       propertyPath: m_Time
-      value: 5.24
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2691740876440323326, guid: a97d113ded8fac144b976cb03a4ccd15,
         type: 3}

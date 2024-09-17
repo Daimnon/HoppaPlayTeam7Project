@@ -72,6 +72,7 @@ public class Player_Controller : Character
         EventManager.OnGrowth += OnGrowth;
         EventManager.OnEvolve += OnEvolve;
         EventManager.OnLose += OnLose;
+        EventManager.OnLevelComplete += OnLevelComplete;
         EventManager.OnLevelLaunched += OnLevelLaunched;
 
         _framingTransposer = _vCam.GetCinemachineComponent<CinemachineFramingTransposer>();
@@ -124,6 +125,7 @@ public class Player_Controller : Character
         EventManager.OnGrowth -= OnGrowth;
         EventManager.OnEvolve -= OnEvolve;
         EventManager.OnLose -= OnLose;
+        EventManager.OnLevelComplete -= OnLevelComplete;
         EventManager.OnLevelLaunched -= OnLevelLaunched;
         EnhancedTouchSupport.Disable();
     }
@@ -131,41 +133,7 @@ public class Player_Controller : Character
     {
         if (other.TryGetComponent(out Consumable consumable))
         {
-            bool isSmallerThanPlayer = consumable.Level <= _data.CurrentLevel;
-
-            if (!isSmallerThanPlayer)
-            {
-                Vector3 pushDirection = (transform.position - other.transform.position).normalized;
-                _agent.velocity = pushDirection * _forceFromBiggerObjects;
-                return;
-            }
-
-            switch (consumable)
-            {
-                default:
-                    EventManager.InvokeEarnExp(consumable.Reward);
-
-                    // for testing:
-                    /*EventManager.InvokeEarnCurrency(consumable.Reward);
-                    EventManager.InvokeEarnSpecialCurrency(consumable.Reward);
-                    EventManager.InvokeProgressMade(consumable.Reward);*/
-                    break;
-            }
-
-            HandleConsumableReward(consumable); // here we determine the type of the consumable in order to solve the reward.
-            HandleProgressionReward(consumable); // here we determine if the consumable is related to any of the objectives and triggers them.
-
-            _consumablePool.ReturnConsumableToPool(consumable);
-
-            if (_eatAnimationTimer == _eatAnimationTime) // is reset
-            {
-                _isEating = true;
-                _currentAnimator.SetBool("Is Eating", _isEating);
-                //_currentAnimator.ResetTrigger("Has Consumed");
-                Debug.Log("Consumed was triggered");
-            }
-
-            //UpdateNavMesh();
+            ConsumeObjectOnTriggerEnter(other, consumable);
         }
     }
     #endregion
@@ -357,7 +325,7 @@ public class Player_Controller : Character
     }
     #endregion
 
-    #region ObjectDetector
+    #region Object Detector
     private void DetectObjects()
     {
         _totalDetectionRadius = _collider.radius + _detectionRadius * transform.localScale.x;
@@ -411,6 +379,65 @@ public class Player_Controller : Character
     }
     #endregion
 
+    #region Consume Objects
+    private void ConsumeObjectOnTriggerEnter(Collider other, Consumable consumable)
+    {
+        bool isSmallerThanPlayer = consumable.Level <= _data.CurrentLevel;
+
+        if (!isSmallerThanPlayer)
+        {
+            Vector3 pushDirection = (transform.position - other.transform.position).normalized;
+            _agent.velocity = pushDirection * _forceFromBiggerObjects;
+            return;
+        }
+
+        switch (consumable)
+        {
+            default:
+                EventManager.InvokeEarnExp(consumable.Reward);
+
+                // for testing:
+                /*EventManager.InvokeEarnCurrency(consumable.Reward);
+                EventManager.InvokeEarnSpecialCurrency(consumable.Reward);
+                EventManager.InvokeProgressMade(consumable.Reward);*/
+                break;
+        }
+
+        HandleConsumableReward(consumable); // here we determine the type of the consumable in order to solve the reward.
+        HandleProgressionReward(consumable); // here we determine if the consumable is related to any of the objectives and triggers them.
+
+        _consumablePool.ReturnConsumableToPool(consumable);
+
+        if (_eatAnimationTimer == _eatAnimationTime) // is reset
+        {
+            _isEating = true;
+            _currentAnimator.SetBool("Is Eating", _isEating);
+            //_currentAnimator.ResetTrigger("Has Consumed");
+            Debug.Log("Consumed was triggered");
+        }
+
+        //UpdateNavMesh();
+    }
+    public void ConsumeObjectFromExplosion(Consumable consumable)
+    {
+        bool isSmallerThanPlayer = consumable.Level <= _data.CurrentLevel;
+        if (!isSmallerThanPlayer) return;
+
+        switch (consumable)
+        {
+            default:
+                EventManager.InvokeEarnExp(consumable.Reward);
+                break;
+        }
+
+        HandleConsumableReward(consumable); // here we determine the type of the consumable in order to solve the reward.
+        HandleProgressionReward(consumable); // here we determine if the consumable is related to any of the objectives and triggers them.
+
+        _consumablePool.ReturnConsumableToPool(consumable);
+        //UpdateNavMesh();
+    }
+    #endregion
+
     #region Events
     private void OnEarnExp(int expToGain)
     {
@@ -438,6 +465,10 @@ public class Player_Controller : Character
         StartCoroutine(DoGrowAnimaion(newEvoTypeNum));
     }
     private void OnLose()
+    {
+        _canDetectInput = false;
+    }
+    private void OnLevelComplete()
     {
         _canDetectInput = false;
     }

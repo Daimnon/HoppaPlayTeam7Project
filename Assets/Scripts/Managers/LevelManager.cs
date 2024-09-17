@@ -12,7 +12,7 @@ public enum ObjectiveType // None should always be last, **should not expand cas
     None
 }
 
-public class LevelManager : MonoBehaviour, ISaveable
+public class LevelManager : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField] private GameManager _gameManager;
@@ -45,7 +45,7 @@ public class LevelManager : MonoBehaviour, ISaveable
     [Header("Upgrade data")]
     [SerializeField] private float _additionalTime = 2.0f;
 
-    private bool _hasLost = false;
+    private bool _gameEnded = false;
     private bool _gameStarted = false;
 
     #region Unity Callbacks
@@ -139,7 +139,7 @@ public class LevelManager : MonoBehaviour, ISaveable
 
     private void HandleLoseCondition()
     {
-        if (_hasLost)
+        if (_gameEnded)
         {
             EventManager.InvokeTimerChange(_timeLimit);
             return;
@@ -158,7 +158,7 @@ public class LevelManager : MonoBehaviour, ISaveable
         _timeLimit = 0.0f;
         _loseCanvas.gameObject.SetActive(true);
         EventManager.InvokeLose();
-        _hasLost = true;
+        _gameEnded = true;
     }
 
     private void ExtendTime(float additionalTime)
@@ -219,18 +219,11 @@ public class LevelManager : MonoBehaviour, ISaveable
     {
         CalculateStars();
         _completionCanvas.gameObject.SetActive(true);
+        _gameEnded = true;
     }
     private void OnUpgrade(UpgradeType type)
     {
         if (type == UpgradeType.Time)
             ExtendTime(_additionalTime);
-    }
-
-    public void LoadData(GameData gameData)
-    {
-
-    }
-    public void SaveData(ref GameData gameData)
-    {
     }
 }

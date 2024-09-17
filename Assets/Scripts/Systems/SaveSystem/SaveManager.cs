@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
-using UnityEngine.Playables;
 
 public class SaveManager : MonoBehaviour
 {
@@ -97,8 +97,43 @@ public class SaveManager : MonoBehaviour
 
         SaveGame();
     }
+
     private void OnApplicationQuit()
     {
         SaveGame();
+    }
+
+    [ContextMenu("Reset SaveFile")]
+    private void ResetSaveFile()
+    {
+        string path = Application.persistentDataPath + "/" + _fileName;
+        FileUtil.DeleteFileOrDirectory(path);
+    }
+
+    [ContextMenu("Set Level 1")]
+    private void SetLevel1()
+    {
+        _gameData.LevelID = (int)SceneType.Level1;
+        _gameData.IsNewLevel = true;
+
+        _fileDataHandler.Save(_gameData);
+    }
+
+    [ContextMenu("Set Level 2")]
+    private void SetLevel2()
+    {
+        _gameData.LevelID = (int)SceneType.Level2;
+        _gameData.IsNewLevel = true;
+
+        _fileDataHandler.Save(_gameData);
+    }
+
+    [ContextMenu("Charge Coins 1000")]
+    private void ChargeCoins()
+    {
+        int currencyToEarn = 1000;
+        EventManager.InvokeEarnCurrency(currencyToEarn);
+        _gameData.Currency += currencyToEarn;
+        _fileDataHandler.Save(_gameData);
     }
 }

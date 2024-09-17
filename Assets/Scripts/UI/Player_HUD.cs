@@ -65,7 +65,6 @@ public class Player_HUD : MonoBehaviour
         EventManager.OnSpecialCurrencyChange += OnSpecialCurrencyChange;
         EventManager.OnProgressionChange += OnProgressionChange;
         EventManager.OnTimerChange += OnTimerChange;
-        EventManager.OnUpgrade += OnUpgrade;
     }
     private void OnDisable()
     {
@@ -75,7 +74,6 @@ public class Player_HUD : MonoBehaviour
         EventManager.OnSpecialCurrencyChange -= OnSpecialCurrencyChange;
         EventManager.OnProgressionChange -= OnProgressionChange;
         EventManager.OnTimerChange -= OnTimerChange;
-        EventManager.OnUpgrade -= OnUpgrade;
     }
     private void Start()
     {
@@ -260,10 +258,6 @@ public class Player_HUD : MonoBehaviour
         }
 
         UpdateTimerText(timeSinceStartup);
-    }
-    private void OnUpgrade(UpgradeType type)
-    {
-        // implement logic
     }
     #endregion
 }
