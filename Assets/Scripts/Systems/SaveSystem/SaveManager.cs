@@ -28,6 +28,7 @@ public class SaveManager : MonoBehaviour
         EventManager.OnLevelComplete += OnLevelComplete;
         EventManager.OnReloadLevel += OnReloadLevel;
         _fileDataHandler = new FileDataHandler(Application.persistentDataPath + "/", _fileName);
+        Debug.Log(Application.persistentDataPath);
         _saveables = FindAllSaveables();
         LoadGame();
     }
