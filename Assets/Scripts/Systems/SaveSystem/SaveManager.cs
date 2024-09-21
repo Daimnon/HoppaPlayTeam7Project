@@ -107,7 +107,7 @@ public class SaveManager : MonoBehaviour
     private void ResetSaveFile()
     {
         string path = Application.persistentDataPath + "/" + _fileName;
-        FileUtil.DeleteFileOrDirectory(path);
+        System.IO.File.Delete(path);
     }
 
     [ContextMenu("Set Level 1")]
