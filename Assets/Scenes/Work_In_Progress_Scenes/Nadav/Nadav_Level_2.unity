@@ -8,8 +8,8 @@ OcclusionCullingSettings:
     smallestOccluder: 5
     smallestHole: 0.25
     backfaceThreshold: 100
-  m_SceneGUID: 1515af9aba7ae384ebdf86a671e070a2
-  m_OcclusionCullingData: {fileID: 36300000, guid: 38246422264521648a5a07cf32a10145,
+  m_SceneGUID: 0f372356b17902b4e80b4844bc1e06fd
+  m_OcclusionCullingData: {fileID: 36300000, guid: 809599a3ab87ce74c9283fcde61b9ec2,
     type: 2}
 --- !u!104 &2
 RenderSettings:
@@ -692,7 +692,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_NavMeshData
       value: 
-      objectReference: {fileID: 23800000, guid: 3f86772bf06dea143aaa3382fbc8dece,
+      objectReference: {fileID: 23800000, guid: 5666fa9129d094744bbcbba8af9247c3,
         type: 2}
     - target: {fileID: 418420535988582477, guid: 861108e473a43824685d05f51a2b0238,
         type: 3}
