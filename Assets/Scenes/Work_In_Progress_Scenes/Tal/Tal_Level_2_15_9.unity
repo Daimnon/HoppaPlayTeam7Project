@@ -8,13 +8,8 @@ OcclusionCullingSettings:
     smallestOccluder: 5
     smallestHole: 0.25
     backfaceThreshold: 100
-<<<<<<<< HEAD:Assets/Scenes/Work_In_Progress_Scenes/Tal/Tal_Level_2_15_9.unity
   m_SceneGUID: 6aabfb058253d4be7bee2a02c64abf6c
   m_OcclusionCullingData: {fileID: 36300000, guid: 0eeecf87967c54d709948d9ea00a8431,
-========
-  m_SceneGUID: 0f372356b17902b4e80b4844bc1e06fd
-  m_OcclusionCullingData: {fileID: 36300000, guid: 809599a3ab87ce74c9283fcde61b9ec2,
->>>>>>>> Gal:Assets/Scenes/Work_In_Progress_Scenes/Nadav/Nadav_Level_2.unity
     type: 2}
 --- !u!104 &2
 RenderSettings:
@@ -145,7 +140,7 @@ PrefabInstance:
     - target: {fileID: 1043449179206962013, guid: 6b89d7a8d8b113845b888ad478f255a6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.287
+      value: -4.156
       objectReference: {fileID: 0}
     - target: {fileID: 1043449179206962013, guid: 6b89d7a8d8b113845b888ad478f255a6,
         type: 3}
@@ -155,7 +150,7 @@ PrefabInstance:
     - target: {fileID: 1043449179206962013, guid: 6b89d7a8d8b113845b888ad478f255a6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -34.206
+      value: -39.579002
       objectReference: {fileID: 0}
     - target: {fileID: 1043449179206962013, guid: 6b89d7a8d8b113845b888ad478f255a6,
         type: 3}
@@ -697,11 +692,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_NavMeshData
       value: 
-<<<<<<<< HEAD:Assets/Scenes/Work_In_Progress_Scenes/Tal/Tal_Level_2_15_9.unity
       objectReference: {fileID: 23800000, guid: cdcfb9eb8270a43d3b998038e979a7bf,
-========
-      objectReference: {fileID: 23800000, guid: 5666fa9129d094744bbcbba8af9247c3,
->>>>>>>> Gal:Assets/Scenes/Work_In_Progress_Scenes/Nadav/Nadav_Level_2.unity
         type: 2}
     - target: {fileID: 418420535988582477, guid: 861108e473a43824685d05f51a2b0238,
         type: 3}
@@ -790,25 +781,17 @@ PrefabInstance:
     - target: {fileID: 5422624482594111744, guid: 6bf1f74f1a1b0274e97d6741c79c5505,
         type: 3}
       propertyPath: m_LocalPosition.x
-<<<<<<<< HEAD:Assets/Scenes/Work_In_Progress_Scenes/Tal/Tal_Level_2_15_9.unity
       value: -3.7128868
-========
-      value: -1.8438865
->>>>>>>> Gal:Assets/Scenes/Work_In_Progress_Scenes/Nadav/Nadav_Level_2.unity
       objectReference: {fileID: 0}
     - target: {fileID: 5422624482594111744, guid: 6bf1f74f1a1b0274e97d6741c79c5505,
         type: 3}
       propertyPath: m_LocalPosition.y
-<<<<<<<< HEAD:Assets/Scenes/Work_In_Progress_Scenes/Tal/Tal_Level_2_15_9.unity
       value: 6.8361645
-========
-      value: 6.836165
->>>>>>>> Gal:Assets/Scenes/Work_In_Progress_Scenes/Nadav/Nadav_Level_2.unity
       objectReference: {fileID: 0}
     - target: {fileID: 5422624482594111744, guid: 6bf1f74f1a1b0274e97d6741c79c5505,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -38.636814
+      value: -44.00981
       objectReference: {fileID: 0}
     - target: {fileID: 5422624482594111744, guid: 6bf1f74f1a1b0274e97d6741c79c5505,
         type: 3}
@@ -1148,21 +1131,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8921647392676517690, guid: 648cf9366711bf94e8a2f49ee6fcacd5,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8921647392676517690, guid: 648cf9366711bf94e8a2f49ee6fcacd5,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8921647392676517690, guid: 648cf9366711bf94e8a2f49ee6fcacd5,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8921647392676517690, guid: 648cf9366711bf94e8a2f49ee6fcacd5,
-        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -1432,25 +1400,17 @@ PrefabInstance:
     - target: {fileID: 3388745752941628739, guid: cfdd622c625b6ef4788d1650fd9e37e5,
         type: 3}
       propertyPath: m_LocalPosition.x
-<<<<<<<< HEAD:Assets/Scenes/Work_In_Progress_Scenes/Tal/Tal_Level_2_15_9.unity
       value: -3.7128868
-========
-      value: -1.8438865
->>>>>>>> Gal:Assets/Scenes/Work_In_Progress_Scenes/Nadav/Nadav_Level_2.unity
       objectReference: {fileID: 0}
     - target: {fileID: 3388745752941628739, guid: cfdd622c625b6ef4788d1650fd9e37e5,
         type: 3}
       propertyPath: m_LocalPosition.y
-<<<<<<<< HEAD:Assets/Scenes/Work_In_Progress_Scenes/Tal/Tal_Level_2_15_9.unity
       value: 6.8361645
-========
-      value: 6.836165
->>>>>>>> Gal:Assets/Scenes/Work_In_Progress_Scenes/Nadav/Nadav_Level_2.unity
       objectReference: {fileID: 0}
     - target: {fileID: 3388745752941628739, guid: cfdd622c625b6ef4788d1650fd9e37e5,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -38.636814
+      value: -44.00981
       objectReference: {fileID: 0}
     - target: {fileID: 3388745752941628739, guid: cfdd622c625b6ef4788d1650fd9e37e5,
         type: 3}
