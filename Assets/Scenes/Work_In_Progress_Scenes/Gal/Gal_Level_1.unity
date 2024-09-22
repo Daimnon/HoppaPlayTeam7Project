@@ -3158,6 +3158,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ObjectivePopUp_Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 5599840465309999335, guid: 7b6e6abf65d484546a2e78bfc370d72f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b6e6abf65d484546a2e78bfc370d72f, type: 3}
 --- !u!1001 &8407168508934274290

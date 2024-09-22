@@ -815,6 +815,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6416840911881743160, guid: fd480e1d6aef4f049bb70f800e2100ca,
         type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 817191973, guid: d2af407e59ec4e547ace05300c36e7b3,
+        type: 3}
+    - target: {fileID: 6416840911881743160, guid: fd480e1d6aef4f049bb70f800e2100ca,
+        type: 3}
       propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
@@ -822,7 +828,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 708518983, guid: 383616601983d744c9a6f9022352e2ae,
+      objectReference: {fileID: 1103555504, guid: d2af407e59ec4e547ace05300c36e7b3,
         type: 3}
     - target: {fileID: 6416840912552173206, guid: fd480e1d6aef4f049bb70f800e2100ca,
         type: 3}
@@ -1034,6 +1040,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: UpgradeTime
       objectReference: {fileID: 0}
+    - target: {fileID: 6416840911881743160, guid: fd480e1d6aef4f049bb70f800e2100ca,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 817191973, guid: d2af407e59ec4e547ace05300c36e7b3,
+        type: 3}
+    - target: {fileID: 6416840912552173206, guid: fd480e1d6aef4f049bb70f800e2100ca,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1103555504, guid: d2af407e59ec4e547ace05300c36e7b3,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd480e1d6aef4f049bb70f800e2100ca, type: 3}
 --- !u!224 &8481855486850425739 stripped
@@ -1244,6 +1262,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: UpgradeGrowth
       objectReference: {fileID: 0}
+    - target: {fileID: 6416840911881743160, guid: fd480e1d6aef4f049bb70f800e2100ca,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 817191973, guid: d2af407e59ec4e547ace05300c36e7b3,
+        type: 3}
+    - target: {fileID: 6416840912552173206, guid: fd480e1d6aef4f049bb70f800e2100ca,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1103555504, guid: d2af407e59ec4e547ace05300c36e7b3,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd480e1d6aef4f049bb70f800e2100ca, type: 3}
 --- !u!224 &7362294715556521470 stripped
