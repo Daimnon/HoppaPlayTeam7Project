@@ -1878,7 +1878,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_NavMeshData
       value: 
-      objectReference: {fileID: 23800000, guid: d4d9310675b27aa4fa96e172489b7e23,
+      objectReference: {fileID: 23800000, guid: 9e602536211427d43ae948fd6e9360c0,
         type: 2}
     - target: {fileID: 379718136491134685, guid: daa7ea293511cda4e87748f47a5cf38d,
         type: 3}
@@ -3051,6 +3051,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ObjectivePopUp_Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5599840465309999335, guid: 7b6e6abf65d484546a2e78bfc370d72f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b6e6abf65d484546a2e78bfc370d72f, type: 3}
