@@ -11,7 +11,10 @@ GameObject:
   - component: {fileID: 8383548788536130237}
   - component: {fileID: 3494858397939465720}
   - component: {fileID: 476150429375214573}
-  m_Layer: 0
+  - component: {fileID: 7020604144658932071}
+  - component: {fileID: 3263363085927505454}
+  - component: {fileID: 6140694149208010706}
+  m_Layer: 6
   m_Name: Truck.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,6 +87,53 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7020604144658932071
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2705025570532710721}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.6398172, y: 2.2603545, z: 6.177776}
+  m_Center: {x: 0.00042754418, y: 0.2605146, z: 0.08291436}
+--- !u!114 &3263363085927505454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2705025570532710721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectiveType: 1
+  _level: 7
+  _progressionReward: 1
+  _outline: {fileID: 6140694149208010706}
+--- !u!114 &6140694149208010706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2705025570532710721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab8ca3407e172c4db129ddd95ea9afb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &5316913771449775443
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,7 +12,9 @@ GameObject:
   - component: {fileID: 5348078022265500509}
   - component: {fileID: 7916422052144580503}
   - component: {fileID: 3809597959685206969}
-  m_Layer: 0
+  - component: {fileID: 4127131672855012839}
+  - component: {fileID: 3346656289628784159}
+  m_Layer: 6
   m_Name: TrunkStack_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +98,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectiveType: 0
-  _level: 0
-  _progressionReward: 0
-  _outline: {fileID: 0}
+  _objectiveType: 1
+  _level: 7
+  _progressionReward: 1
+  _outline: {fileID: 4127131672855012839}
+--- !u!114 &4127131672855012839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8564786123435025986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab8ca3407e172c4db129ddd95ea9afb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!65 &3346656289628784159
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8564786123435025986}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.3572345, y: 1.472606, z: 2.9422638}
+  m_Center: {x: -0.016875746, y: 0.65279317, z: -0.09685923}
