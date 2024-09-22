@@ -60,6 +60,7 @@ public class Player_Controller : Character
 
     private Finger _moveFinger;
     private Vector3 _fingerMoveAmount;
+    private bool _isPaused = false;
 
     #region Monobehaviour Callbacks
     private void OnEnable()
@@ -74,6 +75,7 @@ public class Player_Controller : Character
         EventManager.OnLose += OnLose;
         EventManager.OnLevelComplete += OnLevelComplete;
         EventManager.OnLevelLaunched += OnLevelLaunched;
+        EventManager.OnPause += OnPause;
 
         _framingTransposer = _vCam.GetCinemachineComponent<CinemachineFramingTransposer>();
         _initialCameraDistance = _framingTransposer.m_CameraDistance;
@@ -127,6 +129,7 @@ public class Player_Controller : Character
         EventManager.OnLose -= OnLose;
         EventManager.OnLevelComplete -= OnLevelComplete;
         EventManager.OnLevelLaunched -= OnLevelLaunched;
+        EventManager.OnPause -= OnPause;
         EnhancedTouchSupport.Disable();
     }
     private void OnTriggerEnter(Collider other) 
@@ -471,6 +474,25 @@ public class Player_Controller : Character
     private void OnLevelComplete()
     {
         _canDetectInput = false;
+    }
+    private void OnPause(bool isPausing)
+    {
+        _isPaused = isPausing;
+
+        switch (_isPaused)
+        {
+            case true:
+                ETouch.Touch.onFingerDown -= OnFingerDown;
+                ETouch.Touch.onFingerUp -= OnFingerUp;
+                ETouch.Touch.onFingerMove -= OnFingerMove;
+                break;
+
+            case false:
+                ETouch.Touch.onFingerDown += OnFingerDown;
+                ETouch.Touch.onFingerUp += OnFingerUp;
+                ETouch.Touch.onFingerMove += OnFingerMove;
+                break;
+        }
     }
 
     private void OnLevelLaunched()

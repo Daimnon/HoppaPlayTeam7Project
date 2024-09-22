@@ -12,7 +12,7 @@ public static class EventManager
 
     #region GameLoop
     public static Action OnGameLaunched, OnLevelLaunched, OnReloadLevel, OnLevelComplete, OnLose;
-    public static Action OnOpenMenu;
+    public static Action<bool> OnPause;
     #endregion
 
     #region Objective
@@ -89,10 +89,10 @@ public static class EventManager
         OnLose?.Invoke();
         UnityEngine.Debug.Log("Event: Lose");
     }
-    public static void InvokeOpenMenu()
+    public static void InvokePause(bool isPausing)
     {
-        OnOpenMenu?.Invoke();
-        UnityEngine.Debug.Log("Event: OpenMenu");
+        OnPause?.Invoke(isPausing);
+        UnityEngine.Debug.Log("Event: Pause, " + isPausing.ToString());
     }
     #endregion
 
