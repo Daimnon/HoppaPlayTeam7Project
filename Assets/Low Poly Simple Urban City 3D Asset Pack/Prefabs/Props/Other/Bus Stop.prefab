@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4426621535093055979}
   - component: {fileID: 3893532924928662357}
   - component: {fileID: 9039873864917272412}
-  - component: {fileID: 8309058611989091457}
+  - component: {fileID: 4864692616361664742}
   m_Layer: 6
   m_Name: Bus Stop
   m_TagString: Untagged
@@ -114,8 +114,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectiveType: 1
   _level: 12
-  _progressionReward: 1
-  _outline: {fileID: 8309058611989091457}
+  _progressionReward: 0
+  _outline: {fileID: 4864692616361664742}
 --- !u!114 &9039873864917272412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,7 +131,7 @@ MonoBehaviour:
   _renderers:
   - {fileID: 8757490658996541072}
   _position: {x: 0, y: 0, z: 0}
---- !u!114 &8309058611989091457
+--- !u!114 &4864692616361664742
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 0
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 4
+  outlineWidth: 20
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []

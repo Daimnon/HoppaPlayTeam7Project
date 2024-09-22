@@ -114,7 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectiveType: 1
   _level: 8
-  _progressionReward: 1
+  _progressionReward: 384
   _outline: {fileID: 2777169487164840518}
 --- !u!114 &1217810356226271182
 MonoBehaviour:

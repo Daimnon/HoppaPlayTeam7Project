@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectiveType: 1
   _level: 5
-  _progressionReward: 1
+  _progressionReward: 48
   _outline: {fileID: 100162947402084029}
 --- !u!114 &8759589920154407538
 MonoBehaviour:
@@ -126,7 +126,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2369251498285015646}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.3766898
   m_Height: 1.0211786

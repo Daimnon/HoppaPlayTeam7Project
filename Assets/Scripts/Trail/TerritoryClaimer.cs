@@ -7,7 +7,7 @@ using UnityEngine.VFX;
 public class TerritoryClaimer : MonoBehaviour
 {
     [Header("Components")]
-    [SerializeField] private Player_Controller _playerController;
+    [SerializeField] private ConsumableObjectPool _consumablePool;
     [SerializeField] private FlameObjectPool _flamePool;
     [SerializeField] private TrailRenderer _trailRenderer;
     
@@ -15,8 +15,7 @@ public class TerritoryClaimer : MonoBehaviour
     [SerializeField] private LayerMask _detectionLayer;
     [SerializeField] private float _minDistance = 1.0f; // should increase while growing in size
     [SerializeField] private float _intersectDistance;
-    private float _originalTrailTime = 3.0f;
-    private float _firePower = 1.0f;
+    private float _firePower = 1.0f, _fireRange = 1.0f;
 
     private readonly List<Vector3> _trailPoints = new();
     private List<Vector3> _closedTrailPoints = new();
@@ -272,10 +271,10 @@ public class TerritoryClaimer : MonoBehaviour
     #endregion
 
     #region Upgrades
-    private void IncreaseFirePower(float firePower)
+    public void IncreaseFirePower(float powerIncrement, float rangeIncrement)
     {
-        _firePower = firePower + 1;
-        _trailRenderer.time = _originalTrailTime * (_firePower / 1.99f);
+        _firePower += powerIncrement;
+        _fireRange += rangeIncrement;
     }
     #endregion
 
@@ -285,7 +284,7 @@ public class TerritoryClaimer : MonoBehaviour
         List<Consumable> consumablesInClosedArea = GetConsumablesInClosedArea();
         for (int i = 0; i < consumablesInClosedArea.Count; i++)
         {
-            _playerController.ConsumeObjectFromExplosion(consumablesInClosedArea[i]);
+            _consumablePool.ReturnConsumableToPool(consumablesInClosedArea[i]);
         }
 
         for (int i = 0; i < _flames.Count; i++)
@@ -317,7 +316,7 @@ public class TerritoryClaimer : MonoBehaviour
     private void OnUpgrade(UpgradeType type)
     {
         if (type == UpgradeType.FirePower)
-            IncreaseFirePower(_firePower);
+            IncreaseFirePower(_firePower, _fireRange);
     }
     #endregion
 

@@ -151,6 +151,22 @@ MonoBehaviour:
   _renderers:
   - {fileID: 3990657316015680926}
   _position: {x: 0, y: 0, z: 0}
+--- !u!114 &5442491191135375200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3197931627946839115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectiveType: 1
+  _level: 7
+  _progressionReward: 192
+  _outline: {fileID: 1908400976538562457}
 --- !u!114 &1908400976538562457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,22 +185,6 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
---- !u!114 &5442491191135375200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3197931627946839115}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _objectiveType: 1
-  _level: 7
-  _progressionReward: 1
-  _outline: {fileID: 1908400976538562457}
 --- !u!23 &3990657316015680926 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 7f532a1801cde324c999848393bbcc7c,

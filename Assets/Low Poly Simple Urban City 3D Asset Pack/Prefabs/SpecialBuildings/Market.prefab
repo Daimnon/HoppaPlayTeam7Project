@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 1585746330459973239}
   - component: {fileID: 8697236807141586222}
   - component: {fileID: 5461555013403715288}
-  - component: {fileID: 3641715118847430675}
+  - component: {fileID: 7760665525064195853}
   m_Layer: 6
   m_Name: Market
   m_TagString: Untagged
@@ -146,8 +146,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectiveType: 1
   _level: 14
-  _progressionReward: 1
-  _outline: {fileID: 3641715118847430675}
+  _progressionReward: 0
+  _outline: {fileID: 7760665525064195853}
 --- !u!114 &5461555013403715288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,7 +163,7 @@ MonoBehaviour:
   _renderers:
   - {fileID: 4890936629023072409}
   _position: {x: 0, y: 0, z: 0}
---- !u!114 &3641715118847430675
+--- !u!114 &7760665525064195853
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -177,7 +177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 0
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 4
+  outlineWidth: 20
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []

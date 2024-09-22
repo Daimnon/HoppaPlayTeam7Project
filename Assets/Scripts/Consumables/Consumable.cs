@@ -15,7 +15,7 @@ public class Consumable : MonoBehaviour
     protected int _reward; // player exp
     public int Reward => _reward;
 
-    protected const float _rewardFactor = 2.0f;
+    protected const float _rewardFactor = 1.4f;
     protected const int _initialExpValue = 10;
 
     [SerializeField] protected OutlineAltered _outline;

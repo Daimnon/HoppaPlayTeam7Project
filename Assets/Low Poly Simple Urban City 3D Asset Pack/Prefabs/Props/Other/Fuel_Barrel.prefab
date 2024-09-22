@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 1138848720019022685}
   - component: {fileID: 326535576171508044}
   - component: {fileID: 1019024727800109136}
+  - component: {fileID: 4450005177805685090}
   - component: {fileID: 5476807178720525729}
-  - component: {fileID: 5429430205470310001}
   m_Layer: 6
   m_Name: Fuel_Barrel
   m_TagString: Untagged
@@ -102,7 +102,7 @@ MonoBehaviour:
   _objectiveType: 1
   _level: 0
   _progressionReward: 0
-  _outline: {fileID: 5429430205470310001}
+  _outline: {fileID: 4450005177805685090}
 --- !u!114 &1019024727800109136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,6 +118,24 @@ MonoBehaviour:
   _renderers:
   - {fileID: 1138848720019022685}
   _position: {x: 0, y: 0, z: 0}
+--- !u!114 &4450005177805685090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499413424437445256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab8ca3407e172c4db129ddd95ea9afb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 20
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!136 &5476807178720525729
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -132,21 +150,3 @@ CapsuleCollider:
   m_Height: 0.9466588
   m_Direction: 1
   m_Center: {x: 0, y: 0.4733294, z: 0}
---- !u!114 &5429430205470310001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1499413424437445256}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ab8ca3407e172c4db129ddd95ea9afb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 4
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []

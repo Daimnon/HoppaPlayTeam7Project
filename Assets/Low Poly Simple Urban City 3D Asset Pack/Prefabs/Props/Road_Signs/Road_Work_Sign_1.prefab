@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 43777542801466844}
   - component: {fileID: 4329361815600410510}
   - component: {fileID: 5157162259914003039}
-  - component: {fileID: 3952867229126476944}
+  - component: {fileID: -6660736687932010834}
   m_Layer: 6
   m_Name: Road_Work_Sign_1
   m_TagString: Untagged
@@ -113,9 +113,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectiveType: 0
   _level: 7
-  _progressionReward: 1
-  _outline: {fileID: 3952867229126476944}
---- !u!114 &3952867229126476944
+  _progressionReward: 0
+  _outline: {fileID: -6660736687932010834}
+--- !u!114 &-6660736687932010834
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 0
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 4
+  outlineWidth: 20
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []

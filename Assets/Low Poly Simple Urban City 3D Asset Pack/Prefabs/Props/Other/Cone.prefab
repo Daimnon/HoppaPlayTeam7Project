@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1540667248944182194}
   - component: {fileID: 6097762329407869247}
   - component: {fileID: 5142630366639809323}
-  - component: {fileID: 3931842711835324313}
+  - component: {fileID: 2000021220170222619}
   m_Layer: 6
   m_Name: Cone
   m_TagString: Untagged
@@ -114,8 +114,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectiveType: 1
   _level: 3
-  _progressionReward: 1
-  _outline: {fileID: 3931842711835324313}
+  _progressionReward: 0
+  _outline: {fileID: 2000021220170222619}
 --- !u!114 &5142630366639809323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,7 +131,7 @@ MonoBehaviour:
   _renderers:
   - {fileID: 1278645897879604693}
   _position: {x: 0, y: 0, z: 0}
---- !u!114 &3931842711835324313
+--- !u!114 &2000021220170222619
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 0
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 4
+  outlineWidth: 20
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []

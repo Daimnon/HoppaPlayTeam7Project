@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1841043227042111350}
   - component: {fileID: 6774759787529635398}
   - component: {fileID: 4698888918865805711}
-  - component: {fileID: 1439361938026096039}
+  - component: {fileID: 8506561480845821124}
   m_Layer: 6
   m_Name: Police_Station
   m_TagString: Untagged
@@ -114,8 +114,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectiveType: 1
   _level: 14
-  _progressionReward: 1
-  _outline: {fileID: 1439361938026096039}
+  _progressionReward: 0
+  _outline: {fileID: 8506561480845821124}
 --- !u!114 &4698888918865805711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,7 +131,7 @@ MonoBehaviour:
   _renderers:
   - {fileID: 1830618125247493100}
   _position: {x: 0, y: 0, z: 0}
---- !u!114 &1439361938026096039
+--- !u!114 &8506561480845821124
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 0
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 4
+  outlineWidth: 20
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []

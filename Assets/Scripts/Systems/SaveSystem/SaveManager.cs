@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor;
 using UnityEngine;
 
 public class SaveManager : MonoBehaviour
@@ -29,6 +28,7 @@ public class SaveManager : MonoBehaviour
         EventManager.OnLevelComplete += OnLevelComplete;
         EventManager.OnReloadLevel += OnReloadLevel;
         _fileDataHandler = new FileDataHandler(Application.persistentDataPath + "/", _fileName);
+        Debug.Log(Application.persistentDataPath);
         _saveables = FindAllSaveables();
         LoadGame();
     }
@@ -92,48 +92,10 @@ public class SaveManager : MonoBehaviour
         _gameData.LevelID++;
         _gameData.IsNewLevel = true;
 
-        if (_gameData.LevelID >= 2)
-            _gameData.LevelID = 0;
-
         SaveGame();
     }
-
     private void OnApplicationQuit()
     {
         SaveGame();
-    }
-
-    [ContextMenu("Reset SaveFile")]
-    private void ResetSaveFile()
-    {
-        string path = Application.persistentDataPath + "/" + _fileName;
-        System.IO.File.Delete(path);
-    }
-
-    [ContextMenu("Set Level 1")]
-    private void SetLevel1()
-    {
-        _gameData.LevelID = (int)SceneType.Level1;
-        _gameData.IsNewLevel = true;
-
-        _fileDataHandler.Save(_gameData);
-    }
-
-    [ContextMenu("Set Level 2")]
-    private void SetLevel2()
-    {
-        _gameData.LevelID = (int)SceneType.Level2;
-        _gameData.IsNewLevel = true;
-
-        _fileDataHandler.Save(_gameData);
-    }
-
-    [ContextMenu("Charge Coins 1000")]
-    private void ChargeCoins()
-    {
-        int currencyToEarn = 1000;
-        EventManager.InvokeEarnCurrency(currencyToEarn);
-        _gameData.Currency += currencyToEarn;
-        _fileDataHandler.Save(_gameData);
     }
 }

@@ -22,7 +22,6 @@ public static class EventManager
     #region Growth
     public static Action OnGrowth;
     public static Action<int> OnMultipleGrowth;
-    public static Action<int> OnFirePowerGrowth;
     public static Action<float> OnGrowthMaxed;
     public static Action<EvoType> OnEvolve;
     #endregion
@@ -124,11 +123,6 @@ public static class EventManager
     {
         OnMultipleGrowth?.Invoke(targetLevel);
         UnityEngine.Debug.Log("Event: MultipleGrowth, Target level: " + targetLevel);
-    }
-    public static void InvokeFirePowerGrowth(int targetLevel)
-    {
-        OnFirePowerGrowth?.Invoke(targetLevel);
-        UnityEngine.Debug.Log("Event: FirePowerGrowth, Target level: " + targetLevel);
     }
     public static void InvokeGrowthMaxed(float timeRemaining)
     {
