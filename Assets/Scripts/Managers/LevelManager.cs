@@ -12,12 +12,13 @@ public enum ObjectiveType // None should always be last, **should not expand cas
     None
 }
 
-public class LevelManager : MonoBehaviour
+public class LevelManager : MonoBehaviour, ISaveable
 {
     [Header("Components")]
     [SerializeField] private GameManager _gameManager;
     [SerializeField] private SoundManager _soundManager;
     [SerializeField] private Canvas _startCanvas, _completionCanvas, _loseCanvas;
+    private Player_Inventory player_Inventory;
 
     [Header("UI Elements")]
     [SerializeField] private List<Sprite> _starSprites;
@@ -28,6 +29,7 @@ public class LevelManager : MonoBehaviour
     [Header("Objective Data")]
     [SerializeField] private ObjectiveData[] _objectives;
     public ObjectiveData[] Objectives => _objectives;
+    private int _starsEarned = 0;
 
     private float _timeSinceStart = 0;
 
@@ -45,8 +47,9 @@ public class LevelManager : MonoBehaviour
     [Header("Upgrade data")]
     [SerializeField] private float _additionalTime = 2.0f;
 
-    private bool _gameEnded = false;
+    private bool _hasLost = false;
     private bool _gameStarted = false;
+    
 
     #region Unity Callbacks
     private void OnEnable()
@@ -60,6 +63,8 @@ public class LevelManager : MonoBehaviour
     }
     private void Start()
     {
+        player_Inventory = FindAnyObjectByType<Player_Inventory>();
+
         if (!_soundManager)
             _soundManager = FindAnyObjectByType<SoundManager>();
 
@@ -99,17 +104,18 @@ public class LevelManager : MonoBehaviour
     }
     private void CalculateStars()
     {
-        int starsEarned = 0;
         for (int i = 0; i < _objectives.Length; i++)
         {
             if (_objectiveCompletion[_objectives[i].ObjectiveType])
             {
-                starsEarned++;
+                _starsEarned++;
             }
         }
         
-        Debug.Log("Stars Earned: " + starsEarned);
-        ShowStars(starsEarned);
+        Debug.Log("Stars Earned: " + _starsEarned);
+        float progressionBonus = Mathf.Clamp01((float)_currentProgression / _maxProgression);
+        player_Inventory.CalculateProgressionReward(Mathf.RoundToInt(progressionBonus * 100), _starsEarned);
+        ShowStars(_starsEarned);
     }
     private void ShowStars(int starsEarned) // maybe should be called SetStars 
     {
@@ -139,7 +145,7 @@ public class LevelManager : MonoBehaviour
 
     private void HandleLoseCondition()
     {
-        if (_gameEnded)
+        if (_hasLost)
         {
             EventManager.InvokeTimerChange(_timeLimit);
             return;
@@ -158,7 +164,7 @@ public class LevelManager : MonoBehaviour
         _timeLimit = 0.0f;
         _loseCanvas.gameObject.SetActive(true);
         EventManager.InvokeLose();
-        _gameEnded = true;
+        _hasLost = true;
     }
 
     private void ExtendTime(float additionalTime)
@@ -218,12 +224,20 @@ public class LevelManager : MonoBehaviour
     private void OnLevelComplete()
     {
         CalculateStars();
+        player_Inventory.CalculateTimeBonus(_timeLimit);
         _completionCanvas.gameObject.SetActive(true);
-        _gameEnded = true;
     }
     private void OnUpgrade(UpgradeType type)
     {
         if (type == UpgradeType.Time)
             ExtendTime(_additionalTime);
+    }
+
+    public void LoadData(GameData gameData)
+    {
+
+    }
+    public void SaveData(ref GameData gameData)
+    {
     }
 }
