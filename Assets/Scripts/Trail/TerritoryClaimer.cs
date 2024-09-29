@@ -16,8 +16,11 @@ public class TerritoryClaimer : MonoBehaviour
     [SerializeField] private LayerMask _detectionLayer;
     [SerializeField] private float _minDistance = 1.0f; // should increase while growing in size
     [SerializeField] private float _intersectDistance;
+    [SerializeField] private float _closeAreaColdown = 0.4f;
+    private float _currentCloseAreaColdown;
     private float _originalTrailTime = 3.0f;
     private float _firePower = 1.0f;
+    private bool _isAreaClosed = false;
 
     private readonly List<Vector3> _trailPoints = new();
     private List<Vector3> _closedTrailPoints = new();
@@ -25,7 +28,6 @@ public class TerritoryClaimer : MonoBehaviour
     private float _startingMinDistance;
     
     [Header("VFXs")]
-    //[SerializeField] private VisualEffect _explosionVFX;
     [SerializeField] private float _timeForExplosionToDieOut = 5.0f;
     [SerializeField] private float _explosionScaleFactor = 6.0f;
 
@@ -38,7 +40,7 @@ public class TerritoryClaimer : MonoBehaviour
 
     private int _explosionCount = 0;
     private SoundManager soundManager;
-    private List<Flame> _flames = new ();
+    private List<Flame> _flames = new();
 
     #region Monobehaviour Callbacks
     private void OnEnable()
@@ -46,20 +48,30 @@ public class TerritoryClaimer : MonoBehaviour
         EventManager.OnAreaClosed += OnAreaClosed;
         EventManager.OnGrowth += OnGrowth;
         EventManager.OnUpgrade += OnUpgrade;
-        /*_explosionCoroutines = new();
-        _explosionVFX.Reinit();
-        _explosionVFX.Stop();*/
     }
     private void Start() 
     {
         soundManager = FindObjectOfType<SoundManager>();
         _intersectDistance = transform.localScale.x;
         _startingMinDistance = _minDistance;
+        _currentCloseAreaColdown = _closeAreaColdown;
     }
     private void Update()
     {
-        TrackPosition();
-        CheckForClosedArea();
+        if (!_isAreaClosed)
+        {
+            TrackPosition();
+            CheckForClosedArea();
+        }
+        else
+        {
+            _currentCloseAreaColdown -= Time.deltaTime;
+            if (_currentCloseAreaColdown <= 0)
+            {
+                _currentCloseAreaColdown = _closeAreaColdown;
+                _isAreaClosed = false;
+            }
+        }
     }
     private void OnDisable()
     {
@@ -78,8 +90,8 @@ public class TerritoryClaimer : MonoBehaviour
             _trailPoints.Add(currentPosition);
 
             Flame trailFlame = _flamePool.GetFlameFromPool(currentPosition);
-            trailFlame.GrowFlame(transform.localScale);
             _flames.Add(trailFlame);
+            trailFlame.GrowFlame(transform.localScale);
 
             _audioSource.pitch = UnityEngine.Random.Range(_ignitePitch.x, _ignitePitch.y);
 
@@ -111,6 +123,7 @@ public class TerritoryClaimer : MonoBehaviour
 
                 Debug.Log("Center of closed area: " + midPos);
                 EventManager.InvokeAreaClosed(midPos);
+                _isAreaClosed = true;
                 break;
             }
         }
@@ -218,14 +231,32 @@ public class TerritoryClaimer : MonoBehaviour
 
         return new Bounds(center, size);
     }
+    private void RemovePoint(Vector3 point, Flame trailFlame)
+    {
+        _flames.Remove(trailFlame);
+        _trailPoints.Remove(point);
+        _flamePool.ReturnFlameToPool(trailFlame);
+    }
     private IEnumerator RemovePointDelayed(Vector3 point, Flame trailFlame)
     {
-        yield return new WaitForSeconds(_trailRenderer.time);
+        float elpasedTime = 0.0f;
+        while (elpasedTime < _trailRenderer.time)
+        {
+            if (_isAreaClosed)
+            {
+                _flames.Remove(trailFlame);
+                _trailPoints.Remove(point);
+                _flamePool.ReturnFlameToPool(trailFlame);
+                break;
+            }
+            elpasedTime += Time.deltaTime;
+            yield return null;
+        }
         yield return StartCoroutine(trailFlame.ShrinkFlameRoutine());
 
         _flames.Remove(trailFlame);
-        _flamePool.ReturnFlameToPool(trailFlame);
         _trailPoints.Remove(point);
+        _flamePool.ReturnFlameToPool(trailFlame);
     }
     private List<Consumable> GetConsumablesInClosedArea()
     {
@@ -246,29 +277,14 @@ public class TerritoryClaimer : MonoBehaviour
     #endregion
 
     #region VFX Methods
-    /*private void ResetExplosion()
-    {
-        _explosionVFX.Reinit();
-        _explosionVFX.Stop();
-        _explosionVFX.transform.SetParent(transform);
-    }*/
-    /*private void PlayExplosion(Vector3 pos)
-    {
-        _explosionVFX.transform.SetParent(null);
-        _explosionVFX.transform.position = pos;
-        _explosionVFX.transform.localScale = transform.localScale / 2f;
-        _explosionVFX.Play();
-    }*/
     private IEnumerator ExplosionRoutine(Vector3 midPos)
     {
-        //PlayExplosion(midPos);
         ParticleExplosion explosion = _explosionPool.GetParticleExplosionFromPool(midPos);
         explosion.DoExplosion(transform.localScale * _explosionScaleFactor);
         _audioSource.PlayOneShot(_explosionAudioClip);
         yield return new WaitForSeconds(_timeForExplosionToDieOut);
-        yield return explosion.EndExplosion();
+        //yield return explosion.EndExplosion();
 
-        explosion.ResetExplosion();
         _explosionPool.ReturnParticleExplosionToPool(explosion);
     }
     #endregion
@@ -292,7 +308,8 @@ public class TerritoryClaimer : MonoBehaviour
 
         for (int i = 0; i < _flames.Count; i++)
         {
-            _flamePool.ReturnFlameToPool(_flames[i]);
+            Flame flameTrail = _flames[i];
+            RemovePoint(_trailPoints[i], flameTrail);
         }
 
         StartCoroutine(ExplosionRoutine(midPos));

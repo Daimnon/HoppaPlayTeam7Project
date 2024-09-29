@@ -188,7 +188,7 @@ public class LevelManager : MonoBehaviour
         ObjectiveData objective = Array.Find(_objectives, obj => obj.ObjectiveType == objectiveType);
         _objectiveProgress[objectiveType]++;
 
-        Debug.Log("another point: " + _objectiveProgress[objectiveType].ToString());
+        //Debug.Log("another point: " + _objectiveProgress[objectiveType].ToString());
         
         if (_objectiveProgress[objectiveType] >= objective.CompletionCondition && !_objectiveCompletion[objectiveType])
         {

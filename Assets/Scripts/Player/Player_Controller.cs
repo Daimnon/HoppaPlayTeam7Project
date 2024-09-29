@@ -350,7 +350,7 @@ public class Player_Controller : Character
 
             if (!_detectedItems.Contains(collider))
             {
-                Debug.Log("Newly detected item: " + collider.gameObject.name);
+                //Debug.Log("Newly detected item: " + collider.gameObject.name);
                 _detectedItems.Add(collider);
 
                 if (consumable.Outline)
@@ -366,7 +366,7 @@ public class Player_Controller : Character
             {
                 if (item.TryGetComponent(out Consumable consumable))
                 {
-                    Debug.Log("No longer detected item: " + item.gameObject.name);
+                    //Debug.Log("No longer detected item: " + item.gameObject.name);
                     if (consumable.Outline)
                         consumable.Outline.RemoveOutline();
                 }

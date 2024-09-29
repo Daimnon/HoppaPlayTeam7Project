@@ -76,6 +76,7 @@ public class ExplosionObjectPool : MonoBehaviour
     }
     public void ReturnParticleExplosionToPool(ParticleExplosion ParticleExplosion)
     {
+        ParticleExplosion.ResetExplosion();
         ParticleExplosion.gameObject.SetActive(false);
         ParticleExplosion.transform.SetParent(transform);
         ParticleExplosion.transform.position = Vector3.zero;

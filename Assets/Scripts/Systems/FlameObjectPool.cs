@@ -76,6 +76,7 @@ public class FlameObjectPool : MonoBehaviour
     }
     public void ReturnFlameToPool(Flame Flame)
     {
+        Flame.StopAllCoroutines();
         Flame.gameObject.SetActive(false);
         Flame.transform.SetParent(transform);
         Flame.transform.position = Vector3.zero;

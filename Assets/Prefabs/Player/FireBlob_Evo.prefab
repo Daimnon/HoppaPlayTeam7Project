@@ -801,14 +801,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerController: {fileID: 2761447709847105067}
   _flamePool: {fileID: 0}
+  _explosionPool: {fileID: 0}
   _trailRenderer: {fileID: 2691740876895397790}
   _detectionLayer:
     serializedVersion: 2
     m_Bits: 64
   _minDistance: 1
   _intersectDistance: 0.2
+  _closeAreaColdown: 0.4
   _timeForExplosionToDieOut: 5
-  _explosionScaleFactor: 6
+  _explosionScaleFactor: 30
   _audioSource: {fileID: 354511764}
   _igniteAudioClip:
   - {fileID: 8300000, guid: bbfbde8f70202794eb7256551b9552a8, type: 3}

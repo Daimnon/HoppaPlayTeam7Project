@@ -24,6 +24,7 @@ public class Flame : MonoBehaviour
         }
         transform.localScale = targetScale;
     }
+
     public IEnumerator ShrinkFlameRoutine()
     {
         float elapsedTime = 0f;
@@ -41,7 +42,6 @@ public class Flame : MonoBehaviour
         }
         transform.localScale = Vector3.zero;
     }
-
     public void GrowFlame(Vector3 targetScale)
     {
         StartCoroutine(GrowFlameRoutine(targetScale));
