@@ -255,7 +255,6 @@ public class Player_Controller : Character
             default:
                 EventManager.InvokeEarnExp(consumable.Reward);
                 EventManager.InvokeProgressMade(consumable.ProgressionReward);
-                EventManager.InvokeEarnCurrency(consumable.Reward);
                 break;
         }
     }

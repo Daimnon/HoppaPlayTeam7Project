@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 [System.Serializable]
 public class GameData 
 {
@@ -9,6 +11,8 @@ public class GameData
     public int GrowUpgradeLevel;
     public int TimeUpgradeLevel;
     public int FirePowerUpgradeLevel;
+
+    public SerializableDictionary<int, bool> ObjectivesCompleted;
 
     public bool IsNewLevel;
 
@@ -22,6 +26,8 @@ public class GameData
         GrowUpgradeLevel = 0;
         TimeUpgradeLevel = 0;
         FirePowerUpgradeLevel = 0;
+
+        ObjectivesCompleted = new SerializableDictionary<int, bool>();
 
         IsNewLevel = false;
     }

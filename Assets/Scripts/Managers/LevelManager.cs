@@ -36,7 +36,9 @@ public class LevelManager : MonoBehaviour, ISaveable
     // track the progress and completion status of each objective
     private Dictionary<ObjectiveType, int> _objectiveProgress = new();
     private Dictionary<ObjectiveType, bool> _objectiveCompletion = new();
-    
+
+    private bool[] _objectiveCompleted = new bool[2];
+
     [Header("Progression data")]
     [SerializeField] private int _levelID = 0;
     [SerializeField] private int _maxProgression = 0;
@@ -49,9 +51,18 @@ public class LevelManager : MonoBehaviour, ISaveable
 
     private bool _hasLost = false;
     private bool _gameStarted = false;
-    
+
 
     #region Unity Callbacks
+    private void Awake()
+    {
+        for (int i = 0; i < _objectives.Length; i++)
+        {
+            _objectiveProgress[_objectives[i].ObjectiveType] = 0;
+            _objectiveCompletion[_objectives[i].ObjectiveType] = false;
+            Debug.Log("Set Objective" + i + ", " + _objectiveCompletion[_objectives[i].ObjectiveType]);
+        }
+    }
     private void OnEnable()
     {
         EventManager.OnProgressMade += OnProgressMade;
@@ -68,11 +79,7 @@ public class LevelManager : MonoBehaviour, ISaveable
         if (!_soundManager)
             _soundManager = FindAnyObjectByType<SoundManager>();
 
-        foreach (var objective in _objectives)
-        {
-            _objectiveProgress[objective.ObjectiveType] = 0;
-            _objectiveCompletion[objective.ObjectiveType] = false;
-        }
+        
 
         _levelID = (int)_gameManager.SceneType;
     }
@@ -235,9 +242,25 @@ public class LevelManager : MonoBehaviour, ISaveable
 
     public void LoadData(GameData gameData)
     {
-
+        int objectiveAmount = Enum.GetValues(typeof(ObjectiveType)).Length -1;
+        for (int i = 0; i < objectiveAmount; i++)
+        {
+            bool isCompleted;
+            gameData.ObjectivesCompleted.TryGetValue(i, out isCompleted);
+            _objectiveCompletion[(ObjectiveType)i] = isCompleted;
+            Debug.Log("Load Objective" + i + ", " + _objectiveCompletion[_objectives[i].ObjectiveType]);
+        }
     }
     public void SaveData(ref GameData gameData)
     {
+        int objectiveAmount = Enum.GetValues(typeof(ObjectiveType)).Length -1;
+        for (int i = 0; i < objectiveAmount; i++)
+        {
+            if (gameData.ObjectivesCompleted.ContainsKey(i))
+            {
+                gameData.ObjectivesCompleted.Remove(i);
+            }
+            gameData.ObjectivesCompleted.Add(i, _objectiveCompletion[(ObjectiveType)i]);
+        }
     }
 }
