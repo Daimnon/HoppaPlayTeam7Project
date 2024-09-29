@@ -806,7 +806,7 @@ MonoBehaviour:
   _detectionLayer:
     serializedVersion: 2
     m_Bits: 64
-  _minDistance: 1
+  _minDistance: 1.5
   _intersectDistance: 0.2
   _closeAreaColdown: 0.4
   _timeForExplosionToDieOut: 5
@@ -1580,6 +1580,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FlamePS
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646366121373496445, guid: 1a8bd2e4228b1644d8ee5f8b45d94e24,
+        type: 3}
+      propertyPath: m_SortMode
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4646366121373496447, guid: 1a8bd2e4228b1644d8ee5f8b45d94e24,
         type: 3}
