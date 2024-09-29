@@ -32,9 +32,8 @@ public class TerritoryClaimer : MonoBehaviour
     [SerializeField] private float _explosionScaleFactor = 6.0f;
 
     [Header("Audio")]
-    [SerializeField] private AudioSource _audioSource;
-    [SerializeField] private AudioClip[] _igniteAudioClip;
-    [SerializeField] private AudioClip _explosionAudioClip;
+    [SerializeField] private AudioClip[] _trailClips;
+    [SerializeField] private AudioClip _explosionClip;
     [SerializeField] private Vector2 _ignitePitch = new (0.5f,1.5f);
     private int _igniteCouter = 0;
 
@@ -93,11 +92,9 @@ public class TerritoryClaimer : MonoBehaviour
             _flames.Add(trailFlame);
             trailFlame.GrowFlame(transform.localScale);
 
-            _audioSource.pitch = UnityEngine.Random.Range(_ignitePitch.x, _ignitePitch.y);
-
             _igniteCouter++;  
             if (_igniteCouter == 1)
-                _audioSource.PlayOneShot(_igniteAudioClip[UnityEngine.Random.Range(0, 2)]);
+                SoundManager.Instance.PlayPlayerSound(_trailClips[UnityEngine.Random.Range(0, 2)]);
             else if (_igniteCouter > 2)
                 _igniteCouter = 0;
 
@@ -281,9 +278,8 @@ public class TerritoryClaimer : MonoBehaviour
     {
         ParticleExplosion explosion = _explosionPool.GetParticleExplosionFromPool(midPos);
         explosion.DoExplosion(transform.localScale * _explosionScaleFactor);
-        _audioSource.PlayOneShot(_explosionAudioClip);
+        SoundManager.Instance.PlayEventSound(_explosionClip);
         yield return new WaitForSeconds(_timeForExplosionToDieOut);
-        //yield return explosion.EndExplosion();
 
         _explosionPool.ReturnParticleExplosionToPool(explosion);
     }
@@ -317,11 +313,9 @@ public class TerritoryClaimer : MonoBehaviour
         _trailPoints.Clear();
         _trailRenderer.Clear();
         _flames.Clear();
-        Debug.Log("Closed shape detected!");
+        Debug.Log("Closed Area!");
 
-        soundManager.PlayFireExplosionSound();
         _explosionCount++;
-
         if (_explosionCount >= 3)
         {
             EventManager.InvokeObjectiveTrigger3();

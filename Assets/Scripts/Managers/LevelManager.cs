@@ -28,6 +28,7 @@ public class LevelManager : MonoBehaviour, ISaveable
 
     [Header("Objective Data")]
     [SerializeField] private ObjectiveData[] _objectives;
+    [SerializeField] private AudioClip _objectiveSoundClip;
     public ObjectiveData[] Objectives => _objectives;
     private int _starsEarned = 0;
 
@@ -141,7 +142,7 @@ public class LevelManager : MonoBehaviour, ISaveable
     {
         _popupText.text = message;
         _objectivePopUp.gameObject.SetActive(true);
-        _soundManager.PlayCatSound();
+        _soundManager.PlayEventSound(_objectiveSoundClip);
         //StartCoroutine(HideCompletionPopup());
     }
     private IEnumerator HideCompletionPopup()

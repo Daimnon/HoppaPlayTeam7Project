@@ -124,7 +124,6 @@ public class UpgradeSystem : MonoBehaviour, ISaveable
             EventManager.InvokeUpgrade(UpgradeType.Grow);
             _growUpgradeLevel++;
 
-            _soundManager.PlayCoinSound();
             UpdatePriceUI();
         }
     }
@@ -137,7 +136,6 @@ public class UpgradeSystem : MonoBehaviour, ISaveable
             EventManager.InvokeUpgrade(UpgradeType.Time);
             _timeUpgradeLevel++;
 
-            _soundManager.PlayCoinSound();
             UpdatePriceUI();
         }
     }
@@ -150,7 +148,6 @@ public class UpgradeSystem : MonoBehaviour, ISaveable
             EventManager.InvokeUpgrade(UpgradeType.FirePower);
             _firePowerUpgradeLevel++;
             
-            _soundManager.PlayCoinSound();
             UpdatePriceUI();
         }
     }

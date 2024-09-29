@@ -46,6 +46,9 @@ public class Player_Controller : Character
     [SerializeField] private float _forceFromBiggerObjects = 5.0f;
     //[SerializeField] private float _idleGestureTime = 7.5f;
 
+    [Header("SFXs")]
+    [SerializeField] private AudioClip _consumeClip;
+
     private float _initialCameraDistance;
     private float _initialSpeed;
 
@@ -397,6 +400,7 @@ public class Player_Controller : Character
         {
             default:
                 EventManager.InvokeEarnExp(consumable.Reward);
+                SoundManager.Instance.PlayPlayerSound(_consumeClip);
 
                 // for testing:
                 /*EventManager.InvokeEarnCurrency(consumable.Reward);
@@ -429,6 +433,7 @@ public class Player_Controller : Character
         {
             default:
                 EventManager.InvokeEarnExp(consumable.Reward);
+                SoundManager.Instance.PlayPlayerSound(_consumeClip);
                 break;
         }
 

@@ -1,3 +1,5 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour
@@ -5,88 +7,102 @@ public class SoundManager : MonoBehaviour
     private static SoundManager _instance;
     public static SoundManager Instance => _instance;
 
-    [SerializeField] private AudioClip gameOverSound;
-    [SerializeField] private AudioClip lastSecondsSound;
-    [SerializeField] private AudioClip levelUpSound;
-    [SerializeField] private AudioClip catSound;
-    [SerializeField] private AudioClip coinSound;
-    [SerializeField] private AudioClip fireExplosionSound;
-    [SerializeField] private AudioClip pickupSound;
-    [SerializeField] private AudioClip buttonPlaySound;
+    [Header("Sources")]
+    [SerializeField] private AudioSource _musicSource;
+    [SerializeField] private AudioSource _uiSource;
+    [SerializeField] private AudioSource _playerSource;
+    [SerializeField] private AudioSource _eventSource;
+    [SerializeField] private AudioSource _endGameSource;
 
-    [SerializeField] private AudioSource audioSource;
+    [Header("Music Clips")]
+    [SerializeField] private AudioClip _menuMusicClip;
+    [SerializeField] private AudioClip _levelMusicClip;
+
+    [Header("UI Clips")]
+    [SerializeField] private AudioClip _earnCurrencyClip;
+    [SerializeField] private AudioClip _earnSpecialClip;
+    [SerializeField] private AudioClip _purchaseClip;
+    [SerializeField] private AudioClip _purchaseSpecialClip;
+    [SerializeField] private AudioClip _offerClip;
+    [SerializeField] private AudioClip _equipClip;
+    [SerializeField] private AudioClip _playClip;
+    [SerializeField] private AudioClip _pauseClip;
+
+    [Header("Event Clips")]
+    [SerializeField] private AudioClip _levelUpClip;
+    [SerializeField] private AudioClip _explosionClip;
+    [SerializeField] private AudioClip _lastCallClip;
+
+    [Header("EndGame Clips")]
+    [SerializeField] private AudioClip _levelCompleteClip;
+    [SerializeField] private AudioClip _gameOverClip;
+
+    [Header("Data")]
+    [SerializeField] private Vector2 _pitchRange = new(0.5f, 1.5f);
 
     private void Awake()
     {
         _instance = this;
-
-        if (!audioSource)
-            audioSource = GetComponent<AudioSource>();
+    }
+    private void OnEnable()
+    {
+        EventManager.OnLose += OnLose;
+        EventManager.OnGrowth += OnGrowth;
+        EventManager.OnAreaClosed += OnAreaClosed;
+        EventManager.OnPayCurrency += OnPayCurrency;
     }
 
-    private void Start()
+    private void OnDisable()
     {
-        EventManager.OnLose += PlayGameOverSound;
-        EventManager.OnGrowth += PlayLevelUpSound;
+        EventManager.OnLose -= OnLose;
+        EventManager.OnGrowth -= OnGrowth;
+        EventManager.OnAreaClosed -= OnAreaClosed;
+        EventManager.OnPayCurrency -= OnPayCurrency;
     }
 
-    private void OnDestroy()
+    private void PlayOneShot(AudioSource source, AudioClip clip)
     {
-        EventManager.OnLose -= PlayGameOverSound;
-        EventManager.OnGrowth -= PlayLevelUpSound;
+        source.pitch = UnityEngine.Random.Range(_pitchRange.x, _pitchRange.y);
+        source.PlayOneShot(clip);
     }
 
-    public void PlayGameOverSound()
+    public void PlayMusic(AudioClip clip)
     {
-        if (!gameOverSound) return;
-        PlaySound(gameOverSound);
+        _musicSource.clip = clip;
+        _musicSource.Play();
+    }
+    public void PlayUISound(AudioClip clip)
+    {
+        PlayOneShot(_uiSource, clip);
+    }
+    public void PlayPlayerSound(AudioClip clip)
+    {
+        PlayOneShot(_playerSource, clip);
+    }
+    public void PlayEventSound(AudioClip clip)
+    {
+        PlayOneShot(_eventSource, clip);
+    }
+    public void PlayEndGame(AudioClip clip)
+    {
+        PlayOneShot(_endGameSource, clip);
     }
 
-    public void PlayLastSecondsSound()
+    private void OnGrowth()
     {
-        if (!lastSecondsSound) return;
-        PlaySound(lastSecondsSound);
+        PlayOneShot(_eventSource, _levelUpClip);
     }
+    private void OnLose()
+    {
+        PlayOneShot(_endGameSource, _gameOverClip);
+    }
+    private void OnAreaClosed(Vector3 midPos)
+    {
+        PlayEventSound(_explosionClip);
 
-    public void PlayLevelUpSound()
-    {
-        if (!levelUpSound) return;
-        PlaySound(levelUpSound);
     }
-
-    public void PlayCatSound()
+    private void OnPayCurrency(int amount)
     {
-        if (!catSound) return;
-        PlaySound(catSound);
-    }
-
-    public void PlayCoinSound()
-    {
-        if (!coinSound) return;
-        PlaySound(coinSound);
-    }
-    
-    public void PlayFireExplosionSound()
-    {
-        if (!fireExplosionSound) return;
-        PlaySound(fireExplosionSound);
-    }
-
-    public void PlayPickupSound()
-    {
-        if (!pickupSound) return;
-        PlaySound(pickupSound);
-    }
-
-    public void PlayButtonPlay()
-    {
-        if (!buttonPlaySound) return;
-        PlaySound(buttonPlaySound);
-    }
-
-    private void PlaySound(AudioClip clip)
-    {
-        if (!clip) return;
-        audioSource.PlayOneShot(clip);
+        PlayEventSound(_purchaseClip);
     }
 }
