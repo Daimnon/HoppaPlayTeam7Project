@@ -33,8 +33,6 @@ public class TerritoryClaimer : MonoBehaviour
 
     [Header("Audio")]
     [SerializeField] private AudioClip[] _trailClips;
-    [SerializeField] private AudioClip _explosionClip;
-    [SerializeField] private Vector2 _ignitePitch = new (0.5f,1.5f);
     private int _igniteCouter = 0;
 
     private int _explosionCount = 0;
@@ -278,7 +276,6 @@ public class TerritoryClaimer : MonoBehaviour
     {
         ParticleExplosion explosion = _explosionPool.GetParticleExplosionFromPool(midPos);
         explosion.DoExplosion(transform.localScale * _explosionScaleFactor);
-        SoundManager.Instance.PlayEventSound(_explosionClip);
         yield return new WaitForSeconds(_timeForExplosionToDieOut);
 
         _explosionPool.ReturnParticleExplosionToPool(explosion);
