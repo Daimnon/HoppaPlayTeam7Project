@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18168691, g: 0.22734535, b: 0.3074192, a: 1}
+  m_IndirectSpecularColor: {r: 0.18166597, g: 0.22729588, b: 0.3073865, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -668,6 +668,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f0ee523a9a924524bfa901942c255da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &469230708 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8296999580034603013, guid: ddbd231c2729c874bb07663e55983cb2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1298265860}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &514413501
 GameObject:
   m_ObjectHideFlags: 0
@@ -810,12 +822,12 @@ PrefabInstance:
     - target: {fileID: 5422624482594111744, guid: 6bf1f74f1a1b0274e97d6741c79c5505,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.712887
+      value: -3.7128866
       objectReference: {fileID: 0}
     - target: {fileID: 5422624482594111744, guid: 6bf1f74f1a1b0274e97d6741c79c5505,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.256165
+      value: 7.2561665
       objectReference: {fileID: 0}
     - target: {fileID: 5422624482594111744, guid: 6bf1f74f1a1b0274e97d6741c79c5505,
         type: 3}
@@ -825,7 +837,7 @@ PrefabInstance:
     - target: {fileID: 5422624482594111744, guid: 6bf1f74f1a1b0274e97d6741c79c5505,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.88112193
+      value: 0.8811219
       objectReference: {fileID: 0}
     - target: {fileID: 5422624482594111744, guid: 6bf1f74f1a1b0274e97d6741c79c5505,
         type: 3}
@@ -1346,12 +1358,12 @@ PrefabInstance:
     - target: {fileID: 3388745752941628739, guid: cfdd622c625b6ef4788d1650fd9e37e5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.712887
+      value: -3.7128866
       objectReference: {fileID: 0}
     - target: {fileID: 3388745752941628739, guid: cfdd622c625b6ef4788d1650fd9e37e5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.256165
+      value: 7.2561665
       objectReference: {fileID: 0}
     - target: {fileID: 3388745752941628739, guid: cfdd622c625b6ef4788d1650fd9e37e5,
         type: 3}
@@ -1774,6 +1786,18 @@ Canvas:
     type: 3}
   m_PrefabInstance: {fileID: 1477153249}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1606808871 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7362294715151370639, guid: ddbd231c2729c874bb07663e55983cb2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1298265860}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1699292165
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2023,6 +2047,18 @@ Canvas:
     type: 3}
   m_PrefabInstance: {fileID: 1298265860}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2090820239 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8481855486445277178, guid: ddbd231c2729c874bb07663e55983cb2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1298265860}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &85170561032922389
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2185,17 +2221,17 @@ PrefabInstance:
         type: 3}
       propertyPath: _growUpgradePriceText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1606808871}
     - target: {fileID: 125575907934305176, guid: 3a7f3b957bc65554191d708b4cd0c83d,
         type: 3}
       propertyPath: _timeUpgradePriceText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2090820239}
     - target: {fileID: 125575907934305176, guid: 3a7f3b957bc65554191d708b4cd0c83d,
         type: 3}
       propertyPath: _firePowerUpgradePriceText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 469230708}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a7f3b957bc65554191d708b4cd0c83d, type: 3}
 --- !u!114 &125575907934305176 stripped

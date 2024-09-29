@@ -113,7 +113,8 @@ public class LevelManager : MonoBehaviour, ISaveable
         }
         
         Debug.Log("Stars Earned: " + _starsEarned);
-        player_Inventory.CalculateProgressionReward(_currentProgression, _starsEarned);
+        float progressionBonus = Mathf.Clamp01((float)_currentProgression / _maxProgression);
+        player_Inventory.CalculateProgressionReward(Mathf.RoundToInt(progressionBonus * 100), _starsEarned);
         ShowStars(_starsEarned);
     }
     private void ShowStars(int starsEarned) // maybe should be called SetStars 

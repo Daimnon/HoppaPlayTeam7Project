@@ -73,11 +73,11 @@ public class Player_Inventory : MonoBehaviour, ISaveable
 
     }
 
-    public void CalculateProgressionReward(float progressionPercentage, int starsEarned)
+    public void CalculateProgressionReward(int progressionPercentage, int starsEarned)
     {
-        _progressionCurrency = Mathf.RoundToInt(progressionPercentage * 30);
+        _progressionCurrency = progressionPercentage * 30;
         int totalReward = _progressionCurrency + starsEarned * _objectiveBonus;
-        Debug.Log($"<color=red>progressionPercentage: {progressionPercentage}, _progressionCurrency: {_progressionCurrency},\n starsEarned: {starsEarned},\n totalReward: {totalReward} </color>");
+        //Debug.Log($"<color=red>progressionPercentage: {progressionPercentage},\n starsEarned: {starsEarned},\n totalReward: {totalReward} </color>");
         OnEarnCurrency(totalReward);
     }
 
