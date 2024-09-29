@@ -91,6 +91,7 @@ public class SaveManager : MonoBehaviour
     {
         _gameData.LevelID++;
         _gameData.IsNewLevel = true;
+        _gameData.ObjectivesCompleted = new();
 
         if (_gameData.LevelID >= 2)
             _gameData.LevelID = 0;
