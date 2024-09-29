@@ -79,6 +79,7 @@ public class FlameObjectPool : MonoBehaviour
         Flame.gameObject.SetActive(false);
         Flame.transform.SetParent(transform);
         Flame.transform.position = Vector3.zero;
+        Flame.transform.localScale = Vector3.one;
         _objectPool.Add(Flame);
     }
 

@@ -9,6 +9,7 @@ public class TerritoryClaimer : MonoBehaviour
     [Header("Components")]
     [SerializeField] private Player_Controller _playerController;
     [SerializeField] private FlameObjectPool _flamePool;
+    [SerializeField] private ExplosionObjectPool _explosionPool;
     [SerializeField] private TrailRenderer _trailRenderer;
     
     [Header("Data")]
@@ -220,6 +221,7 @@ public class TerritoryClaimer : MonoBehaviour
     private IEnumerator RemovePointDelayed(Vector3 point, Flame trailFlame)
     {
         yield return new WaitForSeconds(_trailRenderer.time);
+        yield return StartCoroutine(trailFlame.ShrinkFlameRoutine());
 
         _flames.Remove(trailFlame);
         _flamePool.ReturnFlameToPool(trailFlame);
@@ -260,14 +262,14 @@ public class TerritoryClaimer : MonoBehaviour
     private IEnumerator ExplosionRoutine(Vector3 midPos)
     {
         //PlayExplosion(midPos);
-        Flame explosionFlame = _flamePool.GetFlameFromPool(midPos);
-        explosionFlame.DoExplosion(transform.localScale * _explosionScaleFactor);
+        ParticleExplosion explosion = _explosionPool.GetParticleExplosionFromPool(midPos);
+        explosion.DoExplosion(transform.localScale * _explosionScaleFactor);
         _audioSource.PlayOneShot(_explosionAudioClip);
         yield return new WaitForSeconds(_timeForExplosionToDieOut);
-        yield return explosionFlame.EndExplosion();
+        yield return explosion.EndExplosion();
 
-        explosionFlame.ResetExplosion();
-        _flamePool.ReturnFlameToPool(explosionFlame);
+        explosion.ResetExplosion();
+        _explosionPool.ReturnParticleExplosionToPool(explosion);
     }
     #endregion
 
