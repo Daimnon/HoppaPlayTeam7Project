@@ -8,6 +8,8 @@ public class Player_Inventory : MonoBehaviour, ISaveable
     [SerializeField] private int _currency = 0;
     public int Currency => _currency;
 
+    public static event Action OnCurrencyChanged;
+
     [SerializeField] private int _specialCurrency = 0;
     public int SpecialCurrency => _specialCurrency;
 
@@ -36,7 +38,7 @@ public class Player_Inventory : MonoBehaviour, ISaveable
         _currency += amount;
         EventManager.InvokeCurrencyChange(_currency);
     }
-    private void OnPayCurrency(int amount)
+    public void OnPayCurrency(int amount)
     {
         if (_currency - amount < 0)
         {
