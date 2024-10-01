@@ -66,3 +66,6 @@ MonoBehaviour:
   _firePowerUpgradePriceText: {fileID: 0}
   _affordableColor: {r: 0.854902, g: 0.7686275, b: 0.16862746, a: 1}
   _expensiveColor: {r: 1, g: 0, b: 0, a: 1}
+  _growMaxLevel: 7
+  _timeMaxLevel: 30
+  _firePowerMaxLevel: 7

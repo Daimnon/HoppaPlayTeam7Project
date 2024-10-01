@@ -51,7 +51,10 @@ public class SoundManager : MonoBehaviour
         EventManager.OnAreaClosed += OnAreaClosed;
         EventManager.OnPayCurrency += OnPayCurrency;
     }
-
+    private void Start()
+    {
+        PlayMusic(_menuMusicClip);
+    }
     private void OnDisable()
     {
         EventManager.OnLose -= OnLose;
