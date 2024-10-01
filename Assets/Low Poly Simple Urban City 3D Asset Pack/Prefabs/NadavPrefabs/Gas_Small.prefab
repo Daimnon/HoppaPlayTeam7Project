@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 4037049055820788001}
   - component: {fileID: 2297554838136210923}
   - component: {fileID: 8693342545564519581}
-  - component: {fileID: -5463895070558993416}
   - component: {fileID: 7864729684314283866}
+  - component: {fileID: 2443325654969514580}
   m_Layer: 6
   m_Name: Gas_Small
   m_TagString: Untagged
@@ -99,27 +99,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objectiveType: 1
-  _level: 0
-  _progressionReward: 0
-  _outline: {fileID: -5463895070558993416}
---- !u!114 &-5463895070558993416
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 351968532599759934}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ab8ca3407e172c4db129ddd95ea9afb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 20
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
+  _level: 4
+  _progressionReward: 1
+  _outline: {fileID: 2443325654969514580}
 --- !u!136 &7864729684314283866
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -134,3 +116,21 @@ CapsuleCollider:
   m_Height: 1.2081481
   m_Direction: 1
   m_Center: {x: 0.00000002980232, y: 0.60407406, z: -0.00000002980232}
+--- !u!114 &2443325654969514580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 351968532599759934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab8ca3407e172c4db129ddd95ea9afb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []

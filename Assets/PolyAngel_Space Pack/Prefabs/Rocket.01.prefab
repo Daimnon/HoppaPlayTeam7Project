@@ -11,7 +11,10 @@ GameObject:
   - component: {fileID: 3006864146262754716}
   - component: {fileID: 7031510334355330110}
   - component: {fileID: 347466440185951275}
-  m_Layer: 0
+  - component: {fileID: 7950589458441797393}
+  - component: {fileID: 6720008975961598779}
+  - component: {fileID: 6175899393768314124}
+  m_Layer: 6
   m_Name: Rocket.01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,3 +86,50 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7950589458441797393
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5194596840993279206}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.1996026, y: 21.430511, z: 2.465472}
+  m_Center: {x: 0.012683641, y: 10.382823, z: 0.030311244}
+--- !u!114 &6720008975961598779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5194596840993279206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectiveType: 0
+  _level: 14
+  _progressionReward: 1
+  _outline: {fileID: 6175899393768314124}
+--- !u!114 &6175899393768314124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5194596840993279206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab8ca3407e172c4db129ddd95ea9afb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []

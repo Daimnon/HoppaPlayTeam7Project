@@ -9,7 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6347251153662931394}
-  m_Layer: 0
+  - component: {fileID: 6119483519976689005}
+  - component: {fileID: 8322911636263639494}
+  - component: {fileID: 7675582282114824051}
+  m_Layer: 6
   m_Name: Missile Space Launcher 02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33,6 +36,53 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6119483519976689005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6007282826334186360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab8ca3407e172c4db129ddd95ea9afb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!65 &8322911636263639494
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6007282826334186360}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.2837887, y: 6.8387423, z: 5.2837887}
+  m_Center: {x: -0, y: 2.5178099, z: 0}
+--- !u!114 &7675582282114824051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6007282826334186360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectiveType: 1
+  _level: 10
+  _progressionReward: 1
+  _outline: {fileID: 6119483519976689005}
 --- !u!1 &7572216473945676066
 GameObject:
   m_ObjectHideFlags: 0
@@ -44,7 +94,7 @@ GameObject:
   - component: {fileID: 696067001797927743}
   - component: {fileID: 8255942902239990768}
   - component: {fileID: 1995358665795435162}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Missile Space Launcher.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +177,7 @@ GameObject:
   - component: {fileID: 2104303336738388663}
   - component: {fileID: 1302205843125810181}
   - component: {fileID: 1653227642330350573}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Missile Base.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
