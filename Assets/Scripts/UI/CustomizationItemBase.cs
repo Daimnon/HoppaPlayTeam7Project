@@ -13,9 +13,10 @@ public abstract class CustomizationItemBase : MonoBehaviour
     [SerializeField] protected Image _icon;
     [SerializeField] protected Button _priceButton, _equipBtn, _unequipBtn;
     [SerializeField] protected TextMeshProUGUI _priceText;
+    [SerializeField] protected GameObject _itemOnPlayer;
 
     protected ItemStatus _status = ItemStatus.Locked;
-    public ItemStatus Status => _status;
+    public ItemStatus Status { get => _status; set => _status = value; }
 
     protected Player_Inventory _inventory;
     public Player_Inventory Inventory { get => _inventory; set => _inventory = value; }
@@ -67,21 +68,35 @@ public abstract class CustomizationItemBase : MonoBehaviour
         UpdatePriceColor();
     }
 
-    protected void ApplyState()
-    {
-
-    }
-
     public void Unequip()
     {
         _status = ItemStatus.Unequipped;
+        _priceButton.gameObject.SetActive(false);
         _unequipBtn.gameObject.SetActive(false);
         _equipBtn.gameObject.SetActive(true);
+        _itemOnPlayer.SetActive(false);
     }
     public void Equip()
     {
         EventManager.InvokeEquip(_name);
     }
+    public void ApplyStatus()
+    {
+        switch (_status)
+        {
+            case ItemStatus.Locked:
+                _equipBtn.gameObject.SetActive(false);
+                _unequipBtn.gameObject.SetActive(false);
+                break;
+            case ItemStatus.Equipped:
+                Equip();
+                break;
+            case ItemStatus.Unequipped:
+                Unequip();
+                break;
+        }
+    }
+
     public abstract void Buy();
 
     private void OnEquip(string name)
@@ -92,6 +107,7 @@ public abstract class CustomizationItemBase : MonoBehaviour
             _priceButton.gameObject.SetActive(false);
             _equipBtn.gameObject.SetActive(false);
             _unequipBtn.gameObject.SetActive(true);
+            _itemOnPlayer.SetActive(true);
         }
         else if (_status == ItemStatus.Locked)
         {

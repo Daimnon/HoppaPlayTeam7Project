@@ -11,7 +11,7 @@ public enum ItemStatus
     Unequipped 
 }
 
-public class Customizationmanager : MonoBehaviour, ISaveable
+public class CustomizationManager : MonoBehaviour, ISaveable
 {
     [SerializeField] private List<CustomizationItemBase> _customizationItems = new();
     [SerializeField] private Transform _customizationContentTr;
@@ -26,6 +26,11 @@ public class Customizationmanager : MonoBehaviour, ISaveable
         for (int i = 0; i < _customizationItems.Count; i++)
         {
             _customizationItems[i].Inventory = _inventory;
+            if (!_customizationItems[i].gameObject.activeInHierarchy)
+            {
+                _customizationItems.Remove(_customizationItems[i]);
+                continue;
+            }
         }
     }
     private void OnDisable()
@@ -115,8 +120,13 @@ public class Customizationmanager : MonoBehaviour, ISaveable
             _customizationItems[i].transform.SetParent(_customizationContentTr);
 
             if (_customizationItems[i].Name == gameData.CurrentlyEquippedItem)
-                _customizationItems[i].Equip();
+                _customizationItems[i].Status = ItemStatus.Equipped;
+            else if (isPurchased && _customizationItems[i].Name != gameData.CurrentlyEquippedItem)
+                _customizationItems[i].Status = ItemStatus.Unequipped;
+            else
+                _customizationItems[i].Status = ItemStatus.Locked;
 
+            _customizationItems[i].ApplyStatus();
             Debug.Log($"{i}: {_customizationItems[i].name}, {_customizationItems[i].IsPurchased}");
         }
     }
