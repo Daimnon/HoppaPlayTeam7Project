@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 
 public enum ItemStatus 
@@ -11,7 +10,7 @@ public enum ItemStatus
     Unequipped 
 }
 
-public class CustomizationManager : MonoBehaviour, ISaveable
+public class CustomizationsManager : MonoBehaviour, ISaveable
 {
     [SerializeField] private List<CustomizationItemBase> _customizationItems = new();
     [SerializeField] private Transform _customizationContentTr;
@@ -26,10 +25,6 @@ public class CustomizationManager : MonoBehaviour, ISaveable
         for (int i = 0; i < _customizationItems.Count; i++)
         {
             _customizationItems[i].Inventory = _inventory;
-            /*if (!_customizationItems[i].gameObject.activeInHierarchy)
-            {
-                _customizationItems.Remove(_customizationItems[i]);
-            }*/
         }
     }
     private void OnDisable()
