@@ -26,11 +26,10 @@ public class CustomizationManager : MonoBehaviour, ISaveable
         for (int i = 0; i < _customizationItems.Count; i++)
         {
             _customizationItems[i].Inventory = _inventory;
-            if (!_customizationItems[i].gameObject.activeInHierarchy)
+            /*if (!_customizationItems[i].gameObject.activeInHierarchy)
             {
                 _customizationItems.Remove(_customizationItems[i]);
-                continue;
-            }
+            }*/
         }
     }
     private void OnDisable()
