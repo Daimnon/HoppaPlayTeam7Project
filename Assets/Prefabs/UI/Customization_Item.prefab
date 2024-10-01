@@ -145,6 +145,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7326731188633968424}
+  - component: {fileID: 4838672105210117974}
   m_Layer: 5
   m_Name: Customization_Item
   m_TagString: Untagged
@@ -173,6 +174,27 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 400, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4838672105210117974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867258421894485862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5608dd8ae4474461b016fd4834ccfb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _background: {fileID: 7610347706657778209}
+  _title: {fileID: 7815649168376460800}
+  _icon: {fileID: 9125381890118203891}
+  _priceButton: {fileID: 6891021219307060916}
+  _playerInventory: {fileID: 0}
+  _affordableColor: {r: 1, g: 1, b: 1, a: 1}
+  _expensiveColor: {r: 1, g: 0, b: 0, a: 1}
+  _price: 0
+  _priceText: {fileID: 2058765282106363709}
 --- !u!1 &1832846590987107042
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,13 +549,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 4838672105210117974}
+        m_TargetAssemblyTypeName: CustomizationItemCurrency, Assembly-CSharp
+        m_MethodName: Buy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
