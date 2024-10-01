@@ -32,6 +32,7 @@ public static class EventManager
     public static Action<int> OnEarnSpecialCurrency, OnPaySpecialCurrency;
     public static Action<int> OnCurrencyChange, OnSpecialCurrencyChange/*, OnExpChange, OnLevelChange*/;
     public static Action<UpgradeType> OnUpgrade;
+    public static Action<string> OnPurchase, OnEquip/*, OnUnequip*/;
     #endregion
 
     #region Level & Progression
@@ -187,6 +188,26 @@ public static class EventManager
         OnUpgrade?.Invoke(upgradeType);
         UnityEngine.Debug.Log($"Event: Upgrade: {upgradeType}");
     }
+    public static void InvokePurchase(string name)
+    {
+        OnPurchase?.Invoke(name);
+        UnityEngine.Debug.Log($"Event: Purchased {name}.");
+    }
+    public static void InvokeEquip(string name)
+    {
+        OnEquip?.Invoke(name);
+        UnityEngine.Debug.Log($"Event: Equipped {name}.");
+    }
+
+    /*/// <summary>
+    /// Invoke "unequip" of all items that are not the passed name
+    /// </summary>
+    /// <param name="name"></param>
+    public static void InvokeUnequip(string name)
+    {
+        OnUnequip?.Invoke(name);
+        UnityEngine.Debug.Log($"Event: Unequipped {name}.");
+    }*/
     #endregion
 
     #region Level & Progression Event Methods

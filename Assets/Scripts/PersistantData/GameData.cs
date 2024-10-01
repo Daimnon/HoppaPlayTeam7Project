@@ -12,7 +12,10 @@ public class GameData
     public int TimeUpgradeLevel;
     public int FirePowerUpgradeLevel;
 
+    public string CurrentlyEquippedItem;
+
     public SerializableDictionary<int, bool> ObjectivesCompleted;
+    public SerializableDictionary<string, bool> CustomizationItems;
 
     public bool IsNewLevel;
 
@@ -27,7 +30,10 @@ public class GameData
         TimeUpgradeLevel = 0;
         FirePowerUpgradeLevel = 0;
 
-        ObjectivesCompleted = new SerializableDictionary<int, bool>();
+        CurrentlyEquippedItem = string.Empty;
+
+        ObjectivesCompleted = new();
+        CustomizationItems = new();
 
         IsNewLevel = false;
     }

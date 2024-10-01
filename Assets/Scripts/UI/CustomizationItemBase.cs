@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -8,37 +9,50 @@ public abstract class CustomizationItemBase : MonoBehaviour
 {
     [Header("Item base")]
     [SerializeField] protected Image _background;
-    [SerializeField] protected TMP_Text _title;
+    [SerializeField] protected TextMeshProUGUI _title;
     [SerializeField] protected Image _icon;
-    [SerializeField] protected Button _priceButton;
-    [SerializeField] protected Player_Inventory _playerInventory;
+    [SerializeField] protected Button _priceButton, _equipBtn, _unequipBtn;
+    [SerializeField] protected TextMeshProUGUI _priceText;
 
-    [Header("Text Color")]
+    protected ItemStatus _status = ItemStatus.Locked;
+    public ItemStatus Status => _status;
+
+    protected Player_Inventory _inventory;
+    public Player_Inventory Inventory { get => _inventory; set => _inventory = value; }
+
+    [Header("Item Data")]
+    [SerializeField] protected string _name;
+    public string Name => _name;
+
+    [SerializeField] protected int _price;
     [SerializeField] protected Color _affordableColor = Color.white;
     [SerializeField] protected Color _expensiveColor = Color.red;
+    protected string _priceString;
 
-    [Header("Item Currency")]
-    [SerializeField] protected int _price;
-    [SerializeField] protected TMP_Text _priceText;
+    protected bool _isPurchased;
+    public bool IsPurchased { get => _isPurchased; set => _isPurchased = value; }
 
-    public abstract void Buy();
-
-     protected virtual void Awake()
+    protected virtual void OnEnable()
     {
-        UpdatePriceColor();
         EventManager.OnCurrencyChange += HandleCurrencyChanged;
+        EventManager.OnEquip += OnEquip;
     }
-
-    protected virtual void OnDestroy()
+    protected virtual void Start()
+    {
+        _title.text = _name;
+        UpdatePriceColor();
+    }
+    protected virtual void OnDisable()
     {
         EventManager.OnCurrencyChange -= HandleCurrencyChanged;
+        EventManager.OnEquip -= OnEquip;
     }
 
     protected void UpdatePriceColor()
     {
-        if (_playerInventory != null && _priceText != null) 
+        if (_inventory != null && _priceText != null) 
         {
-            if (_playerInventory.Currency >= _price)
+            if (_inventory.Currency >= _price)
                 _priceText.color = _affordableColor;
             else
                 _priceText.color = _expensiveColor;
@@ -48,9 +62,44 @@ public abstract class CustomizationItemBase : MonoBehaviour
             Debug.LogWarning("_playerInventory or _priceText is not assigned in the inspector.");
         }
     }
-
     private void HandleCurrencyChanged(int newCurrency)
     {
         UpdatePriceColor();
+    }
+
+    protected void ApplyState()
+    {
+
+    }
+
+    public void Unequip()
+    {
+        _status = ItemStatus.Unequipped;
+        _unequipBtn.gameObject.SetActive(false);
+        _equipBtn.gameObject.SetActive(true);
+    }
+    public void Equip()
+    {
+        EventManager.InvokeEquip(_name);
+    }
+    public abstract void Buy();
+
+    private void OnEquip(string name)
+    {
+        if (name == _name)
+        {
+            _status = ItemStatus.Equipped;
+            _priceButton.gameObject.SetActive(false);
+            _equipBtn.gameObject.SetActive(false);
+            _unequipBtn.gameObject.SetActive(true);
+        }
+        else if (_status == ItemStatus.Locked)
+        {
+            return;
+        }
+        else
+        {
+            Unequip();
+        }
     }
 }
