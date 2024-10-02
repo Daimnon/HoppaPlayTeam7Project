@@ -45,12 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameManager: {fileID: 0}
+  _soundManager: {fileID: 0}
   _startCanvas: {fileID: 0}
-  _rewardCanvas: {fileID: 0}
-  _levelCompleteBtn: {fileID: 0}
-  _levelLostBtn: {fileID: 0}
-  _clearPercentage: {fileID: 0}
-  _rewardAmount: {fileID: 0}
+  _completionCanvas: {fileID: 0}
+  _loseCanvas: {fileID: 0}
   _starSprites:
   - {fileID: 21300000, guid: 37f07fbaf7f9add4c94fe0ba1ff5db43, type: 3}
   - {fileID: 21300000, guid: 7447508782dc7b44bb35c965ba01d11b, type: 3}
@@ -67,6 +65,5 @@ MonoBehaviour:
   _levelID: 0
   _maxProgression: 1350
   _currentProgression: 0
-  _progressionPercentage: 0
   _timeLimit: 30
   _additionalTime: 2

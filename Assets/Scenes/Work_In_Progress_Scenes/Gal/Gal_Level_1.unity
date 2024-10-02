@@ -718,18 +718,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &508152400 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7867773356850980960, guid: d6f76d5d439564140b9fc712fd1ad8e8,
-    type: 3}
-  m_PrefabInstance: {fileID: 1477153249}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &514413501
 GameObject:
   m_ObjectHideFlags: 0
@@ -2187,18 +2175,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2114577248 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5893869555351491937, guid: d6f76d5d439564140b9fc712fd1ad8e8,
-    type: 3}
-  m_PrefabInstance: {fileID: 1477153249}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &85170561032922389
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2592,6 +2568,11 @@ PrefabInstance:
       objectReference: {fileID: 4469407288626645189}
     - target: {fileID: 2265331817126130580, guid: cb311a081891cba4788dad8311215a7c,
         type: 3}
+      propertyPath: _loseCanvas
+      value: 
+      objectReference: {fileID: 1477153253}
+    - target: {fileID: 2265331817126130580, guid: cb311a081891cba4788dad8311215a7c,
+        type: 3}
       propertyPath: _gameManager
       value: 
       objectReference: {fileID: 85170561032922390}
@@ -2602,14 +2583,14 @@ PrefabInstance:
       objectReference: {fileID: 1899101589}
     - target: {fileID: 2265331817126130580, guid: cb311a081891cba4788dad8311215a7c,
         type: 3}
-      propertyPath: _levelLostBtn
+      propertyPath: levelLostBtn
       value: 
       objectReference: {fileID: 1477153250}
     - target: {fileID: 2265331817126130580, guid: cb311a081891cba4788dad8311215a7c,
         type: 3}
-      propertyPath: _rewardAmount
+      propertyPath: _levelLostBtn
       value: 
-      objectReference: {fileID: 2114577248}
+      objectReference: {fileID: 1477153250}
     - target: {fileID: 2265331817126130580, guid: cb311a081891cba4788dad8311215a7c,
         type: 3}
       propertyPath: _rewardCanvas
@@ -2617,14 +2598,19 @@ PrefabInstance:
       objectReference: {fileID: 1477153253}
     - target: {fileID: 2265331817126130580, guid: cb311a081891cba4788dad8311215a7c,
         type: 3}
+      propertyPath: _soundManager
+      value: 
+      objectReference: {fileID: 393456197}
+    - target: {fileID: 2265331817126130580, guid: cb311a081891cba4788dad8311215a7c,
+        type: 3}
       propertyPath: _objectivePopUp
       value: 
       objectReference: {fileID: 4469407288355616503}
     - target: {fileID: 2265331817126130580, guid: cb311a081891cba4788dad8311215a7c,
         type: 3}
-      propertyPath: _clearPercentage
+      propertyPath: _completionCanvas
       value: 
-      objectReference: {fileID: 508152400}
+      objectReference: {fileID: 0}
     - target: {fileID: 2265331817126130580, guid: cb311a081891cba4788dad8311215a7c,
         type: 3}
       propertyPath: _levelCompleteBtn
@@ -3235,24 +3221,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-<<<<<<< Updated upstream
     - target: {fileID: 9071721844635855819, guid: 943bfdcf58c135249a84925f759c867d,
         type: 3}
       propertyPath: _switchAnimationDuration
       value: 0.2
       objectReference: {fileID: 0}
-=======
->>>>>>> Stashed changes
     - target: {fileID: 9071721844635855819, guid: 943bfdcf58c135249a84925f759c867d,
         type: 3}
       propertyPath: _windowsToTurnOff.Array.data[0]
       value: 
       objectReference: {fileID: 627485010}
-    - target: {fileID: 9071721844635855819, guid: 943bfdcf58c135249a84925f759c867d,
-        type: 3}
-      propertyPath: _windowsToTurnOff.Array.data[1]
-      value: 
-      objectReference: {fileID: 2049065623}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 943bfdcf58c135249a84925f759c867d, type: 3}
 --- !u!223 &4469407288355616503 stripped

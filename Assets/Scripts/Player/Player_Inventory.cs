@@ -8,10 +8,15 @@ public class Player_Inventory : MonoBehaviour, ISaveable
     [SerializeField] private int _currency = 0;
     public int Currency => _currency;
 
+    public static event Action OnCurrencyChanged;
+
     [SerializeField] private int _specialCurrency = 0;
     public int SpecialCurrency => _specialCurrency;
 
-
+    [Header("Rewards for pogression")]
+    private int _progressionCurrency = 0;
+    private int _objectiveBonus = 500;
+    private float _timeBonusMultiplier = 100f;
 
     private void OnEnable()
     {
@@ -61,6 +66,23 @@ public class Player_Inventory : MonoBehaviour, ISaveable
         _specialCurrency -= amount;
         EventManager.InvokeSpecialCurrencyChange(_specialCurrency);
     }
+
+    public void CalculateTimeBonus(float timeRemaining)
+    {
+        int bonus = Mathf.RoundToInt(timeRemaining * _timeBonusMultiplier);
+        OnEarnCurrency(bonus);
+        Debug.Log($"<color=red>timeRemaining: {timeRemaining}, time bonus(*100): {bonus} </color>");
+
+    }
+
+    public void CalculateProgressionReward(int progressionPercentage, int starsEarned)
+    {
+        _progressionCurrency = progressionPercentage * 30;
+        int totalReward = _progressionCurrency + starsEarned * _objectiveBonus;
+        //Debug.Log($"<color=red>progressionPercentage: {progressionPercentage},\n starsEarned: {starsEarned},\n totalReward: {totalReward} </color>");
+        OnEarnCurrency(totalReward);
+    }
+
     public void LoadData(GameData gameData)
     {
         _currency = gameData.Currency;
