@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,16 +17,21 @@ public class LevelManager : MonoBehaviour, ISaveable
 {
     [Header("Components")]
     [SerializeField] private GameManager _gameManager;
-    [SerializeField] private SoundManager _soundManager;
     [SerializeField] private Canvas _startCanvas, _rewardCanvas;
     [SerializeField] private GameObject _levelCompleteBtn, _levelLostBtn;
-    private Player_Inventory player_Inventory;
+
+    [Header("Reward Screen")]
+    [SerializeField] private TextMeshProUGUI _clearPercentage;
+    [SerializeField] private TextMeshProUGUI _rewardAmount;
+    private string _rewardAmountString;
+    private int _objectiveBonus = 500;
+    private float _timeBonusMultiplier = 100.0f;
 
     [Header("UI Elements")]
     [SerializeField] private List<Sprite> _starSprites;
     [SerializeField] private Image _starImage;
     [SerializeField] private Canvas _objectivePopUp;
-    [SerializeField] private TMPro.TextMeshProUGUI _popupText;
+    [SerializeField] private TextMeshProUGUI _popupText;
 
     [Header("Objective Data")]
     [SerializeField] private ObjectiveData[] _objectives;
@@ -45,6 +51,7 @@ public class LevelManager : MonoBehaviour, ISaveable
     [SerializeField] private int _levelID = 0;
     [SerializeField] private int _maxProgression = 0;
     [SerializeField] private int _currentProgression = 0;
+    [SerializeField] private int _progressionPercentage = 0;
     [SerializeField] private float _timeLimit = 0.0f;
     public float TimeLimit => _timeLimit;
 
@@ -76,13 +83,6 @@ public class LevelManager : MonoBehaviour, ISaveable
     }
     private void Start()
     {
-        player_Inventory = FindAnyObjectByType<Player_Inventory>();
-
-        if (!_soundManager)
-            _soundManager = FindAnyObjectByType<SoundManager>();
-
-        
-
         _levelID = (int)_gameManager.SceneType;
     }
     private void Update()
@@ -107,9 +107,27 @@ public class LevelManager : MonoBehaviour, ISaveable
     {
         _currentProgression += progressToMake;
         float newClampedProgression = Mathf.Clamp01((float)_currentProgression / _maxProgression);
+        _progressionPercentage = Mathf.RoundToInt(newClampedProgression * 100);
         EventManager.InvokeProgressionChange(newClampedProgression);
 
         CheckProgressCompletion();
+    }
+    public void CalculateProgressionReward()
+    {
+        int progressionReward = _progressionPercentage * 30;
+        int totalReward = progressionReward + _starsEarned * _objectiveBonus;
+        //Debug.Log($"<color=red>progressionPercentage: {progressionPercentage},\n starsEarned: {starsEarned},\n totalReward: {totalReward} </color>");
+        _clearPercentage.text = _progressionPercentage.ToString();
+        _rewardAmountString = totalReward.ToString() + "%";
+        _rewardAmount.text = _rewardAmountString;
+        EventManager.InvokeEarnCurrency(totalReward);
+    }
+    public void CalculateTimeBonus(float timeRemaining)
+    {
+        int bonus = Mathf.RoundToInt(timeRemaining * _timeBonusMultiplier);
+        //Debug.Log($"<color=red>timeRemaining: {timeRemaining}, time bonus(*100): {bonus} </color>");
+        EventManager.InvokeEarnCurrency(bonus);
+
     }
     private void CalculateStars()
     {
@@ -122,8 +140,7 @@ public class LevelManager : MonoBehaviour, ISaveable
         }
         
         Debug.Log("Stars Earned: " + _starsEarned);
-        float progressionBonus = Mathf.Clamp01((float)_currentProgression / _maxProgression);
-        player_Inventory.CalculateProgressionReward(Mathf.RoundToInt(progressionBonus * 100), _starsEarned);
+        CalculateProgressionReward();
         ShowStars(_starsEarned);
     }
     private void ShowStars(int starsEarned) // maybe should be called SetStars 
@@ -141,9 +158,10 @@ public class LevelManager : MonoBehaviour, ISaveable
     }
     private void ShowCompletionPopup(string message)
     {
+        CalculateProgressionReward();
         _popupText.text = message;
         _objectivePopUp.gameObject.SetActive(true);
-        _soundManager.PlayEventSound(_objectiveSoundClip);
+        SoundManager.Instance.PlayEventSound(_objectiveSoundClip);
         //StartCoroutine(HideCompletionPopup());
     }
     private IEnumerator HideCompletionPopup()
@@ -235,7 +253,7 @@ public class LevelManager : MonoBehaviour, ISaveable
     private void OnLevelComplete()
     {
         CalculateStars();
-        player_Inventory.CalculateTimeBonus(_timeLimit);
+        CalculateTimeBonus(_timeLimit);
         _rewardCanvas.gameObject.SetActive(true);
         _levelLostBtn.gameObject.SetActive(false);
         _levelCompleteBtn.gameObject.SetActive(true);
