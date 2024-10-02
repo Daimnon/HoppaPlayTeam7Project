@@ -39,6 +39,7 @@ public class SoundManager : MonoBehaviour
 
     [Header("Data")]
     [SerializeField] private Vector2 _pitchRange = new(0.5f, 1.5f);
+    private bool _shouldVibrate = true;
 
     private void Awake()
     {
@@ -65,6 +66,9 @@ public class SoundManager : MonoBehaviour
         
     private void PlayOneShot(AudioSource source, AudioClip clip)
     {
+        if (_shouldVibrate)
+            Handheld.Vibrate();
+
         source.outputAudioMixerGroup.audioMixer.SetFloat("Pitch", UnityEngine.Random.Range(_pitchRange.x, _pitchRange.y));
         source.PlayOneShot(clip);
     }
@@ -89,6 +93,32 @@ public class SoundManager : MonoBehaviour
     public void PlayEndGame(AudioClip clip)
     {
         PlayOneShot(_endGameSource, clip);
+    }
+
+    public void TurnOffSounds()
+    {
+        _musicSource.mute = true;
+        _uiSource.mute = true;
+        _playerSource.mute = true; 
+        _eventSource.mute = true;
+        _endGameSource.mute = true;
+    }
+    public void TurnOnSounds()
+    {
+        _musicSource.mute = false;
+        _uiSource.mute = false;
+        _playerSource.mute = false;
+        _eventSource.mute = false;
+        _endGameSource.mute = false;
+    }
+
+    public void TurnOnHaptic()
+    {
+        _shouldVibrate = true;
+    }
+    public void TurnOffHaptic()
+    {
+        _shouldVibrate = false;
     }
 
     private void OnGrowth()
