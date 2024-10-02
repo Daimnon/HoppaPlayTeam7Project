@@ -17,7 +17,8 @@ public class LevelManager : MonoBehaviour, ISaveable
     [Header("Components")]
     [SerializeField] private GameManager _gameManager;
     [SerializeField] private SoundManager _soundManager;
-    [SerializeField] private Canvas _startCanvas, _completionCanvas, _loseCanvas;
+    [SerializeField] private Canvas _startCanvas, _rewardCanvas;
+    [SerializeField] private GameObject _levelCompleteBtn, _levelLostBtn;
     private Player_Inventory player_Inventory;
 
     [Header("UI Elements")]
@@ -170,7 +171,9 @@ public class LevelManager : MonoBehaviour, ISaveable
         // do lose condition logic
         CalculateStars();
         _timeLimit = 0.0f;
-        _loseCanvas.gameObject.SetActive(true);
+        _rewardCanvas.gameObject.SetActive(true);
+        _levelCompleteBtn.gameObject.SetActive(false);
+        _levelLostBtn.gameObject.SetActive(true);
         EventManager.InvokeLose();
         _hasLost = true;
     }
@@ -233,7 +236,9 @@ public class LevelManager : MonoBehaviour, ISaveable
     {
         CalculateStars();
         player_Inventory.CalculateTimeBonus(_timeLimit);
-        _completionCanvas.gameObject.SetActive(true);
+        _rewardCanvas.gameObject.SetActive(true);
+        _levelLostBtn.gameObject.SetActive(false);
+        _levelCompleteBtn.gameObject.SetActive(true);
     }
     private void OnUpgrade(UpgradeType type)
     {

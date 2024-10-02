@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 [System.Serializable]
 public class GameData 
 {
@@ -7,6 +5,8 @@ public class GameData
     public float TimeLimit;
     public int Currency;
     public int SpecialCurrency;
+
+    public int EvolutionType;
 
     public int GrowUpgradeLevel;
     public int TimeUpgradeLevel;
@@ -25,6 +25,8 @@ public class GameData
         TimeLimit = 30.0f;
         Currency = 0;
         SpecialCurrency = 0;
+
+        EvolutionType = 0;
 
         GrowUpgradeLevel = 0;
         TimeUpgradeLevel = 0;

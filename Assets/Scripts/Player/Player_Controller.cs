@@ -44,6 +44,8 @@ public class Player_Controller : Character
     [SerializeField] private float _growFVXTime = 1.0f;
     [SerializeField] private float _growColliderBy = 0.2f;
     [SerializeField] private float _forceFromBiggerObjects = 5.0f;
+    [SerializeField] private Transform[] _itemsTr;
+    [SerializeField] private float[] _itemsEvoOffsetY;
     //[SerializeField] private float _idleGestureTime = 7.5f;
 
     [Header("SFXs")]
@@ -319,6 +321,13 @@ public class Player_Controller : Character
         else
         {
             _headFlame.localScale = transform.localScale * ((int)_data.EvoType + 2);
+        }
+
+        for (int i = 0; i < _itemsTr.Length; i++) // fix for hats
+        {
+            Vector3 newPos = _itemsTr[i].localPosition;
+            newPos.y += _itemsEvoOffsetY[(int)_data.EvoType];
+            _itemsTr[i].localPosition = newPos;
         }
 
         yield return new WaitForSeconds(_growFVXTime /2);

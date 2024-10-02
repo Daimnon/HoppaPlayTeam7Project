@@ -23,7 +23,7 @@ public class UpgradeSystem : MonoBehaviour, ISaveable
     [SerializeField] private Color _expensiveColor = Color.red;
 
     [Header("Data")]
-    [SerializeField] private int _growMaxLevel = 7;
+    [SerializeField] private int _growMaxLevel = 9;
     [SerializeField] private int _timeMaxLevel = 30;
     [SerializeField] private int _firePowerMaxLevel = 7;
 
