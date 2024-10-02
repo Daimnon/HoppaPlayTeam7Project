@@ -420,8 +420,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5326602648656991429, guid: e18f6c47cd7f2794eb4a8089ec81b49a, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e18f6c47cd7f2794eb4a8089ec81b49a, type: 3}
 --- !u!1001 &287014500
 PrefabInstance:
@@ -1884,12 +1883,36 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1477153249}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1477153252 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5893869555351491937, guid: d6f76d5d439564140b9fc712fd1ad8e8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1477153249}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!223 &1477153253 stripped
 Canvas:
   m_CorrespondingSourceObject: {fileID: 7854479440896646062, guid: d6f76d5d439564140b9fc712fd1ad8e8,
     type: 3}
   m_PrefabInstance: {fileID: 1477153249}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1477153254 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7867773356850980960, guid: d6f76d5d439564140b9fc712fd1ad8e8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1477153249}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1586382151 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132148474911977, guid: 6b89d7a8d8b113845b888ad478f255a6,
@@ -2593,6 +2616,11 @@ PrefabInstance:
       objectReference: {fileID: 1477153250}
     - target: {fileID: 2265331817126130580, guid: cb311a081891cba4788dad8311215a7c,
         type: 3}
+      propertyPath: _rewardAmount
+      value: 
+      objectReference: {fileID: 1477153252}
+    - target: {fileID: 2265331817126130580, guid: cb311a081891cba4788dad8311215a7c,
+        type: 3}
       propertyPath: _rewardCanvas
       value: 
       objectReference: {fileID: 1477153253}
@@ -2606,6 +2634,11 @@ PrefabInstance:
       propertyPath: _objectivePopUp
       value: 
       objectReference: {fileID: 4469407288355616503}
+    - target: {fileID: 2265331817126130580, guid: cb311a081891cba4788dad8311215a7c,
+        type: 3}
+      propertyPath: _clearPercentage
+      value: 
+      objectReference: {fileID: 1477153254}
     - target: {fileID: 2265331817126130580, guid: cb311a081891cba4788dad8311215a7c,
         type: 3}
       propertyPath: _completionCanvas
@@ -3224,13 +3257,18 @@ PrefabInstance:
     - target: {fileID: 9071721844635855819, guid: 943bfdcf58c135249a84925f759c867d,
         type: 3}
       propertyPath: _switchAnimationDuration
-      value: 0.2
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 9071721844635855819, guid: 943bfdcf58c135249a84925f759c867d,
         type: 3}
       propertyPath: _windowsToTurnOff.Array.data[0]
       value: 
       objectReference: {fileID: 627485010}
+    - target: {fileID: 9071721844635855819, guid: 943bfdcf58c135249a84925f759c867d,
+        type: 3}
+      propertyPath: _windowsToTurnOff.Array.data[1]
+      value: 
+      objectReference: {fileID: 2049065623}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 943bfdcf58c135249a84925f759c867d, type: 3}
 --- !u!223 &4469407288355616503 stripped
