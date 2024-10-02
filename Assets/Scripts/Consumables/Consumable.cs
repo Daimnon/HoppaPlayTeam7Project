@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class Consumable : MonoBehaviour
 {
-    [SerializeField] protected AudioClip _consumedClip; // level progress
     [SerializeField] protected ObjectiveType _objectiveType; // for quests
     public ObjectiveType ObjectiveType => _objectiveType;
 

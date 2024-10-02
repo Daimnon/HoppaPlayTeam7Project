@@ -54,7 +54,7 @@ public class SoundManager : MonoBehaviour
     private void Start()
     {
         PlayMusic(_menuMusicClip);
-    }
+    }   
     private void OnDisable()
     {
         EventManager.OnLose -= OnLose;
@@ -62,10 +62,10 @@ public class SoundManager : MonoBehaviour
         EventManager.OnAreaClosed -= OnAreaClosed;
         EventManager.OnPayCurrency -= OnPayCurrency;
     }
-
+        
     private void PlayOneShot(AudioSource source, AudioClip clip)
     {
-        source.pitch = UnityEngine.Random.Range(_pitchRange.x, _pitchRange.y);
+        source.outputAudioMixerGroup.audioMixer.SetFloat("Pitch", UnityEngine.Random.Range(_pitchRange.x, _pitchRange.y));
         source.PlayOneShot(clip);
     }
 
