@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -10,7 +11,7 @@ public class SaveManager : MonoBehaviour
     public static SaveManager Instance => _instance;
 
     private GameData _gameData;
-    private List<ISaveable> _saveables;
+    private List<ISaveable> _saveables = new();
 
     [Header("File Storage Config")]
     [SerializeField] private string _fileName;
@@ -129,10 +130,10 @@ public class SaveManager : MonoBehaviour
         _fileDataHandler.Save(_gameData);
     }
 
-    [ContextMenu("Charge Coins 1000")]
+    [ContextMenu("Charge Coins 10000")]
     private void ChargeCoins()
     {
-        int currencyToEarn = 1000;
+        int currencyToEarn = 10000;
         EventManager.InvokeEarnCurrency(currencyToEarn);
         _gameData.Currency += currencyToEarn;
         _fileDataHandler.Save(_gameData);

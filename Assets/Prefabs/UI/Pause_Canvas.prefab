@@ -157,7 +157,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -15, y: 42}
+  m_AnchoredPosition: {x: -12.307678, y: -15.076904}
   m_SizeDelta: {x: 105, y: 111}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &3352182460249911312
@@ -796,7 +796,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5966613347771785712
 RectTransform:
   m_ObjectHideFlags: 0
@@ -892,10 +892,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cb4180dfb833cb4b847d7e7df2f0035, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _windowsToTurnOff: []
+  _windowsToTurnOff:
+  - {fileID: 0}
+  - {fileID: 0}
   _switchSprites:
-  - {fileID: 1258146367, guid: d2af407e59ec4e547ace05300c36e7b3, type: 3}
-  - {fileID: 1055763562, guid: d2af407e59ec4e547ace05300c36e7b3, type: 3}
+  - {fileID: -1652295450, guid: cebe9a0a2f4f53e4783199f5de26f879, type: 3}
+  - {fileID: -902525497, guid: 32e500360ddf2ce4781287650166c04b, type: 3}
   _soundSwitch: {fileID: 7623180403060483135}
   _hapticSwitch: {fileID: 5651189574880995005}
 --- !u!1 &6400953941830294335

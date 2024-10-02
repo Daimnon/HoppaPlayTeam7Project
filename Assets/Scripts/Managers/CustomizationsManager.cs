@@ -32,6 +32,12 @@ public class CustomizationsManager : MonoBehaviour, ISaveable
         EventManager.OnPurchase -= OnPurchase;
     }
 
+    private IEnumerator DelayedDeactivationRoutine()
+    {
+        yield return null;
+        gameObject.SetActive(false);
+    }
+
     public CustomizationItemBase GetItem(int index)
     {
         for (int i = 0; i < _customizationItems.Count; i++)
@@ -121,6 +127,7 @@ public class CustomizationsManager : MonoBehaviour, ISaveable
                 _customizationItems[i].Status = ItemStatus.Locked;
 
             _customizationItems[i].ApplyStatus();
+            StartCoroutine(DelayedDeactivationRoutine());
             Debug.Log($"{i}: {_customizationItems[i].name}, {_customizationItems[i].IsPurchased}");
         }
     }
