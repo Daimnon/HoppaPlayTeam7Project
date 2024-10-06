@@ -17,6 +17,7 @@ public class LevelManager : MonoBehaviour, ISaveable
 {
     [Header("Components")]
     [SerializeField] private GameManager _gameManager;
+    [SerializeField] private Canvas[] _earningCanvases;
     [SerializeField] private Canvas _startCanvas, _rewardCanvas;
     [SerializeField] private GameObject _levelCompleteBtn, _levelLostBtn;
 
@@ -36,6 +37,7 @@ public class LevelManager : MonoBehaviour, ISaveable
     [Header("Objective Data")]
     [SerializeField] private ObjectiveData[] _objectives;
     [SerializeField] private AudioClip _objectiveSoundClip;
+    [SerializeField] private float _objectivePopUpTime = 3.0f;
     public ObjectiveData[] Objectives => _objectives;
     private int _starsEarned = 0;
 
@@ -150,6 +152,10 @@ public class LevelManager : MonoBehaviour, ISaveable
             _starImage.sprite = _starSprites[starsEarned];
         }
     }
+    private void TurnOffObjectivePopup()
+    {
+        _objectivePopUp.gameObject.SetActive(false);
+    }
 
     private void CheckProgressCompletion()
     {
@@ -161,6 +167,7 @@ public class LevelManager : MonoBehaviour, ISaveable
         CalculateProgressionReward();
         _popupText.text = message;
         _objectivePopUp.gameObject.SetActive(true);
+        Invoke(nameof(TurnOffObjectivePopup), _objectivePopUpTime);
         SoundManager.Instance.PlayEventSound(_objectiveSoundClip);
         //StartCoroutine(HideCompletionPopup());
     }
@@ -204,6 +211,11 @@ public class LevelManager : MonoBehaviour, ISaveable
 
     public void StartGame()
     {
+        for (int i = 0; i < _earningCanvases.Length; i++)
+        {
+            _earningCanvases[i].gameObject.SetActive(false);
+        }
+
         _startCanvas.gameObject.SetActive(false);
         _gameStarted = true;
         EventManager.InvokeLevelLaunched();
@@ -257,6 +269,12 @@ public class LevelManager : MonoBehaviour, ISaveable
         _rewardCanvas.gameObject.SetActive(true);
         _levelLostBtn.gameObject.SetActive(false);
         _levelCompleteBtn.gameObject.SetActive(true);
+
+        /* maybe add earning transition animation to the correct ui
+         * for (int i = 0; i < _earningCanvases.Length; i++)
+        {
+            _earningCanvases[i].gameObject.SetActive(false);
+        }*/
     }
     private void OnUpgrade(UpgradeType type)
     {

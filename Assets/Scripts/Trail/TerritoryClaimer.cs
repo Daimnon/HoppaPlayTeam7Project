@@ -305,6 +305,7 @@ public class TerritoryClaimer : MonoBehaviour
             RemovePoint(_trailPoints[i], flameTrail);
         }
 
+        SoundManager.Instance.Vibrate();
         StartCoroutine(ExplosionRoutine(midPos));
 
         _trailPoints.Clear();

@@ -112,6 +112,7 @@ public class CustomizationsManager : MonoBehaviour, ISaveable
 
     public void LoadData(GameData gameData)
     {
+        gameObject.SetActive(true);
         for (int i = 0; i < _customizationItems.Count; i++)
         {
             bool isPurchased;

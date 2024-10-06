@@ -2,7 +2,7 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class SoundManager : MonoBehaviour
+public class SoundManager : MonoBehaviour, ISaveable
 {
     private static SoundManager _instance;
     public static SoundManager Instance => _instance;
@@ -39,7 +39,8 @@ public class SoundManager : MonoBehaviour
 
     [Header("Data")]
     [SerializeField] private Vector2 _pitchRange = new(0.5f, 1.5f);
-    private bool _shouldVibrate = true;
+    private bool _isSoundOn = true;
+    private bool _isHapticsOn = true;
 
     private void Awake()
     {
@@ -66,9 +67,6 @@ public class SoundManager : MonoBehaviour
         
     private void PlayOneShot(AudioSource source, AudioClip clip)
     {
-        if (_shouldVibrate)
-            Handheld.Vibrate();
-
         source.outputAudioMixerGroup.audioMixer.SetFloat("Pitch", UnityEngine.Random.Range(_pitchRange.x, _pitchRange.y));
         source.PlayOneShot(clip);
     }
@@ -95,6 +93,21 @@ public class SoundManager : MonoBehaviour
         PlayOneShot(_endGameSource, clip);
     }
 
+    public void Vibrate()
+    {
+        if (_isHapticsOn)
+            Handheld.Vibrate();
+    }
+
+    public void TurnOnSounds()
+    {
+        _isSoundOn = true;
+        _musicSource.mute = false;
+        _uiSource.mute = false;
+        _playerSource.mute = false;
+        _eventSource.mute = false;
+        _endGameSource.mute = false;
+    }
     public void TurnOffSounds()
     {
         _musicSource.mute = true;
@@ -102,23 +115,16 @@ public class SoundManager : MonoBehaviour
         _playerSource.mute = true; 
         _eventSource.mute = true;
         _endGameSource.mute = true;
-    }
-    public void TurnOnSounds()
-    {
-        _musicSource.mute = false;
-        _uiSource.mute = false;
-        _playerSource.mute = false;
-        _eventSource.mute = false;
-        _endGameSource.mute = false;
+        _isSoundOn = false;
     }
 
     public void TurnOnHaptic()
     {
-        _shouldVibrate = true;
+        _isHapticsOn = true;
     }
     public void TurnOffHaptic()
     {
-        _shouldVibrate = false;
+        _isHapticsOn = false;
     }
 
     private void OnGrowth()
@@ -137,5 +143,23 @@ public class SoundManager : MonoBehaviour
     private void OnPayCurrency(int amount)
     {
         PlayEventSound(_purchaseClip);
+    }
+
+    public void LoadData(GameData gameData)
+    {
+        if (gameData.IsSoundOn)
+            TurnOnSounds();
+        else
+            TurnOffSounds();
+
+        if (gameData.IsHapticsOn)
+            TurnOnHaptic();
+        else
+            TurnOffHaptic();
+    }
+    public void SaveData(ref GameData gameData)
+    {
+        gameData.IsSoundOn = _isSoundOn;
+        gameData.IsHapticsOn = _isHapticsOn;
     }
 }

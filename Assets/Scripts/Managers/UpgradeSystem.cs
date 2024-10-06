@@ -13,25 +13,41 @@ public enum UpgradeType
 
 public class UpgradeSystem : MonoBehaviour, ISaveable
 {
+    private enum UpgradePriceMethod
+    {
+        Plus100,
+        Times2
+    }
+
     [Header("Components")]
     [SerializeField] private Player_Inventory _playerInventory;
     [SerializeField] private SoundManager _soundManager;
-    [SerializeField] private TextMeshProUGUI _growUpgradePriceText, _timeUpgradePriceText, _firePowerUpgradePriceText;
 
     [Header("Text Color")]
     [SerializeField] private Color _affordableColor = new(218, 196, 43, 255);
     [SerializeField] private Color _expensiveColor = Color.red;
 
-    [Header("Data")]
+    [Header("General")]
+    [SerializeField] private string _maxLevelText = "Max!";
+
+    [Header("Growth")]
+    [SerializeField] private TextMeshProUGUI _growUpgradePriceText;
     [SerializeField] private int _growMaxLevel = 9;
-    [SerializeField] private int _timeMaxLevel = 30;
-    [SerializeField] private int _firePowerMaxLevel = 7;
-
     private int _growUpgradeLevel = 0;
-    private int _timeUpgradeLevel = 0;
-    private int _firePowerUpgradeLevel = 0;
+    private int _growthInitialCost = 500;
 
-    private const int _initialCost = 100;
+    [Header("Time")]
+    [SerializeField] private TextMeshProUGUI _timeUpgradePriceText;
+    [SerializeField] private int _timeMaxLevel = 30;
+    private int _timeUpgradeLevel = 0;
+    private int _timeInitialCost = 500;
+
+    [Header("Fire power")]
+    [SerializeField] private TextMeshProUGUI _firePowerUpgradePriceText;
+    [SerializeField] private int _firePowerMaxLevel = 7;
+    private int _firePowerUpgradeLevel = 0;
+    private int _firePowerInitialCost = 300;
+
 
     private void Start()
     {
@@ -43,25 +59,26 @@ public class UpgradeSystem : MonoBehaviour, ISaveable
 
         UpdatePriceUI();
     }
-    
-    private int GetUpgradeCost(int level)
+
+    private int GetUpgradeCost(int initialCost, int level, UpgradePriceMethod priceMethod)
+    {
+        if (priceMethod == UpgradePriceMethod.Times2)
+            return initialCost * (int)Mathf.Pow(2, level);
+        else if (priceMethod == UpgradePriceMethod.Plus100)
+            return 100 * (level +1) + initialCost;
+        else
+            return 100 * (level +1) + initialCost;
+    }
+    /*private int GetUpgradeCost(int level)
     {
         return _initialCost * (level + 1);
     }
     private int GetGrowUpgradeCost()
     {
         return _initialCost * (int)Mathf.Pow(2, _growUpgradeLevel);
-    }
-    private void UpdatePriceText(TextMeshProUGUI priceText, int upgradeLevel, int maxUpgradeLevel)
+    }*/
+    private void UpdatePriceText(TextMeshProUGUI priceText, int cost)
     {
-        if (upgradeLevel >= maxUpgradeLevel)
-        {
-            priceText.text = "Max!";
-            priceText.color = Color.white;
-            return;
-        }
-
-        int cost = GetUpgradeCost(upgradeLevel);
         priceText.text = cost.ToString();
 
         if (_playerInventory.Currency >= cost)
@@ -69,28 +86,11 @@ public class UpgradeSystem : MonoBehaviour, ISaveable
         else
             priceText.color = _expensiveColor;
     }
-    private void UpdateGrowthPriceText(TextMeshProUGUI priceText)
-    {
-        if (_growUpgradeLevel >= _growMaxLevel)
-        {
-            _growUpgradePriceText.text = "Max!";
-            _growUpgradePriceText.color = Color.white;
-            return;
-        }
-
-        int cost = GetGrowUpgradeCost();
-        _growUpgradePriceText.text = cost.ToString();
-
-        if (_playerInventory.Currency >= cost)
-            _growUpgradePriceText.color = _affordableColor;
-        else
-            _growUpgradePriceText.color = _expensiveColor;
-    }
     private void UpdatePriceUI()
     {
-        UpdateGrowthPriceText(_growUpgradePriceText);
-        UpdatePriceText(_timeUpgradePriceText, _timeUpgradeLevel, _timeMaxLevel);
-        UpdatePriceText(_firePowerUpgradePriceText, _firePowerUpgradeLevel, _firePowerMaxLevel);
+        UpdatePriceText(_growUpgradePriceText, GetUpgradeCost(_growthInitialCost, _growUpgradeLevel, UpgradePriceMethod.Times2));
+        UpdatePriceText(_timeUpgradePriceText, GetUpgradeCost(_timeInitialCost, _timeUpgradeLevel, UpgradePriceMethod.Plus100));
+        UpdatePriceText(_firePowerUpgradePriceText, GetUpgradeCost(_firePowerInitialCost, _firePowerUpgradeLevel, UpgradePriceMethod.Times2));
     }
 
     private IEnumerator UpdatePricesAfterLoad(bool isNewLevel)
@@ -115,40 +115,64 @@ public class UpgradeSystem : MonoBehaviour, ISaveable
 
     public void UpgradeGrowth()
     {
-        if (_growUpgradeLevel >= _growMaxLevel) return;
+        if (_growUpgradeLevel >= _growMaxLevel)
+        {
+            _growUpgradePriceText.text = _maxLevelText;
+            _growUpgradePriceText.color = Color.white;
+            return;
+        }
 
-        int cost = GetGrowUpgradeCost();
+        int cost = GetUpgradeCost(_growthInitialCost, _growUpgradeLevel, UpgradePriceMethod.Times2);
+        int uiCost = GetUpgradeCost(_growthInitialCost, _growUpgradeLevel +1, UpgradePriceMethod.Times2);
+
         if (_playerInventory.Currency >= cost)
         {
             EventManager.InvokePayCurrency(cost);
             EventManager.InvokeUpgrade(UpgradeType.Grow);
             _growUpgradeLevel++;
 
-            UpdatePriceUI();
+            UpdatePriceText(_growUpgradePriceText, uiCost);
         }
     }
     public void UpgradeTime()
     {
-        int cost = GetUpgradeCost(_timeUpgradeLevel);
+        if (_timeUpgradeLevel >= _timeMaxLevel)
+        {
+            _timeUpgradePriceText.text = _maxLevelText;
+            _timeUpgradePriceText.color = Color.white;
+            return;
+        }
+
+        int cost = GetUpgradeCost(_timeInitialCost, _timeUpgradeLevel, UpgradePriceMethod.Plus100);
+        int uiCost = GetUpgradeCost(_timeInitialCost, _timeUpgradeLevel + 1, UpgradePriceMethod.Plus100);
+
         if (_playerInventory.Currency >= cost)
         {
             EventManager.InvokePayCurrency(cost);
             EventManager.InvokeUpgrade(UpgradeType.Time);
             _timeUpgradeLevel++;
 
-            UpdatePriceUI();
+            UpdatePriceText(_timeUpgradePriceText, uiCost);
         }
     }
     public void UpgradeFirePower()
     {
-        int cost = GetUpgradeCost(_firePowerUpgradeLevel);
+        if (_firePowerUpgradeLevel >= _firePowerMaxLevel)
+        {
+            _firePowerUpgradePriceText.text = _maxLevelText;
+            _firePowerUpgradePriceText.color = Color.white;
+            return;
+        }
+
+        int cost = GetUpgradeCost(_firePowerInitialCost, _firePowerUpgradeLevel, UpgradePriceMethod.Times2);
+        int uiCost = GetUpgradeCost(_firePowerInitialCost, _firePowerUpgradeLevel +1, UpgradePriceMethod.Times2);
         if (_playerInventory.Currency >= cost)
         {
             EventManager.InvokePayCurrency(cost);
             EventManager.InvokeUpgrade(UpgradeType.FirePower);
             _firePowerUpgradeLevel++;
-            
-            UpdatePriceUI();
+
+            UpdatePriceText(_firePowerUpgradePriceText, uiCost);
         }
     }
 

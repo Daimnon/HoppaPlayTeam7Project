@@ -98,6 +98,7 @@ public class SaveManager : MonoBehaviour
             _gameData.LevelID = 0;
 
         SaveGame();
+        //LoadGame();
     }
 
     private void OnApplicationQuit()
@@ -130,10 +131,10 @@ public class SaveManager : MonoBehaviour
         _fileDataHandler.Save(_gameData);
     }
 
-    [ContextMenu("Charge Coins 10000")]
+    [ContextMenu("Charge Coins 1,000,000")]
     private void ChargeCoins()
     {
-        int currencyToEarn = 10000;
+        int currencyToEarn = 1000000;
         EventManager.InvokeEarnCurrency(currencyToEarn);
         _gameData.Currency += currencyToEarn;
         _fileDataHandler.Save(_gameData);
