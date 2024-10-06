@@ -40,8 +40,8 @@ public class LevelManager : MonoBehaviour, ISaveable
     [SerializeField] private float _objectivePopUpTime = 3.0f;
     public ObjectiveData[] Objectives => _objectives;
     private int _starsEarned = 0;
-
     private float _timeSinceStart = 0;
+    private bool _isLevelComplete = false;
 
     // track the progress and completion status of each objective
     private Dictionary<ObjectiveType, int> _objectiveProgress = new();
@@ -86,6 +86,7 @@ public class LevelManager : MonoBehaviour, ISaveable
     private void Start()
     {
         _levelID = (int)_gameManager.SceneType;
+        _isLevelComplete = false;
     }
     private void Update()
     {
@@ -159,8 +160,11 @@ public class LevelManager : MonoBehaviour, ISaveable
 
     private void CheckProgressCompletion()
     {
-        if (_currentProgression >= _maxProgression)
+        if (!_isLevelComplete && _currentProgression >= _maxProgression)
+        {
+            _isLevelComplete = true;
             EventManager.InvokeLevelComplete();
+        }
     }
     private void ShowCompletionPopup(string message)
     {

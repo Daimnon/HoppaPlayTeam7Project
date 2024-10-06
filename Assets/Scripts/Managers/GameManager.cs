@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour, ISaveable
     private void OnEnable()
     {
         EventManager.OnSceneChange += OnSceneChange;
-        EventManager.OnLevelComplete += OnLevelComplete;
     }
     private void Start()
     {
@@ -29,7 +28,6 @@ public class GameManager : MonoBehaviour, ISaveable
     private void OnDisable()
     {
         EventManager.OnSceneChange -= OnSceneChange;
-        EventManager.OnLevelComplete -= OnLevelComplete;
     }
 
     /// <summary>
@@ -84,10 +82,6 @@ public class GameManager : MonoBehaviour, ISaveable
     private void OnSceneChange(SceneType nextScene)
     {
         ChangeScene(nextScene);
-    }
-    private void OnLevelComplete()
-    {
-        SaveManager.Instance.SaveGame();
     }
 
     public void LoadData(GameData gameData)

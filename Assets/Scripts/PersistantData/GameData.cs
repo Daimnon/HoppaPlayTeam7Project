@@ -4,6 +4,7 @@ public class GameData
     // settings
     public bool IsSoundOn;
     public bool IsHapticsOn;
+    public bool IsFirstGame;
     
     // account
     public int Currency;
@@ -32,6 +33,7 @@ public class GameData
         // settings
         IsSoundOn = true;
         IsHapticsOn = true;
+        IsFirstGame = true;
 
         // account
         Currency = 0;
