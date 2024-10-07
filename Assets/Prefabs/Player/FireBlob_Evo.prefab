@@ -772,7 +772,7 @@ MonoBehaviour:
   - {fileID: 543450653020154434}
   _itemsEvoOffsetY:
   - 0
-  - 0.2
+  - 0.175
   - 0.2
   _consumeClip: {fileID: 8300000, guid: bbfbde8f70202794eb7256551b9552a8, type: 3}
 --- !u!114 &8276632312639507445
@@ -1301,11 +1301,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 10758, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: 2100000, guid: ad73a7830f1f56d41bc4cf36b50ca3e7, type: 2}
     - target: {fileID: 2691740876440323326, guid: a97d113ded8fac144b976cb03a4ccd15,
         type: 3}
       propertyPath: m_Parameters.widthMultiplier
-      value: 1
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 2691740876440323327, guid: a97d113ded8fac144b976cb03a4ccd15,
         type: 3}
@@ -1320,7 +1320,7 @@ PrefabInstance:
     - target: {fileID: 2691740876440323327, guid: a97d113ded8fac144b976cb03a4ccd15,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.25
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 2691740876440323327, guid: a97d113ded8fac144b976cb03a4ccd15,
         type: 3}
@@ -1859,6 +1859,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FlamePS
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646366121373496444, guid: 1a8bd2e4228b1644d8ee5f8b45d94e24,
+        type: 3}
+      propertyPath: lengthInSec
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646366121373496444, guid: 1a8bd2e4228b1644d8ee5f8b45d94e24,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4646366121373496445, guid: 1a8bd2e4228b1644d8ee5f8b45d94e24,
         type: 3}
