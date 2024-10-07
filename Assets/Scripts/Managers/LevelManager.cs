@@ -24,6 +24,9 @@ public class LevelManager : MonoBehaviour, ISaveable
     [Header("Reward Screen")]
     [SerializeField] private TextMeshProUGUI _clearPercentage;
     [SerializeField] private TextMeshProUGUI _rewardAmount;
+    [SerializeField] private TextMeshProUGUI _title;
+    [SerializeField] private string _victoryText = "You Win";
+    [SerializeField] private string _loseText = "You Lose";
     [SerializeField] private int _objectiveBonus = 500;
     [SerializeField] private float _timeBonusMultiplier = 100.0f;
     private string _rewardAmountString;
@@ -200,6 +203,7 @@ public class LevelManager : MonoBehaviour, ISaveable
         // do lose condition logic
         CalculateStars();
         _timeLimit = 0.0f;
+        _title.text = _loseText;
         _rewardCanvas.gameObject.SetActive(true);
         _levelCompleteBtn.gameObject.SetActive(false);
         _levelLostBtn.gameObject.SetActive(true);
@@ -273,7 +277,7 @@ public class LevelManager : MonoBehaviour, ISaveable
         _rewardCanvas.gameObject.SetActive(true);
         _levelLostBtn.gameObject.SetActive(false);
         _levelCompleteBtn.gameObject.SetActive(true);
-
+        _title.text = _victoryText;
         /* maybe add earning transition animation to the correct ui
          * for (int i = 0; i < _earningCanvases.Length; i++)
         {
