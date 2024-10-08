@@ -436,14 +436,11 @@ public class Player_Controller : Character
     }
     public void ConsumeObjectFromExplosion(Consumable consumable)
     {
-        bool isSmallerThanPlayer = consumable.Level <= _data.CurrentLevel;
-        if (!isSmallerThanPlayer) return;
-
         switch (consumable)
         {
             default:
                 EventManager.InvokeEarnExp(consumable.Reward);
-                SoundManager.Instance.PlayPlayerSound(_consumeClip);
+                //SoundManager.Instance.PlayPlayerSound(_consumeClip);
                 break;
         }
 
