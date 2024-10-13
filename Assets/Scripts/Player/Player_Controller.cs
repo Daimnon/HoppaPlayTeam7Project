@@ -350,14 +350,12 @@ public class Player_Controller : Character
         // Add newly detected items
         foreach (Collider collider in detectedObjectList)
         {
-            if (!collider.TryGetComponent(out Consumable consumable))
-                continue;
+            if (!collider.TryGetComponent(out Consumable consumable)) continue; // skip non consumbale objects
 
+            consumable.AdaptCollision(_data);
             bool isBurnable = consumable.Level <= _data.CurrentLevel;
 
-            // Skip smaller objects
-            if (!isBurnable)
-                continue;
+            if (!isBurnable) continue; // skip smaller objects
 
             if (!_detectedItems.Contains(collider))
             {

@@ -132,6 +132,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2030210914, guid: 6b89d7a8d8b113845b888ad478f255a6, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1043449179206962013, guid: 6b89d7a8d8b113845b888ad478f255a6,
         type: 3}
       propertyPath: m_RootOrder
@@ -330,6 +334,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2160482712434340917, guid: e18f6c47cd7f2794eb4a8089ec81b49a,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5326602649111747244, guid: e18f6c47cd7f2794eb4a8089ec81b49a,
         type: 3}
       propertyPath: m_Name
@@ -2014,7 +2023,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_NavMeshData
       value: 
-      objectReference: {fileID: 23800000, guid: 9e602536211427d43ae948fd6e9360c0,
+      objectReference: {fileID: 23800000, guid: 99847a0b40cacf74a8f09042faa04b5d,
         type: 2}
     - target: {fileID: 379718136491134685, guid: daa7ea293511cda4e87748f47a5cf38d,
         type: 3}
