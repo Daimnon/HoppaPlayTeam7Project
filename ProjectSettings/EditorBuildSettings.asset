@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Work_In_Progress_Scenes/Gal/Gal_Level_1.unity
-    guid: 232a5f80ff5ade64cb70612cf6c22204
+    path: Assets/Scenes/Work_In_Progress_Scenes/Nadav/Nadav_Level_1.unity
+    guid: ec4fb421b77f530459a51e098a7386da
   - enabled: 1
-    path: Assets/Scenes/Work_In_Progress_Scenes/Gal/Gal_Level_2.unity
-    guid: 1d7f0c85a16787540946b6a50f30fcc0
+    path: Assets/Scenes/Work_In_Progress_Scenes/Nadav/Nadav_Level_2.unity
+    guid: 83d2a2c2f1752fd43b4d4bee418ebb53
   m_configObjects: {}
