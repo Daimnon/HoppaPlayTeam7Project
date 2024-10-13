@@ -16,7 +16,10 @@ public class TerritoryClaimer : MonoBehaviour
     [SerializeField] private LayerMask _detectionLayer;
     [SerializeField] private float _minDistance = 1.0f; // should increase while growing in size
     [SerializeField] private float _intersectDistance;
+    [SerializeField] private float _trailGrowFactor = 0.5f;
     [SerializeField] private float _closeAreaColdown = 0.4f;
+    private EvoType _evoType;
+    private int _currentEvo = 1;
     private float _currentCloseAreaColdown;
     private float _originalTrailTime = 3.0f;
     private float _firePower = 1.0f;
@@ -44,8 +47,10 @@ public class TerritoryClaimer : MonoBehaviour
     {
         EventManager.OnAreaClosed += OnAreaClosed;
         EventManager.OnGrowth += OnGrowth;
+        EventManager.OnEvolve += OnEvolve;
         EventManager.OnUpgrade += OnUpgrade;
     }
+
     private void Start() 
     {
         soundManager = FindObjectOfType<SoundManager>();
@@ -74,6 +79,7 @@ public class TerritoryClaimer : MonoBehaviour
     {
         EventManager.OnAreaClosed -= OnAreaClosed;
         EventManager.OnGrowth -= OnGrowth;
+        EventManager.OnEvolve -= OnEvolve;
         EventManager.OnUpgrade -= OnUpgrade;
     }
     #endregion
@@ -324,6 +330,35 @@ public class TerritoryClaimer : MonoBehaviour
     {
         _minDistance = _startingMinDistance * transform.localScale.x;
         _intersectDistance = transform.localScale.x;
+
+        switch (_evoType)
+        {
+            case EvoType.First:
+                _trailRenderer.widthMultiplier += _trailGrowFactor;
+                break;
+            case EvoType.Second:
+                _trailRenderer.widthMultiplier += _trailGrowFactor + 0.4f;
+                break;
+            case EvoType.Third:
+                _trailRenderer.widthMultiplier += 2.0f;
+                break;
+            default:
+                break;
+        }
+    }
+    private void OnEvolve(EvoType type)
+    {
+        _evoType = type;
+        _trailGrowFactor *= (int)type + 1;
+        switch (type)
+        {
+            case EvoType.Second:
+                _trailGrowFactor += 0.5f;
+                break;
+            case EvoType.Third:
+                _trailGrowFactor -= 0.5f;
+                break;
+        }
     }
     private void OnUpgrade(UpgradeType type)
     {

@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 4640116773092233212}
   - component: {fileID: 891137939825650124}
   - component: {fileID: 6737287720772291653}
+  - component: {fileID: 7916746977181913590}
   m_Layer: 6
   m_Name: Hospital
   m_TagString: Untagged
@@ -144,10 +145,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _obstacleNav: {fileID: 7916746977181913590}
+  _outline: {fileID: 6737287720772291653}
   _objectiveType: 1
   _level: 14
   _progressionReward: 1
-  _outline: {fileID: 6737287720772291653}
 --- !u!114 &891137939825650124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,3 +183,19 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!208 &7916746977181913590
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6554576256992399371}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 18.404001, y: 9.481001, z: 9.791}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -1.8670001, y: 9.466001, z: 2.112}
+  m_TimeToStationary: 0.5

@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 8386896653277805678}
   - component: {fileID: 1864295435919585710}
   - component: {fileID: 8402326460769208744}
+  - component: {fileID: 5187860338029833798}
   m_Layer: 6
   m_Name: Workshop
   m_TagString: Untagged
@@ -144,10 +145,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _obstacleNav: {fileID: 5187860338029833798}
+  _outline: {fileID: 8402326460769208744}
   _objectiveType: 1
   _level: 14
   _progressionReward: 1
-  _outline: {fileID: 8402326460769208744}
 --- !u!114 &1864295435919585710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,3 +183,19 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!208 &5187860338029833798
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6947387317432861290}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 12.386001, y: 5.736, z: 6.755}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.148, y: 5.735, z: 0.20700002}
+  m_TimeToStationary: 0.5

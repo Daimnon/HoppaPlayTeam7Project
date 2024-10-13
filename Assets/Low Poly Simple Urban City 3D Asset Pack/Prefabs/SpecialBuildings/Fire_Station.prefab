@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6299136152314697189}
   - component: {fileID: 8354620431283768438}
   - component: {fileID: 4333056859391585552}
+  - component: {fileID: 3993949841177818686}
   m_Layer: 6
   m_Name: Fire_Station
   m_TagString: Untagged
@@ -112,10 +113,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _obstacleNav: {fileID: 3993949841177818686}
+  _outline: {fileID: 4333056859391585552}
   _objectiveType: 1
   _level: 14
   _progressionReward: 1
-  _outline: {fileID: 4333056859391585552}
 --- !u!114 &8354620431283768438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,6 +151,22 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!208 &3993949841177818686
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6806640421069531896}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 8.091001, y: 7.3440003, z: 7.5600004}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.14, y: 7.3440003, z: 1.235}
+  m_TimeToStationary: 0.5
 --- !u!1 &7471458540304744263
 GameObject:
   m_ObjectHideFlags: 0

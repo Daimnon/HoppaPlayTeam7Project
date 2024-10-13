@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 2811731304844911806}
   - component: {fileID: 9179423333314719186}
   - component: {fileID: 2932190712083313135}
+  - component: {fileID: 6699159126331224157}
   m_Layer: 6
   m_Name: School
   m_TagString: Untagged
@@ -144,10 +145,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _obstacleNav: {fileID: 6699159126331224157}
+  _outline: {fileID: 2932190712083313135}
   _objectiveType: 1
   _level: 14
   _progressionReward: 1
-  _outline: {fileID: 2932190712083313135}
 --- !u!114 &9179423333314719186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,3 +183,19 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!208 &6699159126331224157
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5362611682583719250}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 17.721, y: 8.102, z: 31.418001}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 8.1, z: -14.777}
+  m_TimeToStationary: 0.5

@@ -48,6 +48,19 @@ public class UpgradeSystem : MonoBehaviour, ISaveable
     [SerializeField] private int _firePowerInitialCost = 300;
     private int _firePowerUpgradeLevel = 0;
 
+    private void OnEnable()
+    {
+        EventManager.OnCurrencyChange += OnCurrencyChange;
+    }
+    private void OnDisable()
+    {
+        EventManager.OnCurrencyChange -= OnCurrencyChange;
+    }
+
+    private void OnCurrencyChange(int amount)
+    {
+        UpdatePriceUI();
+    }
 
     private void Start()
     {
@@ -132,7 +145,9 @@ public class UpgradeSystem : MonoBehaviour, ISaveable
             _growUpgradeLevel++;
 
             UpdatePriceText(_growUpgradePriceText, uiCost);
+            //UpdatePriceUI();
         }
+
     }
     public void UpgradeTime()
     {
@@ -153,6 +168,7 @@ public class UpgradeSystem : MonoBehaviour, ISaveable
             _timeUpgradeLevel++;
 
             UpdatePriceText(_timeUpgradePriceText, uiCost);
+            //UpdatePriceUI();
         }
     }
     public void UpgradeFirePower()
@@ -173,6 +189,7 @@ public class UpgradeSystem : MonoBehaviour, ISaveable
             _firePowerUpgradeLevel++;
 
             UpdatePriceText(_firePowerUpgradePriceText, uiCost);
+            //UpdatePriceUI();
         }
     }
 

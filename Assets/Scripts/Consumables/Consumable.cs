@@ -6,10 +6,10 @@ using UnityEngine.AI;
 public class Consumable : MonoBehaviour
 {
     [Header("Components")]
+    [SerializeField] protected NavMeshObstacle _obstacleNav;
+
     [SerializeField] protected OutlineAltered _outline;
     public OutlineAltered Outline => _outline;
-
-    private NavMeshObstacle _obstacleNav;
 
     [Header("Data")]
     [SerializeField] protected ObjectiveType _objectiveType; // for quests
@@ -33,7 +33,6 @@ public class Consumable : MonoBehaviour
 
         // quick and dirty
         _progressionReward = 1;
-        _obstacleNav = gameObject.AddComponent<NavMeshObstacle>();
     }
 
     private void CalculateExp_Deprecated()
@@ -47,9 +46,7 @@ public class Consumable : MonoBehaviour
 
     public void AdaptCollision(Player_Data data)
     {
-        if (!_collider) _collider = GetComponent<Collider>();
-
-        bool isPlayerSmaller = data.CurrentLevel >= _level;
-        if (isPlayerSmaller) Destroy(_obstacleNav);
+        if (!_obstacleNav) return;
+        if (data.CurrentLevel >= _level) Destroy(_obstacleNav);
     }
 }

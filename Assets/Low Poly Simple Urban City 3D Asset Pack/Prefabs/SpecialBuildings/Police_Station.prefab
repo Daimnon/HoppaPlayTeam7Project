@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6774759787529635398}
   - component: {fileID: 4698888918865805711}
   - component: {fileID: 1439361938026096039}
+  - component: {fileID: 2139779929246296053}
   m_Layer: 6
   m_Name: Police_Station
   m_TagString: Untagged
@@ -112,10 +113,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _obstacleNav: {fileID: 2139779929246296053}
+  _outline: {fileID: 1439361938026096039}
   _objectiveType: 1
   _level: 14
   _progressionReward: 1
-  _outline: {fileID: 1439361938026096039}
 --- !u!114 &4698888918865805711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,6 +151,22 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!208 &2139779929246296053
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5921921195902539461}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 7.3620005, y: 5.184, z: 4.189}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.298, y: 5.1780005, z: 0.395}
+  m_TimeToStationary: 0.5
 --- !u!1 &6157636754687172351
 GameObject:
   m_ObjectHideFlags: 0
