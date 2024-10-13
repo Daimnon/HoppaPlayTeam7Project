@@ -400,7 +400,7 @@ public class Player_Controller : Character
         {
             Vector3 pushDirection = (transform.position - other.transform.position).normalized;
             _agent.velocity = pushDirection * _forceFromBiggerObjects;
-            SoundManager.Instance.Vibrate();
+            //SoundManager.Instance.Vibrate();
             return;
         }
 
