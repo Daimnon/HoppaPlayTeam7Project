@@ -54,22 +54,22 @@ MonoBehaviour:
   _playerSource: {fileID: 393456199}
   _eventSource: {fileID: 393456200}
   _endGameSource: {fileID: 393456201}
-  _menuMusicClip: {fileID: 8300000, guid: b9ae82ca0f7b742c7abe1ae6d36797a6, type: 3}
+  _menuMusicClip: {fileID: 8300000, guid: 6566237789da6354ea241795cb3a2007, type: 3}
   _levelMusicClip: {fileID: 0}
-  _earnCurrencyClip: {fileID: 8300000, guid: 41448d0f43d559743a1d0d76be1878ae, type: 3}
+  _earnCurrencyClip: {fileID: 8300000, guid: 0f6c409c30023244aba4528509894f8d, type: 3}
   _earnSpecialClip: {fileID: 8300000, guid: 4ef9627c2ebbaa442bf962f583abbf38, type: 3}
-  _purchaseClip: {fileID: 8300000, guid: 4083e434642c961418c94d1ea9944fda, type: 3}
+  _purchaseClip: {fileID: 8300000, guid: bd16c4b3b5cd3c0469d5d0a2e4a4ca90, type: 3}
   _purchaseSpecialClip: {fileID: 8300000, guid: 4083e434642c961418c94d1ea9944fda,
     type: 3}
-  _offerClip: {fileID: 8300000, guid: 256f62fc0e1979f4ba78ac53d821a9b9, type: 3}
-  _equipClip: {fileID: 8300000, guid: 357ffb76f31267445ba2c017cbc5fd1c, type: 3}
-  _playClip: {fileID: 8300000, guid: 6d9165bb327fb59449f5861a6189c682, type: 3}
-  _pauseClip: {fileID: 8300000, guid: 256f62fc0e1979f4ba78ac53d821a9b9, type: 3}
-  _levelUpClip: {fileID: 8300000, guid: 180343623f4a91f439472b8c472a97c2, type: 3}
-  _explosionClip: {fileID: 8300000, guid: 8ecf9117278c69a429b003b20cdea65b, type: 3}
-  _lastCallClip: {fileID: 8300000, guid: 171c28b53376443dcb0cce5316fad800, type: 3}
-  _levelCompleteClip: {fileID: 8300000, guid: 59b9d1db0c484d44884bf49a677d97b7, type: 3}
-  _gameOverClip: {fileID: 8300000, guid: 0fae41551a8084675beb51aa0371177d, type: 3}
+  _offerClip: {fileID: 8300000, guid: 79cc37cd9b7c4824b9eedf9feda0fd02, type: 3}
+  _equipClip: {fileID: 8300000, guid: dabe3fce59014114e9ce0eeece4553a7, type: 3}
+  _playClip: {fileID: 8300000, guid: 154984cae136ec441a62e4e81b484da0, type: 3}
+  _pauseClip: {fileID: 8300000, guid: c8b96d0dc8bc2e6479097c8beeed8343, type: 3}
+  _levelUpClip: {fileID: 8300000, guid: a4dc098011156c342b7cb2fdcbc96da6, type: 3}
+  _explosionClip: {fileID: 8300000, guid: e45e3cf340ce1cd40b4c7990aea59481, type: 3}
+  _lastCallClip: {fileID: 8300000, guid: ffc3a7a570663d34aa84311635df037d, type: 3}
+  _levelCompleteClip: {fileID: 8300000, guid: 1df725c832a7b41429706a3ac3f68b8a, type: 3}
+  _gameOverClip: {fileID: 8300000, guid: 41d12fc8423f9454caa12b1bfd8c597c, type: 3}
   _pitchRange: {x: 0.5, y: 1.5}
 --- !u!82 &2104197625082888410
 AudioSource:
@@ -278,7 +278,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.4
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -375,7 +375,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.4
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0

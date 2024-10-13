@@ -774,7 +774,7 @@ MonoBehaviour:
   - 0
   - 0.2
   - 0.2
-  _consumeClip: {fileID: 8300000, guid: bbfbde8f70202794eb7256551b9552a8, type: 3}
+  _consumeClip: {fileID: 8300000, guid: b1264afdf24c68441b3dd0a3a01893e5, type: 3}
 --- !u!114 &8276632312639507445
 MonoBehaviour:
   m_ObjectHideFlags: 0
