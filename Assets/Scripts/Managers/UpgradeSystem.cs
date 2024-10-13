@@ -33,21 +33,34 @@ public class UpgradeSystem : MonoBehaviour, ISaveable
     [Header("Growth")]
     [SerializeField] private TextMeshProUGUI _growUpgradePriceText;
     [SerializeField] private int _growMaxLevel = 9;
+    [SerializeField] private int _growthInitialCost = 500;
     private int _growUpgradeLevel = 0;
-    private int _growthInitialCost = 500;
 
     [Header("Time")]
     [SerializeField] private TextMeshProUGUI _timeUpgradePriceText;
     [SerializeField] private int _timeMaxLevel = 30;
+    [SerializeField] private int _timeInitialCost = 100;
     private int _timeUpgradeLevel = 0;
-    private int _timeInitialCost = 500;
 
     [Header("Fire power")]
     [SerializeField] private TextMeshProUGUI _firePowerUpgradePriceText;
     [SerializeField] private int _firePowerMaxLevel = 7;
+    [SerializeField] private int _firePowerInitialCost = 300;
     private int _firePowerUpgradeLevel = 0;
-    private int _firePowerInitialCost = 300;
 
+    private void OnEnable()
+    {
+        EventManager.OnCurrencyChange += OnCurrencyChange;
+    }
+    private void OnDisable()
+    {
+        EventManager.OnCurrencyChange -= OnCurrencyChange;
+    }
+
+    private void OnCurrencyChange(int amount)
+    {
+        UpdatePriceUI();
+    }
 
     private void Start()
     {
@@ -65,9 +78,9 @@ public class UpgradeSystem : MonoBehaviour, ISaveable
         if (priceMethod == UpgradePriceMethod.Times2)
             return initialCost * (int)Mathf.Pow(2, level);
         else if (priceMethod == UpgradePriceMethod.Plus100)
-            return 100 * (level +1) + initialCost;
+            return initialCost * (level +1);
         else
-            return 100 * (level +1) + initialCost;
+            return initialCost * (level +1);
     }
     /*private int GetUpgradeCost(int level)
     {
@@ -132,7 +145,9 @@ public class UpgradeSystem : MonoBehaviour, ISaveable
             _growUpgradeLevel++;
 
             UpdatePriceText(_growUpgradePriceText, uiCost);
+            //UpdatePriceUI();
         }
+
     }
     public void UpgradeTime()
     {
@@ -153,6 +168,7 @@ public class UpgradeSystem : MonoBehaviour, ISaveable
             _timeUpgradeLevel++;
 
             UpdatePriceText(_timeUpgradePriceText, uiCost);
+            //UpdatePriceUI();
         }
     }
     public void UpgradeFirePower()
@@ -173,6 +189,7 @@ public class UpgradeSystem : MonoBehaviour, ISaveable
             _firePowerUpgradeLevel++;
 
             UpdatePriceText(_firePowerUpgradePriceText, uiCost);
+            //UpdatePriceUI();
         }
     }
 

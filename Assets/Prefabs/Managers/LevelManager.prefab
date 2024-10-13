@@ -45,13 +45,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameManager: {fileID: 0}
-  _earningCanvases: []
+  _earningCanvases:
+  - {fileID: 0}
+  - {fileID: 0}
   _startCanvas: {fileID: 0}
   _rewardCanvas: {fileID: 0}
   _levelCompleteBtn: {fileID: 0}
   _levelLostBtn: {fileID: 0}
   _clearPercentage: {fileID: 0}
   _rewardAmount: {fileID: 0}
+  _title: {fileID: 0}
+  _victoryText: You Win
+  _loseText: You Lose
   _objectiveBonus: 500
   _timeBonusMultiplier: 100
   _starSprites:
@@ -66,7 +71,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dd1fb2c3a871e4fb593fb3f13113a24f, type: 2}
   - {fileID: 11400000, guid: 1f969035dfdce4f96a8d99c623d24dee, type: 2}
   - {fileID: 11400000, guid: 2b88430a904d3443cbffad99ddc72731, type: 2}
-  _objectiveSoundClip: {fileID: 8300000, guid: 54c323842ed22c64f9de364515496528, type: 3}
+  _objectiveSoundClip: {fileID: 8300000, guid: f3d3f8a19c7764cb58a1e54b6d835de8, type: 3}
   _objectivePopUpTime: 3
   _levelID: 0
   _maxProgression: 1350

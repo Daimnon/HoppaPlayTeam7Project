@@ -37,6 +37,8 @@ public abstract class CustomizationItemBase : MonoBehaviour
     {
         EventManager.OnCurrencyChange += HandleCurrencyChanged;
         EventManager.OnEquip += OnEquip;
+
+        UpdatePriceColor();
     }
     protected virtual void Start()
     {

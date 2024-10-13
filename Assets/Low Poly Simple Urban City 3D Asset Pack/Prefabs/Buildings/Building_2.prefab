@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2426667719740841774}
   - component: {fileID: 6870863740752317998}
   - component: {fileID: 5168029225729287285}
+  - component: {fileID: 7219063542304219137}
   m_Layer: 6
   m_Name: Building_2
   m_TagString: Untagged
@@ -112,10 +113,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _obstacleNav: {fileID: 7219063542304219137}
+  _outline: {fileID: 5168029225729287285}
   _objectiveType: 1
   _level: 13
   _progressionReward: 1
-  _outline: {fileID: 5168029225729287285}
 --- !u!114 &6870863740752317998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,3 +151,19 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!208 &7219063542304219137
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8614566769928799913}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 3.519, y: 6.5060005, z: 4.5610003}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 6.5060005, z: 0}
+  m_TimeToStationary: 0.5

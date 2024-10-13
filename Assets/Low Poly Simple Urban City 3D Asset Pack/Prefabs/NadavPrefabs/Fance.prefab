@@ -181,10 +181,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _obstacleNav: {fileID: 3829318430856742688}
+  _outline: {fileID: 1908400976538562457}
   _objectiveType: 1
   _level: 7
   _progressionReward: 1
-  _outline: {fileID: 1908400976538562457}
+--- !u!208 &3829318430856742688
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3197931627946839115}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.3920001, y: 0.65900004, z: 0.08400001}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.0050000004, y: 0.65400004, z: 0.0050000004}
+  m_TimeToStationary: 0.5
 --- !u!23 &3990657316015680926 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 7f532a1801cde324c999848393bbcc7c,

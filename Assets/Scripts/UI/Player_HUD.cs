@@ -222,6 +222,7 @@ public class Player_HUD : MonoBehaviour
         _expBarFill.fillAmount = fillAmount;
 
         _currentExpText.text = currentValue.ToString();
+        _maxExpText.text = maxValue.ToString();
     }
     public void SetNewLevel(int newLevel)
     {

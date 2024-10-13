@@ -24,6 +24,9 @@ public class LevelManager : MonoBehaviour, ISaveable
     [Header("Reward Screen")]
     [SerializeField] private TextMeshProUGUI _clearPercentage;
     [SerializeField] private TextMeshProUGUI _rewardAmount;
+    [SerializeField] private TextMeshProUGUI _title;
+    [SerializeField] private string _victoryText = "You Win";
+    [SerializeField] private string _loseText = "You Lose";
     [SerializeField] private int _objectiveBonus = 500;
     [SerializeField] private float _timeBonusMultiplier = 100.0f;
     private string _rewardAmountString;
@@ -40,8 +43,8 @@ public class LevelManager : MonoBehaviour, ISaveable
     [SerializeField] private float _objectivePopUpTime = 3.0f;
     public ObjectiveData[] Objectives => _objectives;
     private int _starsEarned = 0;
-
     private float _timeSinceStart = 0;
+    private bool _isLevelComplete = false;
 
     // track the progress and completion status of each objective
     private Dictionary<ObjectiveType, int> _objectiveProgress = new();
@@ -86,6 +89,7 @@ public class LevelManager : MonoBehaviour, ISaveable
     private void Start()
     {
         _levelID = (int)_gameManager.SceneType;
+        _isLevelComplete = false;
     }
     private void Update()
     {
@@ -159,8 +163,11 @@ public class LevelManager : MonoBehaviour, ISaveable
 
     private void CheckProgressCompletion()
     {
-        if (_currentProgression >= _maxProgression)
+        if (!_isLevelComplete && _currentProgression >= _maxProgression)
+        {
+            _isLevelComplete = true;
             EventManager.InvokeLevelComplete();
+        }
     }
     private void ShowCompletionPopup(string message)
     {
@@ -196,6 +203,7 @@ public class LevelManager : MonoBehaviour, ISaveable
         // do lose condition logic
         CalculateStars();
         _timeLimit = 0.0f;
+        _title.text = _loseText;
         _rewardCanvas.gameObject.SetActive(true);
         _levelCompleteBtn.gameObject.SetActive(false);
         _levelLostBtn.gameObject.SetActive(true);
@@ -269,7 +277,7 @@ public class LevelManager : MonoBehaviour, ISaveable
         _rewardCanvas.gameObject.SetActive(true);
         _levelLostBtn.gameObject.SetActive(false);
         _levelCompleteBtn.gameObject.SetActive(true);
-
+        _title.text = _victoryText;
         /* maybe add earning transition animation to the correct ui
          * for (int i = 0; i < _earningCanvases.Length; i++)
         {

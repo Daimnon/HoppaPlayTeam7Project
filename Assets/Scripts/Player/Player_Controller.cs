@@ -350,14 +350,12 @@ public class Player_Controller : Character
         // Add newly detected items
         foreach (Collider collider in detectedObjectList)
         {
-            if (!collider.TryGetComponent(out Consumable consumable))
-                continue;
+            if (!collider.TryGetComponent(out Consumable consumable)) continue; // skip non consumbale objects
 
+            consumable.AdaptCollision(_data);
             bool isBurnable = consumable.Level <= _data.CurrentLevel;
 
-            // Skip smaller objects
-            if (!isBurnable)
-                continue;
+            if (!isBurnable) continue; // skip smaller objects
 
             if (!_detectedItems.Contains(collider))
             {
@@ -402,7 +400,7 @@ public class Player_Controller : Character
         {
             Vector3 pushDirection = (transform.position - other.transform.position).normalized;
             _agent.velocity = pushDirection * _forceFromBiggerObjects;
-            SoundManager.Instance.Vibrate();
+            //SoundManager.Instance.Vibrate();
             return;
         }
 
@@ -436,14 +434,11 @@ public class Player_Controller : Character
     }
     public void ConsumeObjectFromExplosion(Consumable consumable)
     {
-        bool isSmallerThanPlayer = consumable.Level <= _data.CurrentLevel;
-        if (!isSmallerThanPlayer) return;
-
         switch (consumable)
         {
             default:
                 EventManager.InvokeEarnExp(consumable.Reward);
-                SoundManager.Instance.PlayPlayerSound(_consumeClip);
+                //SoundManager.Instance.PlayPlayerSound(_consumeClip);
                 break;
         }
 

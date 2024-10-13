@@ -52,6 +52,7 @@ public class SaveManager : MonoBehaviour
         {
             Debug.Log("No previous data, create new save file.");
             NewGame();
+            SaveGame();
         }
 
         for (int i = 0; i < _saveables.Count; i++)

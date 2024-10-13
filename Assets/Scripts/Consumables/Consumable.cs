@@ -1,8 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Consumable : MonoBehaviour
 {
+    [Header("Components")]
+    [SerializeField] protected NavMeshObstacle _obstacleNav;
+
+    [SerializeField] protected OutlineAltered _outline;
+    public OutlineAltered Outline => _outline;
+
+    [Header("Data")]
     [SerializeField] protected ObjectiveType _objectiveType; // for quests
     public ObjectiveType ObjectiveType => _objectiveType;
 
@@ -12,14 +20,11 @@ public class Consumable : MonoBehaviour
     [SerializeField] protected int _progressionReward; // level progress
     public int ProgressionReward => _progressionReward;
 
-    protected int _reward; // player exp
-    public int Reward => _reward;
-
     protected const float _rewardFactor = 2.0f;
     protected const int _initialExpValue = 10;
 
-    [SerializeField] protected OutlineAltered _outline;
-    public OutlineAltered Outline => _outline;
+    protected int _reward; // player exp
+    public int Reward => _reward;
 
     private void Start()
     {
@@ -36,5 +41,11 @@ public class Consumable : MonoBehaviour
     private void CalculateExp()
     {
         _reward = 3 * (int)Mathf.Pow(_rewardFactor, _level - 1);
+    }
+
+    public void AdaptCollision(Player_Data data)
+    {
+        if (!_obstacleNav) return;
+        if (data.CurrentLevel >= _level) Destroy(_obstacleNav);
     }
 }

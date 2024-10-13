@@ -598,7 +598,7 @@ PrefabInstance:
     - target: {fileID: 5217308768720821269, guid: b1fe530a8495e934ab8c2b5a54b80cf6,
         type: 3}
       propertyPath: m_Transition
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5217308768720821269, guid: b1fe530a8495e934ab8c2b5a54b80cf6,
         type: 3}
@@ -846,6 +846,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5217308768720821269, guid: b1fe530a8495e934ab8c2b5a54b80cf6,
         type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5217308768720821269, guid: b1fe530a8495e934ab8c2b5a54b80cf6,
+        type: 3}
       propertyPath: m_Colors.m_NormalColor.a
       value: 0
       objectReference: {fileID: 0}
@@ -1064,7 +1069,7 @@ PrefabInstance:
     - target: {fileID: 5217308768720821269, guid: b1fe530a8495e934ab8c2b5a54b80cf6,
         type: 3}
       propertyPath: m_Transition
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5217308768720821269, guid: b1fe530a8495e934ab8c2b5a54b80cf6,
         type: 3}
@@ -1303,7 +1308,7 @@ PrefabInstance:
     - target: {fileID: 5217308768720821269, guid: b1fe530a8495e934ab8c2b5a54b80cf6,
         type: 3}
       propertyPath: m_Transition
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5217308768720821269, guid: b1fe530a8495e934ab8c2b5a54b80cf6,
         type: 3}
