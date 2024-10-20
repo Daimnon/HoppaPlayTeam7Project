@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "167868218121",
+    "project_id": "fireblob-6cbe7",
+    "storage_bucket": "fireblob-6cbe7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:167868218121:android:e6c56f52c46a3dddf8f1d8",
+        "android_client_info": {
+          "package_name": "com.hoppaplay.fireblob"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYrtMDv8HW3FJcMQQiRib4Lv073xxECUk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

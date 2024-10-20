@@ -79,10 +79,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ce58ddd5cad4f18854b3981084cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _obstacleNav: {fileID: 0}
+  _outline: {fileID: 6119483519976689005}
   _objectiveType: 1
   _level: 10
   _progressionReward: 1
-  _outline: {fileID: 6119483519976689005}
 --- !u!1 &7572216473945676066
 GameObject:
   m_ObjectHideFlags: 0

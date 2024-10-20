@@ -32,6 +32,14 @@ public class Consumable : MonoBehaviour
 
         // quick and dirty
         _progressionReward = 1;
+
+        if (!_obstacleNav)
+        {
+            if (TryGetComponent(out NavMeshObstacle navmesh))
+                _obstacleNav = navmesh;
+            else
+                _obstacleNav = gameObject.AddComponent<NavMeshObstacle>();
+        }
     }
 
     private void CalculateExp_Deprecated()
