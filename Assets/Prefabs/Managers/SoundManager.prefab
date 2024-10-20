@@ -57,9 +57,9 @@ MonoBehaviour:
   _menuMusicClip: {fileID: 8300000, guid: 6566237789da6354ea241795cb3a2007, type: 3}
   _levelMusicClip: {fileID: 0}
   _earnCurrencyClip: {fileID: 8300000, guid: 0f6c409c30023244aba4528509894f8d, type: 3}
-  _earnSpecialClip: {fileID: 8300000, guid: 4ef9627c2ebbaa442bf962f583abbf38, type: 3}
+  _earnSpecialClip: {fileID: 8300000, guid: bd16c4b3b5cd3c0469d5d0a2e4a4ca90, type: 3}
   _purchaseClip: {fileID: 8300000, guid: bd16c4b3b5cd3c0469d5d0a2e4a4ca90, type: 3}
-  _purchaseSpecialClip: {fileID: 8300000, guid: 4083e434642c961418c94d1ea9944fda,
+  _purchaseSpecialClip: {fileID: 8300000, guid: bd16c4b3b5cd3c0469d5d0a2e4a4ca90,
     type: 3}
   _offerClip: {fileID: 8300000, guid: 79cc37cd9b7c4824b9eedf9feda0fd02, type: 3}
   _equipClip: {fileID: 8300000, guid: dabe3fce59014114e9ce0eeece4553a7, type: 3}
@@ -68,7 +68,7 @@ MonoBehaviour:
   _levelUpClip: {fileID: 8300000, guid: a4dc098011156c342b7cb2fdcbc96da6, type: 3}
   _explosionClip: {fileID: 8300000, guid: e45e3cf340ce1cd40b4c7990aea59481, type: 3}
   _lastCallClip: {fileID: 8300000, guid: ffc3a7a570663d34aa84311635df037d, type: 3}
-  _levelCompleteClip: {fileID: 8300000, guid: 1df725c832a7b41429706a3ac3f68b8a, type: 3}
+  _levelCompleteClip: {fileID: 8300000, guid: cd91d2cd6460ea746b7546c06f292313, type: 3}
   _gameOverClip: {fileID: 8300000, guid: 41d12fc8423f9454caa12b1bfd8c597c, type: 3}
   _pitchRange: {x: 0.5, y: 1.5}
 --- !u!82 &2104197625082888410

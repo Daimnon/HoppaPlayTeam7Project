@@ -821,12 +821,13 @@ MonoBehaviour:
     m_Bits: 64
   _minDistance: 1.5
   _intersectDistance: 0.2
+  _trailGrowFactor: 0.5
   _closeAreaColdown: 0.4
   _timeForExplosionToDieOut: 5
   _explosionScaleFactor: 30
   _trailClips:
-  - {fileID: 8300000, guid: bbfbde8f70202794eb7256551b9552a8, type: 3}
-  - {fileID: 8300000, guid: 935cbb17040b79c498dc4c0d1593f305, type: 3}
+  - {fileID: 8300000, guid: c66953a719398c64391ece9f9cccbf2c, type: 3}
+  - {fileID: 8300000, guid: c66953a719398c64391ece9f9cccbf2c, type: 3}
 --- !u!1 &1979343285198995284
 GameObject:
   m_ObjectHideFlags: 0
