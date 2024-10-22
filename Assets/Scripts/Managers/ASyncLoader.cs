@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using Firebase.Extensions;
 
 public class ASyncLoader : MonoBehaviour
 {
@@ -14,9 +15,28 @@ public class ASyncLoader : MonoBehaviour
     [SerializeField] private string _loadingTextString = "Loading";
     [SerializeField] private int _loadingTextDotSpeed = 50;
     [SerializeField] private float _iconRotationSpeed = 200.0f;
+    private bool _isFireBaseInitialize = false;
 
     private string[] _dotStrings = new string[5] { "..", "...", "....", ".....", "......" };
     private int _dotCounter = 0;
+
+    private void InitFirebase()
+    {
+        Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
+        {
+            Firebase.DependencyStatus dependencyStatus = task.Result;
+            if (dependencyStatus == Firebase.DependencyStatus.Available)
+            {
+                Firebase.FirebaseApp app = Firebase.FirebaseApp.DefaultInstance;
+                _isFireBaseInitialize = true;
+                Debug.Log($"Firebase was initialized");
+            }
+            else
+            {
+                Debug.Log($"Could not resolve all Firebase dependencies : {dependencyStatus}");
+            }
+        });
+    }
 
     private void UpdateLoadingTextString()
     {
@@ -34,6 +54,7 @@ public class ASyncLoader : MonoBehaviour
     }
     private IEnumerator LoadLevelASync(int levelID)
     {
+        if (!_isFireBaseInitialize) InitFirebase();
         AsyncOperation loadOperation = SceneManager.LoadSceneAsync(levelID);
 
         while (!loadOperation.isDone)
