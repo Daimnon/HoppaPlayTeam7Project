@@ -64,6 +64,7 @@ public class LevelManager : MonoBehaviour, ISaveable
     [SerializeField] private float _additionalTime = 2.0f;
 
     private bool _hasLost = false;
+    private bool _hasWon = false;
     private bool _gameStarted = false;
 
 
@@ -96,7 +97,7 @@ public class LevelManager : MonoBehaviour, ISaveable
         if (!_gameStarted)
             return;
 
-        HandleLoseCondition(); // considering to change for coroutine, more performant - need testing?
+        if (!_hasWon) HandleLoseCondition(); // considering to change for coroutine, more performant - need testing?
     }
     private void OnDisable()
     {
@@ -278,6 +279,7 @@ public class LevelManager : MonoBehaviour, ISaveable
         _levelLostBtn.gameObject.SetActive(false);
         _levelCompleteBtn.gameObject.SetActive(true);
         _title.text = _victoryText;
+        _hasWon = true;
         /* maybe add earning transition animation to the correct ui
          * for (int i = 0; i < _earningCanvases.Length; i++)
         {
